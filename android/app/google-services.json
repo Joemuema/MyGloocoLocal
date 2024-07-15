@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "561890260849",
+    "project_id": "myglooco-19xlbg",
+    "storage_bucket": "myglooco-19xlbg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561890260849:android:ca6e97f0eb970208f028d0",
+        "android_client_info": {
+          "package_name": "com.mycompany.myglooco"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561890260849-fs1b7ccl0ojcji95r253vedm9pjj7bo3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.myglooco",
+            "certificate_hash": "095b2ca983f7bbcfdb68965399e5e0bbbf94034e"
+          }
+        },
+        {
+          "client_id": "561890260849-mqvb1pe8b9sp0qau3kh2hovqriv6lflt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.myglooco",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "561890260849-e86pjthv7k4jnb3ljagoetf4okpt8nb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq_qBFoUJlfzcTJgrbgK0r9q-05I0d9dI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561890260849-e86pjthv7k4jnb3ljagoetf4okpt8nb3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "561890260849-btal9a250ia8jhfbhta73sr67drfdc6r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.myglooco"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

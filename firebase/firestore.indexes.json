@@ -1,0 +1,72 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "BGreadings",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Date",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Time",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Reminders",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "MedicineID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "DateTimeCreated",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Medicine",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Form",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Name",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Reminders",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "MedicineID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Time",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
