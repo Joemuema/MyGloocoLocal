@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:timezone/data/latest.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -41,10 +40,9 @@ Future scheduleNotification(
   var notificationDetails =
       NotificationDetails(android: androidSettings, iOS: null);
 
-  final timeZoneName = await FlutterNativeTimezone.getLocalTimezone();
-  final location = tz.getLocation(timeZoneName);
+  var deviceTimeZone = tz.local;
 
-  var scheduledTime = tz.TZDateTime.from(parsedTime, location);
+  var scheduledTime = tz.TZDateTime.from(parsedTime, deviceTimeZone);
 
   await flutterLocalNotificationsPlugin.zonedSchedule(
     0,
