@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'personal_details_model.dart';
 export 'personal_details_model.dart';
@@ -94,44 +93,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                             focusColor: Colors.transparent,
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
-                            onTap: () async {
-                              final selectedMedia =
-                                  await selectMediaWithSourceBottomSheet(
-                                context: context,
-                                maxWidth: 75.00,
-                                allowPhoto: true,
-                              );
-                              if (selectedMedia != null &&
-                                  selectedMedia.every((m) => validateFileFormat(
-                                      m.storagePath, context))) {
-                                setState(() => _model.isDataUploading = true);
-                                var selectedUploadedFiles = <FFUploadedFile>[];
-
-                                try {
-                                  selectedUploadedFiles = selectedMedia
-                                      .map((m) => FFUploadedFile(
-                                            name: m.storagePath.split('/').last,
-                                            bytes: m.bytes,
-                                            height: m.dimensions?.height,
-                                            width: m.dimensions?.width,
-                                            blurHash: m.blurHash,
-                                          ))
-                                      .toList();
-                                } finally {
-                                  _model.isDataUploading = false;
-                                }
-                                if (selectedUploadedFiles.length ==
-                                    selectedMedia.length) {
-                                  setState(() {
-                                    _model.uploadedLocalFile =
-                                        selectedUploadedFiles.first;
-                                  });
-                                } else {
-                                  setState(() {});
-                                  return;
-                                }
-                              }
-                            },
+                            onTap: () async {},
                             child: SizedBox(
                               width: 83.0,
                               height: 87.0,
