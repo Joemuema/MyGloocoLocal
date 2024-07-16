@@ -20,6 +20,11 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _UserID = prefs.getString('ff_UserID')?.ref ?? _UserID;
     });
+    _safeInit(() {
+      _notificationPermissionsGranted =
+          prefs.getBool('ff_notificationPermissionsGranted') ??
+              _notificationPermissionsGranted;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -36,6 +41,13 @@ class FFAppState extends ChangeNotifier {
     value != null
         ? prefs.setString('ff_UserID', value.path)
         : prefs.remove('ff_UserID');
+  }
+
+  bool _notificationPermissionsGranted = false;
+  bool get notificationPermissionsGranted => _notificationPermissionsGranted;
+  set notificationPermissionsGranted(bool value) {
+    _notificationPermissionsGranted = value;
+    prefs.setBool('ff_notificationPermissionsGranted', value);
   }
 }
 

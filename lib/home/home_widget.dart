@@ -5,6 +5,7 @@ import '/components/bglogs_widget.dart';
 import '/components/diet_logs_widget.dart';
 import '/components/medicine_logs_widget.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -107,56 +108,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          AuthUserStreamWidget(
-                            builder: (context) => InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('userdetails');
-                              },
-                              child: Container(
-                                width: 25.0,
-                                height: 25.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: Image.network(
-                                      currentUserPhoto == ''
-                                          ? 'data:image/jpeg;base64,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'
-                                          : currentUserPhoto,
-                                    ).image,
-                                  ),
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Icon(
-                            Icons.notifications_active,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              GoRouter.of(context).prepareAuthEvent();
-                              await authManager.signOut();
-                              GoRouter.of(context).clearRedirectLocation();
-
-                              context.goNamedAuth('Signup', context.mounted);
-                            },
-                            child: FaIcon(
-                              FontAwesomeIcons.doorOpen,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                          FlutterFlowIconButton(
+                            borderColor: FlutterFlowTheme.of(context).primary,
+                            borderRadius: 20.0,
+                            borderWidth: 1.0,
+                            buttonSize: 40.0,
+                            icon: Icon(
+                              Icons.person,
+                              color: FlutterFlowTheme.of(context).primaryText,
                               size: 24.0,
                             ),
+                            onPressed: () {
+                              print('IconButton pressed ...');
+                            },
                           ),
                         ].divide(const SizedBox(width: 10.0)),
                       ),

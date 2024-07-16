@@ -12,3 +12,4 @@ export '/medication_home/medication_home_widget.dart' show MedicationHomeWidget;
 export '/medication_form/medication_form_widget.dart' show MedicationFormWidget;
 export '/medication_list/medication_list_widget.dart' show MedicationListWidget;
 export '/userdetails/userdetails_widget.dart' show UserdetailsWidget;
+export '/options/settings/settings_widget.dart' show SettingsWidget;

@@ -687,7 +687,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                   await actions.scheduleNotification(
                                     'Title',
                                     'Content',
-                                    functions.getTime(_model.datePicked!),
+                                    dateTimeFormat('jm', _model.datePicked),
                                   );
                                 },
                                 text: _model.datePicked != null
