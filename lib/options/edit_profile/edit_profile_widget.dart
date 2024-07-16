@@ -535,12 +535,13 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               },
                               text: 'Save',
                               options: FFButtonOptions(
-                                height: 40.0,
+                                width: 120.0,
+                                height: 35.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: FlutterFlowTheme.of(context).secondary,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
