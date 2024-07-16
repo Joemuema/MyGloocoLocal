@@ -37,6 +37,8 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Firestore Query - Query a collection] action in MedicationHome widget.
   List<RemindersRecord>? allReminders;
+  // Stores action output result for [Custom Action - requestNotificationPermissions] action in MedicationHome widget.
+  bool? notifsInitialized;
   // State field(s) for Calendar widget.
   DateTimeRange? calendarSelectedDay;
   // Stores action output result for [Firestore Query - Query a collection] action in Calendar widget.

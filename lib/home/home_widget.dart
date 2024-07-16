@@ -146,7 +146,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 25.0),
                   child: SizedBox(
                     width: double.infinity,
-                    height: MediaQuery.sizeOf(context).height * 0.489,
+                    height: MediaQuery.sizeOf(context).height * 0.5,
                     child: CarouselSlider(
                       items: [
                         Container(
@@ -397,7 +397,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 20.0, 0.0),
+                                    10.0, 20.0, 20.0, 0.0),
                                 child: StreamBuilder<List<BGreadingsRecord>>(
                                   stream: queryBGreadingsRecord(
                                     queryBuilder: (bGreadingsRecord) =>
@@ -436,7 +436,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         snapshot.data!;
 
                                     return SizedBox(
-                                      height: 327.0,
+                                      height:
+                                          MediaQuery.sizeOf(context).height *
+                                              0.375,
                                       child: Stack(
                                         children: [
                                           FlutterFlowLineChart(

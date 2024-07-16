@@ -145,7 +145,12 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
           .toList()
           .cast<RemindersRecord>();
       setState(() {});
-      await actions.requestNotificationPermissions();
+      if (FFAppState().notificationPermissionsGranted == false) {
+        _model.notifsInitialized =
+            await actions.requestNotificationPermissions();
+        FFAppState().notificationPermissionsGranted = _model.notifsInitialized!;
+        setState(() {});
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
