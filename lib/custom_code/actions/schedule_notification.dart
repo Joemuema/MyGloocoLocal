@@ -21,7 +21,6 @@ Future scheduleNotification(
 ) async {
   print('Provided time: $time');
 
-  await requestNotificationPermissions();
   DateTime parsedTime = DateFormat.jm().parse(time!);
 
   tzdata.initializeTimeZones();

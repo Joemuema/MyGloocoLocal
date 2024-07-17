@@ -1180,7 +1180,21 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                               : functions
                                                   .getDate(_model.datePicked2!),
                                           dateTimeCreated: getCurrentTimestamp,
-                                          lastUpdated: _model.datePicked1,
+                                          lastUpdated: widget.editMode!
+                                              ? functions.stringToDate(
+                                                  medicationFormMedicineRecord
+                                                      .startDate)
+                                              : _model.datePicked1,
+                                          fIrstDateTime: widget.editMode!
+                                              ? functions.stringToDate(
+                                                  medicationFormMedicineRecord
+                                                      .startDate)
+                                              : _model.datePicked1,
+                                          lastDateTime: widget.editMode!
+                                              ? functions.stringToDate(
+                                                  medicationFormMedicineRecord
+                                                      .endDate)
+                                              : _model.datePicked2,
                                         ));
                                         _model.newReminderID =
                                             RemindersRecord.getDocumentFromData(
@@ -1200,8 +1214,23 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                                           _model.datePicked2!),
                                                   dateTimeCreated:
                                                       getCurrentTimestamp,
-                                                  lastUpdated:
-                                                      _model.datePicked1,
+                                                  lastUpdated: widget.editMode!
+                                                      ? functions.stringToDate(
+                                                          medicationFormMedicineRecord
+                                                              .startDate)
+                                                      : _model.datePicked1,
+                                                  fIrstDateTime: widget
+                                                          .editMode!
+                                                      ? functions.stringToDate(
+                                                          medicationFormMedicineRecord
+                                                              .startDate)
+                                                      : _model.datePicked1,
+                                                  lastDateTime: widget
+                                                          .editMode!
+                                                      ? functions.stringToDate(
+                                                          medicationFormMedicineRecord
+                                                              .endDate)
+                                                      : _model.datePicked2,
                                                 ),
                                                 remindersRecordReference);
                                         _model.addToReminderIDList(
