@@ -1,14 +1,14 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/activity_logs_widget.dart';
-import '/components/bglogs_widget.dart';
-import '/components/diet_logs_widget.dart';
-import '/components/medicine_logs_widget.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/logs/activity_logs/activity_logs_widget.dart';
+import '/logs/bglogs/bglogs_widget.dart';
+import '/logs/diet_logs/diet_logs_widget.dart';
+import '/logs/medicine_logs/medicine_logs_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -118,8 +118,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                               size: 24.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              context.pushNamed('Settings');
                             },
                           ),
                         ].divide(const SizedBox(width: 10.0)),

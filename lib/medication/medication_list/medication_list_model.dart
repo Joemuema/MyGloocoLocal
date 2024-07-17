@@ -1,6 +1,6 @@
 import '/backend/backend.dart';
-import '/components/med_list_item_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/medication/med_list_item/med_list_item_widget.dart';
 import 'medication_list_widget.dart' show MedicationListWidget;
 import 'package:flutter/material.dart';
 

@@ -135,6 +135,9 @@ class _SignupWidgetState extends State<SignupWidget> {
                                             .labelMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                               letterSpacing: 0.0,
                                             ),
                                         hintStyle: FlutterFlowTheme.of(context)
@@ -145,7 +148,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                             ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: const BorderSide(
-                                            color: Color(0x00000000),
+                                            color: Color(0xFFB2D3C2),
                                             width: 2.0,
                                           ),
                                           borderRadius:
@@ -179,7 +182,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                               BorderRadius.circular(22.0),
                                         ),
                                         filled: true,
-                                        fillColor: const Color(0xFFB2D3C2),
+                                        fillColor: Colors.transparent,
                                         suffixIcon: _model
                                                 .emailAddressTextController!
                                                 .text
@@ -237,7 +240,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                             ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: const BorderSide(
-                                            color: Color(0x00000000),
+                                            color: Color(0xFFB2D3C2),
                                             width: 2.0,
                                           ),
                                           borderRadius:
@@ -271,7 +274,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                               BorderRadius.circular(22.0),
                                         ),
                                         filled: true,
-                                        fillColor: const Color(0xFFB2D3C2),
+                                        fillColor: Colors.transparent,
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
                                             () => _model
@@ -327,7 +330,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                             ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: const BorderSide(
-                                            color: Color(0x00000000),
+                                            color: Color(0xFFB2D3C2),
                                             width: 2.0,
                                           ),
                                           borderRadius:
@@ -361,7 +364,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                               BorderRadius.circular(22.0),
                                         ),
                                         filled: true,
-                                        fillColor: const Color(0xFFB2D3C2),
+                                        fillColor: Colors.transparent,
                                         suffixIcon: InkWell(
                                           onTap: () => setState(
                                             () => _model

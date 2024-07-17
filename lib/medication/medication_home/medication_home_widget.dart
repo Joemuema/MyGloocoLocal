@@ -1,12 +1,12 @@
 import '/backend/backend.dart';
 import '/components/home_reminder_widget.dart';
-import '/components/med_menu_widget.dart';
 import '/components/no_elements_widget.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/medication/med_menu/med_menu_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -145,9 +145,14 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
           .toList()
           .cast<RemindersRecord>();
       setState(() {});
-      _model.notifsInitialized = await actions.requestNotificationPermissions();
-      FFAppState().notificationPermissionsGranted = _model.notifsInitialized!;
-      setState(() {});
+      if (FFAppState().notificationPermissionsGranted == false) {
+        _model.notifsInitialized =
+            await actions.requestNotificationPermissions();
+        FFAppState().notificationPermissionsGranted = _model.notifsInitialized!;
+        setState(() {});
+      } else {
+        await actions.requestPermissions();
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));

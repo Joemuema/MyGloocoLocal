@@ -139,7 +139,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: const BorderSide(
-                                          color: Color(0x00000000),
+                                          color: Color(0xFFB2D3C2),
                                           width: 2.0,
                                         ),
                                         borderRadius:
@@ -173,7 +173,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             BorderRadius.circular(24.0),
                                       ),
                                       filled: true,
-                                      fillColor: const Color(0xFFB2D3C2),
+                                      fillColor: Colors.transparent,
                                       suffixIcon: _model
                                               .loginEmailTextController!
                                               .text
@@ -231,7 +231,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: const BorderSide(
-                                          color: Color(0x00000000),
+                                          color: Color(0xFFB2D3C2),
                                           width: 2.0,
                                         ),
                                         borderRadius:
@@ -265,7 +265,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             BorderRadius.circular(22.0),
                                       ),
                                       filled: true,
-                                      fillColor: const Color(0xFFB2D3C2),
+                                      fillColor: Colors.transparent,
                                       prefixIcon: const Icon(
                                         Icons.lock_outline,
                                       ),
