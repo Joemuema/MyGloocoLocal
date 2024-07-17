@@ -1,15 +1,21 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'reports_model.dart';
 export 'reports_model.dart';
 
 class ReportsWidget extends StatefulWidget {
-  const ReportsWidget({super.key});
+  const ReportsWidget({
+    super.key,
+    this.startDate,
+  });
+
+  final DocumentReference? startDate;
 
   @override
   State<ReportsWidget> createState() => _ReportsWidgetState();
@@ -29,7 +35,8 @@ class _ReportsWidgetState extends State<ReportsWidget> {
     super.initState();
     _model = createModel(context, () => ReportsModel());
 
-    _model.textController ??= TextEditingController(text: '30');
+    _model.textController ??=
+        TextEditingController(text: _model.datePicked?.toString());
     _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -76,8 +83,108 @@ class _ReportsWidgetState extends State<ReportsWidget> {
               padding: const EdgeInsetsDirectional.fromSTEB(10.0, 16.0, 10.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Text(
+                    'Select Report Duration',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
                   Flexible(
+                    child: StreamBuilder<ReportsRecord>(
+                      stream: ReportsRecord.getDocument(widget.startDate!),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+
+                        final iconButtonReportsRecord = snapshot.data!;
+
+                        return FlutterFlowIconButton(
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 30.0,
+                          icon: Icon(
+                            Icons.navigate_next_outlined,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 25.0,
+                          ),
+                          onPressed: () async {
+                            final datePickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: getCurrentTimestamp,
+                              firstDate: DateTime(1900),
+                              lastDate: getCurrentTimestamp,
+                              builder: (context, child) {
+                                return wrapInMaterialDatePickerTheme(
+                                  context,
+                                  child!,
+                                  headerBackgroundColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  headerForegroundColor:
+                                      FlutterFlowTheme.of(context).info,
+                                  headerTextStyle: FlutterFlowTheme.of(context)
+                                      .headlineLarge
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        fontSize: 32.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                  pickerBackgroundColor:
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                  pickerForegroundColor:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  selectedDateTimeBackgroundColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  selectedDateTimeForegroundColor:
+                                      FlutterFlowTheme.of(context).info,
+                                  actionButtonForegroundColor:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  iconSize: 25.0,
+                                );
+                              },
+                            );
+
+                            if (datePickedDate != null) {
+                              safeSetState(() {
+                                _model.datePicked = DateTime(
+                                  datePickedDate.year,
+                                  datePickedDate.month,
+                                  datePickedDate.day,
+                                );
+                              });
+                            }
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 16.0, 10.0, 0.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
@@ -85,9 +192,10 @@ class _ReportsWidgetState extends State<ReportsWidget> {
                         controller: _model.textController,
                         focusNode: _model.textFieldFocusNode,
                         autofocus: true,
+                        readOnly: true,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Enter the Report Duration (In Days)',
+                          labelText: 'Selected Start Date',
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -131,12 +239,8 @@ class _ReportsWidgetState extends State<ReportsWidget> {
                               fontFamily: 'Readex Pro',
                               letterSpacing: 0.0,
                             ),
-                        keyboardType: TextInputType.number,
                         validator:
                             _model.textControllerValidator.asValidator(context),
-                        inputFormatters: [
-                          FilteringTextInputFormatter.allow(RegExp('[0-9]'))
-                        ],
                       ),
                     ),
                   ),

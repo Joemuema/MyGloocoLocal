@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class ReportsModel extends FlutterFlowModel<ReportsWidget> {
   ///  State fields for stateful widgets in this component.
 
+  DateTime? datePicked;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

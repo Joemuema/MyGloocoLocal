@@ -58,7 +58,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>In order to upload data, this app requires permission to access the photo library.</string>
 	<key>PermissionGroupNotification</key>
-    <string>Allow notifications to be sent to trigger reminders? </string>
+    <string>Allow notifications to be sent to trigger reminders</string>
 
 
 	<key>UILaunchStoryboardName</key>

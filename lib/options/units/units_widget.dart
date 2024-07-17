@@ -1,10 +1,14 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'units_model.dart';
 export 'units_model.dart';
 
@@ -29,6 +33,17 @@ class _UnitsWidgetState extends State<UnitsWidget> {
     super.initState();
     _model = createModel(context, () => UnitsModel());
 
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.profileDoc = await queryProfileRecordOnce(
+        queryBuilder: (profileRecord) => profileRecord.where(
+          'uid',
+          isEqualTo: FFAppState().UserID,
+        ),
+        singleRecord: true,
+      ).then((s) => s.firstOrNull);
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -41,6 +56,8 @@ class _UnitsWidgetState extends State<UnitsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: 422.0,
       height: 414.0,
@@ -211,8 +228,12 @@ class _UnitsWidgetState extends State<UnitsWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      await _model.profileDoc!.reference
+                          .update(createProfileRecordData(
+                        preferredBG: _model.choiceChipsValue1,
+                        preferredCal: _model.choiceChipsValue2,
+                      ));
                     },
                     text: 'Save',
                     options: FFButtonOptions(

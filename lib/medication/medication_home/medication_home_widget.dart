@@ -2,7 +2,6 @@ import '/backend/backend.dart';
 import '/components/home_reminder_widget.dart';
 import '/components/no_elements_widget.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -206,26 +205,11 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: const Icon(
-              Icons.arrow_back_rounded,
-              color: Colors.white,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pop();
-            },
-          ),
           title: Text(
             'Medicine Schedule',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
+            style: FlutterFlowTheme.of(context).displaySmall.override(
                   fontFamily: 'Inter',
-                  color: Colors.white,
-                  fontSize: 22.0,
+                  color: FlutterFlowTheme.of(context).primaryBackground,
                   letterSpacing: 0.0,
                 ),
           ),

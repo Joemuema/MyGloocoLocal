@@ -1,3 +1,5 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,7 +8,9 @@ import '/options/edit_profile/edit_profile_widget.dart';
 import '/options/reports/reports_widget.dart';
 import '/options/units/units_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'settings_model.dart';
@@ -31,6 +35,17 @@ class _SettingsWidgetState extends State<SettingsWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => SettingsModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.sett = await queryUsersRecordOnce(
+        queryBuilder: (usersRecord) => usersRecord.where(
+          'uid',
+          isEqualTo: currentUserUid,
+        ),
+        singleRecord: true,
+      ).then((s) => s.firstOrNull);
+    });
 
     animationsMap.addAll({
       'containerOnActionTriggerAnimation': AnimationInfo(
@@ -87,7 +102,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
               size: 30.0,
             ),
             onPressed: () async {
-              context.safePop();
+              context.goNamed('Home');
             },
           ),
           title: Text(
@@ -153,7 +168,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                       child: SizedBox(
                                         height:
                                             MediaQuery.sizeOf(context).height *
-                                                0.7,
+                                                0.65,
                                         child: const EditProfileWidget(),
                                       ),
                                     ),
@@ -178,18 +193,20 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(2.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50.0),
-                                      child: CachedNetworkImage(
-                                        fadeInDuration:
-                                            const Duration(milliseconds: 500),
-                                        fadeOutDuration:
-                                            const Duration(milliseconds: 500),
-                                        imageUrl:
-                                            'https://images.unsplash.com/photo-1531123414780-f74242c2b052?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60',
-                                        width: 60.0,
-                                        height: 60.0,
-                                        fit: BoxFit.cover,
+                                    child: AuthUserStreamWidget(
+                                      builder: (context) => ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(50.0),
+                                        child: CachedNetworkImage(
+                                          fadeInDuration:
+                                              const Duration(milliseconds: 500),
+                                          fadeOutDuration:
+                                              const Duration(milliseconds: 500),
+                                          imageUrl: currentUserPhoto,
+                                          width: 60.0,
+                                          height: 60.0,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -203,20 +220,22 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        'Joy Augustin',
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineSmall
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              letterSpacing: 0.0,
-                                            ),
+                                      AuthUserStreamWidget(
+                                        builder: (context) => Text(
+                                          currentUserDisplayName,
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineSmall
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
                                       ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 0.0),
                                         child: Text(
-                                          'joy@augustin.com',
+                                          currentUserEmail,
                                           style: FlutterFlowTheme.of(context)
                                               .labelMedium
                                               .override(
@@ -269,7 +288,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                           child: Padding(
                             padding: MediaQuery.viewInsetsOf(context),
                             child: SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.7,
+                              height: MediaQuery.sizeOf(context).height * 0.65,
                               child: const EditProfileWidget(),
                             ),
                           ),
@@ -346,7 +365,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                         child: SizedBox(
                                           height: MediaQuery.sizeOf(context)
                                                   .height *
-                                              0.7,
+                                              0.65,
                                           child: const EditProfileWidget(),
                                         ),
                                       ),

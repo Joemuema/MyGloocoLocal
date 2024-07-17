@@ -10,6 +10,7 @@ import '/flutter_flow/upload_data.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'userdetails_model.dart';
 export 'userdetails_model.dart';
 
@@ -35,6 +36,9 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+    _model.textController3 ??= TextEditingController();
+    _model.textFieldFocusNode3 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -288,12 +292,21 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                   _model.textController1,
                                               focusNode:
                                                   _model.textFieldFocusNode1,
-                                              autofocus: false,
+                                              autofocus: true,
                                               textInputAction:
                                                   TextInputAction.next,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: 'First Name',
+                                                labelStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                          lineHeight: 10.0,
+                                                        ),
                                                 hintStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium
@@ -304,13 +317,15 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                         ),
                                                 enabledBorder:
                                                     OutlineInputBorder(
-                                                  borderSide: const BorderSide(
-                                                    color: Color(0x00000000),
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
                                                     width: 2.0,
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          22.0),
+                                                          8.0),
                                                 ),
                                                 focusedBorder:
                                                     OutlineInputBorder(
@@ -322,7 +337,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          22.0),
+                                                          8.0),
                                                 ),
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
@@ -333,7 +348,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          22.0),
+                                                          8.0),
                                                 ),
                                                 focusedErrorBorder:
                                                     OutlineInputBorder(
@@ -345,14 +360,12 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          22.0),
+                                                          8.0),
                                                 ),
-                                                filled: true,
-                                                fillColor: const Color(0xFFB2D3C2),
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                      .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
@@ -369,7 +382,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                   _model.textController2,
                                               focusNode:
                                                   _model.textFieldFocusNode2,
-                                              autofocus: false,
+                                              autofocus: true,
                                               textInputAction:
                                                   TextInputAction.done,
                                               obscureText: false,
@@ -393,13 +406,15 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                         ),
                                                 enabledBorder:
                                                     OutlineInputBorder(
-                                                  borderSide: const BorderSide(
-                                                    color: Color(0x00000000),
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
                                                     width: 2.0,
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          22.0),
+                                                          8.0),
                                                 ),
                                                 focusedBorder:
                                                     OutlineInputBorder(
@@ -411,7 +426,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          22.0),
+                                                          8.0),
                                                 ),
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
@@ -422,7 +437,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          22.0),
+                                                          8.0),
                                                 ),
                                                 focusedErrorBorder:
                                                     OutlineInputBorder(
@@ -434,10 +449,8 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          22.0),
+                                                          8.0),
                                                 ),
-                                                filled: true,
-                                                fillColor: const Color(0xFFB2D3C2),
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -451,6 +464,108 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                               validator: _model
                                                   .textController2Validator
                                                   .asValidator(context),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(8.0, 0.0, 8.0, 0.0),
+                                              child: TextFormField(
+                                                controller:
+                                                    _model.textController3,
+                                                focusNode:
+                                                    _model.textFieldFocusNode3,
+                                                autofocus: true,
+                                                obscureText: false,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Phone Number',
+                                                  labelStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                  hintStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                  enabledBorder:
+                                                      UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      width: 2.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  focusedBorder:
+                                                      UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      width: 2.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  errorBorder:
+                                                      UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      width: 2.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      UnderlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      width: 2.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                validator: _model
+                                                    .textController3Validator
+                                                    .asValidator(context),
+                                                inputFormatters: [
+                                                  FilteringTextInputFormatter
+                                                      .allow(RegExp('[0-9]'))
+                                                ],
+                                              ),
                                             ),
                                             Container(
                                               width: 370.0,

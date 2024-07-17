@@ -65,6 +65,11 @@ class ProfileRecord extends FirestoreRecord {
   DocumentReference? get uid => _uid;
   bool hasUid() => _uid != null;
 
+  // "phoneNumber" field.
+  int? _phoneNumber;
+  int get phoneNumber => _phoneNumber ?? 0;
+  bool hasPhoneNumber() => _phoneNumber != null;
+
   void _initializeFields() {
     _profilepic = snapshotData['profilepic'] as String?;
     _firstname = snapshotData['Firstname'] as String?;
@@ -76,6 +81,7 @@ class ProfileRecord extends FirestoreRecord {
     _diabetesType = snapshotData['diabetesType'] as String?;
     _insulinTherapy = snapshotData['insulinTherapy'] as String?;
     _uid = snapshotData['uid'] as DocumentReference?;
+    _phoneNumber = castToType<int>(snapshotData['phoneNumber']);
   }
 
   static CollectionReference get collection =>
@@ -123,6 +129,7 @@ Map<String, dynamic> createProfileRecordData({
   String? diabetesType,
   String? insulinTherapy,
   DocumentReference? uid,
+  int? phoneNumber,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -136,6 +143,7 @@ Map<String, dynamic> createProfileRecordData({
       'diabetesType': diabetesType,
       'insulinTherapy': insulinTherapy,
       'uid': uid,
+      'phoneNumber': phoneNumber,
     }.withoutNulls,
   );
 
@@ -156,7 +164,8 @@ class ProfileRecordDocumentEquality implements Equality<ProfileRecord> {
         e1?.preferredCal == e2?.preferredCal &&
         e1?.diabetesType == e2?.diabetesType &&
         e1?.insulinTherapy == e2?.insulinTherapy &&
-        e1?.uid == e2?.uid;
+        e1?.uid == e2?.uid &&
+        e1?.phoneNumber == e2?.phoneNumber;
   }
 
   @override
@@ -170,7 +179,8 @@ class ProfileRecordDocumentEquality implements Equality<ProfileRecord> {
         e?.preferredCal,
         e?.diabetesType,
         e?.insulinTherapy,
-        e?.uid
+        e?.uid,
+        e?.phoneNumber
       ]);
 
   @override
