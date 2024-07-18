@@ -1,3 +1,4 @@
+import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'reports_widget.dart' show ReportsWidget;
@@ -12,8 +13,8 @@ class ReportsModel extends FlutterFlowModel<ReportsWidget> {
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for DropDown widget.
-  List<String>? dropDownValue;
-  FormFieldController<List<String>>? dropDownValueController;
+  List<Rcontent>? dropDownValue;
+  FormFieldController<List<Rcontent>>? dropDownValueController;
 
   @override
   void initState(BuildContext context) {}

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/enums/enums.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -30,10 +31,16 @@ class ReportsRecord extends FirestoreRecord {
   String get reportId => _reportId ?? '';
   bool hasReportId() => _reportId != null;
 
+  // "ReportType" field.
+  Rcontent? _reportType;
+  Rcontent? get reportType => _reportType;
+  bool hasReportType() => _reportType != null;
+
   void _initializeFields() {
     _startDate = snapshotData['StartDate'] as DateTime?;
     _endDate = snapshotData['EndDate'] as DateTime?;
     _reportId = snapshotData['ReportId'] as String?;
+    _reportType = deserializeEnum<Rcontent>(snapshotData['ReportType']);
   }
 
   static CollectionReference get collection =>
@@ -74,12 +81,14 @@ Map<String, dynamic> createReportsRecordData({
   DateTime? startDate,
   DateTime? endDate,
   String? reportId,
+  Rcontent? reportType,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'StartDate': startDate,
       'EndDate': endDate,
       'ReportId': reportId,
+      'ReportType': reportType,
     }.withoutNulls,
   );
 
@@ -93,12 +102,13 @@ class ReportsRecordDocumentEquality implements Equality<ReportsRecord> {
   bool equals(ReportsRecord? e1, ReportsRecord? e2) {
     return e1?.startDate == e2?.startDate &&
         e1?.endDate == e2?.endDate &&
-        e1?.reportId == e2?.reportId;
+        e1?.reportId == e2?.reportId &&
+        e1?.reportType == e2?.reportType;
   }
 
   @override
-  int hash(ReportsRecord? e) =>
-      const ListEquality().hash([e?.startDate, e?.endDate, e?.reportId]);
+  int hash(ReportsRecord? e) => const ListEquality()
+      .hash([e?.startDate, e?.endDate, e?.reportId, e?.reportType]);
 
   @override
   bool isValidKey(Object? o) => o is ReportsRecord;

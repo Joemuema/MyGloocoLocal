@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -255,15 +256,11 @@ class _ReportsWidgetState extends State<ReportsWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Flexible(
-                    child: FlutterFlowDropDown<String>(
+                    child: FlutterFlowDropDown<Rcontent>(
                       multiSelectController: _model.dropDownValueController ??=
-                          FormListFieldController<String>(null),
-                      options: const [
-                        'Blood Sugar',
-                        'Diet',
-                        'Medication',
-                        'Physical Activity'
-                      ],
+                          FormListFieldController<Rcontent>(null),
+                      options: List<Rcontent>.from(Rcontent.values),
+                      optionLabels: Rcontent.values.map((e) => e.name).toList(),
                       width: 300.0,
                       height: 56.0,
                       textStyle:

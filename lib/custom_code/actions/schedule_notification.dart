@@ -24,10 +24,16 @@ Future scheduleNotification(
     print('Provided time: $time');
 
     DateTime parsedTime = DateFormat.jm().parse(time!);
+    DateTime now = DateTime.now();
+
     if (parsedTime == null) {
       print('Failed to parse time: $time');
       return;
     }
+
+    parsedTime = DateTime(
+        now.year, now.month, now.day, parsedTime.hour, parsedTime.minute);
+
     print('Parsed time: $parsedTime');
 
     tzdata.initializeTimeZones();

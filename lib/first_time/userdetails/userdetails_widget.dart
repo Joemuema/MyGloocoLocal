@@ -11,6 +11,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'userdetails_model.dart';
 export 'userdetails_model.dart';
 
@@ -52,6 +53,8 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -1313,6 +1316,9 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                   _model.choiceChipsValue3,
                                               insulinTherapy:
                                                   _model.choiceChipsValue4,
+                                              phoneNumber: int.tryParse(
+                                                  _model.textController3.text),
+                                              uid: FFAppState().UserID,
                                             ));
 
                                         await currentUserReference!
