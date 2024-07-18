@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -56,13 +57,20 @@ Future scheduleNotification(
     // var local = tz.getLocation(tz.local.name);
     // print('Using timezone: ${local.name}');
 
-    var deviceTimeZone = tz.getLocation(
-        'Etc/GMT${now.timeZoneOffset.inHours > 0 ? '+' : ''}${now.timeZoneOffset.inHours}');
-    print('Using inferred timezone: ${deviceTimeZone.name}');
+    //var deviceTimeZone = tz.getLocation(
+    //    'Etc/GMT${now.timeZoneOffset.inHours > 0 ? '+' : ''}${now.timeZoneOffset.inHours}');
+    //print('Using inferred timezone: ${deviceTimeZone.name}');
 
-    var scheduledTime = tz.TZDateTime.from(parsedTime, deviceTimeZone);
+    // Get the device's timezone
+    String timeZoneName = await FlutterTimezone.getLocalTimezone();
+    print('Device timezone: $timeZoneName');
 
-    if (scheduledTime.isBefore(tz.TZDateTime.now(deviceTimeZone))) {
+    // Use the correct timezone location
+    final tzLocation = tz.getLocation(timeZoneName);
+
+    var scheduledTime = tz.TZDateTime.from(parsedTime, tzLocation);
+
+    if (scheduledTime.isBefore(tz.TZDateTime.now(tzLocation))) {
       print('Scheduled time is in the past: $scheduledTime');
       return;
     }
