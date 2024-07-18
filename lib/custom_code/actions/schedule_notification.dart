@@ -52,11 +52,12 @@ Future scheduleNotification(
     var notificationDetails =
         NotificationDetails(android: androidSettings, iOS: null);
 
-    var deviceTimeZone = tz.local;
+    // var deviceTimeZone = tz.local;
+    tz.Location local = tz.getLocation(tz.local.name);
 
-    var scheduledTime = tz.TZDateTime.from(parsedTime, deviceTimeZone);
+    var scheduledTime = tz.TZDateTime.from(parsedTime, local);
 
-    if (scheduledTime.isBefore(tz.TZDateTime.now(deviceTimeZone))) {
+    if (scheduledTime.isBefore(tz.TZDateTime.now(local))) {
       print('Scheduled time is in the past: $scheduledTime');
       return;
     }
