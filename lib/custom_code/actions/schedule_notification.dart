@@ -53,12 +53,16 @@ Future scheduleNotification(
         NotificationDetails(android: androidSettings, iOS: null);
 
     // var deviceTimeZone = tz.local;
-    var local = tz.getLocation(tz.local.name);
-    print('Using timezone: ${local.name}');
+    // var local = tz.getLocation(tz.local.name);
+    // print('Using timezone: ${local.name}');
 
-    var scheduledTime = tz.TZDateTime.from(parsedTime, local);
+    var deviceTimeZone = tz.getLocation(
+        'Etc/GMT${now.timeZoneOffset.inHours > 0 ? '+' : ''}${now.timeZoneOffset.inHours}');
+    print('Using inferred timezone: ${deviceTimeZone.name}');
 
-    if (scheduledTime.isBefore(tz.TZDateTime.now(local))) {
+    var scheduledTime = tz.TZDateTime.from(parsedTime, deviceTimeZone);
+
+    if (scheduledTime.isBefore(tz.TZDateTime.now(deviceTimeZone))) {
       print('Scheduled time is in the past: $scheduledTime');
       return;
     }
