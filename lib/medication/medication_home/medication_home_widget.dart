@@ -210,7 +210,9 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
             style: FlutterFlowTheme.of(context).displaySmall.override(
                   fontFamily: 'Inter',
                   color: FlutterFlowTheme.of(context).primaryBackground,
+                  fontSize: 22.0,
                   letterSpacing: 0.0,
+                  fontWeight: FontWeight.normal,
                 ),
           ),
           actions: const [],

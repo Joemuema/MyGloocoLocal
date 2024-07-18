@@ -1,5 +1,6 @@
 // Automatic FlutterFlow imports
 import '/backend/backend.dart';
+import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom actions
@@ -19,40 +20,56 @@ Future scheduleNotification(
   String? content,
   String? time,
 ) async {
-  print('Provided time: $time');
+  try {
+    print('Provided time: $time');
 
-  DateTime parsedTime = DateFormat.jm().parse(time!);
+    DateTime parsedTime = DateFormat.jm().parse(time!);
+    if (parsedTime == null) {
+      print('Failed to parse time: $time');
+      return;
+    }
+    print('Parsed time: $parsedTime');
 
-  tzdata.initializeTimeZones();
+    tzdata.initializeTimeZones();
 
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
 
-  var androidSettings = AndroidNotificationDetails(
-    'channel_id',
-    'channel_name',
-    importance: Importance.high,
-    priority: Priority.high,
-    icon: '@mipmap/ic_launcher', //Replace with icon name, no extension
-  );
+    var androidSettings = AndroidNotificationDetails(
+      'channel_id',
+      'channel_name',
+      importance: Importance.high,
+      priority: Priority.high,
+      icon: '@mipmap/ic_launcher', //Replace with icon name, no extension
+    );
 
-  var notificationDetails =
-      NotificationDetails(android: androidSettings, iOS: null);
+    var notificationDetails =
+        NotificationDetails(android: androidSettings, iOS: null);
 
-  var deviceTimeZone = tz.local;
+    var deviceTimeZone = tz.local;
 
-  var scheduledTime = tz.TZDateTime.from(parsedTime, deviceTimeZone);
+    var scheduledTime = tz.TZDateTime.from(parsedTime, deviceTimeZone);
 
-  await flutterLocalNotificationsPlugin.zonedSchedule(
-    0,
-    title!,
-    content!,
-    scheduledTime,
-    notificationDetails,
-    androidAllowWhileIdle: true,
-    uiLocalNotificationDateInterpretation:
-        UILocalNotificationDateInterpretation.absoluteTime,
-    matchDateTimeComponents: DateTimeComponents.time,
-    payload: 'Custom_Sound',
-  );
+    if (scheduledTime.isBefore(tz.TZDateTime.now(deviceTimeZone))) {
+      print('Scheduled time is in the past: $scheduledTime');
+      return;
+    }
+
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      0,
+      title!,
+      content!,
+      scheduledTime,
+      notificationDetails,
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents: DateTimeComponents.time,
+      payload: 'Custom_Sound',
+    );
+
+    print('Notification scheduled for $scheduledTime');
+  } catch (e) {
+    print('Failed to schedule notification: $e');
+  }
 }
