@@ -53,7 +53,8 @@ Future scheduleNotification(
         NotificationDetails(android: androidSettings, iOS: null);
 
     // var deviceTimeZone = tz.local;
-    tz.Location local = tz.getLocation(tz.local.name);
+    var local = tz.getLocation(tz.local.name);
+    print('Using timezone: ${local.name}');
 
     var scheduledTime = tz.TZDateTime.from(parsedTime, local);
 
