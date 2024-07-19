@@ -191,19 +191,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          _model.userProfile!.profilepic,
+                                        child: Image.asset(
+                                          'assets/images/blank-profile-picture-973460_1280.png',
                                           width: 300.0,
                                           height: 200.0,
                                           fit: BoxFit.cover,
-                                          errorBuilder:
-                                              (context, error, stackTrace) =>
-                                                  Image.asset(
-                                            'assets/images/error_image.png',
-                                            width: 300.0,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
-                                          ),
                                         ),
                                       ),
                                     ),
