@@ -26,7 +26,7 @@ Future scheduleAlarmNotification(
   tzdata.initializeTimeZones();
 
   AwesomeNotifications().initialize(
-    'resource://drawable/res_app_icon', // Replace with your app icon resource
+    'resource://drawable/logo', // Replace with your app icon resource
     [
       NotificationChannel(
         channelKey: 'alarm_channel',
@@ -89,6 +89,7 @@ Future scheduleAlarmNotification(
         wakeUpScreen: true,
         fullScreenIntent: true,
         autoDismissible: false,
+        icon: 'resource://drawable/logo',
       ),
       schedule: NotificationCalendar(
         year: scheduledTime.year,

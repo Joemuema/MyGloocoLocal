@@ -41,9 +41,11 @@ Future scheduleNotification(
       FlutterLocalNotificationsPlugin();
 
   var initializationSettingsAndroid =
-      AndroidInitializationSettings('@mipmap/ic_launcher');
+      AndroidInitializationSettings('resource://drawable/logo');
   var initializationSettings =
       InitializationSettings(android: initializationSettingsAndroid, iOS: null);
+
+  // '@mipmap/ic_launcher'
 
   /* await flutterLocalNotificationsPlugin.initialize(initializationSettings,
       onSelectNotification: (String? payload) async {
@@ -55,7 +57,7 @@ Future scheduleNotification(
     'channel_name',
     importance: Importance.high,
     priority: Priority.high,
-    icon: '@mipmap/ic_launcher', //Replace with icon name, no extension
+    icon: 'resource://drawable/logo', //Replace with icon name, no extension
   );
 
   var notificationDetails =
