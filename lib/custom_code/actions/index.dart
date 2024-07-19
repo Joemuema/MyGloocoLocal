@@ -4,3 +4,5 @@ export 'request_notification_permissions.dart'
 export 'delete_documents.dart' show deleteDocuments;
 export 'convert_and_store_time_field.dart' show convertAndStoreTimeField;
 export 'request_permissions.dart' show requestPermissions;
+export 'schedule_alarm_notification.dart' show scheduleAlarmNotification;
+export 'generate_report.dart' show generateReport;

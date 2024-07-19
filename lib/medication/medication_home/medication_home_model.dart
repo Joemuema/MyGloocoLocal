@@ -45,7 +45,8 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
   List<RemindersRecord>? calendarReminders;
   // Models for homeReminder dynamic component.
   late FlutterFlowDynamicModels<HomeReminderModel> homeReminderModels;
-  DateTime? datePicked;
+  DateTime? datePicked1;
+  DateTime? datePicked2;
 
   @override
   void initState(BuildContext context) {

@@ -626,7 +626,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  final datePickedTime = await showTimePicker(
+                                  final datePicked1Time = await showTimePicker(
                                     context: context,
                                     initialTime: TimeOfDay.fromDateTime(
                                         getCurrentTimestamp),
@@ -666,25 +666,132 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                       );
                                     },
                                   );
-                                  if (datePickedTime != null) {
+                                  if (datePicked1Time != null) {
                                     safeSetState(() {
-                                      _model.datePicked = DateTime(
+                                      _model.datePicked1 = DateTime(
                                         getCurrentTimestamp.year,
                                         getCurrentTimestamp.month,
                                         getCurrentTimestamp.day,
-                                        datePickedTime.hour,
-                                        datePickedTime.minute,
+                                        datePicked1Time.hour,
+                                        datePicked1Time.minute,
                                       );
                                     });
                                   }
                                   await actions.scheduleNotification(
                                     'Title',
                                     'Content',
-                                    dateTimeFormat('jm', _model.datePicked),
+                                    dateTimeFormat('jm', _model.datePicked1),
                                   );
                                 },
-                                text: _model.datePicked != null
-                                    ? dateTimeFormat('jm', _model.datePicked)
+                                text: _model.datePicked1 != null
+                                    ? dateTimeFormat('jm', _model.datePicked1)
+                                    : 'Not set',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 20.0, 0.0, 20.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 15.0, 0.0),
+                                child: Text(
+                                  'Scheduled Alarm:',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  final datePicked2Time = await showTimePicker(
+                                    context: context,
+                                    initialTime: TimeOfDay.fromDateTime(
+                                        getCurrentTimestamp),
+                                    builder: (context, child) {
+                                      return wrapInMaterialTimePickerTheme(
+                                        context,
+                                        child!,
+                                        headerBackgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                        headerForegroundColor:
+                                            FlutterFlowTheme.of(context).info,
+                                        headerTextStyle:
+                                            FlutterFlowTheme.of(context)
+                                                .headlineLarge
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  fontSize: 32.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                        pickerBackgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                        pickerForegroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                        selectedDateTimeBackgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                        selectedDateTimeForegroundColor:
+                                            FlutterFlowTheme.of(context).info,
+                                        actionButtonForegroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                        iconSize: 24.0,
+                                      );
+                                    },
+                                  );
+                                  if (datePicked2Time != null) {
+                                    safeSetState(() {
+                                      _model.datePicked2 = DateTime(
+                                        getCurrentTimestamp.year,
+                                        getCurrentTimestamp.month,
+                                        getCurrentTimestamp.day,
+                                        datePicked2Time.hour,
+                                        datePicked2Time.minute,
+                                      );
+                                    });
+                                  }
+                                  await actions.scheduleAlarmNotification(
+                                    'Title',
+                                    'Content',
+                                    dateTimeFormat('jm', _model.datePicked2),
+                                  );
+                                },
+                                text: _model.datePicked2 != null
+                                    ? dateTimeFormat('jm', _model.datePicked2)
                                     : 'Not set',
                                 options: FFButtonOptions(
                                   height: 40.0,

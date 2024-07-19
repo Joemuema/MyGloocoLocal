@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'reports_model.dart';
 export 'reports_model.dart';
@@ -61,7 +62,7 @@ class _ReportsWidgetState extends State<ReportsWidget> {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Flexible(
+          Expanded(
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 10.0, 0.0),
               child: Row(
@@ -79,103 +80,110 @@ class _ReportsWidgetState extends State<ReportsWidget> {
               ),
             ),
           ),
-          Flexible(
+          Expanded(
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(10.0, 16.0, 10.0, 0.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Select Report Duration',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                  Flexible(
-                    child: StreamBuilder<ReportsRecord>(
-                      stream: ReportsRecord.getDocument(widget.startDate!),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
+              child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  final datePickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: getCurrentTimestamp,
+                    firstDate: DateTime(1900),
+                    lastDate: getCurrentTimestamp,
+                    builder: (context, child) {
+                      return wrapInMaterialDatePickerTheme(
+                        context,
+                        child!,
+                        headerBackgroundColor:
+                            FlutterFlowTheme.of(context).primary,
+                        headerForegroundColor:
+                            FlutterFlowTheme.of(context).info,
+                        headerTextStyle:
+                            FlutterFlowTheme.of(context).headlineLarge.override(
+                                  fontFamily: 'Inter',
+                                  fontSize: 32.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                        pickerBackgroundColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        pickerForegroundColor:
+                            FlutterFlowTheme.of(context).primaryText,
+                        selectedDateTimeBackgroundColor:
+                            FlutterFlowTheme.of(context).primary,
+                        selectedDateTimeForegroundColor:
+                            FlutterFlowTheme.of(context).info,
+                        actionButtonForegroundColor:
+                            FlutterFlowTheme.of(context).primaryText,
+                        iconSize: 25.0,
+                      );
+                    },
+                  );
+
+                  if (datePickedDate != null) {
+                    safeSetState(() {
+                      _model.datePicked = DateTime(
+                        datePickedDate.year,
+                        datePickedDate.month,
+                        datePickedDate.day,
+                      );
+                    });
+                  }
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Select Reprt Start Date',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                    Flexible(
+                      child: StreamBuilder<ReportsRecord>(
+                        stream: ReportsRecord.getDocument(widget.startDate!),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        }
-
-                        final iconButtonReportsRecord = snapshot.data!;
-
-                        return FlutterFlowIconButton(
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 30.0,
-                          icon: Icon(
-                            Icons.navigate_next_outlined,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 25.0,
-                          ),
-                          onPressed: () async {
-                            final datePickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: getCurrentTimestamp,
-                              firstDate: DateTime(1900),
-                              lastDate: getCurrentTimestamp,
-                              builder: (context, child) {
-                                return wrapInMaterialDatePickerTheme(
-                                  context,
-                                  child!,
-                                  headerBackgroundColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  headerForegroundColor:
-                                      FlutterFlowTheme.of(context).info,
-                                  headerTextStyle: FlutterFlowTheme.of(context)
-                                      .headlineLarge
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        fontSize: 32.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                  pickerBackgroundColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                  pickerForegroundColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  selectedDateTimeBackgroundColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  selectedDateTimeForegroundColor:
-                                      FlutterFlowTheme.of(context).info,
-                                  actionButtonForegroundColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  iconSize: 25.0,
-                                );
-                              },
                             );
+                          }
 
-                            if (datePickedDate != null) {
-                              safeSetState(() {
-                                _model.datePicked = DateTime(
-                                  datePickedDate.year,
-                                  datePickedDate.month,
-                                  datePickedDate.day,
-                                );
-                              });
-                            }
-                          },
-                        );
-                      },
+                          final iconButtonReportsRecord = snapshot.data!;
+
+                          return FlutterFlowIconButton(
+                            borderRadius: 20.0,
+                            borderWidth: 1.0,
+                            buttonSize: 30.0,
+                            icon: Icon(
+                              Icons.navigate_next_outlined,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 25.0,
+                            ),
+                            onPressed: () {
+                              print('IconButton pressed ...');
+                            },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -249,7 +257,7 @@ class _ReportsWidgetState extends State<ReportsWidget> {
               ),
             ),
           ),
-          Flexible(
+          Expanded(
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(10.0, 16.0, 10.0, 0.0),
               child: Row(
@@ -294,7 +302,7 @@ class _ReportsWidgetState extends State<ReportsWidget> {
               ),
             ),
           ),
-          Flexible(
+          Expanded(
             child: Align(
               alignment: const AlignmentDirectional(0.0, 1.0),
               child: Padding(
@@ -305,8 +313,11 @@ class _ReportsWidgetState extends State<ReportsWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        await actions.generateReport(
+                          _model.datePicked!,
+                          _model.dropDownValue!.toList(),
+                        );
                       },
                       text: 'Generate',
                       options: FFButtonOptions(
