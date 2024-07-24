@@ -192,12 +192,12 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                           }
                           List<MedicineRecord> pillsListViewMedicineRecordList =
                               snapshot.data!;
-
                           if (pillsListViewMedicineRecordList.isEmpty) {
                             return const NoElementsWidget(
                               additionalText: 'Add new pills to display here',
                             );
                           }
+
                           return ListView.builder(
                             padding: EdgeInsets.zero,
                             primary: false,
@@ -391,12 +391,12 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                           List<MedicineRecord>
                               tabletsListViewMedicineRecordList =
                               snapshot.data!;
-
                           if (tabletsListViewMedicineRecordList.isEmpty) {
                             return const NoElementsWidget(
                               additionalText: 'Add new tablets to display here',
                             );
                           }
+
                           return ListView.builder(
                             padding: EdgeInsets.zero,
                             primary: false,
@@ -576,13 +576,13 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                           List<MedicineRecord>
                               emulsionListViewMedicineRecordList =
                               snapshot.data!;
-
                           if (emulsionListViewMedicineRecordList.isEmpty) {
                             return const NoElementsWidget(
                               additionalText:
                                   'Add new emulsions to display here',
                             );
                           }
+
                           return ListView.builder(
                             padding: EdgeInsets.zero,
                             primary: false,
@@ -766,13 +766,13 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                             List<MedicineRecord>
                                 injectionListViewMedicineRecordList =
                                 snapshot.data!;
-
                             if (injectionListViewMedicineRecordList.isEmpty) {
                               return const NoElementsWidget(
                                 additionalText:
                                     'Add new injections to display here',
                               );
                             }
+
                             return ListView.builder(
                               padding: EdgeInsets.zero,
                               primary: false,

@@ -53,8 +53,8 @@ service cloud.firestore {
     match /Reminders/{parent}/IndividualReminders/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
     match /{path=**}/IndividualReminders/{document} {
@@ -63,6 +63,34 @@ service cloud.firestore {
 
 
     match /Reports/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /food/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /Recipes/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /Meals/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /Drinks/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if true;

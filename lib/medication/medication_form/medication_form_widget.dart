@@ -1099,7 +1099,6 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                   List<RemindersRecord>
                                       listViewRemindersRecordList =
                                       snapshot.data!;
-
                                   if (listViewRemindersRecordList.isEmpty) {
                                     return const Center(
                                       child: NoElementsWidget(
@@ -1108,6 +1107,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                       ),
                                     );
                                   }
+
                                   return ListView.builder(
                                     padding: EdgeInsets.zero,
                                     primary: false,
@@ -1279,6 +1279,13 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                           FFButtonWidget(
                             onPressed: () async {
                               if (widget.addReminder) {
+                                if ((_model.reminderIDList.isNotEmpty) ==
+                                    true) {
+                                  await actions.setIndividualReminders(
+                                    _model.reminderIDList.toList(),
+                                  );
+                                }
+
                                 context.pushNamed('MedicationHome');
                               } else {
                                 if (widget.editMode!) {
@@ -1309,6 +1316,12 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                   userID: FFAppState().UserID,
                                   medId: widget.newMedicineID,
                                 ));
+                                if ((_model.reminderIDList.isNotEmpty) ==
+                                    true) {
+                                  await actions.setIndividualReminders(
+                                    _model.reminderIDList.toList(),
+                                  );
+                                }
                                 context.safePop();
                               }
                             },

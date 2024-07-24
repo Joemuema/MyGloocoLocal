@@ -1,6 +1,8 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'home_reminder_model.dart';
 export 'home_reminder_model.dart';
@@ -9,9 +11,11 @@ class HomeReminderWidget extends StatefulWidget {
   const HomeReminderWidget({
     super.key,
     required this.medicineReminder,
+    required this.reminderID,
   });
 
   final DocumentReference? medicineReminder;
+  final DocumentReference? reminderID;
 
   @override
   State<HomeReminderWidget> createState() => _HomeReminderWidgetState();
@@ -82,223 +86,326 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
               ],
               borderRadius: BorderRadius.circular(10.0),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Stack(
-                      children: [
-                        if (containerMedicineRecord.form == 'Pill'
-                            ? true
-                            : false)
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                15.0, 15.0, 15.0, 15.0),
-                            child: Icon(
-                              FFIcons.kdrug,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 43.0,
-                            ),
-                          ),
-                        if (containerMedicineRecord.form == 'Tablet'
-                            ? true
-                            : false)
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                15.0, 15.0, 15.0, 15.0),
-                            child: Icon(
-                              FFIcons.kmedicine,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 43.0,
-                            ),
-                          ),
-                        if (containerMedicineRecord.form == 'Emulsion'
-                            ? true
-                            : false)
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                15.0, 15.0, 15.0, 15.0),
-                            child: Icon(
-                              FFIcons.ksyrup,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 43.0,
-                            ),
-                          ),
-                        if (containerMedicineRecord.form == 'Injection'
-                            ? true
-                            : false)
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                15.0, 15.0, 15.0, 15.0),
-                            child: Icon(
-                              FFIcons.kinjection,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 43.0,
-                            ),
-                          ),
-                      ],
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            containerMedicineRecord.name,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 15.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            'Form: ',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          Text(
-                            containerMedicineRecord.form,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            'Dose: ',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          Text(
-                            '${containerMedicineRecord.singleDose.toString()} ',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          Text(
-                            () {
-                              if (containerMedicineRecord.form == 'Pill') {
-                                return (containerMedicineRecord.singleDose ==
-                                        1.0
-                                    ? 'capsule'
-                                    : 'capsules');
-                              } else if (containerMedicineRecord.form ==
-                                  'Tablet') {
-                                return (containerMedicineRecord.singleDose ==
-                                        1.0
-                                    ? 'tablet'
-                                    : 'tablets');
-                              } else if (containerMedicineRecord.form ==
-                                  'Emulsion') {
-                                return (containerMedicineRecord.singleDose ==
-                                        1.0
-                                    ? 'tablespoons'
-                                    : 'tablespoons');
-                              } else {
-                                return (containerMedicineRecord.singleDose ==
-                                        1.0
-                                    ? 'unit'
-                                    : 'units');
-                              }
-                            }(),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Switch.adaptive(
-                          value: _model.switchValue ??=
-                              containerMedicineRecord.setReminders,
-                          onChanged: (newValue) async {
-                            setState(() => _model.switchValue = newValue);
-
-                            if (!newValue) {
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('Turn Off?'),
-                                            content: const Text(
-                                                'Are you sure you want to turn off this reminder? It will automatically be marked as missed if you do.'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: const Text('Cancel'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: const Text('Yes'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                            }
-                          },
-                          activeColor: FlutterFlowTheme.of(context).primary,
-                          activeTrackColor:
-                              FlutterFlowTheme.of(context).accent1,
-                          inactiveTrackColor:
-                              FlutterFlowTheme.of(context).alternate,
-                          inactiveThumbColor:
-                              FlutterFlowTheme.of(context).secondaryText,
+            child: StreamBuilder<RemindersRecord>(
+              stream: RemindersRecord.getDocument(widget.reminderID!),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50.0,
+                      height: 50.0,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          FlutterFlowTheme.of(context).primary,
                         ),
                       ),
                     ),
+                  );
+                }
+
+                final rowRemindersRecord = snapshot.data!;
+
+                return Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Stack(
+                          children: [
+                            if (containerMedicineRecord.form == 'Pill'
+                                ? true
+                                : false)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 15.0, 15.0, 15.0),
+                                child: Icon(
+                                  FFIcons.kdrug,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 43.0,
+                                ),
+                              ),
+                            if (containerMedicineRecord.form == 'Tablet'
+                                ? true
+                                : false)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 15.0, 15.0, 15.0),
+                                child: Icon(
+                                  FFIcons.kmedicine,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 43.0,
+                                ),
+                              ),
+                            if (containerMedicineRecord.form == 'Emulsion'
+                                ? true
+                                : false)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 15.0, 15.0, 15.0),
+                                child: Icon(
+                                  FFIcons.ksyrup,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 43.0,
+                                ),
+                              ),
+                            if (containerMedicineRecord.form == 'Injection'
+                                ? true
+                                : false)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 15.0, 15.0, 15.0),
+                                child: Icon(
+                                  FFIcons.kinjection,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 43.0,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                containerMedicineRecord.name,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 15.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Form: ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Text(
+                                containerMedicineRecord.form,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Dose: ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Text(
+                                '${containerMedicineRecord.singleDose.toString()} ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Text(
+                                () {
+                                  if (containerMedicineRecord.form == 'Pill') {
+                                    return (containerMedicineRecord
+                                                .singleDose ==
+                                            1.0
+                                        ? 'capsule'
+                                        : 'capsules');
+                                  } else if (containerMedicineRecord.form ==
+                                      'Tablet') {
+                                    return (containerMedicineRecord
+                                                .singleDose ==
+                                            1.0
+                                        ? 'tablet'
+                                        : 'tablets');
+                                  } else if (containerMedicineRecord.form ==
+                                      'Emulsion') {
+                                    return (containerMedicineRecord
+                                                .singleDose ==
+                                            1.0
+                                        ? 'tablespoons'
+                                        : 'tablespoons');
+                                  } else {
+                                    return (containerMedicineRecord
+                                                .singleDose ==
+                                            1.0
+                                        ? 'unit'
+                                        : 'units');
+                                  }
+                                }(),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Switch.adaptive(
+                              value: _model.switchValue ??=
+                                  containerMedicineRecord.setReminders,
+                              onChanged: (newValue) async {
+                                setState(() => _model.switchValue = newValue);
+                                if (newValue) {
+                                  _model.specificReminderOn =
+                                      await queryIndividualRemindersRecordOnce(
+                                    parent: widget.reminderID,
+                                    queryBuilder: (individualRemindersRecord) =>
+                                        individualRemindersRecord
+                                            .where(Filter.or(
+                                      Filter(
+                                        'ReminderID',
+                                        isEqualTo: widget.reminderID,
+                                      ),
+                                      Filter(
+                                        'Date',
+                                        isEqualTo: rowRemindersRecord.date,
+                                      ),
+                                      Filter(
+                                        'Time',
+                                        isEqualTo: rowRemindersRecord.time,
+                                      ),
+                                    )),
+                                    singleRecord: true,
+                                  ).then((s) => s.firstOrNull);
+
+                                  await _model.specificReminderOn!.reference
+                                      .update(
+                                          createIndividualRemindersRecordData(
+                                    isActive: true,
+                                  ));
+                                  await actions.reactivateNotification(
+                                    _model.specificReminderOn!.notificationID,
+                                    _model.specificReminderOn!.parentReference,
+                                    _model.specificReminderOn!.date,
+                                    _model.specificReminderOn!.time,
+                                    _model.specificReminderOn!.title,
+                                    _model.specificReminderOn!.content,
+                                  );
+
+                                  setState(() {});
+                                } else {
+                                  var confirmDialogResponse =
+                                      await showDialog<bool>(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return AlertDialog(
+                                                title: const Text('Turn Off?'),
+                                                content: const Text(
+                                                    'Are you sure you want to turn off this reminder? It will automatically be marked as missed if you do.'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext,
+                                                            false),
+                                                    child: const Text('Cancel'),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext,
+                                                            true),
+                                                    child: const Text('Yes'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          ) ??
+                                          false;
+                                  _model.specificReminderOff =
+                                      await queryIndividualRemindersRecordOnce(
+                                    parent: widget.reminderID,
+                                    queryBuilder: (individualRemindersRecord) =>
+                                        individualRemindersRecord
+                                            .where(Filter.or(
+                                      Filter(
+                                        'ReminderID',
+                                        isEqualTo: widget.reminderID,
+                                      ),
+                                      Filter(
+                                        'Date',
+                                        isEqualTo: rowRemindersRecord.date,
+                                      ),
+                                      Filter(
+                                        'Time',
+                                        isEqualTo: rowRemindersRecord.time,
+                                      ),
+                                    )),
+                                    singleRecord: true,
+                                  ).then((s) => s.firstOrNull);
+
+                                  await _model.specificReminderOff!.reference
+                                      .update(
+                                          createIndividualRemindersRecordData(
+                                    isActive: false,
+                                  ));
+                                  await actions.cancelNotification(
+                                    _model.specificReminderOff!.notificationID,
+                                  );
+
+                                  setState(() {});
+                                }
+                              },
+                              activeColor: FlutterFlowTheme.of(context).primary,
+                              activeTrackColor:
+                                  FlutterFlowTheme.of(context).accent1,
+                              inactiveTrackColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                              inactiveThumbColor:
+                                  FlutterFlowTheme.of(context).secondaryText,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
-                ),
-              ],
+                );
+              },
             ),
           );
         },

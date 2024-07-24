@@ -328,7 +328,6 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                   }
                   List<ProfileRecord> dropDownProfileRecordList =
                       snapshot.data!;
-
                   // Return an empty Container when the item does not exist.
                   if (snapshot.data!.isEmpty) {
                     return Container();
@@ -337,6 +336,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                       dropDownProfileRecordList.isNotEmpty
                           ? dropDownProfileRecordList.first
                           : null;
+
                   return FlutterFlowDropDown<String>(
                     controller: _model.dropDownValueController2 ??=
                         FormFieldController<String>(

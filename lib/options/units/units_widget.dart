@@ -234,6 +234,7 @@ class _UnitsWidgetState extends State<UnitsWidget> {
                         preferredBG: _model.choiceChipsValue1,
                         preferredCal: _model.choiceChipsValue2,
                       ));
+                      Navigator.pop(context);
                     },
                     text: 'Save',
                     options: FFButtonOptions(

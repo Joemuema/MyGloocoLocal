@@ -15,6 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 
 
+export 'keep_alive_wrapper.dart';
 export 'lat_lng.dart';
 export 'place.dart';
 export 'uploaded_file.dart';
@@ -389,8 +390,15 @@ extension FFTextEditingControllerExt on TextEditingController? {
 }
 
 extension IterableExt<T> on Iterable<T> {
-  List<T> sortedList<S extends Comparable>([S Function(T)? keyOf]) => toList()
-    ..sort(keyOf == null ? null : ((a, b) => keyOf(a).compareTo(keyOf(b))));
+  List<T> sortedList<S extends Comparable>(
+      {S Function(T)? keyOf, bool desc = false}) {
+    final sortedAscending = toList()
+      ..sort(keyOf == null ? null : ((a, b) => keyOf(a).compareTo(keyOf(b))));
+    if (desc) {
+      return sortedAscending.reversed.toList();
+    }
+    return sortedAscending;
+  }
 
   List<S> mapIndexed<S>(S Function(int, T) func) => toList()
       .asMap()

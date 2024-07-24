@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 
 import '/auth/base_auth_user_provider.dart';
@@ -93,26 +94,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const LoginWidget(),
         ),
         FFRoute(
-          name: 'personalDetails',
-          path: '/personalDetails',
-          builder: (context, params) => const PersonalDetailsWidget(),
-        ),
-        FFRoute(
-          name: 'diabetesType',
-          path: '/diabetesType',
-          builder: (context, params) => const DiabetesTypeWidget(),
-        ),
-        FFRoute(
-          name: 'measurementUnits',
-          path: '/measurementUnits',
-          builder: (context, params) => const MeasurementUnitsWidget(),
-        ),
-        FFRoute(
-          name: 'insulinTherapy',
-          path: '/insulinTherapy',
-          builder: (context, params) => const InsulinTherapyWidget(),
-        ),
-        FFRoute(
           name: 'Home',
           path: '/home',
           builder: (context, params) =>
@@ -164,6 +145,101 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Settings',
           path: '/settings',
           builder: (context, params) => const SettingsWidget(),
+        ),
+        FFRoute(
+          name: 'DietHome',
+          path: '/dietHome',
+          builder: (context, params) => const DietHomeWidget(),
+        ),
+        FFRoute(
+          name: 'YourMeals',
+          path: '/yourMeals',
+          builder: (context, params) => const YourMealsWidget(),
+        ),
+        FFRoute(
+          name: 'Foodsearch',
+          path: '/foodsearch',
+          asyncParams: {
+            'currentFoodList': getDocList(['food'], FoodRecord.fromSnapshot),
+          },
+          builder: (context, params) => FoodsearchWidget(
+            currentFoodList: params.getParam<FoodRecord>(
+              'currentFoodList',
+              ParamType.Document,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'Foodview',
+          path: '/foodview',
+          builder: (context, params) => const FoodviewWidget(),
+        ),
+        FFRoute(
+          name: 'Plate',
+          path: '/plate',
+          asyncParams: {
+            'updatedFoodList': getDocList(['food'], FoodRecord.fromSnapshot),
+          },
+          builder: (context, params) => PlateWidget(
+            updatedFoodList: params.getParam<FoodRecord>(
+              'updatedFoodList',
+              ParamType.Document,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'Recipe_list',
+          path: '/recipeList',
+          builder: (context, params) => const RecipeListWidget(),
+        ),
+        FFRoute(
+          name: 'Recipe',
+          path: '/recipe',
+          asyncParams: {
+            'recipeName': getDoc(['Recipes'], RecipesRecord.fromSnapshot),
+            'enkcal': getDoc(['Recipes'], RecipesRecord.fromSnapshot),
+            'carbs': getDoc(['Recipes'], RecipesRecord.fromSnapshot),
+            'proteins': getDoc(['Recipes'], RecipesRecord.fromSnapshot),
+            'fats': getDoc(['Recipes'], RecipesRecord.fromSnapshot),
+            'ingredients': getDoc(['Recipes'], RecipesRecord.fromSnapshot),
+            'instructions': getDoc(['Recipes'], RecipesRecord.fromSnapshot),
+          },
+          builder: (context, params) => RecipeWidget(
+            recipeName: params.getParam(
+              'recipeName',
+              ParamType.Document,
+            ),
+            enkcal: params.getParam(
+              'enkcal',
+              ParamType.Document,
+            ),
+            carbs: params.getParam(
+              'carbs',
+              ParamType.Document,
+            ),
+            proteins: params.getParam(
+              'proteins',
+              ParamType.Document,
+            ),
+            fats: params.getParam(
+              'fats',
+              ParamType.Document,
+            ),
+            ingredients: params.getParam(
+              'ingredients',
+              ParamType.Document,
+            ),
+            instructions: params.getParam(
+              'instructions',
+              ParamType.Document,
+            ),
+            foodPic: params.getParam(
+              'foodPic',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

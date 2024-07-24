@@ -14,6 +14,10 @@ import 'schema/sample_b_greadings_record.dart';
 import 'schema/b_greadings_record.dart';
 import 'schema/individual_reminders_record.dart';
 import 'schema/reports_record.dart';
+import 'schema/food_record.dart';
+import 'schema/recipes_record.dart';
+import 'schema/meals_record.dart';
+import 'schema/drinks_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -31,6 +35,10 @@ export 'schema/sample_b_greadings_record.dart';
 export 'schema/b_greadings_record.dart';
 export 'schema/individual_reminders_record.dart';
 export 'schema/reports_record.dart';
+export 'schema/food_record.dart';
+export 'schema/recipes_record.dart';
+export 'schema/meals_record.dart';
+export 'schema/drinks_record.dart';
 
 /// Functions to query MedicineRecords (as a Stream and as a Future).
 Future<int> queryMedicineRecordCount({
@@ -363,6 +371,154 @@ Future<List<ReportsRecord>> queryReportsRecordOnce({
     queryCollectionOnce(
       ReportsRecord.collection,
       ReportsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query FoodRecords (as a Stream and as a Future).
+Future<int> queryFoodRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      FoodRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<FoodRecord>> queryFoodRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      FoodRecord.collection,
+      FoodRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<FoodRecord>> queryFoodRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      FoodRecord.collection,
+      FoodRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query RecipesRecords (as a Stream and as a Future).
+Future<int> queryRecipesRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      RecipesRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<RecipesRecord>> queryRecipesRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      RecipesRecord.collection,
+      RecipesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<RecipesRecord>> queryRecipesRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      RecipesRecord.collection,
+      RecipesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query MealsRecords (as a Stream and as a Future).
+Future<int> queryMealsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      MealsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<MealsRecord>> queryMealsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      MealsRecord.collection,
+      MealsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<MealsRecord>> queryMealsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      MealsRecord.collection,
+      MealsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query DrinksRecords (as a Stream and as a Future).
+Future<int> queryDrinksRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      DrinksRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<DrinksRecord>> queryDrinksRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      DrinksRecord.collection,
+      DrinksRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<DrinksRecord>> queryDrinksRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      DrinksRecord.collection,
+      DrinksRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

@@ -51,6 +51,20 @@
       ]
     },
     {
+      "collectionGroup": "IndividualReminders",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "Date",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Time",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "Reminders",
       "queryScope": "COLLECTION",
       "fields": [
@@ -65,6 +79,18 @@
         {
           "fieldPath": "Time",
           "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "IndividualReminders",
+      "fieldPath": "Date",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
         }
       ]
     }

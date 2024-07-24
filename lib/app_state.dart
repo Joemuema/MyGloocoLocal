@@ -49,6 +49,12 @@ class FFAppState extends ChangeNotifier {
     _notificationPermissionsGranted = value;
     prefs.setBool('ff_notificationPermissionsGranted', value);
   }
+
+  bool _searchActive = false;
+  bool get searchActive => _searchActive;
+  set searchActive(bool value) {
+    _searchActive = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

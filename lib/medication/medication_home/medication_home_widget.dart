@@ -1,6 +1,7 @@
 import '/backend/backend.dart';
 import '/components/home_reminder_widget.dart';
 import '/components/no_elements_widget.dart';
+import '/components/past_reminder_widget.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -39,7 +40,20 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
           isEqualTo: FFAppState().UserID,
         ),
       );
-      _model.listOfTimes = functions
+      _model.currentSubReminders = await queryIndividualRemindersRecordOnce(
+        queryBuilder: (individualRemindersRecord) =>
+            individualRemindersRecord.where(Filter.or(
+          Filter(
+            'Date',
+            isEqualTo: functions.getDate(getCurrentTimestamp),
+          ),
+          Filter(
+            'Time',
+            isLessThan: functions.getTime(getCurrentTimestamp),
+          ),
+        )),
+      );
+      _model.listOfUpcomingTimes = functions
           .combineTimeLists(
               _model.allReminders!
                   .where((e) =>
@@ -92,11 +106,11 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                   .map((e) => e.time)
                   .toList()
                   .toList())!
-          .sortedList((e) => e)
+          .sortedList(keyOf: (e) => e, desc: false)
           .unique((e) => e)
           .toList()
           .cast<String>();
-      _model.filteredReminders = functions
+      _model.upcomingReminders = functions
           .combineReminderLists(
               _model.allReminders!
                   .where((e) =>
@@ -143,14 +157,40 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                   .toList())!
           .toList()
           .cast<RemindersRecord>();
+      _model.listOfTakenTimes = _model.currentSubReminders!
+          .where((e) => e.status == 'Taken')
+          .toList()
+          .map((e) => e.time)
+          .toList()
+          .unique((e) => e)
+          .sortedList(keyOf: (e) => e, desc: false)
+          .toList()
+          .cast<String>();
+      _model.takenReminders = _model.currentSubReminders!
+          .where((e) => e.status == 'Taken')
+          .toList()
+          .toList()
+          .cast<IndividualRemindersRecord>();
+      _model.listOfMissedTimes = _model.currentSubReminders!
+          .where((e) => e.status == 'Missed')
+          .toList()
+          .map((e) => e.time)
+          .toList()
+          .unique((e) => e)
+          .sortedList(keyOf: (e) => e, desc: false)
+          .toList()
+          .cast<String>();
+      _model.missedReminders = _model.currentSubReminders!
+          .where((e) => e.status == 'Missed')
+          .toList()
+          .toList()
+          .cast<IndividualRemindersRecord>();
       setState(() {});
       if (FFAppState().notificationPermissionsGranted == false) {
-        _model.notifsInitialized =
-            await actions.requestNotificationPermissions();
-        FFAppState().notificationPermissionsGranted = _model.notifsInitialized!;
+        _model.permissionsGranted = await actions.requestPermissions();
+        FFAppState().notificationPermissionsGranted =
+            _model.permissionsGranted!;
         setState(() {});
-      } else {
-        await actions.requestPermissions();
       }
     });
 
@@ -246,7 +286,21 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                     if (functions.getDate(_model.calendarSelectedDay!.start) ==
                         functions.getDate(
                             functions.currentDate(getCurrentTimestamp))) {
-                      _model.listOfTimes = functions
+                      _model.todaySubReminders =
+                          await queryIndividualRemindersRecordOnce(
+                        queryBuilder: (individualRemindersRecord) =>
+                            individualRemindersRecord.where(Filter.or(
+                          Filter(
+                            'Date',
+                            isEqualTo: functions.getDate(getCurrentTimestamp),
+                          ),
+                          Filter(
+                            'Time',
+                            isLessThan: functions.getTime(getCurrentTimestamp),
+                          ),
+                        )),
+                      );
+                      _model.listOfUpcomingTimes = functions
                           .combineTimeLists(
                               _model.allReminders!
                                   .where((e) =>
@@ -288,11 +342,11 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                   .map((e) => e.time)
                                   .toList(),
                               _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (e.timeDT! >= functions.commonTimeDT(getCurrentTimestamp))).toList().map((e) => e.time).toList())!
-                          .sortedList((e) => e)
+                          .sortedList(keyOf: (e) => e, desc: false)
                           .unique((e) => e)
                           .toList()
                           .cast<String>();
-                      _model.filteredReminders = functions
+                      _model.upcomingReminders = functions
                           .combineReminderLists(
                               _model.allReminders!
                                   .where((e) =>
@@ -330,9 +384,44 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                               _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (e.timeDT! >= functions.commonTimeDT(getCurrentTimestamp))).toList())!
                           .toList()
                           .cast<RemindersRecord>();
+                      _model.listOfTakenTimes = _model.todaySubReminders!
+                          .where((e) => e.status == 'Taken')
+                          .toList()
+                          .map((e) => e.time)
+                          .toList()
+                          .unique((e) => e)
+                          .sortedList(keyOf: (e) => e, desc: false)
+                          .toList()
+                          .cast<String>();
+                      _model.takenReminders = _model.todaySubReminders!
+                          .where((e) => e.status == 'Taken')
+                          .toList()
+                          .cast<IndividualRemindersRecord>();
+                      _model.listOfMissedTimes = _model.todaySubReminders!
+                          .where((e) => e.status == 'Missed')
+                          .toList()
+                          .map((e) => e.time)
+                          .toList()
+                          .unique((e) => e)
+                          .sortedList(keyOf: (e) => e, desc: false)
+                          .toList()
+                          .cast<String>();
+                      _model.missedReminders = _model.todaySubReminders!
+                          .where((e) => e.status == 'Missed')
+                          .toList()
+                          .cast<IndividualRemindersRecord>();
                       setState(() {});
                     } else {
-                      _model.listOfTimes = functions
+                      _model.calendarSubReminders =
+                          await queryIndividualRemindersRecordOnce(
+                        queryBuilder: (individualRemindersRecord) =>
+                            individualRemindersRecord.where(
+                          'Date',
+                          isEqualTo: functions
+                              .getDate(_model.calendarSelectedDay!.start),
+                        ),
+                      );
+                      _model.listOfUpcomingTimes = functions
                           .combineTimeLists(
                               _model.calendarReminders!
                                   .where((e) =>
@@ -360,11 +449,11 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                   .toList(),
                               _model.calendarReminders!.where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(_model.calendarSelectedDay!.start)) && (_model.calendarSelectedDay!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay!.start))).toList().map((e) => e.time).toList(),
                               _model.calendarReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(_model.calendarSelectedDay!.start)) && (_model.calendarSelectedDay!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay!.start))).toList().map((e) => e.time).toList())!
-                          .sortedList((e) => e)
+                          .sortedList(keyOf: (e) => e, desc: false)
                           .unique((e) => e)
                           .toList()
                           .cast<String>();
-                      _model.filteredReminders = functions
+                      _model.upcomingReminders = functions
                           .combineReminderLists(
                               _model.calendarReminders!
                                   .where((e) =>
@@ -390,6 +479,44 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                               _model.calendarReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(_model.calendarSelectedDay!.start)) && (_model.calendarSelectedDay!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay!.start))).toList())!
                           .toList()
                           .cast<RemindersRecord>();
+                      _model.listOfTakenTimes = _model.calendarSubReminders!
+                          .where((e) =>
+                              (e.status == 'Taken') &&
+                              (_model.calendarSelectedDay!.start <
+                                  functions.currentDate(getCurrentTimestamp)))
+                          .toList()
+                          .map((e) => e.time)
+                          .toList()
+                          .unique((e) => e)
+                          .sortedList(keyOf: (e) => e, desc: false)
+                          .toList()
+                          .cast<String>();
+                      _model.takenReminders = _model.calendarSubReminders!
+                          .where((e) =>
+                              (e.status == 'Taken') &&
+                              (_model.calendarSelectedDay!.start <
+                                  functions.currentDate(getCurrentTimestamp)))
+                          .toList()
+                          .cast<IndividualRemindersRecord>();
+                      _model.listOfMissedTimes = _model.calendarSubReminders!
+                          .where((e) =>
+                              (e.status == 'Missed') &&
+                              (_model.calendarSelectedDay!.start <
+                                  functions.currentDate(getCurrentTimestamp)))
+                          .toList()
+                          .map((e) => e.time)
+                          .toList()
+                          .unique((e) => e)
+                          .sortedList(keyOf: (e) => e, desc: false)
+                          .toList()
+                          .cast<String>();
+                      _model.missedReminders = _model.calendarSubReminders!
+                          .where((e) =>
+                              (e.status == 'Missed') &&
+                              (_model.calendarSelectedDay!.start <
+                                  functions.currentDate(getCurrentTimestamp)))
+                          .toList()
+                          .cast<IndividualRemindersRecord>();
                     }
 
                     setState(() {});
@@ -429,132 +556,389 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'Upcoming Reminders',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 18.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                          ],
-                        ),
-                        Builder(
-                          builder: (context) {
-                            final generatingTimeList =
-                                _model.listOfTimes.toList();
-                            if (generatingTimeList.isEmpty) {
-                              return const Center(
-                                child: NoElementsWidget(
-                                  additionalText:
-                                      'Add one by pressing \'\'Add reminder\"  below',
-                                ),
-                              );
-                            }
-
-                            return ListView.separated(
-                              padding: const EdgeInsets.symmetric(vertical: 5.0),
-                              primary: false,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              itemCount: generatingTimeList.length,
-                              separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 5.0),
-                              itemBuilder: (context, generatingTimeListIndex) {
-                                final generatingTimeListItem =
-                                    generatingTimeList[generatingTimeListIndex];
-                                return Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 5.0, 10.0, 5.0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
+                        if ((_model.listOfUpcomingTimes.isNotEmpty) == true)
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Upcoming Reminders',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                              Builder(
+                                builder: (context) {
+                                  final generatingTimeList =
+                                      _model.listOfUpcomingTimes.toList();
+                                  if (generatingTimeList.isEmpty) {
+                                    return const Center(
+                                      child: NoElementsWidget(
+                                        additionalText:
+                                            'Add one by pressing \'\'Add reminder\"  below',
                                       ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              generatingTimeListItem,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    fontSize: 20.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w600,
+                                    );
+                                  }
+
+                                  return ListView.separated(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 5.0),
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: generatingTimeList.length,
+                                    separatorBuilder: (_, __) =>
+                                        const SizedBox(height: 5.0),
+                                    itemBuilder:
+                                        (context, generatingTimeListIndex) {
+                                      final generatingTimeListItem =
+                                          generatingTimeList[
+                                              generatingTimeListIndex];
+                                      return Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 5.0, 10.0, 5.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    generatingTimeListItem,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 20.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
                                                   ),
+                                                ),
+                                                Builder(
+                                                  builder: (context) {
+                                                    final specificTimeReminderList =
+                                                        _model.upcomingReminders
+                                                            .where((e) =>
+                                                                e.time ==
+                                                                generatingTimeListItem)
+                                                            .toList();
+
+                                                    return ListView.builder(
+                                                      padding: EdgeInsets.zero,
+                                                      primary: false,
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          specificTimeReminderList
+                                                              .length,
+                                                      itemBuilder: (context,
+                                                          specificTimeReminderListIndex) {
+                                                        final specificTimeReminderListItem =
+                                                            specificTimeReminderList[
+                                                                specificTimeReminderListIndex];
+                                                        return wrapWithModel(
+                                                          model: _model
+                                                              .homeReminderModels
+                                                              .getModel(
+                                                            specificTimeReminderListItem
+                                                                .reference.id,
+                                                            specificTimeReminderListIndex,
+                                                          ),
+                                                          updateCallback: () =>
+                                                              setState(() {}),
+                                                          child:
+                                                              HomeReminderWidget(
+                                                            key: Key(
+                                                              'Keyp8x_${specificTimeReminderListItem.reference.id}',
+                                                            ),
+                                                            medicineReminder:
+                                                                specificTimeReminderListItem
+                                                                    .medicineID!,
+                                                            reminderID:
+                                                                specificTimeReminderListItem
+                                                                    .reference,
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                          Builder(
-                                            builder: (context) {
-                                              final specificTimeReminderList =
-                                                  _model.filteredReminders
-                                                      .where((e) =>
-                                                          e.time ==
-                                                          generatingTimeListItem)
-                                                      .toList();
-
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
-                                                primary: false,
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount:
-                                                    specificTimeReminderList
-                                                        .length,
-                                                itemBuilder: (context,
-                                                    specificTimeReminderListIndex) {
-                                                  final specificTimeReminderListItem =
-                                                      specificTimeReminderList[
-                                                          specificTimeReminderListIndex];
-                                                  return wrapWithModel(
-                                                    model: _model
-                                                        .homeReminderModels
-                                                        .getModel(
-                                                      specificTimeReminderListItem
-                                                          .reference.id,
-                                                      specificTimeReminderListIndex,
-                                                    ),
-                                                    updateCallback: () =>
-                                                        setState(() {}),
-                                                    child: HomeReminderWidget(
-                                                      key: Key(
-                                                        'Keyp8x_${specificTimeReminderListItem.reference.id}',
-                                                      ),
-                                                      medicineReminder:
-                                                          specificTimeReminderListItem
-                                                              .medicineID!,
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        if ((_model.takenReminders.isNotEmpty) == true)
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Taken Reminders',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                        ),
+                              ),
+                              Builder(
+                                builder: (context) {
+                                  final takenTimeList =
+                                      _model.listOfTakenTimes.toList();
+                                  if (takenTimeList.isEmpty) {
+                                    return const Center(
+                                      child: NoElementsWidget(
+                                        additionalText:
+                                            'Add one by pressing \'\'Add reminder\"  below',
+                                      ),
+                                    );
+                                  }
+
+                                  return ListView.separated(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 5.0),
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: takenTimeList.length,
+                                    separatorBuilder: (_, __) =>
+                                        const SizedBox(height: 5.0),
+                                    itemBuilder: (context, takenTimeListIndex) {
+                                      final takenTimeListItem =
+                                          takenTimeList[takenTimeListIndex];
+                                      return Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 5.0, 10.0, 5.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    takenTimeListItem,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 20.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Builder(
+                                                  builder: (context) {
+                                                    final takenReminderList =
+                                                        _model
+                                                            .takenReminders
+                                                            .where((e) =>
+                                                                e.time ==
+                                                                takenTimeListItem)
+                                                            .toList();
+
+                                                    return ListView.builder(
+                                                      padding: EdgeInsets.zero,
+                                                      primary: false,
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          takenReminderList
+                                                              .length,
+                                                      itemBuilder: (context,
+                                                          takenReminderListIndex) {
+                                                        final takenReminderListItem =
+                                                            takenReminderList[
+                                                                takenReminderListIndex];
+                                                        return PastReminderWidget(
+                                                          key: Key(
+                                                              'Keyzdi_${takenReminderListIndex}_of_${takenReminderList.length}'),
+                                                          reminderRef:
+                                                              takenReminderListItem
+                                                                  .parentReference,
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        if ((_model.missedReminders.isNotEmpty) == true)
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Missed Reminders',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                              Builder(
+                                builder: (context) {
+                                  final missedTimeList =
+                                      _model.listOfMissedTimes.toList();
+                                  if (missedTimeList.isEmpty) {
+                                    return const Center(
+                                      child: NoElementsWidget(
+                                        additionalText:
+                                            'Add one by pressing \'\'Add reminder\"  below',
+                                      ),
+                                    );
+                                  }
+
+                                  return ListView.separated(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 5.0),
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: missedTimeList.length,
+                                    separatorBuilder: (_, __) =>
+                                        const SizedBox(height: 5.0),
+                                    itemBuilder:
+                                        (context, missedTimeListIndex) {
+                                      final missedTimeListItem =
+                                          missedTimeList[missedTimeListIndex];
+                                      return Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 5.0, 10.0, 5.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Text(
+                                                    missedTimeListItem,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 20.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Builder(
+                                                  builder: (context) {
+                                                    final missedTimeReminderList =
+                                                        _model.missedReminders
+                                                            .where((e) =>
+                                                                e.time ==
+                                                                missedTimeListItem)
+                                                            .toList();
+
+                                                    return ListView.builder(
+                                                      padding: EdgeInsets.zero,
+                                                      primary: false,
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount:
+                                                          missedTimeReminderList
+                                                              .length,
+                                                      itemBuilder: (context,
+                                                          missedTimeReminderListIndex) {
+                                                        final missedTimeReminderListItem =
+                                                            missedTimeReminderList[
+                                                                missedTimeReminderListIndex];
+                                                        return PastReminderWidget(
+                                                          key: Key(
+                                                              'Keylz6_${missedTimeReminderListIndex}_of_${missedTimeReminderList.length}'),
+                                                          reminderRef:
+                                                              missedTimeReminderListItem
+                                                                  .parentReference,
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 10.0),
@@ -615,113 +999,6 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 15.0, 0.0),
                                 child: Text(
-                                  'Scheduled Notification:',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                              FFButtonWidget(
-                                onPressed: () async {
-                                  final datePicked1Time = await showTimePicker(
-                                    context: context,
-                                    initialTime: TimeOfDay.fromDateTime(
-                                        getCurrentTimestamp),
-                                    builder: (context, child) {
-                                      return wrapInMaterialTimePickerTheme(
-                                        context,
-                                        child!,
-                                        headerBackgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                        headerForegroundColor:
-                                            FlutterFlowTheme.of(context).info,
-                                        headerTextStyle:
-                                            FlutterFlowTheme.of(context)
-                                                .headlineLarge
-                                                .override(
-                                                  fontFamily: 'Inter',
-                                                  fontSize: 32.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                        pickerBackgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                        pickerForegroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                        selectedDateTimeBackgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                        selectedDateTimeForegroundColor:
-                                            FlutterFlowTheme.of(context).info,
-                                        actionButtonForegroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                        iconSize: 24.0,
-                                      );
-                                    },
-                                  );
-                                  if (datePicked1Time != null) {
-                                    safeSetState(() {
-                                      _model.datePicked1 = DateTime(
-                                        getCurrentTimestamp.year,
-                                        getCurrentTimestamp.month,
-                                        getCurrentTimestamp.day,
-                                        datePicked1Time.hour,
-                                        datePicked1Time.minute,
-                                      );
-                                    });
-                                  }
-                                  await actions.scheduleNotification(
-                                    'Title',
-                                    'Content',
-                                    dateTimeFormat('jm', _model.datePicked1),
-                                  );
-                                },
-                                text: _model.datePicked1 != null
-                                    ? dateTimeFormat('jm', _model.datePicked1)
-                                    : 'Not set',
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 20.0, 0.0, 20.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 15.0, 0.0),
-                                child: Text(
                                   'Scheduled Alarm:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -733,12 +1010,13 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  final datePicked2Time = await showTimePicker(
+                                  final datePickedDate = await showDatePicker(
                                     context: context,
-                                    initialTime: TimeOfDay.fromDateTime(
-                                        getCurrentTimestamp),
+                                    initialDate: getCurrentTimestamp,
+                                    firstDate: getCurrentTimestamp,
+                                    lastDate: DateTime(2050),
                                     builder: (context, child) {
-                                      return wrapInMaterialTimePickerTheme(
+                                      return wrapInMaterialDatePickerTheme(
                                         context,
                                         child!,
                                         headerBackgroundColor:
@@ -773,25 +1051,66 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                       );
                                     },
                                   );
-                                  if (datePicked2Time != null) {
+
+                                  TimeOfDay? datePickedTime;
+                                  if (datePickedDate != null) {
+                                    datePickedTime = await showTimePicker(
+                                      context: context,
+                                      initialTime: TimeOfDay.fromDateTime(
+                                          getCurrentTimestamp),
+                                      builder: (context, child) {
+                                        return wrapInMaterialTimePickerTheme(
+                                          context,
+                                          child!,
+                                          headerBackgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          headerForegroundColor:
+                                              FlutterFlowTheme.of(context).info,
+                                          headerTextStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineLarge
+                                                  .override(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: 32.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                          pickerBackgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
+                                          pickerForegroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          selectedDateTimeBackgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          selectedDateTimeForegroundColor:
+                                              FlutterFlowTheme.of(context).info,
+                                          actionButtonForegroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          iconSize: 24.0,
+                                        );
+                                      },
+                                    );
+                                  }
+
+                                  if (datePickedDate != null &&
+                                      datePickedTime != null) {
                                     safeSetState(() {
-                                      _model.datePicked2 = DateTime(
-                                        getCurrentTimestamp.year,
-                                        getCurrentTimestamp.month,
-                                        getCurrentTimestamp.day,
-                                        datePicked2Time.hour,
-                                        datePicked2Time.minute,
+                                      _model.datePicked = DateTime(
+                                        datePickedDate.year,
+                                        datePickedDate.month,
+                                        datePickedDate.day,
+                                        datePickedTime!.hour,
+                                        datePickedTime.minute,
                                       );
                                     });
                                   }
-                                  await actions.scheduleAlarmNotification(
-                                    'Title',
-                                    'Content',
-                                    dateTimeFormat('jm', _model.datePicked2),
-                                  );
                                 },
-                                text: _model.datePicked2 != null
-                                    ? dateTimeFormat('jm', _model.datePicked2)
+                                text: _model.datePicked != null
+                                    ? dateTimeFormat('jm', _model.datePicked)
                                     : 'Not set',
                                 options: FFButtonOptions(
                                   height: 40.0,

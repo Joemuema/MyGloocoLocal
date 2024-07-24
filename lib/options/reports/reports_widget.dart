@@ -264,13 +264,13 @@ class _ReportsWidgetState extends State<ReportsWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Flexible(
-                    child: FlutterFlowDropDown<Rcontent>(
+                    child: FlutterFlowDropDown<String>(
                       multiSelectController: _model.dropDownValueController ??=
-                          FormListFieldController<Rcontent>(null),
-                      options: List<Rcontent>.from(Rcontent.values),
-                      optionLabels: Rcontent.values.map((e) => e.name).toList(),
+                          FormListFieldController<String>(null),
+                      options: List<String>.from(['', '1']),
+                      optionLabels: const ['', ''],
                       width: 300.0,
-                      height: 56.0,
+                      height: 66.0,
                       textStyle:
                           FlutterFlowTheme.of(context).bodyMedium.override(
                                 fontFamily: 'Readex Pro',
@@ -316,7 +316,7 @@ class _ReportsWidgetState extends State<ReportsWidget> {
                       onPressed: () async {
                         await actions.generateReport(
                           _model.datePicked!,
-                          _model.dropDownValue!.toList(),
+                          Rcontent.values.toList(),
                         );
                       },
                       text: 'Generate',
