@@ -17,16 +17,16 @@ Future setIndividualReminders(List<DocumentReference> reminderDocs) async {
     try {
       DocumentSnapshot reminderSnapshot = await reminderDoc.get();
 
-      String frequency = reminderSnapshot['Frequency'] ?? 'Once';
+      String? frequency = reminderSnapshot['Frequency'];
       String? date = reminderSnapshot['Date'];
       String time = reminderSnapshot['Time'];
       String reminderName = reminderSnapshot['Name'];
 
-      DateTime startDate = reminderSnapshot['FirstDateTime'].toDate();
+      DateTime startDate = reminderSnapshot['FIrstDateTime'].toDate();
       DateTime currentDate = startDate;
       DateTime endDate = reminderSnapshot['LastDateTime'].toDate();
 
-      if (frequency == 'Once') {
+      if (frequency == '' || frequency == null) {
         DateTime specificDate = stringToDate(date!);
         startDate = specificDate;
         currentDate = startDate;
@@ -42,14 +42,16 @@ Future setIndividualReminders(List<DocumentReference> reminderDocs) async {
       while (currentDate.isBefore(endDate)) {
         bool addReminder = false;
 
-        if (frequency == 'Once' || frequency == 'Daily') {
+        if (frequency == '' || frequency == null || frequency == 'Daily') {
           addReminder = true;
         } else if (frequency == 'Weekly') {
           if (day! == DateFormat('EEEE').format(currentDate)) {
             addReminder = true;
           }
-        } else if (frequency == 'Monthly' && dateNumber! == currentDate.day) {
-          addReminder = true;
+        } else if (frequency == 'Monthly') {
+          if (dateNumber! == currentDate.day) {
+            addReminder = true;
+          }
         }
 
         if (addReminder) {

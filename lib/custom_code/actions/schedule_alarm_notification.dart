@@ -50,7 +50,7 @@ Future scheduleAlarmNotification(
       .doc(reminderID.path)
       .collection('IndividualReminders');
 
-  if (frequency == 'Daily' || frequency == 'Once') {
+  if (frequency == 'Daily' || frequency == '' || frequency == null) {
     advanceDay = 1;
   } else if (frequency == 'Weekly') {
     advanceDay = 7;

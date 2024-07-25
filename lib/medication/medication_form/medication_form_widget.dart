@@ -1195,6 +1195,10 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                                   medicationFormMedicineRecord
                                                       .endDate)
                                               : _model.datePicked2,
+                                          frequency: null,
+                                          date: null,
+                                          day: null,
+                                          dateNumber: null,
                                         ));
                                         _model.newReminderID =
                                             RemindersRecord.getDocumentFromData(
@@ -1231,6 +1235,10 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                                           medicationFormMedicineRecord
                                                               .endDate)
                                                       : _model.datePicked2,
+                                                  frequency: null,
+                                                  date: null,
+                                                  day: null,
+                                                  dateNumber: null,
                                                 ),
                                                 remindersRecordReference);
                                         _model.addToReminderIDList(
@@ -1280,11 +1288,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                             onPressed: () async {
                               if (widget.addReminder) {
                                 if ((_model.reminderIDList.isNotEmpty) ==
-                                    true) {
-                                  await actions.setIndividualReminders(
-                                    _model.reminderIDList.toList(),
-                                  );
-                                }
+                                    true) {}
 
                                 context.pushNamed('MedicationHome');
                               } else {
@@ -1317,11 +1321,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                   medId: widget.newMedicineID,
                                 ));
                                 if ((_model.reminderIDList.isNotEmpty) ==
-                                    true) {
-                                  await actions.setIndividualReminders(
-                                    _model.reminderIDList.toList(),
-                                  );
-                                }
+                                    true) {}
                                 context.safePop();
                               }
                             },
