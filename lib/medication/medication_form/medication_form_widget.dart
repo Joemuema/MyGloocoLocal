@@ -1288,7 +1288,11 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                             onPressed: () async {
                               if (widget.addReminder) {
                                 if ((_model.reminderIDList.isNotEmpty) ==
-                                    true) {}
+                                    true) {
+                                  await actions.setIndividualReminders(
+                                    _model.reminderIDList.toList(),
+                                  );
+                                }
 
                                 context.pushNamed('MedicationHome');
                               } else {
@@ -1321,7 +1325,11 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                   medId: widget.newMedicineID,
                                 ));
                                 if ((_model.reminderIDList.isNotEmpty) ==
-                                    true) {}
+                                    true) {
+                                  await actions.setIndividualReminders(
+                                    _model.reminderIDList.toList(),
+                                  );
+                                }
                                 context.safePop();
                               }
                             },
