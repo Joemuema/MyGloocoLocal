@@ -1,6 +1,5 @@
 // Automatic FlutterFlow imports
 import '/backend/backend.dart';
-import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom actions
@@ -17,8 +16,8 @@ Future setIndividualReminders(List<DocumentReference> reminderDocs) async {
     try {
       DocumentSnapshot reminderSnapshot = await reminderDoc.get();
 
-      String? frequency = reminderSnapshot['Frequency'];
-      String? date = reminderSnapshot['Date'];
+      String frequency = reminderSnapshot['Frequency'];
+      String date = reminderSnapshot['Date'];
       String time = reminderSnapshot['Time'];
       String reminderName = reminderSnapshot['Name'];
 
@@ -26,8 +25,8 @@ Future setIndividualReminders(List<DocumentReference> reminderDocs) async {
       DateTime currentDate = startDate;
       DateTime endDate = reminderSnapshot['LastDateTime'].toDate();
 
-      if (frequency == '' || frequency == null) {
-        DateTime specificDate = stringToDate(date!);
+      if (frequency == 'Once') {
+        DateTime specificDate = stringToDate(date);
         startDate = specificDate;
         currentDate = startDate;
         endDate =
@@ -36,20 +35,20 @@ Future setIndividualReminders(List<DocumentReference> reminderDocs) async {
         endDate = DateTime(endDate.year, endDate.month, endDate.day + 1);
       }
 
-      String? day = reminderSnapshot['Day'];
-      int? dateNumber = reminderSnapshot['DateNumber'];
+      String day = reminderSnapshot['Day'];
+      int dateNumber = reminderSnapshot['DateNumber'];
 
       while (currentDate.isBefore(endDate)) {
         bool addReminder = false;
 
-        if (frequency == '' || frequency == null || frequency == 'Daily') {
+        if (frequency == 'Once' || frequency == 'Daily') {
           addReminder = true;
         } else if (frequency == 'Weekly') {
-          if (day! == DateFormat('EEEE').format(currentDate)) {
+          if (day == DateFormat('EEEE').format(currentDate)) {
             addReminder = true;
           }
         } else if (frequency == 'Monthly') {
-          if (dateNumber! == currentDate.day) {
+          if (dateNumber == currentDate.day) {
             addReminder = true;
           }
         }

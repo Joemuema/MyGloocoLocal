@@ -9,6 +9,7 @@ class FFIcons {
   static const String _injectionIconFamily = 'InjectionIcon';
   static const String _myFoodIconsFamily = 'MyFoodIcons';
   static const String _myPlateFamily = 'MyPlate';
+  static const String _mylasticonFamily = 'Mylasticon';
 
   // TabletIcon
   static const IconData kmedicine =
@@ -56,4 +57,8 @@ class FFIcons {
       IconData(0xe80d, fontFamily: _myPlateFamily);
   static const IconData kicons8Water50 =
       IconData(0xe80e, fontFamily: _myPlateFamily);
+
+  // Mylasticon
+  static const IconData khealthyFood =
+      IconData(0xe802, fontFamily: _mylasticonFamily);
 }

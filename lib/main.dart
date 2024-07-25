@@ -127,8 +127,9 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'Home': const HomeWidget(),
       'MedicationHome': const MedicationHomeWidget(),
+      'Home': const HomeWidget(),
+      'DietHome': const DietHomeWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -149,18 +150,26 @@ class _NavBarPageState extends State<NavBarPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
+              Icons.medical_services,
               size: 24.0,
+            ),
+            label: 'Medication',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_rounded,
+              size: 34.0,
             ),
             label: 'Home',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.medical_services,
+              FFIcons.khealthyFood,
               size: 24.0,
             ),
-            label: 'Medication',
+            label: 'Diet',
             tooltip: '',
           )
         ],

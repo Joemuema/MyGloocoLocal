@@ -1195,10 +1195,10 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                                   medicationFormMedicineRecord
                                                       .endDate)
                                               : _model.datePicked2,
-                                          frequency: null,
-                                          date: null,
-                                          day: null,
-                                          dateNumber: null,
+                                          frequency: 'Once',
+                                          date: 'None',
+                                          day: 'None',
+                                          dateNumber: 0,
                                         ));
                                         _model.newReminderID =
                                             RemindersRecord.getDocumentFromData(
@@ -1235,10 +1235,10 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                                           medicationFormMedicineRecord
                                                               .endDate)
                                                       : _model.datePicked2,
-                                                  frequency: null,
-                                                  date: null,
-                                                  day: null,
-                                                  dateNumber: null,
+                                                  frequency: 'Once',
+                                                  date: 'None',
+                                                  day: 'None',
+                                                  dateNumber: 0,
                                                 ),
                                                 remindersRecordReference);
                                         _model.addToReminderIDList(

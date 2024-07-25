@@ -248,10 +248,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                   ),
                 ),
                 StreamBuilder<List<RecipesRecord>>(
-                  stream: queryRecipesRecord(
-                    queryBuilder: (recipesRecord) =>
-                        recipesRecord.orderBy('Title'),
-                  ),
+                  stream: queryRecipesRecord(),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {

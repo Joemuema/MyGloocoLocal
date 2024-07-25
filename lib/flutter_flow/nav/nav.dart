@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 
-
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
@@ -149,7 +148,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DietHome',
           path: '/dietHome',
-          builder: (context, params) => const DietHomeWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'DietHome')
+              : const DietHomeWidget(),
         ),
         FFRoute(
           name: 'YourMeals',

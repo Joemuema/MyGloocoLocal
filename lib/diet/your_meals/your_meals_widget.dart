@@ -145,17 +145,23 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: MyMealsWidget(
-                                          foodItems: calendarMealsRecordList
-                                              .where((e) =>
-                                                  e.date ==
-                                                  dateTimeFormat(
-                                                      'yyyy-MM-dd',
-                                                      _model.calendarSelectedDay
-                                                          ?.start))
-                                              .toList(),
-                                          drinkdate:
-                                              _model.calendarSelectedDay!.start,
+                                        child: SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              0.65,
+                                          child: MyMealsWidget(
+                                            foodItems: calendarMealsRecordList
+                                                .where((e) =>
+                                                    e.date ==
+                                                    dateTimeFormat(
+                                                        'yyyy-MM-dd',
+                                                        _model
+                                                            .calendarSelectedDay
+                                                            ?.start))
+                                                .toList(),
+                                            drinkdate: _model
+                                                .calendarSelectedDay!.start,
+                                          ),
                                         ),
                                       ),
                                     );

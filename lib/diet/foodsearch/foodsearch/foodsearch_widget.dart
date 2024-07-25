@@ -259,9 +259,11 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                   child: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
                     child: StreamBuilder<List<FoodRecord>>(
-                      stream: queryFoodRecord(
-                        queryBuilder: (foodRecord) =>
-                            foodRecord.orderBy('Code'),
+                      stream: FFAppState().foodlist(
+                        requestFn: () => queryFoodRecord(
+                          queryBuilder: (foodRecord) =>
+                              foodRecord.orderBy('Code'),
+                        ),
                       ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
@@ -314,6 +316,9 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                               child: FoodsearchcomponentWidget(
                                 key: Key(
                                     'Keyk7i_${listViewIndex}_of_${listViewFoodRecordList.length}'),
+                                parameter1: listViewFoodRecord.food,
+                                parameter2: listViewFoodRecord.carbohydrates,
+                                parameter3: listViewFoodRecord.energyKcal,
                               ),
                             );
                           },
@@ -322,7 +327,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                     ),
                   ),
                 ),
-              if (!FFAppState().searchActive)
+              if (FFAppState().searchActive)
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),

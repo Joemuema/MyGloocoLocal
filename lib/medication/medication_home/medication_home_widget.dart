@@ -42,24 +42,17 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
       );
       _model.currentSubReminders = await queryIndividualRemindersRecordOnce(
         queryBuilder: (individualRemindersRecord) =>
-            individualRemindersRecord.where(Filter.or(
-          Filter(
-            'Date',
-            isEqualTo: functions.getDate(getCurrentTimestamp),
-          ),
-          Filter(
-            'Time',
-            isLessThan: functions.getTime(getCurrentTimestamp),
-          ),
-        )),
+            individualRemindersRecord.where(
+          'Date',
+          isEqualTo: functions.getDate(getCurrentTimestamp),
+        ),
       );
       _model.listOfUpcomingTimes = functions
           .combineTimeLists(
               _model.allReminders!
                   .where((e) =>
                       (e.date == functions.getDate(getCurrentTimestamp)) &&
-                      (e.timeDT! >=
-                          functions.commonTimeDT(getCurrentTimestamp)))
+                      (functions.todayTime(e.time) >= getCurrentTimestamp))
                   .toList()
                   .map((e) => e.time)
                   .toList()
@@ -71,8 +64,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                           functions.currentDate(getCurrentTimestamp)) &&
                       (e.lastDateTime! >=
                           functions.currentDate(getCurrentTimestamp)) &&
-                      (e.timeDT! >=
-                          functions.commonTimeDT(getCurrentTimestamp)))
+                      (functions.todayTime(e.time) >= getCurrentTimestamp))
                   .toList()
                   .map((e) => e.time)
                   .toList()
@@ -85,8 +77,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                           functions.currentDate(getCurrentTimestamp)) &&
                       (e.lastDateTime! >=
                           functions.currentDate(getCurrentTimestamp)) &&
-                      (e.timeDT! >=
-                          functions.commonTimeDT(getCurrentTimestamp)))
+                      (functions.todayTime(e.time) >= getCurrentTimestamp))
                   .toList()
                   .map((e) => e.time)
                   .toList()
@@ -100,8 +91,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                           functions.currentDate(getCurrentTimestamp)) &&
                       (e.lastDateTime! >=
                           functions.currentDate(getCurrentTimestamp)) &&
-                      (e.timeDT! >=
-                          functions.commonTimeDT(getCurrentTimestamp)))
+                      (functions.todayTime(e.time) >= getCurrentTimestamp))
                   .toList()
                   .map((e) => e.time)
                   .toList()
@@ -115,8 +105,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
               _model.allReminders!
                   .where((e) =>
                       (e.date == functions.getDate(getCurrentTimestamp)) &&
-                      (e.timeDT! >=
-                          functions.commonTimeDT(getCurrentTimestamp)))
+                      (functions.todayTime(e.time) >= getCurrentTimestamp))
                   .toList()
                   .toList(),
               _model.allReminders!
@@ -126,8 +115,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                           functions.currentDate(getCurrentTimestamp)) &&
                       (e.lastDateTime! >=
                           functions.currentDate(getCurrentTimestamp)) &&
-                      (e.timeDT! >=
-                          functions.commonTimeDT(getCurrentTimestamp)))
+                      (functions.todayTime(e.time) >= getCurrentTimestamp))
                   .toList()
                   .toList(),
               _model.allReminders!
@@ -138,8 +126,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                           functions.currentDate(getCurrentTimestamp)) &&
                       (e.lastDateTime! >=
                           functions.currentDate(getCurrentTimestamp)) &&
-                      (e.timeDT! >=
-                          functions.commonTimeDT(getCurrentTimestamp)))
+                      (functions.todayTime(e.time) >= getCurrentTimestamp))
                   .toList()
                   .toList(),
               _model.allReminders!
@@ -151,14 +138,15 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                           functions.currentDate(getCurrentTimestamp)) &&
                       (e.lastDateTime! >=
                           functions.currentDate(getCurrentTimestamp)) &&
-                      (e.timeDT! >=
-                          functions.commonTimeDT(getCurrentTimestamp)))
+                      (functions.todayTime(e.time) >= getCurrentTimestamp))
                   .toList()
                   .toList())!
           .toList()
           .cast<RemindersRecord>();
       _model.listOfTakenTimes = _model.currentSubReminders!
-          .where((e) => e.status == 'Taken')
+          .where((e) =>
+              (e.status == 'Taken') &&
+              (functions.todayTime(e.time) < getCurrentTimestamp))
           .toList()
           .map((e) => e.time)
           .toList()
@@ -167,12 +155,16 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
           .toList()
           .cast<String>();
       _model.takenReminders = _model.currentSubReminders!
-          .where((e) => e.status == 'Taken')
+          .where((e) =>
+              (e.status == 'Taken') &&
+              (functions.todayTime(e.time) < getCurrentTimestamp))
           .toList()
           .toList()
           .cast<IndividualRemindersRecord>();
       _model.listOfMissedTimes = _model.currentSubReminders!
-          .where((e) => e.status == 'Missed')
+          .where((e) =>
+              (e.status == 'Missed') &&
+              (functions.todayTime(e.time) < getCurrentTimestamp))
           .toList()
           .map((e) => e.time)
           .toList()
@@ -181,7 +173,9 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
           .toList()
           .cast<String>();
       _model.missedReminders = _model.currentSubReminders!
-          .where((e) => e.status == 'Missed')
+          .where((e) =>
+              (e.status == 'Missed') &&
+              (functions.todayTime(e.time) < getCurrentTimestamp))
           .toList()
           .toList()
           .cast<IndividualRemindersRecord>();
@@ -289,25 +283,18 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                       _model.todaySubReminders =
                           await queryIndividualRemindersRecordOnce(
                         queryBuilder: (individualRemindersRecord) =>
-                            individualRemindersRecord.where(Filter.or(
-                          Filter(
-                            'Date',
-                            isEqualTo: functions.getDate(getCurrentTimestamp),
-                          ),
-                          Filter(
-                            'Time',
-                            isLessThan: functions.getTime(getCurrentTimestamp),
-                          ),
-                        )),
+                            individualRemindersRecord.where(
+                          'Date',
+                          isEqualTo: functions.getDate(getCurrentTimestamp),
+                        ),
                       );
                       _model.listOfUpcomingTimes = functions
                           .combineTimeLists(
                               _model.allReminders!
                                   .where((e) =>
                                       (e.date == functions.getDate(getCurrentTimestamp)) &&
-                                      (e.timeDT! >=
-                                          functions.commonTimeDT(
-                                              getCurrentTimestamp)))
+                                      (functions.todayTime(e.time) >=
+                                          getCurrentTimestamp))
                                   .toList()
                                   .map((e) => e.time)
                                   .toList(),
@@ -320,9 +307,8 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                       (e.lastDateTime! >=
                                           functions.currentDate(
                                               getCurrentTimestamp)) &&
-                                      (e.timeDT! >=
-                                          functions.commonTimeDT(
-                                              getCurrentTimestamp)))
+                                      (functions.todayTime(e.time) >=
+                                          getCurrentTimestamp))
                                   .toList()
                                   .map((e) => e.time)
                                   .toList(),
@@ -337,11 +323,11 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                               getCurrentTimestamp)) &&
                                       (e.lastDateTime! >=
                                           functions.currentDate(getCurrentTimestamp)) &&
-                                      (e.timeDT! >= functions.commonTimeDT(getCurrentTimestamp)))
+                                      (functions.todayTime(e.time) >= getCurrentTimestamp))
                                   .toList()
                                   .map((e) => e.time)
                                   .toList(),
-                              _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (e.timeDT! >= functions.commonTimeDT(getCurrentTimestamp))).toList().map((e) => e.time).toList())!
+                              _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp)).toList().map((e) => e.time).toList())!
                           .sortedList(keyOf: (e) => e, desc: false)
                           .unique((e) => e)
                           .toList()
@@ -351,9 +337,8 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                               _model.allReminders!
                                   .where((e) =>
                                       (e.date == functions.getDate(getCurrentTimestamp)) &&
-                                      (e.timeDT! >=
-                                          functions.commonTimeDT(
-                                              getCurrentTimestamp)))
+                                      (functions.todayTime(e.time) >=
+                                          getCurrentTimestamp))
                                   .toList(),
                               _model.allReminders!
                                   .where((e) =>
@@ -364,9 +349,8 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                       (e.lastDateTime! >=
                                           functions.currentDate(
                                               getCurrentTimestamp)) &&
-                                      (e.timeDT! >=
-                                          functions.commonTimeDT(
-                                              getCurrentTimestamp)))
+                                      (functions.todayTime(e.time) >=
+                                          getCurrentTimestamp))
                                   .toList(),
                               _model.allReminders!
                                   .where((e) =>
@@ -381,11 +365,14 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                           functions.currentDate(getCurrentTimestamp)) &&
                                       (e.timeDT! >= functions.commonTimeDT(getCurrentTimestamp)))
                                   .toList(),
-                              _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (e.timeDT! >= functions.commonTimeDT(getCurrentTimestamp))).toList())!
+                              _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp)).toList())!
                           .toList()
                           .cast<RemindersRecord>();
                       _model.listOfTakenTimes = _model.todaySubReminders!
-                          .where((e) => e.status == 'Taken')
+                          .where((e) =>
+                              (e.status == 'Taken') &&
+                              (functions.todayTime(e.time) <
+                                  getCurrentTimestamp))
                           .toList()
                           .map((e) => e.time)
                           .toList()
@@ -394,11 +381,17 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                           .toList()
                           .cast<String>();
                       _model.takenReminders = _model.todaySubReminders!
-                          .where((e) => e.status == 'Taken')
+                          .where((e) =>
+                              (e.status == 'Taken') &&
+                              (functions.todayTime(e.time) <
+                                  getCurrentTimestamp))
                           .toList()
                           .cast<IndividualRemindersRecord>();
                       _model.listOfMissedTimes = _model.todaySubReminders!
-                          .where((e) => e.status == 'Missed')
+                          .where((e) =>
+                              (e.status == 'Missed') &&
+                              (functions.todayTime(e.time) <
+                                  getCurrentTimestamp))
                           .toList()
                           .map((e) => e.time)
                           .toList()
@@ -407,7 +400,10 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                           .toList()
                           .cast<String>();
                       _model.missedReminders = _model.todaySubReminders!
-                          .where((e) => e.status == 'Missed')
+                          .where((e) =>
+                              (e.status == 'Missed') &&
+                              (functions.todayTime(e.time) <
+                                  getCurrentTimestamp))
                           .toList()
                           .cast<IndividualRemindersRecord>();
                       setState(() {});
@@ -517,6 +513,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                   functions.currentDate(getCurrentTimestamp)))
                           .toList()
                           .cast<IndividualRemindersRecord>();
+                      setState(() {});
                     }
 
                     setState(() {});

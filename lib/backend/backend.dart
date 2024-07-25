@@ -18,6 +18,11 @@ import 'schema/food_record.dart';
 import 'schema/recipes_record.dart';
 import 'schema/meals_record.dart';
 import 'schema/drinks_record.dart';
+import 'schema/addpagecollection_record.dart';
+import 'schema/allcomponent_record.dart';
+import 'schema/strengthexercises_record.dart';
+import 'schema/aerobicrunningcollection_record.dart';
+import 'schema/flexibilitycollection_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -39,6 +44,11 @@ export 'schema/food_record.dart';
 export 'schema/recipes_record.dart';
 export 'schema/meals_record.dart';
 export 'schema/drinks_record.dart';
+export 'schema/addpagecollection_record.dart';
+export 'schema/allcomponent_record.dart';
+export 'schema/strengthexercises_record.dart';
+export 'schema/aerobicrunningcollection_record.dart';
+export 'schema/flexibilitycollection_record.dart';
 
 /// Functions to query MedicineRecords (as a Stream and as a Future).
 Future<int> queryMedicineRecordCount({
@@ -519,6 +529,193 @@ Future<List<DrinksRecord>> queryDrinksRecordOnce({
     queryCollectionOnce(
       DrinksRecord.collection,
       DrinksRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AddpagecollectionRecords (as a Stream and as a Future).
+Future<int> queryAddpagecollectionRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AddpagecollectionRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AddpagecollectionRecord>> queryAddpagecollectionRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AddpagecollectionRecord.collection,
+      AddpagecollectionRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AddpagecollectionRecord>> queryAddpagecollectionRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AddpagecollectionRecord.collection,
+      AddpagecollectionRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AllcomponentRecords (as a Stream and as a Future).
+Future<int> queryAllcomponentRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AllcomponentRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AllcomponentRecord>> queryAllcomponentRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AllcomponentRecord.collection,
+      AllcomponentRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AllcomponentRecord>> queryAllcomponentRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AllcomponentRecord.collection,
+      AllcomponentRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query StrengthexercisesRecords (as a Stream and as a Future).
+Future<int> queryStrengthexercisesRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      StrengthexercisesRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<StrengthexercisesRecord>> queryStrengthexercisesRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      StrengthexercisesRecord.collection,
+      StrengthexercisesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<StrengthexercisesRecord>> queryStrengthexercisesRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      StrengthexercisesRecord.collection,
+      StrengthexercisesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AerobicrunningcollectionRecords (as a Stream and as a Future).
+Future<int> queryAerobicrunningcollectionRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AerobicrunningcollectionRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AerobicrunningcollectionRecord>>
+    queryAerobicrunningcollectionRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+        queryCollection(
+          AerobicrunningcollectionRecord.collection,
+          AerobicrunningcollectionRecord.fromSnapshot,
+          queryBuilder: queryBuilder,
+          limit: limit,
+          singleRecord: singleRecord,
+        );
+
+Future<List<AerobicrunningcollectionRecord>>
+    queryAerobicrunningcollectionRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+        queryCollectionOnce(
+          AerobicrunningcollectionRecord.collection,
+          AerobicrunningcollectionRecord.fromSnapshot,
+          queryBuilder: queryBuilder,
+          limit: limit,
+          singleRecord: singleRecord,
+        );
+
+/// Functions to query FlexibilitycollectionRecords (as a Stream and as a Future).
+Future<int> queryFlexibilitycollectionRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      FlexibilitycollectionRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<FlexibilitycollectionRecord>> queryFlexibilitycollectionRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      FlexibilitycollectionRecord.collection,
+      FlexibilitycollectionRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<FlexibilitycollectionRecord>> queryFlexibilitycollectionRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      FlexibilitycollectionRecord.collection,
+      FlexibilitycollectionRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

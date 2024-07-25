@@ -656,101 +656,97 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ],
                   ),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 10.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          width: 143.0,
-                          height: 143.0,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 10.0),
-                            child: Stack(
-                              children: [
-                                Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: FlutterFlowIconButton(
-                                    borderColor: Colors.transparent,
-                                    borderRadius: 34.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 183.0,
-                                    icon: Icon(
-                                      FFIcons.kicons8Plate50,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 127.0,
-                                    ),
-                                    onPressed: () async {
-                                      context.pushNamed(
-                                        'Plate',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.rightToLeft,
-                                          ),
-                                        },
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        width: 143.0,
+                        height: 143.0,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
                         ),
-                        Flexible(
-                          child: Container(
-                            width: 100.0,
-                            height: 100.0,
-                            decoration: const BoxDecoration(),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              icon: Icon(
-                                FFIcons.kicons8Water50,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 59.0,
-                              ),
-                              onPressed: () async {
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  enableDrag: false,
-                                  context: context,
-                                  builder: (context) {
-                                    return GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: const SizedBox(
-                                          height: 320.0,
-                                          child: WaterWidget(),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 10.0),
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 34.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 183.0,
+                                  icon: Icon(
+                                    FFIcons.kicons8Plate50,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 127.0,
+                                  ),
+                                  onPressed: () async {
+                                    context.pushNamed(
+                                      'Plate',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.rightToLeft,
                                         ),
-                                      ),
+                                      },
                                     );
                                   },
-                                ).then((value) => safeSetState(() {}));
-                              },
-                            ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                      Flexible(
+                        child: Container(
+                          width: 100.0,
+                          height: 100.0,
+                          decoration: const BoxDecoration(),
+                          child: FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 20.0,
+                            borderWidth: 1.0,
+                            buttonSize: 40.0,
+                            icon: Icon(
+                              FFIcons.kicons8Water50,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 59.0,
+                            ),
+                            onPressed: () async {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                enableDrag: false,
+                                context: context,
+                                builder: (context) {
+                                  return GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: const SizedBox(
+                                        height: 320.0,
+                                        child: WaterWidget(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ).then((value) => safeSetState(() {}));
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Row(
@@ -759,19 +755,14 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     Flexible(
                       child: Align(
                         alignment: const AlignmentDirectional(0.2, 0.0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 15.0, 0.0, 0.0),
-                          child: Text(
-                            'To plate',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 17.0,
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
+                        child: Text(
+                          'To plate',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 17.0,
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                     ),

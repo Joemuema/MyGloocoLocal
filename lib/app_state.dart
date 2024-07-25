@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'flutter_flow/request_manager.dart';
+import '/backend/backend.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
@@ -55,6 +57,21 @@ class FFAppState extends ChangeNotifier {
   set searchActive(bool value) {
     _searchActive = value;
   }
+
+  final _foodlistManager = StreamRequestManager<List<FoodRecord>>();
+  Stream<List<FoodRecord>> foodlist({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Stream<List<FoodRecord>> Function() requestFn,
+  }) =>
+      _foodlistManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearFoodlistCache() => _foodlistManager.clear();
+  void clearFoodlistCacheKey(String? uniqueKey) =>
+      _foodlistManager.clearRequest(uniqueKey);
 }
 
 void _safeInit(Function() initializeField) {

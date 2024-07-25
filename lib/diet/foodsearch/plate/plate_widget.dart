@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'plate_model.dart';
 export 'plate_model.dart';
@@ -30,6 +31,13 @@ class _PlateWidgetState extends State<PlateWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PlateModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.updatedFoodList =
+          widget.updatedFoodList!.toList().cast<FoodRecord>();
+      setState(() {});
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -64,19 +72,7 @@ class _PlateWidgetState extends State<PlateWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed(
-                'Foodsearch',
-                queryParameters: {
-                  'currentFoodList': serializeParam(
-                    widget.updatedFoodList,
-                    ParamType.Document,
-                    isList: true,
-                  ),
-                }.withoutNulls,
-                extra: <String, dynamic>{
-                  'currentFoodList': widget.updatedFoodList,
-                },
-              );
+              context.safePop();
             },
           ),
           title: Text(
@@ -140,13 +136,13 @@ class _PlateWidgetState extends State<PlateWidget> {
                                   'Foodsearch',
                                   queryParameters: {
                                     'currentFoodList': serializeParam(
-                                      widget.updatedFoodList,
+                                      _model.updatedFoodList,
                                       ParamType.Document,
                                       isList: true,
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    'currentFoodList': widget.updatedFoodList,
+                                    'currentFoodList': _model.updatedFoodList,
                                   },
                                 );
                               },
@@ -170,13 +166,13 @@ class _PlateWidgetState extends State<PlateWidget> {
                                   'Foodsearch',
                                   queryParameters: {
                                     'currentFoodList': serializeParam(
-                                      widget.updatedFoodList,
+                                      _model.updatedFoodList,
                                       ParamType.Document,
                                       isList: true,
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    'currentFoodList': widget.updatedFoodList,
+                                    'currentFoodList': _model.updatedFoodList,
                                   },
                                 );
                               },
@@ -200,13 +196,13 @@ class _PlateWidgetState extends State<PlateWidget> {
                                   'Foodsearch',
                                   queryParameters: {
                                     'currentFoodList': serializeParam(
-                                      widget.updatedFoodList,
+                                      _model.updatedFoodList,
                                       ParamType.Document,
                                       isList: true,
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    'currentFoodList': widget.updatedFoodList,
+                                    'currentFoodList': _model.updatedFoodList,
                                   },
                                 );
                               },

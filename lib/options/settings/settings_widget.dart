@@ -6,7 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/options/edit_profile/edit_profile_widget.dart';
 import '/options/logout/logout_widget.dart';
-import '/options/reports/reports_widget.dart';
+import '/options/report2/report2_widget.dart';
 import '/options/units/units_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
@@ -504,10 +504,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                               : FocusScope.of(context).unfocus(),
                           child: Padding(
                             padding: MediaQuery.viewInsetsOf(context),
-                            child: SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.4,
-                              child: const ReportsWidget(),
-                            ),
+                            child: const Report2Widget(),
                           ),
                         );
                       },
@@ -563,33 +560,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                               focusColor: Colors.transparent,
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
-                              onTap: () async {
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  enableDrag: false,
-                                  context: context,
-                                  builder: (context) {
-                                    return GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: SizedBox(
-                                          height: MediaQuery.sizeOf(context)
-                                                  .height *
-                                              0.4,
-                                          child: const ReportsWidget(),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => safeSetState(() {}));
-                              },
+                              onTap: () async {},
                               child: Icon(
                                 Icons.arrow_forward_ios,
                                 color:

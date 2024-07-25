@@ -1,6 +1,5 @@
 // Automatic FlutterFlow imports
 import '/backend/backend.dart';
-import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom actions
@@ -18,26 +17,23 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future scheduleAlarmNotification(
-  String? title,
-  String? content,
-  String? time,
-  String? frequency,
+  String title,
+  String content,
+  String time,
+  String frequency,
   DateTime startDate,
   DateTime endDate,
   DocumentReference reminderID,
 ) async {
   tzdata.initializeTimeZones();
 
-  DateTime parsedTime = DateFormat('HH:mm').parse(time!);
+  DateTime parsedTime = DateFormat('HH:mm').parse(time);
   DateTime now = DateTime.now();
 
   parsedTime = DateTime(
       now.year, now.month, now.day, parsedTime.hour, parsedTime.minute);
 
-  print('Parsed time: $parsedTime');
-
   String timeZoneName = await FlutterTimezone.getLocalTimezone();
-  print('Device timezone: $timeZoneName');
 
   final tzLocation = tz.getLocation(timeZoneName);
 
@@ -50,7 +46,7 @@ Future scheduleAlarmNotification(
       .doc(reminderID.path)
       .collection('IndividualReminders');
 
-  if (frequency == 'Daily' || frequency == '' || frequency == null) {
+  if (frequency == 'Daily' || frequency == 'Once') {
     advanceDay = 1;
   } else if (frequency == 'Weekly') {
     advanceDay = 7;

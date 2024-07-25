@@ -10,7 +10,6 @@ import 'place.dart';
 import 'uploaded_file.dart';
 import '/backend/backend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '/backend/schema/enums/enums.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
 int extractDayNumber(DateTime currentDate) {
@@ -219,6 +218,22 @@ DateTime currentDate(DateTime currentTime) {
 }
 
 DateTime commonTimeDT(DateTime currentTime) {
-  return DateTime(
-      DateTime.now().year, 1, 1, currentTime.hour, currentTime.minute);
+  DateTime now = DateTime.now();
+
+  DateTime commonTime =
+      DateTime(now.year, 1, 1, currentTime.hour, currentTime.minute);
+
+  print('CommonDT = $commonTime');
+
+  return commonTime;
+}
+
+DateTime todayTime(String time) {
+  DateTime parsedTime = DateFormat('HH:mm').parse(time);
+  DateTime now = DateTime.now();
+
+  parsedTime = DateTime(
+      now.year, now.month, now.day, parsedTime.hour, parsedTime.minute);
+
+  return parsedTime;
 }
