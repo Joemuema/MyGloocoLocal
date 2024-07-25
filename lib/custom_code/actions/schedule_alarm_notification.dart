@@ -43,7 +43,7 @@ Future scheduleAlarmNotification(
 
   CollectionReference individualReminders = FirebaseFirestore.instance
       .collection('Reminders')
-      .doc(reminderID.path)
+      .doc(reminderID.id)
       .collection('IndividualReminders');
 
   if (frequency == 'Daily' || frequency == 'Once') {
@@ -88,7 +88,7 @@ Future scheduleAlarmNotification(
       Map<String, String?> additionalInfo = {
         'Date': getDate(currentDate),
         'Time': time!,
-        'ReminderID': reminderID.path,
+        'ReminderID': reminderID.id,
       };
 
       // String payload = jsonEncode(additionalInfo);
