@@ -39,7 +39,7 @@ Future scheduleAll(List<DocumentReference> reminderDocs) async {
       if (medSnapshot.exists) {
         String medName = medSnapshot['Name'];
         String form = medSnapshot['Form'];
-        double dose = medSnapshot['SingleDose'];
+        num dose = medSnapshot['SingleDose'];
         String finaldose;
         String unit = 'units';
 
