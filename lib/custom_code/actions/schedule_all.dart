@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future setIndividualReminders(List<DocumentReference> reminderDocs) async {
+Future scheduleAll(List<DocumentReference> reminderDocs) async {
   for (DocumentReference reminderDoc in reminderDocs) {
     try {
       DocumentSnapshot reminderSnapshot = await reminderDoc.get();
@@ -34,42 +34,6 @@ Future setIndividualReminders(List<DocumentReference> reminderDocs) async {
       } else {
         endDate = DateTime(endDate.year, endDate.month, endDate.day + 1);
       }
-
-      String day = reminderSnapshot['Day'];
-      int dateNumber = reminderSnapshot['DateNumber'];
-
-      while (currentDate.isBefore(endDate)) {
-        bool addReminder = false;
-
-        if (frequency == 'Once' || frequency == 'Daily') {
-          addReminder = true;
-        } else if (frequency == 'Weekly') {
-          if (day == DateFormat('EEEE').format(currentDate)) {
-            addReminder = true;
-          }
-        } else if (frequency == 'Monthly') {
-          if (dateNumber == currentDate.day) {
-            addReminder = true;
-          }
-        }
-
-        if (addReminder) {
-          DocumentReference newIndividualReminder =
-              reminderDoc.collection('individualReminders').doc();
-          await newIndividualReminder.set({
-            'ReminderID': reminderDoc,
-            'IsActive': true,
-            'Date': getDate(currentDate),
-            'Time': time,
-            'Status': 'Unset',
-          });
-        }
-
-        currentDate = currentDate.add(Duration(days: 1));
-      }
-
-      print(
-          'individualReminders created successfully under ${reminderDoc.id}.');
 
       DocumentSnapshot medSnapshot = await reminderSnapshot['MedicineID'].get();
       if (medSnapshot.exists) {
@@ -105,7 +69,7 @@ Future setIndividualReminders(List<DocumentReference> reminderDocs) async {
         print('Medicine document does not exist.');
       }
     } catch (e) {
-      print('Failed to create individualReminders under ${reminderDoc.id}: $e');
+      print('Failed to schedule reminders under ${reminderDoc.id}: $e');
     }
   }
 }
