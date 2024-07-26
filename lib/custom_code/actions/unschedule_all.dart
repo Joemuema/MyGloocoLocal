@@ -15,7 +15,7 @@ Future unscheduleAll(List<DocumentReference> reminderDocs) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('Reminders')
         .doc(reminderDoc.id)
-        .collection('IndividualReminders')
+        .collection('individualReminders')
         .get();
 
     for (QueryDocumentSnapshot doc in querySnapshot.docs) {
