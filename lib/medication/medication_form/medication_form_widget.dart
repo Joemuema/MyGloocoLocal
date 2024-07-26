@@ -1136,8 +1136,15 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                           index: _model.reminderIDList.length,
                                           reminderName:
                                               listViewRemindersRecord.name,
+                                          remIDList: _model.reminderIDList,
                                           deleteFromList: () async {
                                             _model.removeFromReminderIDList(
+                                                listViewRemindersRecord
+                                                    .reference);
+                                            setState(() {});
+                                          },
+                                          addToList: () async {
+                                            _model.addToReminderIDList(
                                                 listViewRemindersRecord
                                                     .reference);
                                             setState(() {});

@@ -21,27 +21,47 @@ const String PHYSICAL_ACTIVITY_LOGS = 'PhysicalActivityLogs';
 
 class MealLog {
   final DateTime date;
-  final String meal;
-  final String description;
+  final List meal;
+  final String type;
 
-  MealLog({required this.date, required this.meal, required this.description});
+  MealLog({required this.date, required this.meal, required this.type});
 
   factory MealLog.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return MealLog(
-      date: (data['date'] as Timestamp).toDate(),
-      meal: data['meal'] ?? '',
-      description: data['description'] ?? '',
+      date: (data['date'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      meal: data['meal'] ?? [],
+      type: data['type'] ?? '',
     );
   }
 }
 
-// Define your MedicationReminder data model
+class BloodSugarReading {
+  final DateTime date;
+  final String period;
+  final double reading;
+
+  BloodSugarReading({
+    required this.date,
+    required this.period,
+    required this.reading,
+  });
+
+  factory BloodSugarReading.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return BloodSugarReading(
+      date: (data['date'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      period: data['period'] ?? '',
+      reading: (data['reading'] ?? 0).toDouble(),
+    );
+  }
+}
+
 class MedicationReminder {
   final DateTime date;
   final String type;
   final String medication;
-  final String dosage;
+  final double dosage;
 
   MedicationReminder({
     required this.date,
@@ -61,29 +81,6 @@ class MedicationReminder {
   }
 }
 
-// Define your BloodSugarReading data model
-class BloodSugarReading {
-  final DateTime date;
-  final String time;
-  final double reading;
-
-  BloodSugarReading({
-    required this.date,
-    required this.time,
-    required this.reading,
-  });
-
-  factory BloodSugarReading.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
-    return BloodSugarReading(
-      date: (data['date'] as Timestamp).toDate(),
-      time: data['time'] ?? '',
-      reading: (data['reading'] ?? 0).toDouble(),
-    );
-  }
-}
-
-// Define your PhysicalActivity data model
 class PhysicalActivity {
   final DateTime date;
   final String activity;
@@ -98,14 +95,14 @@ class PhysicalActivity {
   factory PhysicalActivity.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return PhysicalActivity(
-      date: (data['date'] as Timestamp).toDate(),
+      date: (data['date'] as Timestamp?)?.toDate() ?? DateTime.now(),
       activity: data['activity'] ?? '',
       duration: data['duration'] ?? '',
     );
   }
 }
 
-Future<void> generateReport(
+Future<String> generateReport(
     DateTime selectedStartDate, List<String> selectedContents) async {
   final pdf = pw.Document();
   final selectedEndDate = DateTime.now();
@@ -118,13 +115,13 @@ Future<void> generateReport(
           children: [
             pw.Text('Diet Information', style: pw.TextStyle(fontSize: 18)),
             pw.Table.fromTextArray(context: context, data: [
-              ['Date', 'Meal', 'Description'],
+              ['Date', 'Meal', 'Type'],
               ...mealLogs.map((log) => [
-                    log?.date != null
-                        ? DateFormat('yyyy-MM-dd').format(log!.date)
+                    log.date != null
+                        ? DateFormat('dd-MM-yyyy').format(log.date)
                         : 'N/A',
-                    log?.meal ?? 'N/A',
-                    log?.description ?? 'N/A'
+                    log.meal.toString(),
+                    log.type
                   ])
             ]),
           ],
@@ -144,12 +141,12 @@ Future<void> generateReport(
             pw.Table.fromTextArray(context: context, data: [
               ['Date', 'Type', 'Medication', 'Dosage'],
               ...medicationReminders.map((reminder) => [
-                    reminder?.date != null
-                        ? DateFormat('yyyy-MM-dd').format(reminder!.date)
+                    reminder.date != null
+                        ? DateFormat('dd-MM-yyyy').format(reminder.date)
                         : 'N/A',
-                    reminder?.type ?? 'N/A',
-                    reminder?.medication ?? 'N/A',
-                    reminder?.dosage ?? 'N/A',
+                    reminder.type,
+                    reminder.medication,
+                    reminder.dosage,
                   ]),
             ]),
           ],
@@ -169,18 +166,18 @@ Future<void> generateReport(
           children: [
             pw.Text('Blood Sugar Readings', style: pw.TextStyle(fontSize: 18)),
             pw.Table.fromTextArray(context: context, data: [
-              ['Date', 'Time', 'Reading (mg/dL)'],
+              ['Date', 'Period', 'Reading (mg/dL)'],
               ...bloodSugarReadings.map((reading) => [
-                    reading?.date != null
-                        ? DateFormat('yyyy-MM-dd').format(reading!.date)
+                    reading.date != null
+                        ? DateFormat('dd-MM-yyyy').format(reading.date)
                         : 'N/A',
-                    reading?.time ?? 'N/A',
-                    reading?.reading?.toString() ?? 'N/A'
+                    reading.period,
+                    reading.reading.toString()
                   ])
             ]),
             pw.SizedBox(height: 10),
             pw.Text(
-                'Average Blood Sugar: ${averageBloodSugar?.toStringAsFixed(2) ?? 'N/A'} mg/dL',
+                'Average Blood Sugar: ${averageBloodSugar.toStringAsFixed(2)} mg/dL',
                 style: pw.TextStyle(fontSize: 16)),
           ],
         ),
@@ -199,11 +196,11 @@ Future<void> generateReport(
             pw.Table.fromTextArray(context: context, data: [
               ['Date', 'Activity', 'Duration'],
               ...physicalActivities.map((activity) => [
-                    activity?.date != null
-                        ? DateFormat('yyyy-MM-dd').format(activity!.date)
+                    activity.date != null
+                        ? DateFormat('dd-MM-yyyy').format(activity.date)
                         : 'N/A',
-                    activity?.activity ?? 'N/A',
-                    activity?.duration ?? 'N/A'
+                    activity.activity,
+                    activity.duration
                   ])
             ]),
           ],
@@ -214,11 +211,13 @@ Future<void> generateReport(
 
   final output = await getTemporaryDirectory();
   final file = File(
-      "${output.path}/report_${DateFormat('yyyyMMdd_HHmmss').format(DateTime.now())}.pdf");
+      "${output.path}/report_${DateFormat('ddMMyyyy_HHmmss').format(DateTime.now())}.pdf");
   await file.writeAsBytes(await pdf.save());
 
   await Share.shareXFiles([XFile(file.path)],
       text: 'Here is your patient report.');
+
+  return file.path;
 }
 
 Future<List<MealLog>> fetchMealLogs(
@@ -248,7 +247,7 @@ Future<List<MedicationReminder>> fetchMedicationReminders(
 Future<List<BloodSugarReading>> fetchBloodSugarReadings(
     DateTime startDate, DateTime endDate) async {
   final querySnapshot = await FirebaseFirestore.instance
-      .collection('BloodSugar')
+      .collection('bloodglucose')
       .where('date', isGreaterThanOrEqualTo: startDate)
       .where('date', isLessThanOrEqualTo: endDate)
       .get();
@@ -263,8 +262,7 @@ Future<double> calculateAverageBloodSugar(
   final readings = await fetchBloodSugarReadings(startDate, endDate);
   if (readings.isEmpty) return 0.0;
 
-  final total =
-      readings.fold(0.0, (sum, reading) => sum + (reading?.reading ?? 0.0));
+  final total = readings.fold(0.0, (sum, reading) => sum + reading.reading);
   return total / readings.length;
 }
 
@@ -280,5 +278,3 @@ Future<List<PhysicalActivity>> fetchPhysicalActivities(
       .map((doc) => PhysicalActivity.fromFirestore(doc))
       .toList();
 }
-// Set your action name, define your arguments and return parameter,
-// and then add the boilerplate code using the green button on the right!

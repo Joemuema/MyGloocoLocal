@@ -85,129 +85,125 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Flexible(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 10.0),
-                        child: StreamBuilder<List<MealsRecord>>(
-                          stream: queryMealsRecord(
-                            queryBuilder: (mealsRecord) => mealsRecord.where(
-                              'UserID',
-                              isEqualTo: FFAppState().UserID,
-                            ),
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 10.0),
+                      child: StreamBuilder<List<MealsRecord>>(
+                        stream: queryMealsRecord(
+                          queryBuilder: (mealsRecord) => mealsRecord.where(
+                            'UserID',
+                            isEqualTo: FFAppState().UserID,
                           ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      FlutterFlowTheme.of(context).primary,
-                                    ),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
                                   ),
                                 ),
-                              );
-                            }
-                            List<MealsRecord> calendarMealsRecordList =
-                                snapshot.data!;
+                              ),
+                            );
+                          }
+                          List<MealsRecord> calendarMealsRecordList =
+                              snapshot.data!;
 
-                            return FlutterFlowCalendar(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              iconColor:
-                                  FlutterFlowTheme.of(context).secondaryText,
-                              weekFormat: false,
-                              weekStartsMonday: false,
-                              rowHeight: 50.0,
-                              onChange: (DateTimeRange? newSelectedDate) async {
-                                if (_model.calendarSelectedDay ==
-                                    newSelectedDate) {
-                                  return;
-                                }
-                                _model.calendarSelectedDay = newSelectedDate;
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  enableDrag: false,
-                                  context: context,
-                                  builder: (context) {
-                                    return GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: SizedBox(
-                                          height: MediaQuery.sizeOf(context)
-                                                  .height *
-                                              0.65,
-                                          child: MyMealsWidget(
-                                            foodItems: calendarMealsRecordList
-                                                .where((e) =>
-                                                    e.date ==
-                                                    dateTimeFormat(
-                                                        'yyyy-MM-dd',
-                                                        _model
-                                                            .calendarSelectedDay
-                                                            ?.start))
-                                                .toList(),
-                                            drinkdate: _model
-                                                .calendarSelectedDay!.start,
-                                          ),
+                          return FlutterFlowCalendar(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            iconColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            weekFormat: false,
+                            weekStartsMonday: false,
+                            rowHeight: 50.0,
+                            onChange: (DateTimeRange? newSelectedDate) async {
+                              if (_model.calendarSelectedDay ==
+                                  newSelectedDate) {
+                                return;
+                              }
+                              _model.calendarSelectedDay = newSelectedDate;
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                enableDrag: false,
+                                context: context,
+                                builder: (context) {
+                                  return GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: SizedBox(
+                                        height:
+                                            MediaQuery.sizeOf(context).height *
+                                                0.65,
+                                        child: MyMealsWidget(
+                                          foodItems: calendarMealsRecordList
+                                              .where((e) =>
+                                                  e.date ==
+                                                  dateTimeFormat(
+                                                      'yyyy-MM-dd',
+                                                      _model.calendarSelectedDay
+                                                          ?.start))
+                                              .toList(),
+                                          drinkdate:
+                                              _model.calendarSelectedDay!.start,
                                         ),
                                       ),
-                                    );
-                                  },
-                                ).then((value) => safeSetState(() {}));
+                                    ),
+                                  );
+                                },
+                              ).then((value) => safeSetState(() {}));
 
-                                setState(() {});
-                              },
-                              titleStyle: FlutterFlowTheme.of(context)
-                                  .headlineSmall
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                  ),
-                              dayOfWeekStyle: FlutterFlowTheme.of(context)
-                                  .labelLarge
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                              dateStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                              selectedDateStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    letterSpacing: 0.0,
-                                  ),
-                              inactiveDateStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                            );
-                          },
-                        ),
+                              setState(() {});
+                            },
+                            titleStyle: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  fontFamily: 'Inter',
+                                  letterSpacing: 0.0,
+                                ),
+                            dayOfWeekStyle: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            dateStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            selectedDateStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  letterSpacing: 0.0,
+                                ),
+                            inactiveDateStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                          );
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

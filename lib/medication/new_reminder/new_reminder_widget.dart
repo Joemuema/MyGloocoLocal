@@ -21,6 +21,8 @@ class NewReminderWidget extends StatefulWidget {
     bool? editState,
     this.index,
     this.reminderName,
+    this.addToList,
+    this.remIDList,
   }) : editState = editState ?? false;
 
   final DocumentReference? currentReminderID;
@@ -28,6 +30,8 @@ class NewReminderWidget extends StatefulWidget {
   final bool editState;
   final int? index;
   final String? reminderName;
+  final Future Function()? addToList;
+  final List<DocumentReference>? remIDList;
 
   @override
   State<NewReminderWidget> createState() => _NewReminderWidgetState();
@@ -348,6 +352,14 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                       onChanged: (val) async {
                                         setState(
                                             () => _model.frequencyValue = val);
+                                        if (widget.editState == true) {
+                                          if (widget.remIDList?.contains(
+                                                  widget.currentReminderID) !=
+                                              true) {
+                                            await widget.addToList?.call();
+                                          }
+                                        }
+
                                         await widget.currentReminderID!
                                             .update(createRemindersRecordData(
                                           frequency: _model.frequencyValue,
@@ -462,6 +474,16 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                               onChanged: (val) async {
                                                 setState(() => _model
                                                     .weekDayListValue = val);
+                                                if (widget.editState == true) {
+                                                  if (widget.remIDList
+                                                          ?.contains(widget
+                                                              .currentReminderID) !=
+                                                      true) {
+                                                    await widget.addToList
+                                                        ?.call();
+                                                  }
+                                                }
+
                                                 await widget.currentReminderID!
                                                     .update(
                                                         createRemindersRecordData(
@@ -599,6 +621,17 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                   },
                                                 ),
                                                 onFieldSubmitted: (_) async {
+                                                  if (widget.editState ==
+                                                      true) {
+                                                    if (widget.remIDList
+                                                            ?.contains(widget
+                                                                .currentReminderID) !=
+                                                        true) {
+                                                      await widget.addToList
+                                                          ?.call();
+                                                    }
+                                                  }
+
                                                   await widget
                                                       .currentReminderID!
                                                       .update(
@@ -747,6 +780,14 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                   datePicked1Time.minute,
                                                 );
                                               });
+                                            }
+                                            if (widget.editState == true) {
+                                              if (widget.remIDList?.contains(
+                                                      widget
+                                                          .currentReminderID) !=
+                                                  true) {
+                                                await widget.addToList?.call();
+                                              }
                                             }
 
                                             await widget.currentReminderID!
@@ -1029,6 +1070,16 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                           );
                                                         });
                                                       }
+                                                      if (widget.editState ==
+                                                          true) {
+                                                        if (widget.remIDList
+                                                                ?.contains(widget
+                                                                    .currentReminderID) !=
+                                                            true) {
+                                                          await widget.addToList
+                                                              ?.call();
+                                                        }
+                                                      }
 
                                                       await widget
                                                           .currentReminderID!
@@ -1221,6 +1272,17 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                                   .day,
                                                             );
                                                           });
+                                                        }
+                                                        if (widget.editState ==
+                                                            true) {
+                                                          if (widget.remIDList
+                                                                  ?.contains(widget
+                                                                      .currentReminderID) !=
+                                                              true) {
+                                                            await widget
+                                                                .addToList
+                                                                ?.call();
+                                                          }
                                                         }
 
                                                         await widget
@@ -1418,6 +1480,13 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                   );
                                 });
                               }
+                              if (widget.editState == true) {
+                                if (widget.remIDList
+                                        ?.contains(widget.currentReminderID) !=
+                                    true) {
+                                  await widget.addToList?.call();
+                                }
+                              }
 
                               await widget.currentReminderID!
                                   .update(createRemindersRecordData(
@@ -1514,6 +1583,13 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                     datePicked5Time.minute,
                                   );
                                 });
+                              }
+                              if (widget.editState == true) {
+                                if (widget.remIDList
+                                        ?.contains(widget.currentReminderID) !=
+                                    true) {
+                                  await widget.addToList?.call();
+                                }
                               }
 
                               await widget.currentReminderID!

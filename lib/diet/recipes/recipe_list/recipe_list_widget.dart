@@ -135,7 +135,6 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
         body: SafeArea(
           top: true,
           child: SingleChildScrollView(
-            primary: false,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -269,6 +268,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
 
                     return ListView.builder(
                       padding: EdgeInsets.zero,
+                      primary: false,
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: listViewRecipesRecordList.length,
