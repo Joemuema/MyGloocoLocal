@@ -10,6 +10,8 @@ class Report2Model extends FlutterFlowModel<Report2Widget> {
   // State field(s) for DropDown widget.
   List<String>? dropDownValue;
   FormFieldController<List<String>>? dropDownValueController;
+  // Stores action output result for [Custom Action - generateReport] action in Button widget.
+  String? maybe;
 
   @override
   void initState(BuildContext context) {}

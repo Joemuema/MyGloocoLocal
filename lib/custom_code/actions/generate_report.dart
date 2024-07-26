@@ -13,6 +13,7 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'dart:io';
+import 'package:open_filex/open_filex.dart';
 
 const String DIET_LOGS = 'DietLogs';
 const String MEDICATION_LOGS = 'MedicationLogs';
@@ -216,6 +217,8 @@ Future<String> generateReport(
 
   await Share.shareXFiles([XFile(file.path)],
       text: 'Here is your patient report.');
+
+  OpenFilex.open(file.path);
 
   return file.path;
 }

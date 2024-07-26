@@ -74,6 +74,9 @@ Future scheduleAlarmNotification(
       notificationId = await getNextNotificationId();
 
       try {
+        print('Date: ${getDate(currentDate)}');
+        print('Time: $time');
+
         QuerySnapshot querySnapshot = await individualReminders
             .where('Date', isEqualTo: getDate(currentDate))
             .where('Time', isEqualTo: time)

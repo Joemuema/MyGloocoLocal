@@ -247,11 +247,13 @@ class _Report2WidgetState extends State<Report2Widget> {
                 children: [
                   FFButtonWidget(
                     onPressed: () async {
-                      await actions.generateReport(
+                      _model.maybe = await actions.generateReport(
                         _model.datePicked!,
                         _model.dropDownValue!.toList(),
                       );
                       Navigator.pop(context);
+
+                      setState(() {});
                     },
                     text: 'Generate',
                     options: FFButtonOptions(
