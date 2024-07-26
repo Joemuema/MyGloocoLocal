@@ -73,21 +73,27 @@ Future scheduleAlarmNotification(
     } else {
       notificationId = await getNextNotificationId();
 
-      QuerySnapshot querySnapshot = await individualReminders
-          .where('Date', isEqualTo: getDate(currentDate))
-          .where('Time', isEqualTo: time!)
-          .get();
+      try {
+        QuerySnapshot querySnapshot = await individualReminders
+            .where('Date', isEqualTo: getDate(currentDate))
+            .where('Time', isEqualTo: time)
+            .get();
 
-      if (querySnapshot.docs.isNotEmpty) {
-        DocumentReference docRef = querySnapshot.docs.first.reference;
-        await docRef.update({'NotificationID': notificationId});
-        await docRef.update({'Title': title});
-        await docRef.update({'NotificationID': content});
+        if (querySnapshot.docs.isNotEmpty) {
+          DocumentReference docRef = querySnapshot.docs.first.reference;
+          print('Individual reminder with ID ${docRef.id} found.');
+
+          await docRef.update({'NotificationID': notificationId});
+          await docRef.update({'Title': title});
+          await docRef.update({'Content': content});
+        }
+      } catch (e) {
+        print('Fetch query failed: $e');
       }
 
       Map<String, String?> additionalInfo = {
         'Date': getDate(currentDate),
-        'Time': time!,
+        'Time': time,
         'ReminderID': reminderID.id,
       };
 
