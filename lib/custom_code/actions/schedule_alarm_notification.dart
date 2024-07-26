@@ -44,7 +44,7 @@ Future scheduleAlarmNotification(
   CollectionReference individualReminders = FirebaseFirestore.instance
       .collection('Reminders')
       .doc(reminderID.id)
-      .collection('IndividualReminders');
+      .collection('individualReminders');
 
   if (frequency == 'Daily' || frequency == 'Once') {
     advanceDay = 1;
@@ -74,9 +74,6 @@ Future scheduleAlarmNotification(
       notificationId = await getNextNotificationId();
 
       try {
-        print('Date: ${getDate(currentDate)}');
-        print('Time: $time');
-
         QuerySnapshot querySnapshot = await individualReminders
             .where('Date', isEqualTo: getDate(currentDate))
             .where('Time', isEqualTo: time)
@@ -84,7 +81,6 @@ Future scheduleAlarmNotification(
 
         if (querySnapshot.docs.isNotEmpty) {
           DocumentReference docRef = querySnapshot.docs.first.reference;
-          print('Individual reminder with ID ${docRef.id} found.');
 
           await docRef.update({'NotificationID': notificationId});
           await docRef.update({'Title': title});
