@@ -28,11 +28,11 @@ List<String>? combineTimeLists(
     ..addAll(monthlyList);
 }
 
-String? getDate(DateTime date) {
+String getDate(DateTime date) {
   return DateFormat('yyyy-MM-dd').format(date);
 }
 
-String? getTime(DateTime time) {
+String getTime(DateTime time) {
   return DateFormat('HH:mm').format(time);
 }
 

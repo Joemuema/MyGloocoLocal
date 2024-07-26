@@ -55,6 +55,11 @@ class IndividualRemindersRecord extends FirestoreRecord {
   String get content => _content ?? '';
   bool hasContent() => _content != null;
 
+  // "UserID" field.
+  DocumentReference? _userID;
+  DocumentReference? get userID => _userID;
+  bool hasUserID() => _userID != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -66,6 +71,7 @@ class IndividualRemindersRecord extends FirestoreRecord {
     _notificationID = castToType<int>(snapshotData['NotificationID']);
     _title = snapshotData['Title'] as String?;
     _content = snapshotData['Content'] as String?;
+    _userID = snapshotData['UserID'] as DocumentReference?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -117,6 +123,7 @@ Map<String, dynamic> createIndividualRemindersRecordData({
   int? notificationID,
   String? title,
   String? content,
+  DocumentReference? userID,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -128,6 +135,7 @@ Map<String, dynamic> createIndividualRemindersRecordData({
       'NotificationID': notificationID,
       'Title': title,
       'Content': content,
+      'UserID': userID,
     }.withoutNulls,
   );
 
@@ -147,7 +155,8 @@ class IndividualRemindersRecordDocumentEquality
         e1?.time == e2?.time &&
         e1?.notificationID == e2?.notificationID &&
         e1?.title == e2?.title &&
-        e1?.content == e2?.content;
+        e1?.content == e2?.content &&
+        e1?.userID == e2?.userID;
   }
 
   @override
@@ -159,7 +168,8 @@ class IndividualRemindersRecordDocumentEquality
         e?.time,
         e?.notificationID,
         e?.title,
-        e?.content
+        e?.content,
+        e?.userID
       ]);
 
   @override

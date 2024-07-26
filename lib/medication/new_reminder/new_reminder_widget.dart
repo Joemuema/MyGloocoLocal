@@ -1296,7 +1296,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                               return functions.setWeeklyLastDate(
                                                                   functions.getDate(
                                                                       _model
-                                                                          .datePicked3!)!,
+                                                                          .datePicked3!),
                                                                   containerRemindersRecord
                                                                       .day);
                                                             } else if (containerRemindersRecord
@@ -1305,7 +1305,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                               return functions.setMonthlyLastDate(
                                                                   functions.getDate(
                                                                       _model
-                                                                          .datePicked3!)!,
+                                                                          .datePicked3!),
                                                                   containerRemindersRecord
                                                                       .dateNumber);
                                                             } else {
@@ -1324,7 +1324,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                               return functions.setWeeklyLastDate(
                                                                   functions.getDate(
                                                                       _model
-                                                                          .datePicked3!)!,
+                                                                          .datePicked3!),
                                                                   containerRemindersRecord
                                                                       .day);
                                                             } else if (containerRemindersRecord
@@ -1333,13 +1333,13 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                               return functions.setMonthlyLastDate(
                                                                   functions.getDate(
                                                                       _model
-                                                                          .datePicked3!)!,
+                                                                          .datePicked3!),
                                                                   containerRemindersRecord
                                                                       .dateNumber);
                                                             } else {
                                                               return functions
                                                                   .getDate(_model
-                                                                      .datePicked3!)!;
+                                                                      .datePicked3!);
                                                             }
                                                           }()),
                                                         ));

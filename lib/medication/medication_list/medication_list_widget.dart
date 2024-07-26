@@ -1,10 +1,10 @@
 import '/backend/backend.dart';
-import '/components/no_elements_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/medication/med_list_item/med_list_item_widget.dart';
 import '/medication/medicine_description/medicine_description_widget.dart';
+import '/medication/no_elements/no_elements_widget.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

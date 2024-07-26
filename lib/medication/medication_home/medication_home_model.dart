@@ -1,7 +1,7 @@
 import '/backend/backend.dart';
-import '/components/home_reminder_widget.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/medication/home_reminder/home_reminder_widget.dart';
 import 'medication_home_widget.dart' show MedicationHomeWidget;
 import 'package:flutter/material.dart';
 

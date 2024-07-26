@@ -28,7 +28,7 @@ export '/education/monitoring_and_medication/monitoring_and_medication_widget.da
     show MonitoringAndMedicationWidget;
 export '/education/healthy_eating/healthy_eating_widget.dart'
     show HealthyEatingWidget;
-export '/exercise_ed/exercise_ed_widget.dart' show ExerciseEdWidget;
+export '/education/exercise_ed/exercise_ed_widget.dart' show ExerciseEdWidget;
 export '/education/complications/complications_widget.dart'
     show ComplicationsWidget;
 export '/education/mental_health/mental_health_widget.dart'

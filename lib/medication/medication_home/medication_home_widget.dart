@@ -1,12 +1,12 @@
 import '/backend/backend.dart';
-import '/components/home_reminder_widget.dart';
-import '/components/no_elements_widget.dart';
-import '/components/past_reminder_widget.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/medication/home_reminder/home_reminder_widget.dart';
 import '/medication/med_menu/med_menu_widget.dart';
+import '/medication/no_elements/no_elements_widget.dart';
+import '/medication/past_reminder/past_reminder_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -41,11 +41,15 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
         ),
       );
       _model.currentSubReminders = await queryIndividualRemindersRecordOnce(
-        queryBuilder: (individualRemindersRecord) =>
-            individualRemindersRecord.where(
-          'Date',
-          isEqualTo: functions.getDate(getCurrentTimestamp),
-        ),
+        queryBuilder: (individualRemindersRecord) => individualRemindersRecord
+            .where(
+              'UserID',
+              isEqualTo: FFAppState().UserID,
+            )
+            .where(
+              'Date',
+              isEqualTo: 'date',
+            ),
       );
       _model.listOfUpcomingTimes = functions
           .combineTimeLists(
@@ -283,10 +287,15 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                       _model.todaySubReminders =
                           await queryIndividualRemindersRecordOnce(
                         queryBuilder: (individualRemindersRecord) =>
-                            individualRemindersRecord.where(
-                          'Date',
-                          isEqualTo: functions.getDate(getCurrentTimestamp),
-                        ),
+                            individualRemindersRecord
+                                .where(
+                                  'UserID',
+                                  isEqualTo: FFAppState().UserID,
+                                )
+                                .where(
+                                  'Date',
+                                  isEqualTo: 'date',
+                                ),
                       );
                       _model.listOfUpcomingTimes = functions
                           .combineTimeLists(
@@ -411,11 +420,15 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                       _model.calendarSubReminders =
                           await queryIndividualRemindersRecordOnce(
                         queryBuilder: (individualRemindersRecord) =>
-                            individualRemindersRecord.where(
-                          'Date',
-                          isEqualTo: functions
-                              .getDate(_model.calendarSelectedDay!.start),
-                        ),
+                            individualRemindersRecord
+                                .where(
+                                  'UserID',
+                                  isEqualTo: FFAppState().UserID,
+                                )
+                                .where(
+                                  'Date',
+                                  isEqualTo: 'date',
+                                ),
                       );
                       _model.listOfUpcomingTimes = functions
                           .combineTimeLists(

@@ -72,7 +72,7 @@
   "fieldOverrides": [
     {
       "collectionGroup": "IndividualReminders",
-      "fieldPath": "Date",
+      "fieldPath": "UserID",
       "indexes": [
         {
           "order": "ASCENDING",
@@ -82,7 +82,7 @@
     },
     {
       "collectionGroup": "IndividualReminders",
-      "fieldPath": "Date",
+      "fieldPath": "UserID",
       "indexes": [
         {
           "order": "ASCENDING",
@@ -92,7 +92,7 @@
     },
     {
       "collectionGroup": "IndividualReminders",
-      "fieldPath": "Date",
+      "fieldPath": "UserID",
       "indexes": [
         {
           "order": "ASCENDING",
