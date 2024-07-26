@@ -1287,122 +1287,128 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                       ),
                     Container(
                       decoration: const BoxDecoration(),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          FFButtonWidget(
-                            onPressed: () async {
-                              if (widget.addReminder) {
-                                if ((_model.reminderIDList.isNotEmpty) ==
-                                    true) {
-                                  await actions.setIndividualReminders(
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            FFButtonWidget(
+                              onPressed: () async {
+                                if (widget.addReminder) {
+                                  if ((_model.reminderIDList.isNotEmpty) ==
+                                      true) {
+                                    await actions.setIndividualReminders(
+                                      _model.reminderIDList.toList(),
+                                    );
+                                  }
+
+                                  context.pushNamed('MedicationHome');
+                                } else {
+                                  if (widget.editMode!) {
+                                    _model.startDate =
+                                        medicationFormMedicineRecord.startDate;
+                                    _model.endDate =
+                                        medicationFormMedicineRecord.endDate;
+                                    setState(() {});
+                                  }
+
+                                  await widget.newMedicineID!
+                                      .update(createMedicineRecordData(
+                                    name: _model.medNameTextController.text,
+                                    startDate: widget.editMode!
+                                        ? _model.startDate
+                                        : functions
+                                            .getDate(_model.datePicked1!),
+                                    endDate: widget.editMode!
+                                        ? _model.endDate
+                                        : functions
+                                            .getDate(_model.datePicked2!),
+                                    description: _model
+                                        .descriptionTextTextController.text,
+                                    form: _model.medTypeValue,
+                                    singleDose: double.tryParse(
+                                        _model.singleDoseTextController.text),
+                                    totalDose: double.tryParse(
+                                        _model.totalDoseTextController.text),
+                                    setReminders: _model.remindersSetValue,
+                                    userID: FFAppState().UserID,
+                                    medId: widget.newMedicineID,
+                                  ));
+                                  if ((_model.reminderIDList.isNotEmpty) ==
+                                      true) {
+                                    await actions.setIndividualReminders(
+                                      _model.reminderIDList.toList(),
+                                    );
+                                  }
+                                  context.safePop();
+                                }
+                              },
+                              text: 'Save',
+                              options: FFButtonOptions(
+                                width: MediaQuery.sizeOf(context).width * 0.349,
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).success,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(0.0),
+                              ),
+                            ),
+                            FFButtonWidget(
+                              onPressed: () async {
+                                if (widget.addReminder) {
+                                  context.pushNamed('MedicationHome');
+                                } else {
+                                  await actions.deleteDocuments(
                                     _model.reminderIDList.toList(),
                                   );
+                                  if (!widget.editMode!) {
+                                    await widget.newMedicineID!.delete();
+                                  }
+                                  context.safePop();
                                 }
-
-                                context.pushNamed('MedicationHome');
-                              } else {
-                                if (widget.editMode!) {
-                                  _model.startDate =
-                                      medicationFormMedicineRecord.startDate;
-                                  _model.endDate =
-                                      medicationFormMedicineRecord.endDate;
-                                  setState(() {});
-                                }
-
-                                await widget.newMedicineID!
-                                    .update(createMedicineRecordData(
-                                  name: _model.medNameTextController.text,
-                                  startDate: widget.editMode!
-                                      ? _model.startDate
-                                      : functions.getDate(_model.datePicked1!),
-                                  endDate: widget.editMode!
-                                      ? _model.endDate
-                                      : functions.getDate(_model.datePicked2!),
-                                  description:
-                                      _model.descriptionTextTextController.text,
-                                  form: _model.medTypeValue,
-                                  singleDose: double.tryParse(
-                                      _model.singleDoseTextController.text),
-                                  totalDose: double.tryParse(
-                                      _model.totalDoseTextController.text),
-                                  setReminders: _model.remindersSetValue,
-                                  userID: FFAppState().UserID,
-                                  medId: widget.newMedicineID,
-                                ));
-                                if ((_model.reminderIDList.isNotEmpty) ==
-                                    true) {
-                                  await actions.setIndividualReminders(
-                                    _model.reminderIDList.toList(),
-                                  );
-                                }
-                                context.safePop();
-                              }
-                            },
-                            text: 'Save',
-                            options: FFButtonOptions(
-                              width: MediaQuery.sizeOf(context).width * 0.349,
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).success,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                              },
+                              text: 'Cancel',
+                              options: FFButtonOptions(
+                                width: MediaQuery.sizeOf(context).width * 0.349,
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).error,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(0.0),
                               ),
-                              borderRadius: BorderRadius.circular(0.0),
                             ),
-                          ),
-                          FFButtonWidget(
-                            onPressed: () async {
-                              if (widget.addReminder) {
-                                context.pushNamed('MedicationHome');
-                              } else {
-                                await actions.deleteDocuments(
-                                  _model.reminderIDList.toList(),
-                                );
-                                if (!widget.editMode!) {
-                                  await widget.newMedicineID!.delete();
-                                }
-                                context.safePop();
-                              }
-                            },
-                            text: 'Cancel',
-                            options: FFButtonOptions(
-                              width: MediaQuery.sizeOf(context).width * 0.349,
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).error,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(0.0),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
