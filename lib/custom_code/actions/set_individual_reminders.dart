@@ -55,8 +55,9 @@ Future setIndividualReminders(List<DocumentReference> reminderDocs) async {
 
         if (addReminder) {
           DocumentReference newIndividualReminder =
-              reminderDoc.collection('individualReminders').doc();
+              reminderDoc.collection('IndividualReminders').doc();
           await newIndividualReminder.set({
+            'UserID': reminderSnapshot['UserID'],
             'ReminderID': reminderDoc,
             'IsActive': true,
             'Date': getDate(currentDate),

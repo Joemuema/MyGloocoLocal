@@ -44,7 +44,7 @@ Future scheduleAlarmNotification(
   CollectionReference individualReminders = FirebaseFirestore.instance
       .collection('Reminders')
       .doc(reminderID.id)
-      .collection('individualReminders');
+      .collection('IndividualReminders');
 
   if (frequency == 'Daily' || frequency == 'Once') {
     advanceDay = 1;

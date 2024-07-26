@@ -241,6 +241,46 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'edhome',
+          path: '/edhome',
+          builder: (context, params) => const EdhomeWidget(),
+        ),
+        FFRoute(
+          name: 'intro2diabetes',
+          path: '/intro2diabetes',
+          builder: (context, params) => const Intro2diabetesWidget(),
+        ),
+        FFRoute(
+          name: 'daily_management',
+          path: '/dailyManagement',
+          builder: (context, params) => const DailyManagementWidget(),
+        ),
+        FFRoute(
+          name: 'monitoring_and_medication',
+          path: '/monitoringAndMedication',
+          builder: (context, params) => const MonitoringAndMedicationWidget(),
+        ),
+        FFRoute(
+          name: 'healthy_eating',
+          path: '/healthyEating',
+          builder: (context, params) => const HealthyEatingWidget(),
+        ),
+        FFRoute(
+          name: 'exercise_ed',
+          path: '/exerciseEd',
+          builder: (context, params) => const ExerciseEdWidget(),
+        ),
+        FFRoute(
+          name: 'complications',
+          path: '/complications',
+          builder: (context, params) => const ComplicationsWidget(),
+        ),
+        FFRoute(
+          name: 'mental_health',
+          path: '/mentalHealth',
+          builder: (context, params) => const MentalHealthWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

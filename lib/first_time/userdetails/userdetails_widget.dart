@@ -116,7 +116,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                       borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     child: Form(
-                                      key: _model.formKey,
+                                      key: _model.formKey1,
                                       autovalidateMode:
                                           AutovalidateMode.disabled,
                                       child: Padding(
@@ -745,6 +745,16 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                         size: 24.0,
                                       ),
                                       onPressed: () async {
+                                        if (_model.formKey1.currentState ==
+                                                null ||
+                                            !_model.formKey1.currentState!
+                                                .validate()) {
+                                          return;
+                                        }
+                                        if (_model.uploadedFileUrl.isEmpty) {
+                                          return;
+                                        }
+
                                         await currentUserReference!
                                             .update(createUsersRecordData(
                                           displayName:
@@ -821,71 +831,77 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            60.0, 20.0, 60.0, 20.0),
-                                        child: FlutterFlowChoiceChips(
-                                          options: const [
-                                            ChipData('mg/dl'),
-                                            ChipData('mmol/L')
-                                          ],
-                                          onChanged: (val) => setState(() =>
-                                              _model.choiceChipsValue1 =
-                                                  val?.firstOrNull),
-                                          selectedChipStyle: ChipStyle(
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            iconColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            iconSize: 18.0,
-                                            elevation: 4.0,
-                                            borderRadius:
-                                                BorderRadius.circular(16.0),
+                                      Form(
+                                        key: _model.formKey3,
+                                        autovalidateMode:
+                                            AutovalidateMode.always,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  60.0, 20.0, 60.0, 20.0),
+                                          child: FlutterFlowChoiceChips(
+                                            options: const [
+                                              ChipData('mg/dl'),
+                                              ChipData('mmol/L')
+                                            ],
+                                            onChanged: (val) => setState(() =>
+                                                _model.choiceChipsValue1 =
+                                                    val?.firstOrNull),
+                                            selectedChipStyle: ChipStyle(
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                              iconColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              iconSize: 18.0,
+                                              elevation: 4.0,
+                                              borderRadius:
+                                                  BorderRadius.circular(16.0),
+                                            ),
+                                            unselectedChipStyle: ChipStyle(
+                                              backgroundColor:
+                                                  const Color(0xFFB2D3C2),
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                              iconColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              iconSize: 18.0,
+                                              elevation: 0.0,
+                                              borderRadius:
+                                                  BorderRadius.circular(16.0),
+                                            ),
+                                            chipSpacing: 12.0,
+                                            rowSpacing: 12.0,
+                                            multiselect: false,
+                                            alignment: WrapAlignment.center,
+                                            controller: _model
+                                                    .choiceChipsValueController1 ??=
+                                                FormFieldController<
+                                                    List<String>>(
+                                              [],
+                                            ),
+                                            wrapped: true,
                                           ),
-                                          unselectedChipStyle: ChipStyle(
-                                            backgroundColor: const Color(0xFFB2D3C2),
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            iconColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryText,
-                                            iconSize: 18.0,
-                                            elevation: 0.0,
-                                            borderRadius:
-                                                BorderRadius.circular(16.0),
-                                          ),
-                                          chipSpacing: 12.0,
-                                          rowSpacing: 12.0,
-                                          multiselect: false,
-                                          alignment: WrapAlignment.center,
-                                          controller: _model
-                                                  .choiceChipsValueController1 ??=
-                                              FormFieldController<List<String>>(
-                                            [],
-                                          ),
-                                          wrapped: true,
                                         ),
                                       ),
                                     ],
@@ -917,68 +933,73 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                 ),
                                           ),
                                         ),
-                                        FlutterFlowChoiceChips(
-                                          options: const [
-                                            ChipData('kJ'),
-                                            ChipData('kCal')
-                                          ],
-                                          onChanged: (val) => setState(() =>
-                                              _model.choiceChipsValue2 =
-                                                  val?.firstOrNull),
-                                          selectedChipStyle: ChipStyle(
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            iconColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            iconSize: 18.0,
-                                            elevation: 4.0,
-                                            borderRadius:
-                                                BorderRadius.circular(16.0),
+                                        Form(
+                                          key: _model.formKey5,
+                                          autovalidateMode:
+                                              AutovalidateMode.always,
+                                          child: FlutterFlowChoiceChips(
+                                            options: const [
+                                              ChipData('kJ'),
+                                              ChipData('kCal')
+                                            ],
+                                            onChanged: (val) => setState(() =>
+                                                _model.choiceChipsValue2 =
+                                                    val?.firstOrNull),
+                                            selectedChipStyle: ChipStyle(
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                              iconColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              iconSize: 18.0,
+                                              elevation: 4.0,
+                                              borderRadius:
+                                                  BorderRadius.circular(16.0),
+                                            ),
+                                            unselectedChipStyle: ChipStyle(
+                                              backgroundColor:
+                                                  const Color(0xFFB2D3C2),
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                              iconColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              iconSize: 18.0,
+                                              elevation: 0.0,
+                                              borderRadius:
+                                                  BorderRadius.circular(16.0),
+                                            ),
+                                            chipSpacing: 12.0,
+                                            rowSpacing: 12.0,
+                                            multiselect: false,
+                                            alignment: WrapAlignment.center,
+                                            controller: _model
+                                                    .choiceChipsValueController2 ??=
+                                                FormFieldController<
+                                                    List<String>>(
+                                              [],
+                                            ),
+                                            wrapped: true,
                                           ),
-                                          unselectedChipStyle: ChipStyle(
-                                            backgroundColor: const Color(0xFFB2D3C2),
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            iconColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryText,
-                                            iconSize: 18.0,
-                                            elevation: 0.0,
-                                            borderRadius:
-                                                BorderRadius.circular(16.0),
-                                          ),
-                                          chipSpacing: 12.0,
-                                          rowSpacing: 12.0,
-                                          multiselect: false,
-                                          alignment: WrapAlignment.center,
-                                          controller: _model
-                                                  .choiceChipsValueController2 ??=
-                                              FormFieldController<List<String>>(
-                                            [],
-                                          ),
-                                          wrapped: true,
                                         ),
                                       ],
                                     ),
@@ -1007,6 +1028,18 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                           size: 24.0,
                                         ),
                                         onPressed: () async {
+                                          if (_model.formKey3.currentState ==
+                                                  null ||
+                                              !_model.formKey3.currentState!
+                                                  .validate()) {
+                                            return;
+                                          }
+                                          if (_model.formKey5.currentState ==
+                                                  null ||
+                                              !_model.formKey5.currentState!
+                                                  .validate()) {
+                                            return;
+                                          }
                                           await _model
                                               .userDetailsPageViewController
                                               ?.nextPage(
@@ -1060,74 +1093,80 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                     ),
                                     child: Align(
                                       alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            60.0, 2.0, 60.0, 0.0),
-                                        child: FlutterFlowChoiceChips(
-                                          options: const [
-                                            ChipData('Type 1 Diabetes'),
-                                            ChipData('Type 2 Diabetes'),
-                                            ChipData('Gestational Diabetes'),
-                                            ChipData('Prediabetes'),
-                                            ChipData('None')
-                                          ],
-                                          onChanged: (val) => setState(() =>
-                                              _model.choiceChipsValue3 =
-                                                  val?.firstOrNull),
-                                          selectedChipStyle: ChipStyle(
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            iconColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            iconSize: 18.0,
-                                            elevation: 4.0,
-                                            borderRadius:
-                                                BorderRadius.circular(16.0),
+                                      child: Form(
+                                        key: _model.formKey2,
+                                        autovalidateMode:
+                                            AutovalidateMode.always,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  60.0, 2.0, 60.0, 0.0),
+                                          child: FlutterFlowChoiceChips(
+                                            options: const [
+                                              ChipData('Type 1 Diabetes'),
+                                              ChipData('Type 2 Diabetes'),
+                                              ChipData('Gestational Diabetes'),
+                                              ChipData('Prediabetes'),
+                                              ChipData('None')
+                                            ],
+                                            onChanged: (val) => setState(() =>
+                                                _model.choiceChipsValue3 =
+                                                    val?.firstOrNull),
+                                            selectedChipStyle: ChipStyle(
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                              iconColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              iconSize: 18.0,
+                                              elevation: 4.0,
+                                              borderRadius:
+                                                  BorderRadius.circular(16.0),
+                                            ),
+                                            unselectedChipStyle: ChipStyle(
+                                              backgroundColor:
+                                                  const Color(0xFFB2D3C2),
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                              iconColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              iconSize: 18.0,
+                                              elevation: 0.0,
+                                              borderRadius:
+                                                  BorderRadius.circular(16.0),
+                                            ),
+                                            chipSpacing: 20.0,
+                                            rowSpacing: 30.0,
+                                            multiselect: false,
+                                            alignment: WrapAlignment.center,
+                                            controller: _model
+                                                    .choiceChipsValueController3 ??=
+                                                FormFieldController<
+                                                    List<String>>(
+                                              [],
+                                            ),
+                                            wrapped: true,
                                           ),
-                                          unselectedChipStyle: ChipStyle(
-                                            backgroundColor: const Color(0xFFB2D3C2),
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            iconColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryText,
-                                            iconSize: 18.0,
-                                            elevation: 0.0,
-                                            borderRadius:
-                                                BorderRadius.circular(16.0),
-                                          ),
-                                          chipSpacing: 20.0,
-                                          rowSpacing: 30.0,
-                                          multiselect: false,
-                                          alignment: WrapAlignment.center,
-                                          controller: _model
-                                                  .choiceChipsValueController3 ??=
-                                              FormFieldController<List<String>>(
-                                            [],
-                                          ),
-                                          wrapped: true,
                                         ),
                                       ),
                                     ),
@@ -1152,6 +1191,12 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                         size: 24.0,
                                       ),
                                       onPressed: () async {
+                                        if (_model.formKey2.currentState ==
+                                                null ||
+                                            !_model.formKey2.currentState!
+                                                .validate()) {
+                                          return;
+                                        }
                                         await _model
                                             .userDetailsPageViewController
                                             ?.nextPage(
@@ -1206,73 +1251,79 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                   ),
                                   child: Align(
                                     alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          50.0, 20.0, 50.0, 20.0),
-                                      child: FlutterFlowChoiceChips(
-                                        options: const [
-                                          ChipData('Pen or Syringe'),
-                                          ChipData('Insulin Pump'),
-                                          ChipData('Insulin Inhaler'),
-                                          ChipData('Insulin Patch'),
-                                          ChipData('Jet Injectors'),
-                                          ChipData('I don\'t take insulin')
-                                        ],
-                                        onChanged: (val) => setState(() =>
-                                            _model.choiceChipsValue4 =
-                                                val?.firstOrNull),
-                                        selectedChipStyle: ChipStyle(
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                letterSpacing: 0.0,
-                                              ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                          iconSize: 18.0,
-                                          elevation: 4.0,
-                                          borderRadius:
-                                              BorderRadius.circular(16.0),
+                                    child: Form(
+                                      key: _model.formKey4,
+                                      autovalidateMode: AutovalidateMode.always,
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            50.0, 20.0, 50.0, 20.0),
+                                        child: FlutterFlowChoiceChips(
+                                          options: const [
+                                            ChipData('Pen or Syringe'),
+                                            ChipData('Insulin Pump'),
+                                            ChipData('Insulin Inhaler'),
+                                            ChipData('Insulin Patch'),
+                                            ChipData('Jet Injectors'),
+                                            ChipData('I don\'t take insulin')
+                                          ],
+                                          onChanged: (val) => setState(() =>
+                                              _model.choiceChipsValue4 =
+                                                  val?.firstOrNull),
+                                          selectedChipStyle: ChipStyle(
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            iconColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            iconSize: 18.0,
+                                            elevation: 4.0,
+                                            borderRadius:
+                                                BorderRadius.circular(16.0),
+                                          ),
+                                          unselectedChipStyle: ChipStyle(
+                                            backgroundColor: const Color(0xFFB2D3C2),
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            iconColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryText,
+                                            iconSize: 18.0,
+                                            elevation: 0.0,
+                                            borderRadius:
+                                                BorderRadius.circular(16.0),
+                                          ),
+                                          chipSpacing: 12.0,
+                                          rowSpacing: 30.0,
+                                          multiselect: false,
+                                          alignment: WrapAlignment.center,
+                                          controller: _model
+                                                  .choiceChipsValueController4 ??=
+                                              FormFieldController<List<String>>(
+                                            [],
+                                          ),
+                                          wrapped: true,
                                         ),
-                                        unselectedChipStyle: ChipStyle(
-                                          backgroundColor: const Color(0xFFB2D3C2),
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                letterSpacing: 0.0,
-                                              ),
-                                          iconColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryText,
-                                          iconSize: 18.0,
-                                          elevation: 0.0,
-                                          borderRadius:
-                                              BorderRadius.circular(16.0),
-                                        ),
-                                        chipSpacing: 12.0,
-                                        rowSpacing: 30.0,
-                                        multiselect: false,
-                                        alignment: WrapAlignment.center,
-                                        controller: _model
-                                                .choiceChipsValueController4 ??=
-                                            FormFieldController<List<String>>(
-                                          [],
-                                        ),
-                                        wrapped: true,
                                       ),
                                     ),
                                   ),
@@ -1296,6 +1347,13 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                         size: 24.0,
                                       ),
                                       onPressed: () async {
+                                        if (_model.formKey4.currentState ==
+                                                null ||
+                                            !_model.formKey4.currentState!
+                                                .validate()) {
+                                          return;
+                                        }
+
                                         await ProfileRecord.collection
                                             .doc()
                                             .set(createProfileRecordData(

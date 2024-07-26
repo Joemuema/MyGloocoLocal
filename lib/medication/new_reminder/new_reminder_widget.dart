@@ -1495,7 +1495,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                             },
                             text: valueOrDefault<String>(
                               widget.editState
-                                  ? (containerRemindersRecord.date != ''
+                                  ? (containerRemindersRecord.date != 'None'
                                       ? containerRemindersRecord.date
                                       : (_model.datePicked4 != null
                                           ? functions

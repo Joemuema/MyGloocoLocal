@@ -19,3 +19,17 @@ export '/diet/foodsearch/plate/plate_widget.dart' show PlateWidget;
 export '/diet/recipes/recipe_list/recipe_list_widget.dart'
     show RecipeListWidget;
 export '/diet/recipes/recipe/recipe_widget.dart' show RecipeWidget;
+export '/education/edhome/edhome_widget.dart' show EdhomeWidget;
+export '/education/intro2diabetes/intro2diabetes_widget.dart'
+    show Intro2diabetesWidget;
+export '/education/daily_management/daily_management_widget.dart'
+    show DailyManagementWidget;
+export '/education/monitoring_and_medication/monitoring_and_medication_widget.dart'
+    show MonitoringAndMedicationWidget;
+export '/education/healthy_eating/healthy_eating_widget.dart'
+    show HealthyEatingWidget;
+export '/exercise_ed/exercise_ed_widget.dart' show ExerciseEdWidget;
+export '/education/complications/complications_widget.dart'
+    show ComplicationsWidget;
+export '/education/mental_health/mental_health_widget.dart'
+    show MentalHealthWidget;
