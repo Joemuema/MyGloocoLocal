@@ -1061,6 +1061,47 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                             children: [
                               FFButtonWidget(
                                 onPressed: () async {
+                                  await actions.scheduleAll(
+                                    _model.allReminders!
+                                        .map((e) => e.reference)
+                                        .toList(),
+                                  );
+                                },
+                                text: 'Schedule All Reminders',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 10.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FFButtonWidget(
+                                onPressed: () async {
                                   await actions.unscheduleAll(
                                     _model.allReminders!
                                         .map((e) => e.reference)
