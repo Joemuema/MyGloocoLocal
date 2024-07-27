@@ -34,6 +34,8 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.today = functions.getDate(getCurrentTimestamp);
+      setState(() {});
       _model.allReminders = await queryRemindersRecordOnce(
         queryBuilder: (remindersRecord) => remindersRecord.where(
           'UserID',
@@ -48,7 +50,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
             )
             .where(
               'Date',
-              isEqualTo: 'date',
+              isEqualTo: _model.today,
             ),
       );
       _model.listOfUpcomingTimes = functions
@@ -275,6 +277,11 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                       return;
                     }
                     _model.calendarSelectedDay = newSelectedDate;
+                    _model.calendarDate = valueOrDefault<String>(
+                      functions.getDate(_model.calendarSelectedDay!.start),
+                      'date',
+                    );
+                    setState(() {});
                     _model.calendarReminders = await queryRemindersRecordOnce(
                       queryBuilder: (remindersRecord) => remindersRecord.where(
                         'UserID',
@@ -294,7 +301,10 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                 )
                                 .where(
                                   'Date',
-                                  isEqualTo: 'date',
+                                  isEqualTo: valueOrDefault<String>(
+                                    _model.today,
+                                    'date',
+                                  ),
                                 ),
                       );
                       _model.listOfUpcomingTimes = functions
@@ -427,7 +437,10 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                 )
                                 .where(
                                   'Date',
-                                  isEqualTo: 'date',
+                                  isEqualTo: valueOrDefault<String>(
+                                    _model.calendarDate,
+                                    'date',
+                                  ),
                                 ),
                       );
                       _model.listOfUpcomingTimes = functions
@@ -1055,6 +1068,47 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                   );
                                 },
                                 text: 'Cancel All Reminders',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 10.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  await actions.unscheduleAll(
+                                    _model.allReminders!
+                                        .map((e) => e.reference)
+                                        .toList(),
+                                  );
+                                },
+                                text: 'Print All Reminders',
                                 options: FFButtonOptions(
                                   height: 40.0,
                                   padding: const EdgeInsetsDirectional.fromSTEB(

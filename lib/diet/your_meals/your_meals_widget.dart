@@ -93,10 +93,16 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                           const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 10.0),
                       child: StreamBuilder<List<MealsRecord>>(
                         stream: queryMealsRecord(
-                          queryBuilder: (mealsRecord) => mealsRecord.where(
-                            'UserID',
-                            isEqualTo: FFAppState().UserID,
-                          ),
+                          queryBuilder: (mealsRecord) => mealsRecord
+                              .where(
+                                'UserID',
+                                isEqualTo: FFAppState().UserID,
+                              )
+                              .where(
+                                'date',
+                                isEqualTo: dateTimeFormat('yyyy-MM-dd',
+                                    _model.calendarSelectedDay?.start),
+                              ),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
@@ -201,6 +207,23 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                                 ),
                           );
                         },
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 15.0, 10.0, 0.0),
+                      child: Text(
+                        'Select a date to review meals taken  ',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              fontSize: 19.0,
+                              letterSpacing: 0.0,
+                            ),
                       ),
                     ),
                   ],

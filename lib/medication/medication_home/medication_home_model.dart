@@ -83,6 +83,10 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
           int index, Function(IndividualRemindersRecord) updateFn) =>
       missedReminders[index] = updateFn(missedReminders[index]);
 
+  String today = 'date';
+
+  String calendarDate = 'date';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
