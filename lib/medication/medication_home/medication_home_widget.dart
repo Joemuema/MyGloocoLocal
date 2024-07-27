@@ -1102,11 +1102,8 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                             children: [
                               FFButtonWidget(
                                 onPressed: () async {
-                                  await actions.unscheduleAll(
-                                    _model.allReminders!
-                                        .map((e) => e.reference)
-                                        .toList(),
-                                  );
+                                  await actions
+                                      .printAllScheduledNotificationIds();
                                 },
                                 text: 'Print All Reminders',
                                 options: FFButtonOptions(
