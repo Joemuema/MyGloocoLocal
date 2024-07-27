@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future unscheduleAll(List<DocumentReference> reminderDocs) async {
-  for (DocumentReference reminderDoc in reminderDocs) {
+  /*  for (DocumentReference reminderDoc in reminderDocs) {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('Reminders')
         .doc(reminderDoc.id)
@@ -19,8 +19,15 @@ Future unscheduleAll(List<DocumentReference> reminderDocs) async {
         .get();
 
     for (QueryDocumentSnapshot doc in querySnapshot.docs) {
-      int notificationID = doc.get('NotificationID');
+      DocumentReference docRef = doc.reference;
+      int notificationID = docRef['NotificationID'];
       cancelNotification(notificationID);
     }
+  } */
+  for (int i = 1; i <= 66; i++) {
+    if (i == 4 || i == 13) {
+      continue;
+    }
+    cancelNotification(i);
   }
 }
