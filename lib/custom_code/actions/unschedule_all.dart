@@ -24,10 +24,7 @@ Future unscheduleAll(List<DocumentReference> reminderDocs) async {
       cancelNotification(notificationID);
     }
   } */
-  for (int i = 1; i <= 66; i++) {
-    if (i == 4 || i == 13) {
-      continue;
-    }
+  for (int i = 69; i <= 132; i++) {
     cancelNotification(i);
   }
 }
