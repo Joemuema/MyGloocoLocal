@@ -93,16 +93,10 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                           const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 10.0),
                       child: StreamBuilder<List<MealsRecord>>(
                         stream: queryMealsRecord(
-                          queryBuilder: (mealsRecord) => mealsRecord
-                              .where(
-                                'UserID',
-                                isEqualTo: FFAppState().UserID,
-                              )
-                              .where(
-                                'date',
-                                isEqualTo: dateTimeFormat('yyyy-MM-dd',
-                                    _model.calendarSelectedDay?.start),
-                              ),
+                          queryBuilder: (mealsRecord) => mealsRecord.where(
+                            'UserID',
+                            isEqualTo: FFAppState().UserID,
+                          ),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.

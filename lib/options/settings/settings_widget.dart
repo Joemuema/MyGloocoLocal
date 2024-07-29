@@ -187,8 +187,8 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                     color: FlutterFlowTheme.of(context).accent2,
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
                                       width: 2.0,
                                     ),
                                   ),

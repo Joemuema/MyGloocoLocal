@@ -614,29 +614,24 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        if (((_model.upcomingReminders.isNotEmpty) == true) ||
+                        if (!(((_model.upcomingReminders.isNotEmpty) == true) ||
                             ((_model.takenReminders.isNotEmpty) == true) ||
-                            ((_model.missedReminders.isNotEmpty) == true))
+                            ((_model.missedReminders.isNotEmpty) == true)))
                           Container(
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
-                            child: Visibility(
-                              visible:
-                                  (_model.listOfUpcomingTimes.isNotEmpty) ==
-                                      true,
-                              child: wrapWithModel(
-                                model: _model.noElementsModel,
-                                updateCallback: () => setState(() {}),
-                                child: NoElementsWidget(
-                                  additionalText: _model
-                                              .calendarSelectedDay?.start ==
-                                          functions
-                                              .currentDate(getCurrentTimestamp)
-                                      ? 'Add reminders to display here'
-                                      : 'There are no past reminders to display',
-                                ),
+                            child: wrapWithModel(
+                              model: _model.noElementsModel,
+                              updateCallback: () => setState(() {}),
+                              child: NoElementsWidget(
+                                additionalText: _model
+                                            .calendarSelectedDay?.start ==
+                                        functions
+                                            .currentDate(getCurrentTimestamp)
+                                    ? 'Add reminders to display here'
+                                    : 'There are no past reminders to display',
                               ),
                             ),
                           ),

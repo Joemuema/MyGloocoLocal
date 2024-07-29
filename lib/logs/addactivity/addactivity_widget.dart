@@ -49,6 +49,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 560.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
         borderRadius: const BorderRadius.only(

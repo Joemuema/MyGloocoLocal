@@ -278,7 +278,7 @@ Future<List<BloodSugarReading>> fetchBloodSugarReadings(
     DateTime startDate, DateTime endDate) async {
   try {
     final querySnapshot = await FirebaseFirestore.instance
-        .collection('bloodglucose')
+        .collection('BGreadings')
         .where('date', isGreaterThanOrEqualTo: startDate)
         .where('date', isLessThanOrEqualTo: endDate)
         .get();

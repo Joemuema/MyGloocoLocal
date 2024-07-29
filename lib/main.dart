@@ -9,6 +9,7 @@ import 'auth/firebase_auth/auth_util.dart';
 import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'index.dart';
 
 void main() async {
@@ -130,6 +131,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'MedicationHome': const MedicationHomeWidget(),
       'Home': const HomeWidget(),
       'DietHome': const DietHomeWidget(),
+      'exercisehomepage': const ExercisehomepageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -170,6 +172,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: 'Diet',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.dumbbell,
+              size: 24.0,
+            ),
+            label: 'Home',
             tooltip: '',
           )
         ],

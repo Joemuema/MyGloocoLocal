@@ -289,7 +289,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'exercisehomepage',
           path: '/exercisehomepage',
-          builder: (context, params) => const ExercisehomepageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'exercisehomepage')
+              : const ExercisehomepageWidget(),
         ),
         FFRoute(
           name: 'categoriespage',

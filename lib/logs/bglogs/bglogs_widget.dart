@@ -157,8 +157,8 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                   final datePickedDate = await showDatePicker(
                     context: context,
                     initialDate: getCurrentTimestamp,
-                    firstDate: getCurrentTimestamp,
-                    lastDate: DateTime(2050),
+                    firstDate: DateTime(1900),
+                    lastDate: getCurrentTimestamp,
                     builder: (context, child) {
                       return wrapInMaterialDatePickerTheme(
                         context,
@@ -238,10 +238,10 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                     });
                   }
                 },
-                text: dateTimeFormat(
-                    'd/M h:mm a',
-                    dateTimeFromSecondsSinceEpoch(
-                        getCurrentTimestamp.secondsSinceEpoch)),
+                text: valueOrDefault<String>(
+                  dateTimeFormat('d/M h:mm a', _model.datePicked),
+                  'Not set',
+                ),
                 options: FFButtonOptions(
                   height: 50.0,
                   padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
@@ -411,6 +411,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                     decimalTime: functions.getHour(_model.datePicked!) +
                         (functions.getMinute(_model.datePicked!) / 60),
                     userID: FFAppState().UserID,
+                    dateTime: _model.datePicked,
                   ));
               context.safePop();
             },

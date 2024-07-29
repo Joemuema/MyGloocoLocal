@@ -537,36 +537,6 @@ class _SignupWidgetState extends State<SignupWidget> {
                             borderRadius: BorderRadius.circular(24.0),
                           ),
                         ),
-                        FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
-                          text: 'Continue with Facebook',
-                          icon: const Icon(
-                            Icons.facebook_outlined,
-                            size: 15.0,
-                          ),
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(22.0),
-                          ),
-                        ),
                         Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: InkWell(

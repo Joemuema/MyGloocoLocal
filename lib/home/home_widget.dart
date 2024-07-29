@@ -723,6 +723,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                   ),
                                   Text(
