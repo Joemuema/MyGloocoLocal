@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,10 +7,14 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/medication/edit_reminder_name/edit_reminder_name_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'new_reminder_model.dart';
 export 'new_reminder_model.dart';
 
@@ -23,7 +28,7 @@ class NewReminderWidget extends StatefulWidget {
     this.reminderName,
     this.addToList,
     this.remIDList,
-  }) : editState = editState ?? false;
+  }) : this.editState = editState ?? false;
 
   final DocumentReference? currentReminderID;
   final Future Function()? deleteFromList;
@@ -54,12 +59,12 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.currentReminderName =
-          widget.reminderName != null && widget.reminderName != ''
-              ? widget.reminderName!
-              : 'Reminder ${((widget.index!) + 1).toString()}';
+          widget!.reminderName != null && widget!.reminderName != ''
+              ? widget!.reminderName!
+              : 'Reminder ${((widget!.index!) + 1).toString()}';
       setState(() {});
 
-      await widget.currentReminderID!.update(createRemindersRecordData(
+      await widget!.currentReminderID!.update(createRemindersRecordData(
         name: _model.currentReminderName,
       ));
     });
@@ -79,9 +84,9 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
       child: StreamBuilder<RemindersRecord>(
-        stream: RemindersRecord.getDocument(widget.currentReminderID!),
+        stream: RemindersRecord.getDocument(widget!.currentReminderID!),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.
           if (!snapshot.hasData) {
@@ -107,7 +112,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                 BoxShadow(
                   blurRadius: 4.0,
                   color: FlutterFlowTheme.of(context).boxShadowColor,
-                  offset: const Offset(
+                  offset: Offset(
                     0.0,
                     2.0,
                   ),
@@ -116,7 +121,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
               borderRadius: BorderRadius.circular(12.0),
             ),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -129,13 +134,13 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   15.0, 15.0, 0.0, 0.0),
                               child: Text(
                                 containerRemindersRecord.name,
@@ -149,7 +154,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   7.0, 13.0, 0.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -167,7 +172,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                             MediaQuery.viewInsetsOf(context),
                                         child: EditReminderNameWidget(
                                           reminderNameID:
-                                              widget.currentReminderID!,
+                                              widget!.currentReminderID!,
                                         ),
                                       );
                                     },
@@ -189,7 +194,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 30.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 30.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -197,7 +202,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             await widget.deleteFromList?.call();
-                            await widget.currentReminderID!.delete();
+                            await widget!.currentReminderID!.delete();
                           },
                           child: Icon(
                             Icons.delete_rounded,
@@ -210,7 +215,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -220,7 +225,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   30.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Auto-Remind',
@@ -235,9 +240,9 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                             ),
                             Container(
                               width: MediaQuery.sizeOf(context).width * 0.61,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     30.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Automatically reminds you regularly',
@@ -256,23 +261,23 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 30.0, 0.0),
                           child: Switch.adaptive(
-                            value: _model.switchValue1 ??= widget.editState
+                            value: _model.switchValue1 ??= widget!.editState
                                 ? containerRemindersRecord.autoSet
                                 : false,
                             onChanged: (newValue) async {
-                              setState(() => _model.switchValue1 = newValue);
-                              if (newValue) {
-                                await widget.currentReminderID!
+                              setState(() => _model.switchValue1 = newValue!);
+                              if (newValue!) {
+                                await widget!.currentReminderID!
                                     .update(createRemindersRecordData(
                                   autoSet: true,
                                   date: '',
                                   time: '',
                                 ));
                               } else {
-                                await widget.currentReminderID!
+                                await widget!.currentReminderID!
                                     .update(createRemindersRecordData(
                                   autoSet: false,
                                   frequency: '',
@@ -300,14 +305,14 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       30.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     'Frequency',
@@ -322,7 +327,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       30.0, 10.0, 30.0, 10.0),
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -333,7 +338,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                           blurRadius: 4.0,
                                           color: FlutterFlowTheme.of(context)
                                               .boxShadowColor,
-                                          offset: const Offset(
+                                          offset: Offset(
                                             0.0,
                                             2.0,
                                           ),
@@ -348,19 +353,19 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                         _model.frequencyValue ??=
                                             containerRemindersRecord.frequency,
                                       ),
-                                      options: const ['Daily', 'Weekly', 'Monthly'],
+                                      options: ['Daily', 'Weekly', 'Monthly'],
                                       onChanged: (val) async {
                                         setState(
                                             () => _model.frequencyValue = val);
-                                        if (widget.editState == true) {
-                                          if (widget.remIDList?.contains(
-                                                  widget.currentReminderID) !=
+                                        if (widget!.editState == true) {
+                                          if (widget!.remIDList?.contains(
+                                                  widget!.currentReminderID) !=
                                               true) {
                                             await widget.addToList?.call();
                                           }
                                         }
 
-                                        await widget.currentReminderID!
+                                        await widget!.currentReminderID!
                                             .update(createRemindersRecordData(
                                           frequency: _model.frequencyValue,
                                         ));
@@ -386,7 +391,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                       borderColor: Colors.transparent,
                                       borderWidth: 2.0,
                                       borderRadius: 12.0,
-                                      margin: const EdgeInsetsDirectional.fromSTEB(
+                                      margin: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 4.0, 16.0, 4.0),
                                       hidesUnderline: true,
                                       isOverButton: true,
@@ -405,7 +410,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                 ),
                                 if (_model.frequencyValue == 'Weekly')
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -414,7 +419,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   30.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Day of week:',
@@ -430,7 +435,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   15.0, 0.0, 30.0, 0.0),
                                           child: Container(
                                             width: 168.0,
@@ -445,7 +450,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .boxShadowColor,
-                                                  offset: const Offset(
+                                                  offset: Offset(
                                                     0.0,
                                                     2.0,
                                                   ),
@@ -462,7 +467,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                     containerRemindersRecord
                                                         .day,
                                               ),
-                                              options: const [
+                                              options: [
                                                 'Monday',
                                                 'Tuesday',
                                                 'Wednesday',
@@ -474,9 +479,9 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                               onChanged: (val) async {
                                                 setState(() => _model
                                                     .weekDayListValue = val);
-                                                if (widget.editState == true) {
-                                                  if (widget.remIDList
-                                                          ?.contains(widget
+                                                if (widget!.editState == true) {
+                                                  if (widget!.remIDList
+                                                          ?.contains(widget!
                                                               .currentReminderID) !=
                                                       true) {
                                                     await widget.addToList
@@ -484,7 +489,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                   }
                                                 }
 
-                                                await widget.currentReminderID!
+                                                await widget!.currentReminderID!
                                                     .update(
                                                         createRemindersRecordData(
                                                   day: _model.weekDayListValue,
@@ -517,7 +522,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                               borderColor: Colors.transparent,
                                               borderWidth: 2.0,
                                               borderRadius: 12.0,
-                                              margin: const EdgeInsetsDirectional
+                                              margin: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 4.0, 16.0, 4.0),
                                               hidesUnderline: true,
@@ -541,7 +546,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                   ),
                                 if (_model.frequencyValue == 'Monthly')
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -550,7 +555,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   30.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Date:',
@@ -566,7 +571,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 30.0, 0.0),
                                           child: Container(
                                             width: 168.0,
@@ -581,7 +586,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .boxShadowColor,
-                                                  offset: const Offset(
+                                                  offset: Offset(
                                                     0.0,
                                                     2.0,
                                                   ),
@@ -591,7 +596,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                   BorderRadius.circular(12.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       15.0, 0.0, 15.0, 0.0),
                                               child: TextFormField(
@@ -607,9 +612,9 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                 onChanged: (_) =>
                                                     EasyDebounce.debounce(
                                                   '_model.dateFieldTextController',
-                                                  const Duration(milliseconds: 2000),
+                                                  Duration(milliseconds: 2000),
                                                   () async {
-                                                    await widget
+                                                    await widget!
                                                         .currentReminderID!
                                                         .update(
                                                             createRemindersRecordData(
@@ -621,10 +626,10 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                   },
                                                 ),
                                                 onFieldSubmitted: (_) async {
-                                                  if (widget.editState ==
+                                                  if (widget!.editState ==
                                                       true) {
-                                                    if (widget.remIDList
-                                                            ?.contains(widget
+                                                    if (widget!.remIDList
+                                                            ?.contains(widget!
                                                                 .currentReminderID) !=
                                                         true) {
                                                       await widget.addToList
@@ -632,7 +637,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                     }
                                                   }
 
-                                                  await widget
+                                                  await widget!
                                                       .currentReminderID!
                                                       .update(
                                                           createRemindersRecordData(
@@ -690,7 +695,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                     ),
                                   ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 10.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -698,7 +703,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             30.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           'Time:',
@@ -713,11 +718,11 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 30.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            final datePicked1Time =
+                                            final _datePicked1Time =
                                                 await showTimePicker(
                                               context: context,
                                               initialTime:
@@ -770,27 +775,27 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                 );
                                               },
                                             );
-                                            if (datePicked1Time != null) {
+                                            if (_datePicked1Time != null) {
                                               safeSetState(() {
                                                 _model.datePicked1 = DateTime(
                                                   getCurrentTimestamp.year,
                                                   getCurrentTimestamp.month,
                                                   getCurrentTimestamp.day,
-                                                  datePicked1Time.hour,
-                                                  datePicked1Time.minute,
+                                                  _datePicked1Time.hour,
+                                                  _datePicked1Time.minute,
                                                 );
                                               });
                                             }
-                                            if (widget.editState == true) {
-                                              if (widget.remIDList?.contains(
-                                                      widget
+                                            if (widget!.editState == true) {
+                                              if (widget!.remIDList?.contains(
+                                                      widget!
                                                           .currentReminderID) !=
                                                   true) {
                                                 await widget.addToList?.call();
                                               }
                                             }
 
-                                            await widget.currentReminderID!
+                                            await widget!.currentReminderID!
                                                 .update(
                                                     createRemindersRecordData(
                                               time: functions
@@ -800,8 +805,10 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                             ));
                                           },
                                           text: valueOrDefault<String>(
-                                            widget.editState
-                                                ? (containerRemindersRecord
+                                            widget!.editState
+                                                ? (containerRemindersRecord.time !=
+                                                            null &&
+                                                        containerRemindersRecord
                                                                 .time !=
                                                             ''
                                                     ? containerRemindersRecord
@@ -821,10 +828,10 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                             width: 168.0,
                                             height: 40.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .alternate,
@@ -840,7 +847,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 3.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -853,7 +860,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 10.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -867,7 +874,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Custom date range',
@@ -886,9 +893,9 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.61,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       30.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -911,25 +918,25 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                         ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 30.0, 0.0),
                                         child: Switch.adaptive(
                                           value: _model.switchValue2 ??=
-                                              widget.editState
+                                              widget!.editState
                                                   ? containerRemindersRecord
                                                       .setCustomDates
                                                   : false,
                                           onChanged: (newValue) async {
                                             setState(() => _model.switchValue2 =
-                                                newValue);
-                                            if (newValue) {
-                                              await widget.currentReminderID!
+                                                newValue!);
+                                            if (newValue!) {
+                                              await widget!.currentReminderID!
                                                   .update(
                                                       createRemindersRecordData(
                                                 setCustomDates: true,
                                               ));
                                             } else {
-                                              await widget.currentReminderID!
+                                              await widget!.currentReminderID!
                                                   .update(
                                                       createRemindersRecordData(
                                                 setCustomDates: false,
@@ -955,7 +962,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                 ),
                                 if (_model.switchValue2 ?? true)
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 10.0, 16.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -968,7 +975,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(3.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 'Start Date',
@@ -986,7 +993,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       5.0, 10.0, 5.0, 10.0),
                                               child: Row(
@@ -994,7 +1001,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                 children: [
                                                   FFButtonWidget(
                                                     onPressed: () async {
-                                                      final datePicked2Date =
+                                                      final _datePicked2Date =
                                                           await showDatePicker(
                                                         context: context,
                                                         initialDate:
@@ -1056,24 +1063,24 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                         },
                                                       );
 
-                                                      if (datePicked2Date !=
+                                                      if (_datePicked2Date !=
                                                           null) {
                                                         safeSetState(() {
                                                           _model.datePicked2 =
                                                               DateTime(
-                                                            datePicked2Date
+                                                            _datePicked2Date
                                                                 .year,
-                                                            datePicked2Date
+                                                            _datePicked2Date
                                                                 .month,
-                                                            datePicked2Date
+                                                            _datePicked2Date
                                                                 .day,
                                                           );
                                                         });
                                                       }
-                                                      if (widget.editState ==
+                                                      if (widget!.editState ==
                                                           true) {
-                                                        if (widget.remIDList
-                                                                ?.contains(widget
+                                                        if (widget!.remIDList
+                                                                ?.contains(widget!
                                                                     .currentReminderID) !=
                                                             true) {
                                                           await widget.addToList
@@ -1081,7 +1088,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                         }
                                                       }
 
-                                                      await widget
+                                                      await widget!
                                                           .currentReminderID!
                                                           .update(
                                                               createRemindersRecordData(
@@ -1096,7 +1103,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                     },
                                                     text:
                                                         valueOrDefault<String>(
-                                                      widget.editState
+                                                      widget!.editState
                                                           ? (_model.datePicked2 !=
                                                                   null
                                                               ? functions
@@ -1115,14 +1122,14 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                     options: FFButtonOptions(
                                                       height: 40.0,
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   24.0,
                                                                   0.0,
                                                                   24.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1146,7 +1153,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                                     0.0,
                                                               ),
                                                       elevation: 3.0,
-                                                      borderSide: const BorderSide(
+                                                      borderSide: BorderSide(
                                                         color:
                                                             Colors.transparent,
                                                         width: 1.0,
@@ -1167,7 +1174,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(3.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 'Finish Date',
@@ -1185,7 +1192,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 5.0, 10.0),
                                               child: Row(
@@ -1193,12 +1200,12 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(5.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
-                                                        final datePicked3Date =
+                                                        final _datePicked3Date =
                                                             await showDatePicker(
                                                           context: context,
                                                           initialDate:
@@ -1259,24 +1266,24 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                           },
                                                         );
 
-                                                        if (datePicked3Date !=
+                                                        if (_datePicked3Date !=
                                                             null) {
                                                           safeSetState(() {
                                                             _model.datePicked3 =
                                                                 DateTime(
-                                                              datePicked3Date
+                                                              _datePicked3Date
                                                                   .year,
-                                                              datePicked3Date
+                                                              _datePicked3Date
                                                                   .month,
-                                                              datePicked3Date
+                                                              _datePicked3Date
                                                                   .day,
                                                             );
                                                           });
                                                         }
-                                                        if (widget.editState ==
+                                                        if (widget!.editState ==
                                                             true) {
-                                                          if (widget.remIDList
-                                                                  ?.contains(widget
+                                                          if (widget!.remIDList
+                                                                  ?.contains(widget!
                                                                       .currentReminderID) !=
                                                               true) {
                                                             await widget
@@ -1285,7 +1292,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                           }
                                                         }
 
-                                                        await widget
+                                                        await widget!
                                                             .currentReminderID!
                                                             .update(
                                                                 createRemindersRecordData(
@@ -1346,7 +1353,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                       },
                                                       text: valueOrDefault<
                                                           String>(
-                                                        widget.editState
+                                                        widget!.editState
                                                             ? (_model.datePicked3 !=
                                                                     null
                                                                 ? functions
@@ -1365,14 +1372,14 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                       options: FFButtonOptions(
                                                         height: 40.0,
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     24.0,
                                                                     0.0,
                                                                     24.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1396,7 +1403,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                                       0.0,
                                                                 ),
                                                         elevation: 3.0,
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color: Colors
                                                               .transparent,
                                                           width: 1.0,
@@ -1427,11 +1434,11 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 15.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              final datePicked4Date = await showDatePicker(
+                              final _datePicked4Date = await showDatePicker(
                                 context: context,
                                 initialDate: getCurrentTimestamp,
                                 firstDate: getCurrentTimestamp,
@@ -1471,30 +1478,30 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                 },
                               );
 
-                              if (datePicked4Date != null) {
+                              if (_datePicked4Date != null) {
                                 safeSetState(() {
                                   _model.datePicked4 = DateTime(
-                                    datePicked4Date.year,
-                                    datePicked4Date.month,
-                                    datePicked4Date.day,
+                                    _datePicked4Date.year,
+                                    _datePicked4Date.month,
+                                    _datePicked4Date.day,
                                   );
                                 });
                               }
-                              if (widget.editState == true) {
-                                if (widget.remIDList
-                                        ?.contains(widget.currentReminderID) !=
+                              if (widget!.editState == true) {
+                                if (widget!.remIDList
+                                        ?.contains(widget!.currentReminderID) !=
                                     true) {
                                   await widget.addToList?.call();
                                 }
                               }
 
-                              await widget.currentReminderID!
+                              await widget!.currentReminderID!
                                   .update(createRemindersRecordData(
                                 date: functions.getDate(_model.datePicked4!),
                               ));
                             },
                             text: valueOrDefault<String>(
-                              widget.editState
+                              widget!.editState
                                   ? (containerRemindersRecord.date != 'None'
                                       ? containerRemindersRecord.date
                                       : (_model.datePicked4 != null
@@ -1508,9 +1515,9 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).alternate,
                               textStyle: FlutterFlowTheme.of(context)
@@ -1522,7 +1529,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -1531,11 +1538,11 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 15.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              final datePicked5Time = await showTimePicker(
+                              final _datePicked5Time = await showTimePicker(
                                 context: context,
                                 initialTime:
                                     TimeOfDay.fromDateTime(getCurrentTimestamp),
@@ -1573,33 +1580,34 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                   );
                                 },
                               );
-                              if (datePicked5Time != null) {
+                              if (_datePicked5Time != null) {
                                 safeSetState(() {
                                   _model.datePicked5 = DateTime(
                                     getCurrentTimestamp.year,
                                     getCurrentTimestamp.month,
                                     getCurrentTimestamp.day,
-                                    datePicked5Time.hour,
-                                    datePicked5Time.minute,
+                                    _datePicked5Time.hour,
+                                    _datePicked5Time.minute,
                                   );
                                 });
                               }
-                              if (widget.editState == true) {
-                                if (widget.remIDList
-                                        ?.contains(widget.currentReminderID) !=
+                              if (widget!.editState == true) {
+                                if (widget!.remIDList
+                                        ?.contains(widget!.currentReminderID) !=
                                     true) {
                                   await widget.addToList?.call();
                                 }
                               }
 
-                              await widget.currentReminderID!
+                              await widget!.currentReminderID!
                                   .update(createRemindersRecordData(
                                 time: functions.getTime(_model.datePicked5!),
                               ));
                             },
                             text: valueOrDefault<String>(
-                              widget.editState
-                                  ? (containerRemindersRecord.time != ''
+                              widget!.editState
+                                  ? (containerRemindersRecord.time != null &&
+                                          containerRemindersRecord.time != ''
                                       ? containerRemindersRecord.time
                                       : (_model.datePicked5 != null
                                           ? functions
@@ -1612,9 +1620,9 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).alternate,
                               textStyle: FlutterFlowTheme.of(context)
@@ -1626,7 +1634,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

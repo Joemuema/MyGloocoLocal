@@ -1,8 +1,11 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'complications_model.dart';
 export 'complications_model.dart';
 
@@ -54,7 +57,7 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -65,14 +68,14 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
-                child: SizedBox(
+                child: Container(
                   width: double.infinity,
                   height: 500.0,
                   child: Stack(
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
                         child: PageView(
                           controller: _model.pageViewController ??=
                               PageController(initialPage: 0),
@@ -95,7 +98,7 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                     borderRadius: BorderRadius.circular(12.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
+                                    padding: EdgeInsets.all(20.0),
                                     child: Text(
                                       'Preventing and Managing Complications',
                                       textAlign: TextAlign.start,
@@ -103,16 +106,16 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                           .titleLarge
                                           .override(
                                             fontFamily: 'Inter',
-                                            color: const Color(0xFFFFF9F9),
+                                            color: Color(0xFFFFF9F9),
                                             letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(18.0),
+                                    padding: EdgeInsets.all(18.0),
                                     child: Container(
                                       width: 350.0,
                                       height: 450.0,
@@ -121,14 +124,14 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                             BorderRadius.circular(14.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
+                                        padding: EdgeInsets.all(10.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Text(
                                                 'Managing complications is a vital aspect of diabetes care, as chronic high blood sugar levels can lead to serious health issues over time.\n\nCommon complications include neuropathy (nerve damage), retinopathy (eye damage), nephropathy (kidney damage), and cardiovascular diseases.',
@@ -169,9 +172,9 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, -1.0),
+                                    alignment: AlignmentDirectional(-1.0, -1.0),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(20.0),
+                                      padding: EdgeInsets.all(20.0),
                                       child: Text(
                                         'Overview',
                                         style: FlutterFlowTheme.of(context)
@@ -184,7 +187,7 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(10.0),
                                     child: Container(
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
@@ -193,7 +196,7 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                             BorderRadius.circular(12.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
+                                        padding: EdgeInsets.all(10.0),
                                         child: SingleChildScrollView(
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -246,15 +249,15 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                                         ),
                                               ),
                                             ]
-                                                .divide(const SizedBox(height: 10.0))
-                                                .around(const SizedBox(height: 10.0)),
+                                                .divide(SizedBox(height: 10.0))
+                                                .around(SizedBox(height: 10.0)),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(20.0),
+                                    padding: EdgeInsets.all(20.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -290,7 +293,7 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                                     .bodyMedium
                                                     .override(
                                                       fontFamily: 'Readex Pro',
-                                                      color: const Color(0xFF99CC33),
+                                                      color: Color(0xFF99CC33),
                                                       letterSpacing: 0.0,
                                                       decoration: TextDecoration
                                                           .underline,
@@ -309,9 +312,9 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 1.0),
+                        alignment: AlignmentDirectional(0.0, 1.0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 16.0),
                           child: smooth_page_indicator.SmoothPageIndicator(
                             controller: _model.pageViewController ??=
@@ -321,7 +324,7 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                             onDotClicked: (i) async {
                               await _model.pageViewController!.animateToPage(
                                 i,
-                                duration: const Duration(milliseconds: 500),
+                                duration: Duration(milliseconds: 500),
                                 curve: Curves.ease,
                               );
                               setState(() {});

@@ -4,8 +4,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'recipe_list_model.dart';
 export 'recipe_list_model.dart';
 
@@ -44,8 +48,8 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 30.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 30.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -77,7 +81,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(70.0),
+          preferredSize: Size.fromHeight(70.0),
           child: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).primary,
             automaticallyImplyLeading: false,
@@ -100,13 +104,13 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
             ),
             actions: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
                       child: FlutterFlowIconButton(
                         borderColor: FlutterFlowTheme.of(context).primary,
                         borderRadius: 20.0,
@@ -139,7 +143,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 5.0, 10.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 5.0, 10.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,7 +158,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                 context.pushNamed(
                                   'DietHome',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType:
                                           PageTransitionType.rightToLeft,
@@ -166,9 +170,9 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                               options: FFButtonOptions(
                                 width: 120.0,
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -180,7 +184,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -193,7 +197,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            const SizedBox(
+                            SizedBox(
                               height: 1.0,
                               child: VerticalDivider(
                                 thickness: 1.0,
@@ -204,7 +208,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                 context.pushNamed(
                                   'Recipe_list',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType:
                                           PageTransitionType.leftToRight,
@@ -216,11 +220,11 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                               options: FFButtonOptions(
                                 width: 120.0,
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: const Color(0xFFDAD8D8),
+                                color: Color(0xFFDAD8D8),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .headlineMedium
                                     .override(
@@ -230,7 +234,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -273,7 +277,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                         final listViewRecipesRecord =
                             listViewRecipesRecordList[listViewIndex];
                         return Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 1.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -339,7 +343,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     12.0, 8.0, 12.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -355,7 +359,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.all(12.0),
+                                        padding: EdgeInsets.all(12.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -380,7 +384,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 0.0),
                                                   child: Text(
@@ -397,7 +401,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                                           fontFamily:
                                                               'Plus Jakarta Sans',
                                                           color:
-                                                              const Color(0xFF4B39EF),
+                                                              Color(0xFF4B39EF),
                                                           fontSize: 12.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -406,7 +410,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           3.0, 4.0, 0.0, 0.0),
                                                   child: Text(
@@ -424,14 +428,14 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                               ],
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 4.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -459,7 +463,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -477,11 +481,11 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                                   Flexible(
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               1.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     4.0,
@@ -513,7 +517,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(3.0, 4.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -535,7 +539,7 @@ class _RecipeListWidgetState extends State<RecipeListWidget>
                                         ),
                                       ),
                                     ),
-                                    const Icon(
+                                    Icon(
                                       Icons.keyboard_arrow_right_rounded,
                                       color: Color(0xFF57636C),
                                       size: 24.0,

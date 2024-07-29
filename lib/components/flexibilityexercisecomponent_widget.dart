@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'flexibilityexercisecomponent_model.dart';
 export 'flexibilityexercisecomponent_model.dart';
 
@@ -47,7 +49,7 @@ class _FlexibilityexercisecomponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
       child: Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -60,23 +62,23 @@ class _FlexibilityexercisecomponentWidgetState
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
               child: Container(
                 width: 60.0,
                 height: 60.0,
                 clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: Image.network(
-                  widget.flexibilityexercisedocument!.image,
+                  widget!.flexibilityexercisedocument!.image,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -85,13 +87,13 @@ class _FlexibilityexercisecomponentWidgetState
                       children: [
                         Text(
                           valueOrDefault<String>(
-                            widget.flexibilityexercisedocument?.name,
+                            widget!.flexibilityexercisedocument?.name,
                             'name',
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
-                                    color: const Color(0xFF4D7E3E),
+                                    color: Color(0xFF4D7E3E),
                                     fontSize: 15.0,
                                     letterSpacing: 0.0,
                                   ),
@@ -100,7 +102,7 @@ class _FlexibilityexercisecomponentWidgetState
                     ),
                     Text(
                       valueOrDefault<String>(
-                        widget.flexibilityexercisedocument?.description,
+                        widget!.flexibilityexercisedocument?.description,
                         'description',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(

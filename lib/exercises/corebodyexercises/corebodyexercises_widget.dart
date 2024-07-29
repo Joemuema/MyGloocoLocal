@@ -3,7 +3,10 @@ import '/exercises/corebodyexercisecomponent/corebodyexercisecomponent_widget.da
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'corebodyexercises_model.dart';
 export 'corebodyexercises_model.dart';
 
@@ -50,7 +53,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
             Container(
               width: double.infinity,
               height: 100.0,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: Color(0xFF4D7E3E),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(15.0),
@@ -82,7 +85,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(60.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(60.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Core body exercises',
                           style:
@@ -102,7 +105,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 0.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -119,7 +122,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
               child: Container(
                 width: double.infinity,
                 height: 158.0,
@@ -128,7 +131,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 0.0),
                   child: Text(
                     'Core exercises focus on strengthening the muscles in the abdomen, lower back, hips, and pelvis. These muscles form the core of your body and are essential for stability, balance, and overall functional strength.By performing core exercises with proper form and gradually increasing the intensity, you can enhance your overall functional strength and reduce the risk of injuries.',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -140,7 +143,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 0.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -206,7 +209,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
               },
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -220,12 +223,12 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
                       child: Container(
                         width: 60.0,
                         height: 60.0,
                         clipBehavior: Clip.antiAlias,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
@@ -237,7 +240,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -250,7 +253,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
-                                        color: const Color(0xFF4D7E3E),
+                                        color: Color(0xFF4D7E3E),
                                         fontSize: 15.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
@@ -290,7 +293,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -304,12 +307,12 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
                       child: Container(
                         width: 60.0,
                         height: 60.0,
                         clipBehavior: Clip.antiAlias,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
@@ -321,7 +324,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -334,7 +337,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
-                                        color: const Color(0xFF4D7E3E),
+                                        color: Color(0xFF4D7E3E),
                                         fontSize: 15.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
@@ -374,7 +377,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -388,12 +391,12 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
                       child: Container(
                         width: 60.0,
                         height: 60.0,
                         clipBehavior: Clip.antiAlias,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
@@ -405,7 +408,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -418,7 +421,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
-                                        color: const Color(0xFF4D7E3E),
+                                        color: Color(0xFF4D7E3E),
                                         fontSize: 15.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
@@ -458,7 +461,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -472,12 +475,12 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
                       child: Container(
                         width: 60.0,
                         height: 60.0,
                         clipBehavior: Clip.antiAlias,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
@@ -489,7 +492,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -502,7 +505,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
-                                        color: const Color(0xFF4D7E3E),
+                                        color: Color(0xFF4D7E3E),
                                         fontSize: 15.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
@@ -542,7 +545,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -556,12 +559,12 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
                       child: Container(
                         width: 60.0,
                         height: 60.0,
                         clipBehavior: Clip.antiAlias,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
@@ -573,7 +576,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -586,7 +589,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
-                                        color: const Color(0xFF4D7E3E),
+                                        color: Color(0xFF4D7E3E),
                                         fontSize: 15.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,

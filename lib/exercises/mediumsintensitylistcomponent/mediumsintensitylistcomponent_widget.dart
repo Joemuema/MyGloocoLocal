@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'mediumsintensitylistcomponent_model.dart';
 export 'mediumsintensitylistcomponent_model.dart';
 
@@ -50,12 +52,12 @@ class _MediumsintensitylistcomponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 20.0),
+      padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 20.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -72,7 +74,7 @@ class _MediumsintensitylistcomponentWidgetState
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 20.0,
@@ -95,7 +97,7 @@ class _MediumsintensitylistcomponentWidgetState
                   'Activity:',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
-                        color: const Color(0xFF4D7E3E),
+                        color: Color(0xFF4D7E3E),
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -103,7 +105,7 @@ class _MediumsintensitylistcomponentWidgetState
                   'Distance:',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
-                        color: const Color(0xFF4D7E3E),
+                        color: Color(0xFF4D7E3E),
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -111,7 +113,7 @@ class _MediumsintensitylistcomponentWidgetState
                   'Date:',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
-                        color: const Color(0xFF4D7E3E),
+                        color: Color(0xFF4D7E3E),
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -122,7 +124,7 @@ class _MediumsintensitylistcomponentWidgetState
               children: [
                 Text(
                   valueOrDefault<String>(
-                    widget.mediumintensitylistdocument?.activity,
+                    widget!.mediumintensitylistdocument?.activity,
                     'name',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -132,7 +134,7 @@ class _MediumsintensitylistcomponentWidgetState
                 ),
                 Text(
                   valueOrDefault<String>(
-                    widget.mediumintensitylistdocument?.distance.toString(),
+                    widget!.mediumintensitylistdocument?.distance?.toString(),
                     '0',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -143,7 +145,7 @@ class _MediumsintensitylistcomponentWidgetState
                 Text(
                   valueOrDefault<String>(
                     dateTimeFormat(
-                        'd/M/y', widget.mediumintensitylistdocument?.date),
+                        'd/M/y', widget!.mediumintensitylistdocument?.date),
                     '0',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -177,7 +179,7 @@ class _MediumsintensitylistcomponentWidgetState
                   width: 2,
                   color: FlutterFlowTheme.of(context).secondaryText,
                 ),
-                activeColor: const Color(0xFF4D7E3E),
+                activeColor: Color(0xFF4D7E3E),
                 checkColor: FlutterFlowTheme.of(context).info,
               ),
             ),

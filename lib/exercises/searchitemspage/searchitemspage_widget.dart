@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'searchitemspage_model.dart';
@@ -57,7 +58,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
             Container(
               width: double.infinity,
               height: 100.0,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: Color(0xFF4D7E3E),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(15.0),
@@ -72,7 +73,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -92,7 +93,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                           },
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               80.0, 0.0, 0.0, 0.0),
                           child: Text(
                             'Search Page',
@@ -112,7 +113,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -121,13 +122,13 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: TextFormField(
                             controller: _model.textController,
@@ -142,8 +143,8 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                             (record) =>
                                                 TextSearchItem.fromTerms(
                                                     record, [
-                                              record.activity,
-                                              record.intensity
+                                              record.activity!,
+                                              record.intensity!
                                             ]),
                                           )
                                           .toList(),
@@ -224,8 +225,8 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                       .map(
                                         (record) => TextSearchItem.fromTerms(
                                             record, [
-                                          record.activity,
-                                          record.intensity
+                                          record.activity!,
+                                          record.intensity!
                                         ]),
                                       )
                                       .toList(),
@@ -244,11 +245,11 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                         text: 'Search',
                         options: FFButtonOptions(
                           height: 30.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: const Color(0xFF4D7E3E),
+                          color: Color(0xFF4D7E3E),
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',
@@ -256,7 +257,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -268,7 +269,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                         borderRadius: 20.0,
                         borderWidth: 1.0,
                         buttonSize: 40.0,
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.clear,
                           color: Color(0xFF4D7E3E),
                           size: 24.0,
@@ -286,7 +287,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
               builder: (context) {
                 if (FFAppState().searchActive) {
                   return Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                     child: StreamBuilder<List<AddpagecollectionRecord>>(
                       stream: queryAddpagecollectionRecord(
                         queryBuilder: (addpagecollectionRecord) =>
@@ -316,7 +317,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: listViewAddpagecollectionRecordList.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                          separatorBuilder: (_, __) => SizedBox(height: 10.0),
                           itemBuilder: (context, listViewIndex) {
                             final listViewAddpagecollectionRecord =
                                 listViewAddpagecollectionRecordList[
@@ -343,7 +344,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                   );
                 } else {
                   return Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                     child: Builder(
                       builder: (context) {
                         final searchResults =
@@ -354,7 +355,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: searchResults.length,
-                          separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                          separatorBuilder: (_, __) => SizedBox(height: 10.0),
                           itemBuilder: (context, searchResultsIndex) {
                             final searchResultsItem =
                                 searchResults[searchResultsIndex];

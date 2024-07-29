@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'lowintensitylistcomponent_model.dart';
 export 'lowintensitylistcomponent_model.dart';
 
@@ -50,12 +52,12 @@ class _LowintensitylistcomponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 20.0),
+      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 20.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -73,7 +75,7 @@ class _LowintensitylistcomponentWidgetState
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 20.0,
@@ -90,7 +92,7 @@ class _LowintensitylistcomponentWidgetState
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -98,7 +100,7 @@ class _LowintensitylistcomponentWidgetState
                     'Activity:',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
-                          color: const Color(0xFF4D7E3E),
+                          color: Color(0xFF4D7E3E),
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -106,7 +108,7 @@ class _LowintensitylistcomponentWidgetState
                     'Distance:',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
-                          color: const Color(0xFF4D7E3E),
+                          color: Color(0xFF4D7E3E),
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -114,7 +116,7 @@ class _LowintensitylistcomponentWidgetState
                     'Date:',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
-                          color: const Color(0xFF4D7E3E),
+                          color: Color(0xFF4D7E3E),
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -127,7 +129,7 @@ class _LowintensitylistcomponentWidgetState
               children: [
                 Text(
                   valueOrDefault<String>(
-                    widget.lowintensitylistcomponent?.activity,
+                    widget!.lowintensitylistcomponent?.activity,
                     'name',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -137,7 +139,7 @@ class _LowintensitylistcomponentWidgetState
                 ),
                 Text(
                   valueOrDefault<String>(
-                    widget.lowintensitylistcomponent?.distance.toString(),
+                    widget!.lowintensitylistcomponent?.distance.toString(),
                     '0',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -147,7 +149,7 @@ class _LowintensitylistcomponentWidgetState
                 ),
                 Text(
                   valueOrDefault<String>(
-                    widget.lowintensitylistcomponent?.date?.toString(),
+                    widget!.lowintensitylistcomponent?.date?.toString(),
                     '0',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -181,7 +183,7 @@ class _LowintensitylistcomponentWidgetState
                   width: 2,
                   color: FlutterFlowTheme.of(context).secondaryText,
                 ),
-                activeColor: const Color(0xFF4D7E3E),
+                activeColor: Color(0xFF4D7E3E),
                 checkColor: FlutterFlowTheme.of(context).info,
               ),
             ),

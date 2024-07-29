@@ -1,7 +1,10 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/logs/addactivity/addactivity_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'addtodaysactivitypage_model.dart';
 export 'addtodaysactivitypage_model.dart';
 
@@ -46,7 +49,7 @@ class _AddtodaysactivitypageWidgetState
         body: wrapWithModel(
           model: _model.addactivityModel,
           updateCallback: () => setState(() {}),
-          child: const AddactivityWidget(),
+          child: AddactivityWidget(),
         ),
       ),
     );

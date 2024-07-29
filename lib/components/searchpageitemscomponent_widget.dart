@@ -2,6 +2,8 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'searchpageitemscomponent_model.dart';
 export 'searchpageitemscomponent_model.dart';
 
@@ -46,7 +48,7 @@ class _SearchpageitemscomponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -57,7 +59,7 @@ class _SearchpageitemscomponentWidgetState
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Icon(
+            Icon(
               Icons.task_alt,
               color: Color(0xFF4D7E3E),
               size: 30.0,
@@ -70,7 +72,7 @@ class _SearchpageitemscomponentWidgetState
                   'Activity Name',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
-                        color: const Color(0xFF4D7E3E),
+                        color: Color(0xFF4D7E3E),
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w600,
                       ),
@@ -79,7 +81,7 @@ class _SearchpageitemscomponentWidgetState
                   'Intensity',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
-                        color: const Color(0xFF4D7E3E),
+                        color: Color(0xFF4D7E3E),
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w600,
                       ),
@@ -88,7 +90,7 @@ class _SearchpageitemscomponentWidgetState
                   'Date Completed',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
-                        color: const Color(0xFF4D7E3E),
+                        color: Color(0xFF4D7E3E),
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w600,
                       ),
@@ -101,7 +103,7 @@ class _SearchpageitemscomponentWidgetState
               children: [
                 Text(
                   valueOrDefault<String>(
-                    widget.searchpageitemsdocument?.activity,
+                    widget!.searchpageitemsdocument?.activity,
                     'name',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -111,7 +113,7 @@ class _SearchpageitemscomponentWidgetState
                 ),
                 Text(
                   valueOrDefault<String>(
-                    widget.searchpageitemsdocument?.intensity,
+                    widget!.searchpageitemsdocument?.intensity,
                     'intensity',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -122,7 +124,7 @@ class _SearchpageitemscomponentWidgetState
                 Text(
                   valueOrDefault<String>(
                     dateTimeFormat(
-                        'd/M/y', widget.searchpageitemsdocument?.date),
+                        'd/M/y', widget!.searchpageitemsdocument?.date),
                     '0',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
