@@ -49,7 +49,7 @@ class _LogoutWidgetState extends State<LogoutWidget> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(5.0, 16.0, 5.0, 16.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 16.0, 5.0, 16.0),
             child: Text(
               'Are you sure you want to logout?',
               style: FlutterFlowTheme.of(context).displaySmall.override(

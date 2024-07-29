@@ -12,7 +12,6 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'home_model.dart';
 export 'home_model.dart';
@@ -698,8 +697,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 3.0),
-                                          child: FaIcon(
-                                            FontAwesomeIcons.dumbbell,
+                                          child: Icon(
+                                            Icons.directions_run_rounded,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             size: 24.0,
