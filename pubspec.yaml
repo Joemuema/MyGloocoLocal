@@ -80,7 +80,6 @@ dependencies:
   path_provider_foundation: 2.4.0
   path_provider_platform_interface: 2.1.2
   pdf: ^3.11.0
-  percent_indicator: 4.2.2
   permission_handler: ^11.3.1
   plugin_platform_interface: 2.1.8
   printing: ^5.13.1

@@ -133,6 +133,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'addReminder',
               ParamType.bool,
             ),
+            listOption: params.getParam(
+              'listOption',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -281,6 +285,56 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'mental_health',
           path: '/mentalHealth',
           builder: (context, params) => const MentalHealthWidget(),
+        ),
+        FFRoute(
+          name: 'exercisehomepage',
+          path: '/exercisehomepage',
+          builder: (context, params) => const ExercisehomepageWidget(),
+        ),
+        FFRoute(
+          name: 'categoriespage',
+          path: '/categoriespage',
+          builder: (context, params) => const CategoriespageWidget(),
+        ),
+        FFRoute(
+          name: 'addtodaysactivitypage',
+          path: '/addtodaysactivitypage',
+          builder: (context, params) => const AddtodaysactivitypageWidget(),
+        ),
+        FFRoute(
+          name: 'addplanpage',
+          path: '/addplanpage',
+          builder: (context, params) => AddplanpageWidget(
+            addtype: params.getParam(
+              'addtype',
+              ParamType.bool,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'lowerbodyexercise',
+          path: '/lowerbodyexercise',
+          builder: (context, params) => const LowerbodyexerciseWidget(),
+        ),
+        FFRoute(
+          name: 'upperbodyexercises',
+          path: '/upperbodyexercises',
+          builder: (context, params) => const UpperbodyexercisesWidget(),
+        ),
+        FFRoute(
+          name: 'Listpage',
+          path: '/listpage',
+          builder: (context, params) => const ListpageWidget(),
+        ),
+        FFRoute(
+          name: 'Searchitemspage',
+          path: '/searchitemspage',
+          builder: (context, params) => const SearchitemspageWidget(),
+        ),
+        FFRoute(
+          name: 'corebodyexercises',
+          path: '/corebodyexercises',
+          builder: (context, params) => const CorebodyexercisesWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

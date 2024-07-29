@@ -19,7 +19,6 @@ import 'schema/recipes_record.dart';
 import 'schema/meals_record.dart';
 import 'schema/drinks_record.dart';
 import 'schema/addpagecollection_record.dart';
-import 'schema/allcomponent_record.dart';
 import 'schema/strengthexercises_record.dart';
 import 'schema/aerobicrunningcollection_record.dart';
 import 'schema/flexibilitycollection_record.dart';
@@ -45,7 +44,6 @@ export 'schema/recipes_record.dart';
 export 'schema/meals_record.dart';
 export 'schema/drinks_record.dart';
 export 'schema/addpagecollection_record.dart';
-export 'schema/allcomponent_record.dart';
 export 'schema/strengthexercises_record.dart';
 export 'schema/aerobicrunningcollection_record.dart';
 export 'schema/flexibilitycollection_record.dart';
@@ -566,43 +564,6 @@ Future<List<AddpagecollectionRecord>> queryAddpagecollectionRecordOnce({
     queryCollectionOnce(
       AddpagecollectionRecord.collection,
       AddpagecollectionRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-/// Functions to query AllcomponentRecords (as a Stream and as a Future).
-Future<int> queryAllcomponentRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      AllcomponentRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<AllcomponentRecord>> queryAllcomponentRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      AllcomponentRecord.collection,
-      AllcomponentRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<AllcomponentRecord>> queryAllcomponentRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      AllcomponentRecord.collection,
-      AllcomponentRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

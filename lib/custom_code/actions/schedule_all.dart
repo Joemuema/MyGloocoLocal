@@ -59,7 +59,7 @@ Future scheduleAll(List<DocumentReference> reminderDocs) async {
           finaldose = dose.toString();
         }
 
-        String title = '$medName medicine reminder ($reminderName)';
+        String title = '$reminderName reminder';
         String content =
             'Take $finaldose $unit of $medName. (Dismissing this reminder will mark it as missed)';
 

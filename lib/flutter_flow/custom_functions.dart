@@ -237,3 +237,23 @@ DateTime todayTime(String time) {
 
   return parsedTime;
 }
+
+double stringToDouble(String doubleString) {
+  double number = 0;
+
+  try {
+    number = double.parse(doubleString);
+  } catch (e) {
+    print("Error: ${e.toString()}");
+  }
+
+  return number;
+}
+
+int getHour(DateTime time) {
+  return time.hour;
+}
+
+int getMinute(DateTime time) {
+  return time.minute;
+}

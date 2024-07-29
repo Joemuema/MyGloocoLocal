@@ -7,6 +7,7 @@ import '/medication/home_reminder/home_reminder_widget.dart';
 import '/medication/med_menu/med_menu_widget.dart';
 import '/medication/no_elements/no_elements_widget.dart';
 import '/medication/past_reminder/past_reminder_widget.dart';
+import '/medication/refill/refill_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -191,6 +192,40 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
         FFAppState().notificationPermissionsGranted =
             _model.permissionsGranted!;
         setState(() {});
+      }
+      _model.lowCapacityMeds = await queryMedicineRecordOnce(
+        queryBuilder: (medicineRecord) => medicineRecord
+            .where(
+              'UserID',
+              isEqualTo: FFAppState().UserID,
+            )
+            .where(
+              'TotalDose',
+              isLessThanOrEqualTo: 4.0,
+            ),
+      );
+      if ((_model.lowCapacityMeds != null &&
+              (_model.lowCapacityMeds)!.isNotEmpty) ==
+          true) {
+        await showModalBottomSheet(
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
+          enableDrag: false,
+          context: context,
+          builder: (context) {
+            return GestureDetector(
+              onTap: () => _model.unfocusNode.canRequestFocus
+                  ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                  : FocusScope.of(context).unfocus(),
+              child: Padding(
+                padding: MediaQuery.viewInsetsOf(context),
+                child: RefillWidget(
+                  medRefillList: _model.lowCapacityMeds,
+                ),
+              ),
+            );
+          },
+        ).then((value) => safeSetState(() {}));
       }
     });
 
@@ -579,6 +614,32 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
+                        if (((_model.upcomingReminders.isNotEmpty) == true) ||
+                            ((_model.takenReminders.isNotEmpty) == true) ||
+                            ((_model.missedReminders.isNotEmpty) == true))
+                          Container(
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: Visibility(
+                              visible:
+                                  (_model.listOfUpcomingTimes.isNotEmpty) ==
+                                      true,
+                              child: wrapWithModel(
+                                model: _model.noElementsModel,
+                                updateCallback: () => setState(() {}),
+                                child: NoElementsWidget(
+                                  additionalText: _model
+                                              .calendarSelectedDay?.start ==
+                                          functions
+                                              .currentDate(getCurrentTimestamp)
+                                      ? 'Add reminders to display here'
+                                      : 'There are no past reminders to display',
+                                ),
+                              ),
+                            ),
+                          ),
                         if ((_model.listOfUpcomingTimes.isNotEmpty) == true)
                           Column(
                             mainAxisSize: MainAxisSize.max,
@@ -974,9 +1035,9 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                   context.pushNamed(
                                     'MedicationList',
                                     queryParameters: {
-                                      'addReminder': serializeParam(
-                                        true,
-                                        ParamType.bool,
+                                      'listOption': serializeParam(
+                                        'add',
+                                        ParamType.String,
                                       ),
                                     }.withoutNulls,
                                   );

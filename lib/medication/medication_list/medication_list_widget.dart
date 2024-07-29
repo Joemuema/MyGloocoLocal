@@ -2,6 +2,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/medication/add_refill/add_refill_widget.dart';
 import '/medication/med_list_item/med_list_item_widget.dart';
 import '/medication/medicine_description/medicine_description_widget.dart';
 import '/medication/no_elements/no_elements_widget.dart';
@@ -15,9 +16,12 @@ class MedicationListWidget extends StatefulWidget {
   const MedicationListWidget({
     super.key,
     bool? addReminder,
-  }) : addReminder = addReminder ?? false;
+    String? listOption,
+  })  : addReminder = addReminder ?? false,
+        listOption = listOption ?? 'view';
 
   final bool addReminder;
+  final String listOption;
 
   @override
   State<MedicationListWidget> createState() => _MedicationListWidgetState();
@@ -90,7 +94,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                if (widget.addReminder)
+                if ((widget.listOption == 'add') ||
+                    (widget.listOption == 'refill'))
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -104,7 +109,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
                           child: Text(
-                            'Choose medicine to add reminder for',
+                            'Choose medicine to ${widget.listOption == 'add' ? 'add reminder for' : 'refill'}',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -219,7 +224,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      if (widget.addReminder) {
+                                      if (widget.listOption == 'add') {
                                         if (Navigator.of(context).canPop()) {
                                           context.pop();
                                         }
@@ -242,52 +247,83 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           }.withoutNulls,
                                         );
                                       } else {
-                                        _model.pillReminderList =
-                                            await queryRemindersRecordOnce(
-                                          queryBuilder: (remindersRecord) =>
-                                              remindersRecord
-                                                  .where(
-                                                    'UserID',
-                                                    isEqualTo:
-                                                        FFAppState().UserID,
-                                                  )
-                                                  .where(
-                                                    'MedicineID',
-                                                    isEqualTo:
-                                                        pillsListViewMedicineRecord
-                                                            .reference,
-                                                  )
-                                                  .orderBy('Time'),
-                                        );
-                                        await showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          enableDrag: false,
-                                          context: context,
-                                          builder: (context) {
-                                            return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child:
-                                                    MedicineDescriptionWidget(
-                                                  medDocRef:
-                                                      pillsListViewMedicineRecord,
-                                                  reminderMedRefs:
-                                                      _model.pillReminderList!,
+                                        if (widget.listOption == 'view') {
+                                          _model.pillReminderList =
+                                              await queryRemindersRecordOnce(
+                                            queryBuilder: (remindersRecord) =>
+                                                remindersRecord
+                                                    .where(
+                                                      'UserID',
+                                                      isEqualTo:
+                                                          FFAppState().UserID,
+                                                    )
+                                                    .where(
+                                                      'MedicineID',
+                                                      isEqualTo:
+                                                          pillsListViewMedicineRecord
+                                                              .reference,
+                                                    )
+                                                    .orderBy('Time'),
+                                          );
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child:
+                                                      MedicineDescriptionWidget(
+                                                    medDocRef:
+                                                        pillsListViewMedicineRecord,
+                                                    reminderMedRefs: _model
+                                                        .pillReminderList!,
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        ).then((value) => safeSetState(() {}));
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+                                        } else {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child: AddRefillWidget(
+                                                    medDoc:
+                                                        pillsListViewMedicineRecord,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+                                        }
                                       }
 
                                       setState(() {});
@@ -416,7 +452,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    if (widget.addReminder) {
+                                    if (widget.listOption == 'add') {
                                       if (Navigator.of(context).canPop()) {
                                         context.pop();
                                       }
@@ -439,50 +475,81 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
-                                      _model.tabletReminderList =
-                                          await queryRemindersRecordOnce(
-                                        queryBuilder: (remindersRecord) =>
-                                            remindersRecord
-                                                .where(
-                                                  'UserID',
-                                                  isEqualTo:
-                                                      FFAppState().UserID,
-                                                )
-                                                .where(
-                                                  'MedicineID',
-                                                  isEqualTo:
-                                                      tabletsListViewMedicineRecord
-                                                          .reference,
-                                                )
-                                                .orderBy('Time'),
-                                      );
-                                      await showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: Colors.transparent,
-                                        enableDrag: false,
-                                        context: context,
-                                        builder: (context) {
-                                          return GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: Padding(
-                                              padding: MediaQuery.viewInsetsOf(
-                                                  context),
-                                              child: MedicineDescriptionWidget(
-                                                medDocRef:
-                                                    tabletsListViewMedicineRecord,
-                                                reminderMedRefs:
-                                                    _model.tabletReminderList!,
+                                      if (widget.listOption == 'view') {
+                                        _model.tabletReminderList =
+                                            await queryRemindersRecordOnce(
+                                          queryBuilder: (remindersRecord) =>
+                                              remindersRecord
+                                                  .where(
+                                                    'UserID',
+                                                    isEqualTo:
+                                                        FFAppState().UserID,
+                                                  )
+                                                  .where(
+                                                    'MedicineID',
+                                                    isEqualTo:
+                                                        tabletsListViewMedicineRecord
+                                                            .reference,
+                                                  )
+                                                  .orderBy('Time'),
+                                        );
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          enableDrag: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child:
+                                                    MedicineDescriptionWidget(
+                                                  medDocRef:
+                                                      tabletsListViewMedicineRecord,
+                                                  reminderMedRefs: _model
+                                                      .tabletReminderList!,
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        },
-                                      ).then((value) => safeSetState(() {}));
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+                                      } else {
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          enableDrag: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child: AddRefillWidget(
+                                                  medDoc:
+                                                      tabletsListViewMedicineRecord,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+                                      }
                                     }
 
                                     setState(() {});
@@ -603,7 +670,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    if (widget.addReminder) {
+                                    if (widget.listOption == 'add') {
                                       if (Navigator.of(context).canPop()) {
                                         context.pop();
                                       }
@@ -626,50 +693,81 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
-                                      _model.emulsionReminderList =
-                                          await queryRemindersRecordOnce(
-                                        queryBuilder: (remindersRecord) =>
-                                            remindersRecord
-                                                .where(
-                                                  'UserID',
-                                                  isEqualTo:
-                                                      FFAppState().UserID,
-                                                )
-                                                .where(
-                                                  'MedicineID',
-                                                  isEqualTo:
-                                                      emulsionListViewMedicineRecord
-                                                          .reference,
-                                                )
-                                                .orderBy('Time'),
-                                      );
-                                      await showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: Colors.transparent,
-                                        enableDrag: false,
-                                        context: context,
-                                        builder: (context) {
-                                          return GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: Padding(
-                                              padding: MediaQuery.viewInsetsOf(
-                                                  context),
-                                              child: MedicineDescriptionWidget(
-                                                medDocRef:
-                                                    emulsionListViewMedicineRecord,
-                                                reminderMedRefs: _model
-                                                    .emulsionReminderList!,
+                                      if (widget.listOption == 'view') {
+                                        _model.emulsionReminderList =
+                                            await queryRemindersRecordOnce(
+                                          queryBuilder: (remindersRecord) =>
+                                              remindersRecord
+                                                  .where(
+                                                    'UserID',
+                                                    isEqualTo:
+                                                        FFAppState().UserID,
+                                                  )
+                                                  .where(
+                                                    'MedicineID',
+                                                    isEqualTo:
+                                                        emulsionListViewMedicineRecord
+                                                            .reference,
+                                                  )
+                                                  .orderBy('Time'),
+                                        );
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          enableDrag: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child:
+                                                    MedicineDescriptionWidget(
+                                                  medDocRef:
+                                                      emulsionListViewMedicineRecord,
+                                                  reminderMedRefs: _model
+                                                      .emulsionReminderList!,
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        },
-                                      ).then((value) => safeSetState(() {}));
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+                                      } else {
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          enableDrag: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child: AddRefillWidget(
+                                                  medDoc:
+                                                      emulsionListViewMedicineRecord,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+                                      }
                                     }
 
                                     setState(() {});
@@ -793,7 +891,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      if (widget.addReminder) {
+                                      if (widget.listOption == 'add') {
                                         if (Navigator.of(context).canPop()) {
                                           context.pop();
                                         }
@@ -816,52 +914,83 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           }.withoutNulls,
                                         );
                                       } else {
-                                        _model.injectionReminderList =
-                                            await queryRemindersRecordOnce(
-                                          queryBuilder: (remindersRecord) =>
-                                              remindersRecord
-                                                  .where(
-                                                    'UserID',
-                                                    isEqualTo:
-                                                        FFAppState().UserID,
-                                                  )
-                                                  .where(
-                                                    'MedicineID',
-                                                    isEqualTo:
-                                                        injectionListViewMedicineRecord
-                                                            .reference,
-                                                  )
-                                                  .orderBy('Time'),
-                                        );
-                                        await showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          enableDrag: false,
-                                          context: context,
-                                          builder: (context) {
-                                            return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child:
-                                                    MedicineDescriptionWidget(
-                                                  medDocRef:
-                                                      injectionListViewMedicineRecord,
-                                                  reminderMedRefs: _model
-                                                      .injectionReminderList!,
+                                        if (widget.listOption == 'view') {
+                                          _model.injectionReminderList =
+                                              await queryRemindersRecordOnce(
+                                            queryBuilder: (remindersRecord) =>
+                                                remindersRecord
+                                                    .where(
+                                                      'UserID',
+                                                      isEqualTo:
+                                                          FFAppState().UserID,
+                                                    )
+                                                    .where(
+                                                      'MedicineID',
+                                                      isEqualTo:
+                                                          injectionListViewMedicineRecord
+                                                              .reference,
+                                                    )
+                                                    .orderBy('Time'),
+                                          );
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child:
+                                                      MedicineDescriptionWidget(
+                                                    medDocRef:
+                                                        injectionListViewMedicineRecord,
+                                                    reminderMedRefs: _model
+                                                        .injectionReminderList!,
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        ).then((value) => safeSetState(() {}));
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+                                        } else {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child: AddRefillWidget(
+                                                    medDoc:
+                                                        injectionListViewMedicineRecord,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+                                        }
                                       }
 
                                       setState(() {});

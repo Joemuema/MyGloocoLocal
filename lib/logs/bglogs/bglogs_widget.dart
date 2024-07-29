@@ -1,11 +1,13 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'bglogs_model.dart';
 export 'bglogs_model.dart';
 
@@ -45,8 +47,9 @@ class _BglogsWidgetState extends State<BglogsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
-      width: 300.0,
       height: 300.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -63,36 +66,52 @@ class _BglogsWidgetState extends State<BglogsWidget> {
         children: [
           Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 0.0, 0.0),
-                child: Text(
-                  'Log Blood Sugar Levels',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    context.safePop();
-                  },
-                  child: Icon(
-                    Icons.close,
-                    color: FlutterFlowTheme.of(context).error,
-                    size: 28.0,
-                  ),
+              Container(
+                width: 60.0,
+                height: 5.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).primary,
+                  borderRadius: BorderRadius.circular(4.0),
                 ),
               ),
             ],
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 20.0,
+                  borderWidth: 1.0,
+                  buttonSize: 40.0,
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    size: 20.0,
+                  ),
+                  onPressed: () async {
+                    Navigator.pop(context);
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(104.0, 0.0, 0.0, 0.0),
+                  child: Text(
+                    'Log activity',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 18.0,
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ),
+              ],
+            ),
           ),
           Row(
             mainAxisSize: MainAxisSize.max,
@@ -375,14 +394,23 @@ class _BglogsWidgetState extends State<BglogsWidget> {
           ),
           FFButtonWidget(
             onPressed: () async {
-              await BloodglucoseRecord.collection
+              await BGreadingsRecord.collection
                   .doc()
-                  .set(createBloodglucoseRecordData(
-                    period: _model.dropDownValue1,
-                    timetaken: _model.datePicked,
-                    bgreading: double.tryParse(_model.textController.text),
-                    units: _model.dropDownValue2,
-                    uid: currentUserReference,
+                  .set(createBGreadingsRecordData(
+                    date: functions.getDate(_model.datePicked!),
+                    period: (_model.dropDownValue1 == 'Before breakfast') ||
+                            (_model.dropDownValue1 == 'Before lunch') ||
+                            (_model.dropDownValue1 == 'Before supper')
+                        ? 'before meal'
+                        : 'after meal',
+                    hour: functions.getHour(_model.datePicked!),
+                    minute: functions.getMinute(_model.datePicked!),
+                    cGMreading:
+                        functions.stringToDouble(_model.textController.text),
+                    unit: _model.dropDownValue2,
+                    decimalTime: functions.getHour(_model.datePicked!) +
+                        (functions.getMinute(_model.datePicked!) / 60),
+                    userID: FFAppState().UserID,
                   ));
               context.safePop();
             },

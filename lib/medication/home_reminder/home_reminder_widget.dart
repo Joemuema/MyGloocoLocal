@@ -254,11 +254,12 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                         : 'tablets');
                                   } else if (containerMedicineRecord.form ==
                                       'Emulsion') {
-                                    return (containerMedicineRecord
-                                                .singleDose ==
-                                            1.0
-                                        ? 'tablespoons'
-                                        : 'tablespoons');
+                                    return 'ml (${formatNumber(
+                                      containerMedicineRecord.singleDose / 15,
+                                      formatType: FormatType.custom,
+                                      format: '0.0',
+                                      locale: 'en_US',
+                                    )} tablespoons)';
                                   } else {
                                     return (containerMedicineRecord
                                                 .singleDose ==

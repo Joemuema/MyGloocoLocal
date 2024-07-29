@@ -262,15 +262,12 @@ class _PastReminderWidgetState extends State<PastReminderWidget> {
                                         : 'tablets');
                                   } else if (rowMedicineRecord.form ==
                                       'Emulsion') {
-                                    return (formatNumber(
-                                              rowMedicineRecord.singleDose,
-                                              formatType: FormatType.custom,
-                                              format: '0',
-                                              locale: 'en_US',
-                                            ) ==
-                                            '1'
-                                        ? 'tablespoon'
-                                        : 'tablespoons');
+                                    return 'ml (${formatNumber(
+                                      rowMedicineRecord.singleDose / 15,
+                                      formatType: FormatType.custom,
+                                      format: '0.0',
+                                      locale: 'en_US',
+                                    )} tablespoons)';
                                   } else {
                                     return (formatNumber(
                                               rowMedicineRecord.singleDose,

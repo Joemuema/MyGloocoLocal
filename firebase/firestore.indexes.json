@@ -51,6 +51,34 @@
       ]
     },
     {
+      "collectionGroup": "addpagecollection",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "completed",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Medicine",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "TotalDose",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "Reminders",
       "queryScope": "COLLECTION",
       "fields": [

@@ -55,6 +55,11 @@ class BGreadingsRecord extends FirestoreRecord {
   String get time => _time ?? '';
   bool hasTime() => _time != null;
 
+  // "UserID" field.
+  DocumentReference? _userID;
+  DocumentReference? get userID => _userID;
+  bool hasUserID() => _userID != null;
+
   void _initializeFields() {
     _date = snapshotData['Date'] as String?;
     _hour = castToType<int>(snapshotData['Hour']);
@@ -64,6 +69,7 @@ class BGreadingsRecord extends FirestoreRecord {
     _unit = snapshotData['Unit'] as String?;
     _decimalTime = castToType<double>(snapshotData['DecimalTime']);
     _time = snapshotData['Time'] as String?;
+    _userID = snapshotData['UserID'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -109,6 +115,7 @@ Map<String, dynamic> createBGreadingsRecordData({
   String? unit,
   double? decimalTime,
   String? time,
+  DocumentReference? userID,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -120,6 +127,7 @@ Map<String, dynamic> createBGreadingsRecordData({
       'Unit': unit,
       'DecimalTime': decimalTime,
       'Time': time,
+      'UserID': userID,
     }.withoutNulls,
   );
 
@@ -138,7 +146,8 @@ class BGreadingsRecordDocumentEquality implements Equality<BGreadingsRecord> {
         e1?.period == e2?.period &&
         e1?.unit == e2?.unit &&
         e1?.decimalTime == e2?.decimalTime &&
-        e1?.time == e2?.time;
+        e1?.time == e2?.time &&
+        e1?.userID == e2?.userID;
   }
 
   @override
@@ -150,7 +159,8 @@ class BGreadingsRecordDocumentEquality implements Equality<BGreadingsRecord> {
         e?.period,
         e?.unit,
         e?.decimalTime,
-        e?.time
+        e?.time,
+        e?.userID
       ]);
 
   @override

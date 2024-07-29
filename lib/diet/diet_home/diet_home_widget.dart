@@ -111,7 +111,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Flexible(
+                        Expanded(
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -211,7 +211,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                   ),
                 ),
-                Flexible(
+                Expanded(
                   child: Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 10.0),
@@ -251,7 +251,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                   ),
                 ),
-                Flexible(
+                Expanded(
                   child: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 0.0),
                     child: InkWell(
@@ -266,19 +266,21 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                3.0, 5.0, 3.0, 0.0),
-                            child: Text(
-                              'Your Meals',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 20.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  3.0, 5.0, 3.0, 0.0),
+                              child: Text(
+                                'Your Meals',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 20.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
                             ),
                           ),
                           Row(
@@ -377,85 +379,38 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 10.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Align(
-                        alignment: const AlignmentDirectional(-1.0, -1.0),
-                        child: Text(
-                          'Add Meal & Drink',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 20.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                        ),
-                      ),
-                      Align(
-                        alignment: const AlignmentDirectional(1.0, -1.0),
-                        child: FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 40.0,
-                          icon: const Icon(
-                            Icons.add,
-                            color: Colors.black,
-                            size: 24.0,
+                Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 10.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Align(
+                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          child: Text(
+                            'Add Meal & Drink',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  fontSize: 20.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
                           ),
-                          onPressed: () async {
-                            await showModalBottomSheet(
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              enableDrag: false,
-                              context: context,
-                              builder: (context) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: SizedBox(
-                                      height:
-                                          MediaQuery.sizeOf(context).height *
-                                              0.4,
-                                      child: const AccessFromMainTabWidget(),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ).then((value) => safeSetState(() {}));
-                          },
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 10.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
+                        Align(
+                          alignment: const AlignmentDirectional(1.0, -1.0),
+                          child: FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
                             borderRadius: 20.0,
                             borderWidth: 1.0,
                             buttonSize: 40.0,
-                            icon: Icon(
-                              FFIcons.kicons8SandwichWithFriedEgg50,
-                              color: FlutterFlowTheme.of(context).primaryText,
+                            icon: const Icon(
+                              Icons.add,
+                              color: Colors.black,
                               size: 24.0,
                             ),
                             onPressed: () async {
@@ -473,11 +428,11 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                         : FocusScope.of(context).unfocus(),
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
-                                      child: const SizedBox(
-                                        height: 370.0,
-                                        child: ManualFoodWidget(
-                                          foodPeriod: 'Breakfast',
-                                        ),
+                                      child: SizedBox(
+                                        height:
+                                            MediaQuery.sizeOf(context).height *
+                                                0.4,
+                                        child: const AccessFromMainTabWidget(),
                                       ),
                                     ),
                                   );
@@ -485,31 +440,31 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                               ).then((value) => safeSetState(() {}));
                             },
                           ),
-                          Text(
-                            'Breakfast',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: FlutterFlowIconButton(
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 10.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            FlutterFlowIconButton(
                               borderColor: FlutterFlowTheme.of(context).primary,
                               borderRadius: 20.0,
                               borderWidth: 1.0,
                               buttonSize: 40.0,
                               icon: Icon(
-                                FFIcons.kicons8Lunchbox64,
+                                FFIcons.kicons8SandwichWithFriedEgg50,
                                 color: FlutterFlowTheme.of(context).primaryText,
-                                size: 27.0,
+                                size: 24.0,
                               ),
                               onPressed: () async {
                                 await showModalBottomSheet(
@@ -530,7 +485,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                         child: const SizedBox(
                                           height: 370.0,
                                           child: ManualFoodWidget(
-                                            foodPeriod: 'Lunch',
+                                            foodPeriod: 'Breakfast',
                                           ),
                                         ),
                                       ),
@@ -539,241 +494,288 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                 ).then((value) => safeSetState(() {}));
                               },
                             ),
-                          ),
-                          Text(
-                            'Lunch',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            icon: Icon(
-                              FFIcons.kicons8Supper50,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            onPressed: () async {
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                context: context,
-                                builder: (context) {
-                                  return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: const SizedBox(
-                                        height: 370.0,
-                                        child: ManualFoodWidget(
-                                          foodPeriod: 'Supper',
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => safeSetState(() {}));
-                            },
-                          ),
-                          Text(
-                            'Supper',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            icon: Icon(
-                              Icons.fastfood_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            onPressed: () async {
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                context: context,
-                                builder: (context) {
-                                  return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: const SizedBox(
-                                        height: 370.0,
-                                        child: ManualFoodWidget(
-                                          foodPeriod: 'Snack',
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => safeSetState(() {}));
-                            },
-                          ),
-                          Text(
-                            'Snack',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        width: 143.0,
-                        height: 143.0,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 10.0),
-                          child: Stack(
-                            children: [
-                              Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 34.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 183.0,
-                                  icon: Icon(
-                                    FFIcons.kicons8Plate50,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 127.0,
-                                  ),
-                                  onPressed: () async {
-                                    context.pushNamed(
-                                      'Plate',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.rightToLeft,
-                                        ),
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        child: Container(
-                          width: 100.0,
-                          height: 100.0,
-                          decoration: const BoxDecoration(),
-                          child: FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            icon: Icon(
-                              FFIcons.kicons8Water50,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 59.0,
-                            ),
-                            onPressed: () async {
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                context: context,
-                                builder: (context) {
-                                  return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: const SizedBox(
-                                        height: 320.0,
-                                        child: WaterWidget(),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => safeSetState(() {}));
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Flexible(
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.2, 0.0),
-                        child: Text(
-                          'To plate',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
+                            Text(
+                              'Breakfast',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
                                     fontFamily: 'Readex Pro',
-                                    fontSize: 17.0,
                                     letterSpacing: 0.0,
                                   ),
+                            ),
+                          ],
                         ),
-                      ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: FlutterFlowIconButton(
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                icon: Icon(
+                                  FFIcons.kicons8Lunchbox64,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 27.0,
+                                ),
+                                onPressed: () async {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    enableDrag: false,
+                                    context: context,
+                                    builder: (context) {
+                                      return GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: const SizedBox(
+                                            height: 370.0,
+                                            child: ManualFoodWidget(
+                                              foodPeriod: 'Lunch',
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => safeSetState(() {}));
+                                },
+                              ),
+                            ),
+                            Text(
+                              'Lunch',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            FlutterFlowIconButton(
+                              borderColor: FlutterFlowTheme.of(context).primary,
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 40.0,
+                              icon: Icon(
+                                FFIcons.kicons8Supper50,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: const SizedBox(
+                                          height: 370.0,
+                                          child: ManualFoodWidget(
+                                            foodPeriod: 'Supper',
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => safeSetState(() {}));
+                              },
+                            ),
+                            Text(
+                              'Supper',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            FlutterFlowIconButton(
+                              borderColor: FlutterFlowTheme.of(context).primary,
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 40.0,
+                              icon: Icon(
+                                Icons.fastfood_rounded,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: const SizedBox(
+                                          height: 370.0,
+                                          child: ManualFoodWidget(
+                                            foodPeriod: 'Snack',
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => safeSetState(() {}));
+                              },
+                            ),
+                            Text(
+                              'Snack',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    Flexible(
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.2, 0.0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 10.0),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          width: 143.0,
+                          height: 143.0,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 10.0),
+                            child: Stack(
+                              children: [
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 34.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 183.0,
+                                    icon: Icon(
+                                      FFIcons.kicons8Plate50,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 127.0,
+                                    ),
+                                    onPressed: () async {
+                                      context.pushNamed(
+                                        'Plate',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.rightToLeft,
+                                          ),
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Flexible(
+                          child: Container(
+                            width: 100.0,
+                            height: 100.0,
+                            decoration: const BoxDecoration(),
+                            child: FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 40.0,
+                              icon: Icon(
+                                FFIcons.kicons8Water50,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 59.0,
+                              ),
+                              onPressed: () async {
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: const SizedBox(
+                                          height: 320.0,
+                                          child: WaterWidget(),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => safeSetState(() {}));
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Flexible(
+                        child: Align(
+                          alignment: const AlignmentDirectional(0.2, 0.0),
                           child: Text(
-                            'Drinks',
+                            'To plate',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -784,8 +786,27 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      Flexible(
+                        child: Align(
+                          alignment: const AlignmentDirectional(0.2, 0.0),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 10.0),
+                            child: Text(
+                              'Drinks',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 17.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

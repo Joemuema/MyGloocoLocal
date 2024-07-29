@@ -1,0 +1,478 @@
+import '/backend/backend.dart';
+import '/components/highintensitylistcomponents_widget.dart';
+import '/components/lowintensitylistcomponent_widget.dart';
+import '/exercises/mediumsintensitylistcomponent/mediumsintensitylistcomponent_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import 'package:flutter/material.dart';
+import 'listpage_model.dart';
+export 'listpage_model.dart';
+
+class ListpageWidget extends StatefulWidget {
+  const ListpageWidget({super.key});
+
+  @override
+  State<ListpageWidget> createState() => _ListpageWidgetState();
+}
+
+class _ListpageWidgetState extends State<ListpageWidget> {
+  late ListpageModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => ListpageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<List<AddpagecollectionRecord>>(
+      stream: queryAddpagecollectionRecord(),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: Center(
+              child: SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    FlutterFlowTheme.of(context).primary,
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+        List<AddpagecollectionRecord> listpageAddpagecollectionRecordList =
+            snapshot.data!;
+
+        return GestureDetector(
+          onTap: () => _model.unfocusNode.canRequestFocus
+              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+              : FocusScope.of(context).unfocus(),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: Colors.white,
+            body: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 113.0,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF4D7E3E),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0),
+                        topLeft: Radius.circular(0.0),
+                        topRight: Radius.circular(0.0),
+                      ),
+                    ),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 35.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                10.0, 0.0, 0.0, 0.0),
+                            child: FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 40.0,
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                context.safePop();
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                110.0, 0.0, 0.0, 0.0),
+                            child: Text(
+                              'History',
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineMedium
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    fontSize: 25.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Search',
+                            style: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    elevation: 4.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Search for an Activty',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                icon: const Icon(
+                                  Icons.search,
+                                  color: Color(0xFF4D7E3E),
+                                  size: 24.0,
+                                ),
+                                onPressed: () async {
+                                  context.pushNamed('Searchitemspage');
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Low Intensity',
+                            style: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    child: StreamBuilder<List<AddpagecollectionRecord>>(
+                      stream: queryAddpagecollectionRecord(
+                        queryBuilder: (addpagecollectionRecord) =>
+                            addpagecollectionRecord
+                                .where(
+                                  'intensity',
+                                  isEqualTo: 'Low',
+                                )
+                                .where(
+                                  'completed',
+                                  isEqualTo: true,
+                                ),
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                        List<AddpagecollectionRecord>
+                            listViewAddpagecollectionRecordList =
+                            snapshot.data!;
+
+                        return ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: listViewAddpagecollectionRecordList.length,
+                          itemBuilder: (context, listViewIndex) {
+                            final listViewAddpagecollectionRecord =
+                                listViewAddpagecollectionRecordList[
+                                    listViewIndex];
+                            return wrapWithModel(
+                              model: _model.lowintensitylistcomponentModels
+                                  .getModel(
+                                listViewAddpagecollectionRecord.reference.id,
+                                listViewIndex,
+                              ),
+                              updateCallback: () => setState(() {}),
+                              child: LowintensitylistcomponentWidget(
+                                key: Key(
+                                  'Key1t2_${listViewAddpagecollectionRecord.reference.id}',
+                                ),
+                                lowintensitylistcomponent:
+                                    listViewAddpagecollectionRecord,
+                                checkboxaction: () async {},
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'Medium Intensity',
+                            style: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  StreamBuilder<List<AddpagecollectionRecord>>(
+                    stream: queryAddpagecollectionRecord(
+                      queryBuilder: (addpagecollectionRecord) =>
+                          addpagecollectionRecord
+                              .where(
+                                'intensity',
+                                isEqualTo: 'Medium',
+                              )
+                              .where(
+                                'completed',
+                                isEqualTo: true,
+                              ),
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      List<AddpagecollectionRecord>
+                          listViewAddpagecollectionRecordList = snapshot.data!;
+
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listViewAddpagecollectionRecordList.length,
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewAddpagecollectionRecord =
+                              listViewAddpagecollectionRecordList[
+                                  listViewIndex];
+                          return wrapWithModel(
+                            model: _model.mediumsintensitylistcomponentModels
+                                .getModel(
+                              listViewAddpagecollectionRecord.reference.id,
+                              listViewIndex,
+                            ),
+                            updateCallback: () => setState(() {}),
+                            child: MediumsintensitylistcomponentWidget(
+                              key: Key(
+                                'Keypux_${listViewAddpagecollectionRecord.reference.id}',
+                              ),
+                              mediumintensitylistdocument:
+                                  listViewAddpagecollectionRecord,
+                              checkboxaction: () async {},
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            'High Intensity',
+                            style: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  StreamBuilder<List<AddpagecollectionRecord>>(
+                    stream: queryAddpagecollectionRecord(
+                      queryBuilder: (addpagecollectionRecord) =>
+                          addpagecollectionRecord
+                              .where(
+                                'intensity',
+                                isEqualTo: 'High',
+                              )
+                              .where(
+                                'completed',
+                                isEqualTo: true,
+                              ),
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      List<AddpagecollectionRecord>
+                          listViewAddpagecollectionRecordList = snapshot.data!;
+
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listViewAddpagecollectionRecordList.length,
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewAddpagecollectionRecord =
+                              listViewAddpagecollectionRecordList[
+                                  listViewIndex];
+                          return wrapWithModel(
+                            model: _model.highintensitylistcomponentsModels
+                                .getModel(
+                              listViewAddpagecollectionRecord.reference.id,
+                              listViewIndex,
+                            ),
+                            updateCallback: () => setState(() {}),
+                            child: HighintensitylistcomponentsWidget(
+                              key: Key(
+                                'Key6mc_${listViewAddpagecollectionRecord.reference.id}',
+                              ),
+                              highintensitylistdocument:
+                                  listViewAddpagecollectionRecord,
+                              checkboxaction: () async {},
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

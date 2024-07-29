@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'med_menu_model.dart';
 export 'med_menu_model.dart';
 
@@ -58,7 +59,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
             children: [
               Container(
                 width: double.infinity,
-                height: 216.0,
+                height: 270.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   boxShadow: [
@@ -136,10 +137,10 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Icon(
-                                      Icons.add,
+                                      Icons.add_circle_outline_rounded,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      size: 20.0,
+                                      size: 22.0,
                                     ),
                                   ),
                                 ),
@@ -176,7 +177,15 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed('MedicationList');
+                          context.pushNamed(
+                            'MedicationList',
+                            queryParameters: {
+                              'listOption': serializeParam(
+                                'view',
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                          );
                         },
                         child: Container(
                           width: double.infinity,
@@ -199,10 +208,10 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Icon(
-                                      Icons.medical_information_outlined,
+                                      Icons.edit_document,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      size: 20.0,
+                                      size: 22.0,
                                     ),
                                   ),
                                 ),
@@ -217,6 +226,77 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                       children: [
                                         Text(
                                           'View/Edit Medication',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelLarge
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            'MedicationList',
+                            queryParameters: {
+                              'listOption': serializeParam(
+                                'refill',
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                          );
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 60.0,
+                          decoration: const BoxDecoration(),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                12.0, 8.0, 12.0, 8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  elevation: 0.0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(40.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: FaIcon(
+                                      FontAwesomeIcons.briefcaseMedical,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 22.0,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 0.0, 0.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Refill Medication',
                                           style: FlutterFlowTheme.of(context)
                                               .labelLarge
                                               .override(
@@ -262,10 +342,10 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Icon(
-                                      Icons.arrow_back,
+                                      Icons.arrow_back_rounded,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      size: 20.0,
+                                      size: 22.0,
                                     ),
                                   ),
                                 ),

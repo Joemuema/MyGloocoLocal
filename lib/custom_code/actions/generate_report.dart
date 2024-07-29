@@ -14,7 +14,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'dart:io';
 import 'package:open_filex/open_filex.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
+// Constants for log types
 const String DIET_LOGS = 'DietLogs';
 const String MEDICATION_LOGS = 'MedicationLogs';
 const String BLOOD_SUGAR_LOGS = 'BloodSugarLogs';
@@ -108,176 +110,216 @@ Future<String> generateReport(
   final pdf = pw.Document();
   final selectedEndDate = DateTime.now();
 
-  if (selectedContents.contains(DIET_LOGS)) {
-    final mealLogs = await fetchMealLogs(selectedStartDate, selectedEndDate);
-    pdf.addPage(
-      pw.Page(
-        build: (pw.Context context) => pw.Column(
-          children: [
-            pw.Text('Diet Information', style: pw.TextStyle(fontSize: 18)),
-            pw.Table.fromTextArray(context: context, data: [
-              ['Date', 'Meal', 'Type'],
-              ...mealLogs.map((log) => [
-                    log.date != null
-                        ? DateFormat('dd-MM-yyyy').format(log.date)
-                        : 'N/A',
-                    log.meal.toString(),
-                    log.type
-                  ])
-            ]),
-          ],
+  try {
+    if (selectedContents.contains(DIET_LOGS)) {
+      final mealLogs = await fetchMealLogs(selectedStartDate, selectedEndDate);
+      print("Fetched ${mealLogs.length} meal logs: $mealLogs");
+      pdf.addPage(
+        pw.Page(
+          build: (pw.Context context) => pw.Column(
+            children: [
+              pw.Text('Diet Information', style: pw.TextStyle(fontSize: 18)),
+              pw.Table.fromTextArray(context: context, data: [
+                ['Date', 'Meal', 'Type'],
+                ...mealLogs.map((log) => [
+                      log.date != null
+                          ? DateFormat('dd-MM-yyyy').format(log.date)
+                          : 'N/A',
+                      log.meal.toString(),
+                      log.type
+                    ])
+              ]),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
+    }
 
-  if (selectedContents.contains(MEDICATION_LOGS)) {
-    final medicationReminders =
-        await fetchMedicationReminders(selectedStartDate, selectedEndDate);
-    pdf.addPage(
-      pw.Page(
-        build: (pw.Context context) => pw.Column(
-          children: [
-            pw.Text('Medication Reminders', style: pw.TextStyle(fontSize: 18)),
-            pw.Table.fromTextArray(context: context, data: [
-              ['Date', 'Type', 'Medication', 'Dosage'],
-              ...medicationReminders.map((reminder) => [
-                    reminder.date != null
-                        ? DateFormat('dd-MM-yyyy').format(reminder.date)
-                        : 'N/A',
-                    reminder.type,
-                    reminder.medication,
-                    reminder.dosage,
-                  ]),
-            ]),
-          ],
+    if (selectedContents.contains(MEDICATION_LOGS)) {
+      final medicationReminders =
+          await fetchMedicationReminders(selectedStartDate, selectedEndDate);
+      print(
+          "Fetched ${medicationReminders.length} medication reminders: $medicationReminders");
+      pdf.addPage(
+        pw.Page(
+          build: (pw.Context context) => pw.Column(
+            children: [
+              pw.Text('Medication Reminders',
+                  style: pw.TextStyle(fontSize: 18)),
+              pw.Table.fromTextArray(context: context, data: [
+                ['Date', 'Type', 'Medication', 'Dosage'],
+                ...medicationReminders.map((reminder) => [
+                      reminder.date != null
+                          ? DateFormat('dd-MM-yyyy').format(reminder.date)
+                          : 'N/A',
+                      reminder.type,
+                      reminder.medication,
+                      reminder.dosage,
+                    ]),
+              ]),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
+    }
 
-  if (selectedContents.contains(BLOOD_SUGAR_LOGS)) {
-    final bloodSugarReadings =
-        await fetchBloodSugarReadings(selectedStartDate, selectedEndDate);
-    final averageBloodSugar =
-        await calculateAverageBloodSugar(selectedStartDate, selectedEndDate);
-    pdf.addPage(
-      pw.Page(
-        build: (pw.Context context) => pw.Column(
-          children: [
-            pw.Text('Blood Sugar Readings', style: pw.TextStyle(fontSize: 18)),
-            pw.Table.fromTextArray(context: context, data: [
-              ['Date', 'Period', 'Reading (mg/dL)'],
-              ...bloodSugarReadings.map((reading) => [
-                    reading.date != null
-                        ? DateFormat('dd-MM-yyyy').format(reading.date)
-                        : 'N/A',
-                    reading.period,
-                    reading.reading.toString()
-                  ])
-            ]),
-            pw.SizedBox(height: 10),
-            pw.Text(
-                'Average Blood Sugar: ${averageBloodSugar.toStringAsFixed(2)} mg/dL',
-                style: pw.TextStyle(fontSize: 16)),
-          ],
+    if (selectedContents.contains(BLOOD_SUGAR_LOGS)) {
+      final bloodSugarReadings =
+          await fetchBloodSugarReadings(selectedStartDate, selectedEndDate);
+      final averageBloodSugar =
+          await calculateAverageBloodSugar(selectedStartDate, selectedEndDate);
+      print(
+          "Fetched ${bloodSugarReadings.length} blood sugar readings: $bloodSugarReadings");
+      pdf.addPage(
+        pw.Page(
+          build: (pw.Context context) => pw.Column(
+            children: [
+              pw.Text('Blood Sugar Readings',
+                  style: pw.TextStyle(fontSize: 18)),
+              pw.Table.fromTextArray(context: context, data: [
+                ['Date', 'Period', 'Reading (mg/dL)'],
+                ...bloodSugarReadings.map((reading) => [
+                      reading.date != null
+                          ? DateFormat('dd-MM-yyyy').format(reading.date)
+                          : 'N/A',
+                      reading.period,
+                      reading.reading.toString()
+                    ])
+              ]),
+              pw.SizedBox(height: 10),
+              pw.Text(
+                  'Average Blood Sugar: ${averageBloodSugar.toStringAsFixed(2)} mg/dL',
+                  style: pw.TextStyle(fontSize: 16)),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
+    }
 
-  if (selectedContents.contains(PHYSICAL_ACTIVITY_LOGS)) {
-    final physicalActivities =
-        await fetchPhysicalActivities(selectedStartDate, selectedEndDate);
-    pdf.addPage(
-      pw.Page(
-        build: (pw.Context context) => pw.Column(
-          children: [
-            pw.Text('Physical Activity', style: pw.TextStyle(fontSize: 18)),
-            pw.Table.fromTextArray(context: context, data: [
-              ['Date', 'Activity', 'Duration'],
-              ...physicalActivities.map((activity) => [
-                    activity.date != null
-                        ? DateFormat('dd-MM-yyyy').format(activity.date)
-                        : 'N/A',
-                    activity.activity,
-                    activity.duration
-                  ])
-            ]),
-          ],
+    if (selectedContents.contains(PHYSICAL_ACTIVITY_LOGS)) {
+      final physicalActivities =
+          await fetchPhysicalActivities(selectedStartDate, selectedEndDate);
+      print(
+          "Fetched ${physicalActivities.length} physical activities: $physicalActivities");
+      pdf.addPage(
+        pw.Page(
+          build: (pw.Context context) => pw.Column(
+            children: [
+              pw.Text('Physical Activity', style: pw.TextStyle(fontSize: 18)),
+              pw.Table.fromTextArray(context: context, data: [
+                ['Date', 'Activity', 'Duration'],
+                ...physicalActivities.map((activity) => [
+                      activity.date != null
+                          ? DateFormat('dd-MM-yyyy').format(activity.date)
+                          : 'N/A',
+                      activity.activity,
+                      activity.duration
+                    ])
+              ]),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
+
+    final output = await getTemporaryDirectory();
+    final file = File(
+        "${output.path}/report_${DateFormat('ddMMyyyy_HHmmss').format(DateTime.now())}.pdf");
+    await file.writeAsBytes(await pdf.save());
+    print("PDF saved at ${file.path}");
+
+    await Share.shareXFiles([XFile(file.path)],
+        text: 'Here is your patient report.');
+
+    OpenFilex.open(file.path);
+
+    return file.path;
+  } catch (e) {
+    print("Error generating report: $e");
+    rethrow;
   }
-
-  final output = await getTemporaryDirectory();
-  final file = File(
-      "${output.path}/report_${DateFormat('ddMMyyyy_HHmmss').format(DateTime.now())}.pdf");
-  await file.writeAsBytes(await pdf.save());
-
-  await Share.shareXFiles([XFile(file.path)],
-      text: 'Here is your patient report.');
-
-  OpenFilex.open(file.path);
-
-  return file.path;
 }
 
 Future<List<MealLog>> fetchMealLogs(
     DateTime startDate, DateTime endDate) async {
-  final querySnapshot = await FirebaseFirestore.instance
-      .collection('Meals')
-      .where('date', isGreaterThanOrEqualTo: startDate)
-      .where('date', isLessThanOrEqualTo: endDate)
-      .get();
+  try {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('Meals')
+        .where('date', isGreaterThanOrEqualTo: startDate)
+        .where('date', isLessThanOrEqualTo: endDate)
+        .get();
 
-  return querySnapshot.docs.map((doc) => MealLog.fromFirestore(doc)).toList();
+    return querySnapshot.docs.map((doc) => MealLog.fromFirestore(doc)).toList();
+  } catch (e) {
+    print("Error fetching meal logs: $e");
+    return [];
+  }
 }
 
 Future<List<MedicationReminder>> fetchMedicationReminders(
     DateTime startDate, DateTime endDate) async {
-  final querySnapshot = await FirebaseFirestore.instance
-      .collection('Medicine')
-      .where('date', isGreaterThanOrEqualTo: startDate)
-      .where('date', isLessThanOrEqualTo: endDate)
-      .get();
+  try {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('Medicine')
+        .where('date', isGreaterThanOrEqualTo: startDate)
+        .where('date', isLessThanOrEqualTo: endDate)
+        .get();
 
-  return querySnapshot.docs
-      .map((doc) => MedicationReminder.fromFirestore(doc))
-      .toList();
+    return querySnapshot.docs
+        .map((doc) => MedicationReminder.fromFirestore(doc))
+        .toList();
+  } catch (e) {
+    print("Error fetching medication reminders: $e");
+    return [];
+  }
 }
 
 Future<List<BloodSugarReading>> fetchBloodSugarReadings(
     DateTime startDate, DateTime endDate) async {
-  final querySnapshot = await FirebaseFirestore.instance
-      .collection('bloodglucose')
-      .where('date', isGreaterThanOrEqualTo: startDate)
-      .where('date', isLessThanOrEqualTo: endDate)
-      .get();
+  try {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('bloodglucose')
+        .where('date', isGreaterThanOrEqualTo: startDate)
+        .where('date', isLessThanOrEqualTo: endDate)
+        .get();
 
-  return querySnapshot.docs
-      .map((doc) => BloodSugarReading.fromFirestore(doc))
-      .toList();
+    return querySnapshot.docs
+        .map((doc) => BloodSugarReading.fromFirestore(doc))
+        .toList();
+  } catch (e) {
+    print("Error fetching blood sugar readings: $e");
+    return [];
+  }
 }
 
 Future<double> calculateAverageBloodSugar(
     DateTime startDate, DateTime endDate) async {
-  final readings = await fetchBloodSugarReadings(startDate, endDate);
-  if (readings.isEmpty) return 0.0;
+  try {
+    final readings = await fetchBloodSugarReadings(startDate, endDate);
+    if (readings.isEmpty) return 0.0;
 
-  final total = readings.fold(0.0, (sum, reading) => sum + reading.reading);
-  return total / readings.length;
+    final total = readings.fold(0.0, (sum, reading) => sum + reading.reading);
+    return total / readings.length;
+  } catch (e) {
+    print("Error calculating average blood sugar: $e");
+    return 0.0;
+  }
 }
 
 Future<List<PhysicalActivity>> fetchPhysicalActivities(
     DateTime startDate, DateTime endDate) async {
-  final querySnapshot = await FirebaseFirestore.instance
-      .collection('PhysicalActivities')
-      .where('date', isGreaterThanOrEqualTo: startDate)
-      .where('date', isLessThanOrEqualTo: endDate)
-      .get();
+  try {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('PhysicalActivities')
+        .where('date', isGreaterThanOrEqualTo: startDate)
+        .where('date', isLessThanOrEqualTo: endDate)
+        .get();
 
-  return querySnapshot.docs
-      .map((doc) => PhysicalActivity.fromFirestore(doc))
-      .toList();
+    return querySnapshot.docs
+        .map((doc) => PhysicalActivity.fromFirestore(doc))
+        .toList();
+  } catch (e) {
+    print("Error fetching physical activities: $e");
+    return [];
+  }
 }

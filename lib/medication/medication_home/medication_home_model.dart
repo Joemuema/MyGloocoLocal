@@ -2,6 +2,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/medication/home_reminder/home_reminder_widget.dart';
+import '/medication/no_elements/no_elements_widget.dart';
 import 'medication_home_widget.dart' show MedicationHomeWidget;
 import 'package:flutter/material.dart';
 
@@ -96,6 +97,8 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
   List<IndividualRemindersRecord>? currentSubReminders;
   // Stores action output result for [Custom Action - requestPermissions] action in MedicationHome widget.
   bool? permissionsGranted;
+  // Stores action output result for [Firestore Query - Query a collection] action in MedicationHome widget.
+  List<MedicineRecord>? lowCapacityMeds;
   // State field(s) for Calendar widget.
   DateTimeRange? calendarSelectedDay;
   // Stores action output result for [Firestore Query - Query a collection] action in Calendar widget.
@@ -104,6 +107,8 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
   List<IndividualRemindersRecord>? todaySubReminders;
   // Stores action output result for [Firestore Query - Query a collection] action in Calendar widget.
   List<IndividualRemindersRecord>? calendarSubReminders;
+  // Model for noElements component.
+  late NoElementsModel noElementsModel;
   // Models for homeReminder dynamic component.
   late FlutterFlowDynamicModels<HomeReminderModel> homeReminderModels;
 
@@ -113,12 +118,14 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
       start: DateTime.now().startOfDay,
       end: DateTime.now().endOfDay,
     );
+    noElementsModel = createModel(context, () => NoElementsModel());
     homeReminderModels = FlutterFlowDynamicModels(() => HomeReminderModel());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
+    noElementsModel.dispose();
     homeReminderModels.dispose();
   }
 }

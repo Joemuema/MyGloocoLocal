@@ -1,10 +1,13 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'access_from_main_tab_model.dart';
 export 'access_from_main_tab_model.dart';
 
@@ -30,11 +33,8 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
     super.initState();
     _model = createModel(context, () => AccessFromMainTabModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
-
-    _model.emailAddressTextController ??= TextEditingController();
-    _model.emailAddressFocusNode ??= FocusNode();
+    _model.foodentrysTextController ??= TextEditingController();
+    _model.foodentrysFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -48,6 +48,8 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return InkWell(
       splashColor: Colors.transparent,
       focusColor: Colors.transparent,
@@ -104,53 +106,64 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      FlutterFlowChoiceChips(
-                        options: const [
-                          ChipData('Breakfast', Icons.emoji_food_beverage),
-                          ChipData('Lunch', Icons.lunch_dining),
-                          ChipData('Supper', Icons.food_bank_outlined),
-                          ChipData('Snack')
-                        ],
-                        onChanged: (val) => setState(
-                            () => _model.choiceChipsValue = val?.firstOrNull),
-                        selectedChipStyle: ChipStyle(
-                          backgroundColor: FlutterFlowTheme.of(context).primary,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                letterSpacing: 0.0,
-                              ),
-                          iconColor: FlutterFlowTheme.of(context).primaryText,
-                          iconSize: 18.0,
-                          elevation: 4.0,
-                          borderRadius: BorderRadius.circular(16.0),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            10.0, 0.0, 10.0, 0.0),
+                        child: Form(
+                          key: _model.formKey1,
+                          autovalidateMode: AutovalidateMode.disabled,
+                          child: FlutterFlowChoiceChips(
+                            options: const [
+                              ChipData('Breakfast', Icons.emoji_food_beverage),
+                              ChipData('Lunch', Icons.lunch_dining),
+                              ChipData('Supper', Icons.food_bank_outlined),
+                              ChipData('Snack')
+                            ],
+                            onChanged: (val) => setState(() =>
+                                _model.choiceChipsValue = val?.firstOrNull),
+                            selectedChipStyle: ChipStyle(
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    letterSpacing: 0.0,
+                                  ),
+                              iconColor:
+                                  FlutterFlowTheme.of(context).primaryText,
+                              iconSize: 18.0,
+                              elevation: 4.0,
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            unselectedChipStyle: ChipStyle(
+                              backgroundColor: const Color(0xFFCEC4C4),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    letterSpacing: 0.0,
+                                  ),
+                              iconColor: const Color(0xFF0D0909),
+                              iconSize: 18.0,
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            chipSpacing: 7.0,
+                            rowSpacing: 7.0,
+                            multiselect: false,
+                            alignment: WrapAlignment.center,
+                            controller: _model.choiceChipsValueController ??=
+                                FormFieldController<List<String>>(
+                              [],
+                            ),
+                            wrapped: false,
+                          ),
                         ),
-                        unselectedChipStyle: ChipStyle(
-                          backgroundColor: const Color(0xFFCEC4C4),
-                          textStyle: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                letterSpacing: 0.0,
-                              ),
-                          iconColor: const Color(0xFF0D0909),
-                          iconSize: 18.0,
-                          elevation: 0.0,
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                        chipSpacing: 7.0,
-                        rowSpacing: 7.0,
-                        multiselect: false,
-                        alignment: WrapAlignment.center,
-                        controller: _model.choiceChipsValueController ??=
-                            FormFieldController<List<String>>(
-                          [],
-                        ),
-                        wrapped: false,
                       ),
                     ],
                   ),
@@ -167,149 +180,135 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                           color: FlutterFlowTheme.of(context).primaryText,
                           size: 24.0,
                         ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
+                        onPressed: () async {
+                          context.pushNamed('Foodsearch');
                         },
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.textController1,
-                            focusNode: _model.textFieldFocusNode,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText:
-                                  'You could search from our database....',
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            10.0, 10.0, 10.0, 7.0),
+                        child: Text(
+                          'You could also search from our food database',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
+                                    fontSize: 14.95,
                                     letterSpacing: 0.0,
                                   ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Colors.black,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Roboto',
-                                  fontSize: 17.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            validator: _model.textController1Validator
-                                .asValidator(context),
-                          ),
                         ),
                       ),
                     ],
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
-                    child: TextFormField(
-                      controller: _model.emailAddressTextController,
-                      focusNode: _model.emailAddressFocusNode,
-                      textCapitalization: TextCapitalization.sentences,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelStyle:
-                            FlutterFlowTheme.of(context).bodyLarge.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                        hintText:
-                            'Your food goes here(estimation cannot be done for manual inputs)...e.g.;\n1x egg\n2x Sausage\n4 slices of bread',
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelLarge.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.black,
-                            width: 2.0,
+                  Form(
+                    key: _model.formKey2,
+                    autovalidateMode: AutovalidateMode.disabled,
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 16.0, 16.0, 16.0),
+                      child: TextFormField(
+                        controller: _model.foodentrysTextController,
+                        focusNode: _model.foodentrysFocusNode,
+                        textCapitalization: TextCapitalization.sentences,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelStyle:
+                              FlutterFlowTheme.of(context).bodyLarge.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                          hintText:
+                              'Your food goes here(estimation cannot be done for manual inputs)',
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelLarge.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).accent1,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
-                          borderRadius: BorderRadius.circular(20.0),
+                          filled: true,
+                          fillColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 24.0, 20.0, 24.0),
                         ),
-                        filled: true,
-                        fillColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 24.0, 20.0, 24.0),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Roboto',
+                              fontSize: 17.0,
+                              letterSpacing: 0.0,
+                            ),
+                        maxLines: 4,
+                        cursorColor: FlutterFlowTheme.of(context).primary,
+                        validator: _model.foodentrysTextControllerValidator
+                            .asValidator(context),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Roboto',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                          ),
-                      maxLines: 4,
-                      cursorColor: FlutterFlowTheme.of(context).primary,
-                      validator: _model.emailAddressTextControllerValidator
-                          .asValidator(context),
                     ),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 44.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        if (_model.formKey1.currentState == null ||
+                            !_model.formKey1.currentState!.validate()) {
+                          return;
+                        }
+                        if (_model.formKey2.currentState == null ||
+                            !_model.formKey2.currentState!.validate()) {
+                          return;
+                        }
+
+                        await MealsRecord.collection.doc().set({
+                          ...createMealsRecordData(
+                            type: _model.choiceChipsValue,
+                            date: functions.getDate(getCurrentTimestamp),
+                            userID: FFAppState().UserID,
+                          ),
+                          ...mapToFirestore(
+                            {
+                              'meals': [_model.choiceChipsValue],
+                            },
+                          ),
+                        });
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Successfully added to plate',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 2650),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
                       },
                       text: 'Record meal',
                       options: FFButtonOptions(

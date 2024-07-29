@@ -6,30 +6,35 @@ import 'package:flutter/material.dart';
 class AccessFromMainTabModel extends FlutterFlowModel<AccessFromMainTabWidget> {
   ///  State fields for stateful widgets in this component.
 
+  final formKey1 = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
   // State field(s) for ChoiceChips widget.
   FormFieldController<List<String>>? choiceChipsValueController;
   String? get choiceChipsValue =>
       choiceChipsValueController?.value?.firstOrNull;
   set choiceChipsValue(String? val) =>
       choiceChipsValueController?.value = val != null ? [val] : [];
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for emailAddress widget.
-  FocusNode? emailAddressFocusNode;
-  TextEditingController? emailAddressTextController;
-  String? Function(BuildContext, String?)? emailAddressTextControllerValidator;
+  // State field(s) for Foodentrys widget.
+  FocusNode? foodentrysFocusNode;
+  TextEditingController? foodentrysTextController;
+  String? Function(BuildContext, String?)? foodentrysTextControllerValidator;
+  String? _foodentrysTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    foodentrysTextControllerValidator = _foodentrysTextControllerValidator;
+  }
 
   @override
   void dispose() {
-    textFieldFocusNode?.dispose();
-    textController1?.dispose();
-
-    emailAddressFocusNode?.dispose();
-    emailAddressTextController?.dispose();
+    foodentrysFocusNode?.dispose();
+    foodentrysTextController?.dispose();
   }
 }

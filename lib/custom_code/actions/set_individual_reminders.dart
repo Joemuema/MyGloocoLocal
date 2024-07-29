@@ -39,6 +39,13 @@ Future setIndividualReminders(List<DocumentReference> reminderDocs) async {
       int dateNumber = reminderSnapshot['DateNumber'];
 
       while (currentDate.isBefore(endDate)) {
+        DateTime now = DateTime.now();
+        DateTime today = DateTime(now.year, now.month, now.day);
+        if (currentDate.isBefore(today)) {
+          currentDate = currentDate.add(Duration(days: 1));
+          continue;
+        }
+
         bool addReminder = false;
 
         if (frequency == 'Once' || frequency == 'Daily') {
