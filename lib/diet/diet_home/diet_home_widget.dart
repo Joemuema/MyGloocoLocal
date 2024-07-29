@@ -45,56 +45,21 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(70.0),
-          child: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primary,
-            automaticallyImplyLeading: false,
-            title: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Flexible(
-                  child: Text(
-                    'Diet',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          fontSize: 45.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w800,
-                        ),
-                  ),
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          automaticallyImplyLeading: false,
+          title: Text(
+            'Diet',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Inter',
+                  color: Colors.white,
+                  letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
                 ),
-              ],
-            ),
-            actions: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
-                    child: FlutterFlowIconButton(
-                      borderColor: FlutterFlowTheme.of(context).primary,
-                      borderRadius: 20.0,
-                      borderWidth: 1.0,
-                      buttonSize: 40.0,
-                      fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                      icon: Icon(
-                        Icons.person_sharp,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
-                      ),
-                      onPressed: () {
-                        print('IconButton pressed ...');
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ],
-            centerTitle: false,
-            elevation: 2.0,
           ),
+          actions: const [],
+          centerTitle: true,
+          elevation: 2.0,
         ),
         body: SafeArea(
           top: true,

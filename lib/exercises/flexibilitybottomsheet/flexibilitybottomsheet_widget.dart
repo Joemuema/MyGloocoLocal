@@ -69,8 +69,8 @@ class _FlexibilitybottomsheetWidgetState
                   color: FlutterFlowTheme.of(context).primaryText,
                   size: 20.0,
                 ),
-                onPressed: () {
-                  print('IconButton pressed ...');
+                onPressed: () async {
+                  context.safePop();
                 },
               ),
               Padding(
@@ -87,7 +87,7 @@ class _FlexibilitybottomsheetWidgetState
                         const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: const Color(0xFF4D7E3E),
+                    color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
                           color: Colors.white,
@@ -107,7 +107,7 @@ class _FlexibilitybottomsheetWidgetState
           ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: Image.network(
-              'https://picsum.photos/seed/916/600',
+              widget.flexibilityexercises!.image,
               width: 380.0,
               height: 200.0,
               fit: BoxFit.cover,
@@ -137,7 +137,6 @@ class _FlexibilitybottomsheetWidgetState
             padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 0.0),
             child: Container(
               width: double.infinity,
-              height: 100.0,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
                 borderRadius: BorderRadius.circular(10.0),
@@ -146,8 +145,8 @@ class _FlexibilitybottomsheetWidgetState
                 padding: const EdgeInsets.all(5.0),
                 child: Text(
                   valueOrDefault<String>(
-                    widget.flexibilityexercises?.description,
-                    'description',
+                    widget.flexibilityexercises?.howto,
+                    'HowTo',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',

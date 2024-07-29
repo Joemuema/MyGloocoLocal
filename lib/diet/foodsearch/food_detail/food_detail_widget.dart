@@ -103,7 +103,6 @@ class _FoodDetailWidgetState extends State<FoodDetailWidget> {
                           borderRadius: 20.0,
                           borderWidth: 1.0,
                           buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).accent1,
                           icon: Icon(
                             Icons.clear,
                             color: FlutterFlowTheme.of(context).primaryText,

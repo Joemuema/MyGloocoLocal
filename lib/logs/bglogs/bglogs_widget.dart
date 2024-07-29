@@ -247,10 +247,10 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   iconPadding:
                       const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).secondary,
+                  color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Readex Pro',
-                        color: Colors.white,
+                        color: FlutterFlowTheme.of(context).primaryText,
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,
@@ -373,12 +373,12 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                         ),
                     icon: Icon(
                       Icons.keyboard_arrow_down_rounded,
-                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      color: FlutterFlowTheme.of(context).primaryText,
                       size: 24.0,
                     ),
-                    fillColor: FlutterFlowTheme.of(context).secondary,
+                    fillColor: FlutterFlowTheme.of(context).primary,
                     elevation: 2.0,
-                    borderColor: FlutterFlowTheme.of(context).alternate,
+                    borderColor: Colors.transparent,
                     borderWidth: 2.0,
                     borderRadius: 22.0,
                     margin:
@@ -424,7 +424,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
               color: FlutterFlowTheme.of(context).primary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: 'Readex Pro',
-                    color: Colors.white,
+                    color: FlutterFlowTheme.of(context).primaryText,
                     letterSpacing: 0.0,
                   ),
               elevation: 3.0,

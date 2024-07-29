@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/components/upperbodycomponent_widget.dart';
+import '/exercises/strengthexercises/strengthexercises_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -44,71 +45,40 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
+          title: Text(
+            'Upper Body Exercises',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Inter',
+                  color: Colors.white,
+                  fontSize: 22.0,
+                  letterSpacing: 0.0,
+                ),
+          ),
+          actions: const [],
+          centerTitle: true,
+          elevation: 2.0,
+        ),
         body: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                width: MediaQuery.sizeOf(context).width * 1.0,
-                height: 107.0,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF4D7E3E),
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(15.0),
-                    bottomRight: Radius.circular(15.0),
-                    topLeft: Radius.circular(0.0),
-                    topRight: Radius.circular(0.0),
-                  ),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            icon: Icon(
-                              Icons.arrow_back_ios,
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              size: 24.0,
-                            ),
-                            onPressed: () async {
-                              context.safePop();
-                            },
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                60.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Upper Body Exercises',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    fontSize: 18.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                 child: Row(
@@ -173,7 +143,7 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
                             width: 120.0,
                             height: 120.0,
                             decoration: BoxDecoration(
-                              color: const Color(0xFF4D7E3E),
+                              color: FlutterFlowTheme.of(context).primary,
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                             child: Column(
@@ -271,17 +241,45 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
                             (columnIndex) {
                       final columnStrengthexercisesRecord =
                           columnStrengthexercisesRecordList[columnIndex];
-                      return wrapWithModel(
-                        model: _model.upperbodycomponentModels.getModel(
-                          columnStrengthexercisesRecord.reference.id,
-                          columnIndex,
-                        ),
-                        updateCallback: () => setState(() {}),
-                        child: UpperbodycomponentWidget(
-                          key: Key(
-                            'Keyhl8_${columnStrengthexercisesRecord.reference.id}',
+                      return InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (context) {
+                              return GestureDetector(
+                                onTap: () => _model.unfocusNode.canRequestFocus
+                                    ? FocusScope.of(context)
+                                        .requestFocus(_model.unfocusNode)
+                                    : FocusScope.of(context).unfocus(),
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: StrengthexercisesWidget(
+                                    upperbodyexercisedocument:
+                                        columnStrengthexercisesRecord,
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => safeSetState(() {}));
+                        },
+                        child: wrapWithModel(
+                          model: _model.upperbodycomponentModels.getModel(
+                            columnStrengthexercisesRecord.reference.id,
+                            columnIndex,
                           ),
-                          upperbodydocument: columnStrengthexercisesRecord,
+                          updateCallback: () => setState(() {}),
+                          child: UpperbodycomponentWidget(
+                            key: Key(
+                              'Keyhl8_${columnStrengthexercisesRecord.reference.id}',
+                            ),
+                            upperbodydocument: columnStrengthexercisesRecord,
+                          ),
                         ),
                       );
                     }),

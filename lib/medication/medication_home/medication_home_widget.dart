@@ -282,12 +282,11 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
           automaticallyImplyLeading: false,
           title: Text(
             'Medicine Schedule',
-            style: FlutterFlowTheme.of(context).displaySmall.override(
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Inter',
-                  color: FlutterFlowTheme.of(context).primaryBackground,
-                  fontSize: 22.0,
+                  color: Colors.white,
                   letterSpacing: 0.0,
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.w500,
                 ),
           ),
           actions: const [],

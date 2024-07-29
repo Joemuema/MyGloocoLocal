@@ -266,7 +266,7 @@ class _AddRefillWidgetState extends State<AddRefillWidget> {
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  color: Colors.white,
+                                  color: FlutterFlowTheme.of(context).info,
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 2.0,

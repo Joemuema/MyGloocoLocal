@@ -249,7 +249,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'edhome',
           path: '/edhome',
-          builder: (context, params) => const EdhomeWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'edhome')
+              : const EdhomeWidget(),
         ),
         FFRoute(
           name: 'intro2diabetes',

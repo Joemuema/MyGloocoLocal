@@ -98,7 +98,7 @@ class _LowintensitylistcomponentsWidgetState
                     'Activity:',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
-                          color: const Color(0xFF4D7E3E),
+                          color: FlutterFlowTheme.of(context).secondary,
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -106,7 +106,7 @@ class _LowintensitylistcomponentsWidgetState
                     'Weight:',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
-                          color: const Color(0xFF4D7E3E),
+                          color: FlutterFlowTheme.of(context).secondary,
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -114,7 +114,7 @@ class _LowintensitylistcomponentsWidgetState
                     'Distance:',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
-                          color: const Color(0xFF4D7E3E),
+                          color: FlutterFlowTheme.of(context).secondary,
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -191,7 +191,7 @@ class _LowintensitylistcomponentsWidgetState
                   width: 2,
                   color: FlutterFlowTheme.of(context).secondaryText,
                 ),
-                activeColor: const Color(0xFF4D7E3E),
+                activeColor: FlutterFlowTheme.of(context).primary,
                 checkColor: FlutterFlowTheme.of(context).info,
               ),
             ),

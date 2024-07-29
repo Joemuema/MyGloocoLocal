@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/logs/addactivity/addactivity_widget.dart';
 import '/logs/bglogs/bglogs_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -37,6 +38,20 @@ class _HomeWidgetState extends State<HomeWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.currentChartDate = getCurrentTimestamp;
       setState(() {});
+      _model.todayReadings = await queryBGreadingsRecordOnce(
+        queryBuilder: (bGreadingsRecord) => bGreadingsRecord
+            .where(
+              'UserID',
+              isEqualTo: FFAppState().UserID,
+            )
+            .where(
+              'Date',
+              isEqualTo: functions.getDate(getCurrentTimestamp),
+            ),
+      );
+      _model.averageGlucose = await actions.averageGlucoseToday(
+        _model.todayReadings!.map((e) => e.reference).toList().toList(),
+      );
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -729,52 +744,87 @@ class _HomeWidgetState extends State<HomeWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Container(
-                          width: 180.0,
-                          height: 70.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.circular(14.0),
+                        StreamBuilder<List<BGreadingsRecord>>(
+                          stream: queryBGreadingsRecord(
+                            queryBuilder: (bGreadingsRecord) => bGreadingsRecord
+                                .where(
+                                  'UserID',
+                                  isEqualTo: FFAppState().UserID,
+                                )
+                                .where(
+                                  'Date',
+                                  isEqualTo:
+                                      functions.getDate(getCurrentTimestamp),
+                                ),
                           ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Glucose',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
                                   ),
-                                  Text(
-                                    '136 mg/dl',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
+                                ),
+                              );
+                            }
+                            List<BGreadingsRecord>
+                                containerBGreadingsRecordList = snapshot.data!;
+
+                            return Container(
+                              width: 180.0,
+                              height: 70.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(14.0),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Glucose',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                      Text(
+                                        '${_model.averageGlucose?.toString()}  mg/dl',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                  Icon(
+                                    Icons.water_drop_outlined,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
                                   ),
                                 ],
                               ),
-                              Icon(
-                                Icons.water_drop_outlined,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 24.0,
-                              ),
-                            ],
-                          ),
+                            );
+                          },
                         ),
                         Container(
                           width: 180.0,

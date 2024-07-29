@@ -26,7 +26,6 @@ class MealLog {
   final String type;
 
   MealLog({required this.date, required this.meal, required this.type});
-
   factory MealLog.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return MealLog(
@@ -65,20 +64,26 @@ Future<String> generateReport(
 
   try {
     if (selectedContents.contains(DIET_LOGS)) {
-      List<MealLog> mealLogs;
+      List<MealLog> mealLogs = []; // Declare mealLogs here
       try {
-        final querySnapshot = await FirebaseFirestore.instance
-            .collection('Meals')
-            .where('date', isGreaterThanOrEqualTo: selectedStartDate)
-            .where('date', isLessThanOrEqualTo: selectedEndDate)
-            .get();
+        final querySnapshot =
+            await FirebaseFirestore.instance.collection('Meals').get();
 
-        mealLogs = querySnapshot.docs
-            .map((doc) => MealLog.fromFirestore(doc))
-            .toList();
+        if (querySnapshot.docs.isEmpty) {
+          print("No meal logs found for the given date range.");
+        } else {
+          mealLogs = querySnapshot.docs // Assign mealLogs here
+              .where((doc) {
+                final date = DateTime.parse(doc.data()['date']);
+                return date.isAfter(selectedStartDate) &&
+                    date.isBefore(selectedEndDate);
+              })
+              .map((doc) => MealLog.fromFirestore(doc))
+              .toList();
+        }
       } catch (e) {
         print("Error fetching meal logs: $e");
-        mealLogs = [];
+        throw Exception("Failed to fetch meal logs: $e");
       }
       print("Fetched ${mealLogs.length} meal logs: $mealLogs");
 
@@ -104,20 +109,28 @@ Future<String> generateReport(
     }
 
     if (selectedContents.contains(BLOOD_SUGAR_LOGS)) {
-      List<BloodSugarReading> bloodSugarReadings;
+      List<BloodSugarReading> bloodSugarReadings =
+          []; // Declare bloodSugarReadings here
       try {
         final querySnapshot = await FirebaseFirestore.instance
             .collection('BGreadings')
             .where('date', isGreaterThanOrEqualTo: selectedStartDate)
-            .where('date', isLessThanOrEqualTo: selectedEndDate)
             .get();
 
-        bloodSugarReadings = querySnapshot.docs
-            .map((doc) => BloodSugarReading.fromFirestore(doc))
-            .toList();
+        if (querySnapshot.docs.isEmpty) {
+          print("No blood sugar readings found for the given date range.");
+        } else {
+          bloodSugarReadings = querySnapshot
+              .docs // Assign bloodSugarReadings here
+              .where((doc) => (doc.data()['date'] as Timestamp)
+                  .toDate()
+                  .isBefore(selectedEndDate))
+              .map((doc) => BloodSugarReading.fromFirestore(doc))
+              .toList();
+        }
       } catch (e) {
         print("Error fetching blood sugar readings: $e");
-        bloodSugarReadings = [];
+        throw Exception("Failed to fetch blood sugar readings: $e");
       }
 
       double averageBloodSugar;

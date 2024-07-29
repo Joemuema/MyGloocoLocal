@@ -1,6 +1,7 @@
 import '/backend/backend.dart';
 import '/components/flexibilityexercisecomponent_widget.dart';
 import '/exercises/aerobicexerciseexplanantion/aerobicexerciseexplanantion_widget.dart';
+import '/exercises/flexibilitybottomsheet/flexibilitybottomsheet_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -51,67 +52,39 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
+          title: Text(
+            'Categories',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Inter',
+                  color: Colors.white,
+                  fontSize: 22.0,
+                  letterSpacing: 0.0,
+                ),
+          ),
+          actions: const [],
+          centerTitle: true,
+          elevation: 2.0,
+        ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Container(
-              width: double.infinity,
-              height: 100.0,
-              decoration: const BoxDecoration(
-                color: Color(0xFF4D7E3E),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20.0),
-                  bottomRight: Radius.circular(20.0),
-                  topLeft: Radius.circular(0.0),
-                  topRight: Radius.circular(0.0),
-                ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(10.0, 50.0, 0.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 40.0,
-                          icon: Icon(
-                            Icons.arrow_back_ios,
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            context.safePop();
-                          },
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              70.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Categories',
-                            style:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
-                                      fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      fontSize: 20.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
@@ -131,7 +104,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                             FlutterFlowTheme.of(context).primaryBackground,
                         unselectedLabelColor:
                             FlutterFlowTheme.of(context).secondaryText,
-                        backgroundColor: const Color(0xFF4D7E3E),
+                        backgroundColor: FlutterFlowTheme.of(context).primary,
                         unselectedBackgroundColor:
                             FlutterFlowTheme.of(context).alternate,
                         unselectedBorderColor:
@@ -223,16 +196,58 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Text(
-                                                'See More',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
+                                              InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  await showModalBottomSheet(
+                                                    isScrollControlled: true,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    enableDrag: false,
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return GestureDetector(
+                                                        onTap: () => _model
+                                                                .unfocusNode
+                                                                .canRequestFocus
+                                                            ? FocusScope.of(
+                                                                    context)
+                                                                .requestFocus(_model
+                                                                    .unfocusNode)
+                                                            : FocusScope.of(
+                                                                    context)
+                                                                .unfocus(),
+                                                        child: Padding(
+                                                          padding: MediaQuery
+                                                              .viewInsetsOf(
+                                                                  context),
+                                                          child:
+                                                              const AerobicexerciseexplanantionWidget(),
                                                         ),
+                                                      );
+                                                    },
+                                                  ).then((value) =>
+                                                      safeSetState(() {}));
+                                                },
+                                                child: Text(
+                                                  'See More',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondary,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsetsDirectional
@@ -1211,7 +1226,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       10.0, 5.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
-                                    height: 105.0,
+                                    height: 70.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
@@ -1232,51 +1247,6 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                   fontFamily: 'Readex Pro',
                                                   letterSpacing: 0.0,
                                                 ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  5.0, 5.0, 0.0, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                'See More',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color: const Color(0xFF4D7E3E),
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 5.0, 0.0, 0.0),
-                                                child: FlutterFlowIconButton(
-                                                  borderColor:
-                                                      Colors.transparent,
-                                                  borderRadius: 20.0,
-                                                  borderWidth: 1.0,
-                                                  buttonSize: 40.0,
-                                                  icon: Icon(
-                                                    Icons
-                                                        .arrow_forward_ios_sharp,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    size: 15.0,
-                                                  ),
-                                                  onPressed: () {
-                                                    print(
-                                                        'IconButton pressed ...');
-                                                  },
-                                                ),
-                                              ),
-                                            ],
                                           ),
                                         ),
                                       ],
@@ -1327,7 +1297,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 5.0, 10.0, 0.0),
+                                      10.0, 10.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
                                     height: 120.0,
@@ -1382,79 +1352,68 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                             return Padding(
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 5.0, 5.0, 5.0),
-                                              child: InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                      'upperbodyexercises');
-                                                },
-                                                child: Container(
-                                                  width: 90.0,
-                                                  height: 80.0,
-                                                  decoration: BoxDecoration(
-                                                    color: const Color(0xFF4D7E3E),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
-                                                  ),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        child: Image.network(
+                                              child: Container(
+                                                width: 90.0,
+                                                height: 80.0,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xFF4D7E3E),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                ),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.network(
+                                                        listViewStrengthexercisesRecord
+                                                            .image,
+                                                        width: 80.0,
+                                                        height: 60.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  5.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        valueOrDefault<String>(
                                                           listViewStrengthexercisesRecord
-                                                              .image,
-                                                          width: 80.0,
-                                                          height: 60.0,
-                                                          fit: BoxFit.cover,
+                                                              .name,
+                                                          'name',
                                                         ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    5.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            listViewStrengthexercisesRecord
-                                                                .name,
-                                                            'name',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             );
@@ -1466,7 +1425,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      5.0, 5.0, 5.0, 0.0),
+                                      5.0, 10.0, 5.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
@@ -1563,75 +1522,65 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                             return Padding(
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 5.0, 5.0, 5.0),
-                                              child: InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                      'lowerbodyexercise');
-                                                },
-                                                child: Container(
-                                                  width: 90.0,
-                                                  height: 80.0,
-                                                  decoration: BoxDecoration(
-                                                    color: const Color(0xFF4D7E3E),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
-                                                  ),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        child: Image.network(
-                                                          listViewStrengthexercisesRecord
-                                                              .image,
-                                                          width: 80.0,
-                                                          height: 60.0,
-                                                          fit: BoxFit.cover,
-                                                        ),
+                                              child: Container(
+                                                width: 90.0,
+                                                height: 80.0,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xFF4D7E3E),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                ),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.network(
+                                                        listViewStrengthexercisesRecord
+                                                            .image,
+                                                        width: 80.0,
+                                                        height: 60.0,
+                                                        fit: BoxFit.cover,
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    5.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          listViewStrengthexercisesRecord
-                                                              .name,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  5.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        listViewStrengthexercisesRecord
+                                                            .name,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             );
@@ -1643,7 +1592,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      5.0, 5.0, 5.0, 0.0),
+                                      5.0, 10.0, 5.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
@@ -1739,75 +1688,65 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                     listViewIndex];
                                             return Padding(
                                               padding: const EdgeInsets.all(5.0),
-                                              child: InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                      'corebodyexercises');
-                                                },
-                                                child: Container(
-                                                  width: 90.0,
-                                                  height: 80.0,
-                                                  decoration: BoxDecoration(
-                                                    color: const Color(0xFF4D7E3E),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
-                                                  ),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        child: Image.network(
-                                                          listViewStrengthexercisesRecord
-                                                              .image,
-                                                          width: 80.0,
-                                                          height: 60.0,
-                                                          fit: BoxFit.cover,
-                                                        ),
+                                              child: Container(
+                                                width: 90.0,
+                                                height: 80.0,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xFF4D7E3E),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                ),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.network(
+                                                        listViewStrengthexercisesRecord
+                                                            .image,
+                                                        width: 80.0,
+                                                        height: 60.0,
+                                                        fit: BoxFit.cover,
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    5.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          listViewStrengthexercisesRecord
-                                                              .name,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  5.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        listViewStrengthexercisesRecord
+                                                            .name,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             );
@@ -1871,46 +1810,6 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                 ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 0.0, 0.0, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'See More',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color: const Color(0xFF4D7E3E),
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                              ),
-                                              FlutterFlowIconButton(
-                                                borderColor: Colors.transparent,
-                                                borderRadius: 20.0,
-                                                borderWidth: 1.0,
-                                                buttonSize: 40.0,
-                                                icon: Icon(
-                                                  Icons.arrow_forward_ios_sharp,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  size: 20.0,
-                                                ),
-                                                onPressed: () {
-                                                  print(
-                                                      'IconButton pressed ...');
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        ),
                                       ],
                                     ),
                                   ),
@@ -1967,22 +1866,60 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         final columnFlexibilitycollectionRecord =
                                             columnFlexibilitycollectionRecordList[
                                                 columnIndex];
-                                        return wrapWithModel(
-                                          model: _model
-                                              .flexibilityexercisecomponentModels
-                                              .getModel(
-                                            columnFlexibilitycollectionRecord
-                                                .reference.id,
-                                            columnIndex,
-                                          ),
-                                          updateCallback: () => setState(() {}),
-                                          child:
-                                              FlexibilityexercisecomponentWidget(
-                                            key: Key(
-                                              'Keyla4_${columnFlexibilitycollectionRecord.reference.id}',
+                                        return InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              context: context,
+                                              builder: (context) {
+                                                return GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child:
+                                                        FlexibilitybottomsheetWidget(
+                                                      flexibilityexercises:
+                                                          columnFlexibilitycollectionRecord,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then(
+                                                (value) => safeSetState(() {}));
+                                          },
+                                          child: wrapWithModel(
+                                            model: _model
+                                                .flexibilityexercisecomponentModels
+                                                .getModel(
+                                              columnFlexibilitycollectionRecord
+                                                  .reference.id,
+                                              columnIndex,
                                             ),
-                                            flexibilityexercisedocument:
-                                                columnFlexibilitycollectionRecord,
+                                            updateCallback: () =>
+                                                setState(() {}),
+                                            child:
+                                                FlexibilityexercisecomponentWidget(
+                                              key: Key(
+                                                'Keyla4_${columnFlexibilitycollectionRecord.reference.id}',
+                                              ),
+                                              flexibilityexercisedocument:
+                                                  columnFlexibilitycollectionRecord,
+                                            ),
                                           ),
                                         );
                                       }),

@@ -129,9 +129,10 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'MedicationHome': const MedicationHomeWidget(),
-      'Home': const HomeWidget(),
       'DietHome': const DietHomeWidget(),
+      'Home': const HomeWidget(),
       'exercisehomepage': const ExercisehomepageWidget(),
+      'edhome': const EdhomeWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -146,7 +147,7 @@ class _NavBarPageState extends State<NavBarPage> {
         backgroundColor: Colors.white,
         selectedItemColor: FlutterFlowTheme.of(context).primary,
         unselectedItemColor: const Color(0x8A000000),
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
@@ -160,14 +161,6 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_rounded,
-              size: 34.0,
-            ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               FFIcons.khealthyFood,
               size: 24.0,
             ),
@@ -175,11 +168,27 @@ class _NavBarPageState extends State<NavBarPage> {
             tooltip: '',
           ),
           BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_rounded,
+              size: 34.0,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.dumbbell,
               size: 24.0,
             ),
-            label: 'Home',
+            label: 'Exercise',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.book,
+              size: 24.0,
+            ),
+            label: 'Education',
             tooltip: '',
           )
         ],

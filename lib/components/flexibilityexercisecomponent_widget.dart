@@ -88,13 +88,14 @@ class _FlexibilityexercisecomponentWidgetState
                             widget.flexibilityexercisedocument?.name,
                             'name',
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0xFF4D7E3E),
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                  ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color: FlutterFlowTheme.of(context).secondary,
+                                fontSize: 15.0,
+                                letterSpacing: 0.0,
+                              ),
                         ),
                       ],
                     ),
@@ -119,7 +120,7 @@ class _FlexibilityexercisecomponentWidgetState
               buttonSize: 40.0,
               icon: Icon(
                 Icons.arrow_forward_ios_sharp,
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: FlutterFlowTheme.of(context).primary,
                 size: 24.0,
               ),
               onPressed: () {

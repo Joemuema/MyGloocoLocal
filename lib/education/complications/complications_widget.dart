@@ -52,6 +52,7 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                   color: Colors.white,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
                 ),
           ),
           actions: const [],

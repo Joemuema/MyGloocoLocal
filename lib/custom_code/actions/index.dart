@@ -16,3 +16,4 @@ export 'schedule_all.dart' show scheduleAll;
 export 'unschedule_all.dart' show unscheduleAll;
 export 'print_all_scheduled_notification_ids.dart'
     show printAllScheduledNotificationIds;
+export 'average_glucose_today.dart' show averageGlucoseToday;

@@ -90,32 +90,35 @@ class _SettingsWidgetState extends State<SettingsWidget>
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: Colors.white,
               size: 30.0,
             ),
             onPressed: () async {
-              context.goNamed('Home');
+              context.pop();
             },
           ),
           title: Text(
             'Profile',
-            style: FlutterFlowTheme.of(context).bodyLarge.override(
-                  fontFamily: 'Readex Pro',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Inter',
+                  color: Colors.white,
+                  fontSize: 22.0,
                   letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
                 ),
           ),
           actions: const [],
-          centerTitle: false,
-          elevation: 0.0,
+          centerTitle: true,
+          elevation: 2.0,
         ),
         body: SafeArea(
           top: true,

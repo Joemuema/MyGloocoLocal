@@ -51,66 +51,39 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
+          title: Text(
+            'Search Page',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Inter',
+                  color: Colors.white,
+                  fontSize: 22.0,
+                  letterSpacing: 0.0,
+                ),
+          ),
+          actions: const [],
+          centerTitle: true,
+          elevation: 2.0,
+        ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Container(
-              width: double.infinity,
-              height: 100.0,
-              decoration: const BoxDecoration(
-                color: Color(0xFF4D7E3E),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(15.0),
-                  bottomRight: Radius.circular(15.0),
-                  topLeft: Radius.circular(0.0),
-                  topRight: Radius.circular(0.0),
-                ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 40.0,
-                          icon: Icon(
-                            Icons.arrow_back_ios_new,
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            context.safePop();
-                          },
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              80.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Search Page',
-                            style: FlutterFlowTheme.of(context)
-                                .titleMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 20.0,
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Card(
@@ -248,7 +221,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: const Color(0xFF4D7E3E),
+                          color: FlutterFlowTheme.of(context).primary,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',
@@ -268,9 +241,9 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                         borderRadius: 20.0,
                         borderWidth: 1.0,
                         buttonSize: 40.0,
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.clear,
-                          color: Color(0xFF4D7E3E),
+                          color: FlutterFlowTheme.of(context).primary,
                           size: 24.0,
                         ),
                         onPressed: () {

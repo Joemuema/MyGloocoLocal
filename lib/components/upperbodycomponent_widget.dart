@@ -87,7 +87,7 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
-                              color: const Color(0xFF4D7E3E),
+                              color: FlutterFlowTheme.of(context).secondary,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
@@ -121,9 +121,9 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
               borderRadius: 20.0,
               borderWidth: 1.0,
               buttonSize: 40.0,
-              icon: const Icon(
+              icon: Icon(
                 Icons.arrow_forward_ios_sharp,
-                color: Color(0xFF4D7E3E),
+                color: FlutterFlowTheme.of(context).primary,
                 size: 24.0,
               ),
               onPressed: () {

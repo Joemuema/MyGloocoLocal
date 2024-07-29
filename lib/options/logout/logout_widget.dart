@@ -81,7 +81,7 @@ class _LogoutWidgetState extends State<LogoutWidget> {
                         const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: const Color(0xFFF31E2B),
+                    color: FlutterFlowTheme.of(context).error,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
                           color: Colors.white,

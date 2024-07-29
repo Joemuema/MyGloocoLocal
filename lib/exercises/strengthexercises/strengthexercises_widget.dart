@@ -95,7 +95,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                           const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: const Color(0xFF4D7E3E),
+                      color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',
@@ -200,7 +200,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                       width: 100.0,
                       height: 100.0,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF4D7E3E),
+                        color: FlutterFlowTheme.of(context).primary,
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Column(
@@ -246,7 +246,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                       width: 100.0,
                       height: 100.0,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF4D7E3E),
+                        color: FlutterFlowTheme.of(context).primary,
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Column(
@@ -291,7 +291,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                       width: 100.0,
                       height: 100.0,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF4D7E3E),
+                        color: FlutterFlowTheme.of(context).primary,
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Column(
@@ -345,7 +345,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                       width: 100.0,
                       height: 100.0,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF4D7E3E),
+                        color: FlutterFlowTheme.of(context).primary,
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Column(
@@ -391,7 +391,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                       width: 100.0,
                       height: 100.0,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF4D7E3E),
+                        color: FlutterFlowTheme.of(context).primary,
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Column(

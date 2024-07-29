@@ -73,7 +73,7 @@ class _AerobicexerciseexplanantionWidgetState
                           const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: const Color(0xFF4D7E3E),
+                      color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',

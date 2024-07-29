@@ -88,14 +88,15 @@ class _CorebodyexercisecomponentWidgetState
                             widget.corebodydocument?.name,
                             'name',
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0xFF4D7E3E),
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color: FlutterFlowTheme.of(context).secondary,
+                                fontSize: 15.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w600,
+                              ),
                         ),
                       ],
                     ),

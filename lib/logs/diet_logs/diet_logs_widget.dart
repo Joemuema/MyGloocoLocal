@@ -224,7 +224,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Readex Pro',
-                        color: Colors.white,
+                        color: FlutterFlowTheme.of(context).primaryText,
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,
@@ -309,6 +309,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
                 height: 56.0,
                 textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Readex Pro',
+                      color: FlutterFlowTheme.of(context).primaryText,
                       letterSpacing: 0.0,
                     ),
                 icon: Icon(
@@ -316,7 +317,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
                   color: FlutterFlowTheme.of(context).secondaryText,
                   size: 24.0,
                 ),
-                fillColor: FlutterFlowTheme.of(context).secondary,
+                fillColor: FlutterFlowTheme.of(context).primary,
                 elevation: 2.0,
                 borderColor: FlutterFlowTheme.of(context).alternate,
                 borderWidth: 2.0,

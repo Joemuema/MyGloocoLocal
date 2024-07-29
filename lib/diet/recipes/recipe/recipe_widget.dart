@@ -1,6 +1,7 @@
 import '/backend/backend.dart';
 import '/diet/recipes/recipecheckout/recipecheckout_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -70,35 +71,35 @@ class _RecipeWidgetState extends State<RecipeWidget>
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
-          leading: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              context.safePop();
-            },
-            child: Icon(
-              Icons.chevron_left_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 32.0,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+              size: 30.0,
             ),
+            onPressed: () async {
+              context.pop();
+            },
           ),
           title: Text(
-            valueOrDefault<String>(
-              widget.recipeName?.title,
-              'Meal',
-            ),
+            'Recipe Details',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Inter',
+                  color: Colors.white,
+                  fontSize: 22.0,
                   letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
                 ),
           ),
           actions: const [],
-          centerTitle: false,
-          elevation: 0.0,
+          centerTitle: true,
+          elevation: 2.0,
         ),
         body: SafeArea(
           top: true,

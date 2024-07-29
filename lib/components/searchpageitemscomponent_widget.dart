@@ -57,9 +57,9 @@ class _SearchpageitemscomponentWidgetState
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Icon(
+            Icon(
               Icons.task_alt,
-              color: Color(0xFF4D7E3E),
+              color: FlutterFlowTheme.of(context).primary,
               size: 30.0,
             ),
             Column(
@@ -70,7 +70,7 @@ class _SearchpageitemscomponentWidgetState
                   'Activity Name',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
-                        color: const Color(0xFF4D7E3E),
+                        color: FlutterFlowTheme.of(context).secondary,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w600,
                       ),
@@ -79,7 +79,7 @@ class _SearchpageitemscomponentWidgetState
                   'Intensity',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
-                        color: const Color(0xFF4D7E3E),
+                        color: FlutterFlowTheme.of(context).secondary,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w600,
                       ),
@@ -88,7 +88,7 @@ class _SearchpageitemscomponentWidgetState
                   'Date Completed',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
-                        color: const Color(0xFF4D7E3E),
+                        color: FlutterFlowTheme.of(context).secondary,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w600,
                       ),
@@ -134,7 +134,7 @@ class _SearchpageitemscomponentWidgetState
             ),
             Icon(
               Icons.arrow_forward_ios,
-              color: FlutterFlowTheme.of(context).secondaryText,
+              color: FlutterFlowTheme.of(context).primary,
               size: 24.0,
             ),
           ],

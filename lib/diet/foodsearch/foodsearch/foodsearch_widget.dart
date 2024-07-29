@@ -85,14 +85,17 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
             },
           ),
           title: Text(
-            'Search for food type',
-            style: FlutterFlowTheme.of(context).headlineSmall.override(
+            'Food Search',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Inter',
+                  color: Colors.white,
+                  fontSize: 22.0,
                   letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
                 ),
           ),
           actions: const [],
-          centerTitle: false,
+          centerTitle: true,
           elevation: 2.0,
         ),
         body: SafeArea(

@@ -61,7 +61,7 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.safePop();
+              context.pop();
             },
           ),
           title: Text(
@@ -69,13 +69,13 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Inter',
                   color: Colors.white,
-                  fontSize: 30.0,
+                  fontSize: 22.0,
                   letterSpacing: 0.0,
-                  fontWeight: FontWeight.w800,
+                  fontWeight: FontWeight.w500,
                 ),
           ),
           actions: const [],
-          centerTitle: false,
+          centerTitle: true,
           elevation: 2.0,
         ),
         body: SafeArea(

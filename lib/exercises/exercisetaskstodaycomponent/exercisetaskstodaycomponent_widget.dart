@@ -63,9 +63,9 @@ class _ExercisetaskstodaycomponentWidgetState
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(
+              Icon(
                 Icons.task_outlined,
-                color: Color(0xFF4D7E3E),
+                color: FlutterFlowTheme.of(context).primary,
                 size: 35.0,
               ),
               Column(
@@ -115,7 +115,7 @@ class _ExercisetaskstodaycomponentWidgetState
                     width: 2,
                     color: FlutterFlowTheme.of(context).secondaryText,
                   ),
-                  activeColor: const Color(0xFF4D7E3E),
+                  activeColor: FlutterFlowTheme.of(context).primary,
                   checkColor: FlutterFlowTheme.of(context).info,
                 ),
               ),

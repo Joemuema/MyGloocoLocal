@@ -224,7 +224,7 @@ class _MedicineLogsWidgetState extends State<MedicineLogsWidget> {
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Readex Pro',
-                        color: Colors.white,
+                        color: FlutterFlowTheme.of(context).primaryText,
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,
@@ -315,10 +315,10 @@ class _MedicineLogsWidgetState extends State<MedicineLogsWidget> {
                     ),
                 icon: Icon(
                   Icons.keyboard_arrow_down_rounded,
-                  color: FlutterFlowTheme.of(context).secondaryText,
+                  color: FlutterFlowTheme.of(context).primaryText,
                   size: 24.0,
                 ),
-                fillColor: FlutterFlowTheme.of(context).secondary,
+                fillColor: FlutterFlowTheme.of(context).primary,
                 elevation: 2.0,
                 borderColor: FlutterFlowTheme.of(context).alternate,
                 borderWidth: 2.0,
@@ -343,7 +343,7 @@ class _MedicineLogsWidgetState extends State<MedicineLogsWidget> {
               color: FlutterFlowTheme.of(context).primary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: 'Readex Pro',
-                    color: Colors.white,
+                    color: FlutterFlowTheme.of(context).primaryText,
                     letterSpacing: 0.0,
                   ),
               elevation: 3.0,

@@ -139,7 +139,8 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                               borderRadius: BorderRadius.circular(16.0),
                             ),
                             unselectedChipStyle: ChipStyle(
-                              backgroundColor: const Color(0xFFCEC4C4),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).alternate,
                               textStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -148,7 +149,8 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                         .secondaryText,
                                     letterSpacing: 0.0,
                                   ),
-                              iconColor: const Color(0xFF0D0909),
+                              iconColor:
+                                  FlutterFlowTheme.of(context).primaryText,
                               iconSize: 18.0,
                               elevation: 0.0,
                               borderRadius: BorderRadius.circular(16.0),

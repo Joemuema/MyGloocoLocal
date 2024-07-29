@@ -56,46 +56,41 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
+          title: Text(
+            'Metrics',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Inter',
+                  color: Colors.white,
+                  fontSize: 22.0,
+                  letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
+                ),
+          ),
+          actions: const [],
+          centerTitle: true,
+          elevation: 2.0,
+        ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 20.0,
-                    borderWidth: 1.0,
-                    buttonSize: 40.0,
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 20.0,
-                    ),
-                    onPressed: () async {
-                      context.safePop();
-                    },
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(120.0, 0.0, 0.0, 0.0),
-                    child: Text(
-                      'Metrics',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            fontSize: 18.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
             SizedBox(
               width: double.infinity,
               child: Form(
@@ -355,7 +350,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                     24.0, 0.0, 24.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: const Color(0xFF4D7E3E),
+                                color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -693,23 +688,23 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                   _model.intensitychoicechipsValue =
                                       val?.firstOrNull),
                               selectedChipStyle: ChipStyle(
-                                backgroundColor: const Color(0xFF4D7E3E),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
-                                    .headlineSmall
+                                    .titleMedium
                                     .override(
-                                      fontFamily: 'Inter',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                      fontFamily: 'Readex Pro',
                                       letterSpacing: 0.0,
                                     ),
-                                iconColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                iconColor:
+                                    FlutterFlowTheme.of(context).alternate,
                                 iconSize: 21.0,
                                 elevation: 4.0,
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
                               unselectedChipStyle: ChipStyle(
-                                backgroundColor: const Color(0x4E70D239),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).alternate,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -769,7 +764,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: const Color(0xFF4D7E3E),
+                              color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(

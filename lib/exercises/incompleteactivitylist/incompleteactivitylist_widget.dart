@@ -61,11 +61,11 @@ class _IncompleteactivitylistWidgetState
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(5.0),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
               child: Icon(
                 Icons.next_plan_outlined,
-                color: Color(0xFF4D7E3E),
+                color: FlutterFlowTheme.of(context).primary,
                 size: 35.0,
               ),
             ),

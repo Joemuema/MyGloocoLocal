@@ -371,12 +371,13 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: const Color(0xFF4D7E3E),
+                              color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
                                     fontFamily: 'Readex Pro',
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
@@ -467,9 +468,10 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                     borderRadius: 20.0,
                                     borderWidth: 1.0,
                                     buttonSize: 40.0,
-                                    icon: const Icon(
+                                    icon: Icon(
                                       Icons.access_time_rounded,
-                                      color: Color(0xFF4D7E3E),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
                                       size: 24.0,
                                     ),
                                     onPressed: () async {
@@ -586,9 +588,10 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                     borderRadius: 20.0,
                                     borderWidth: 1.0,
                                     buttonSize: 40.0,
-                                    icon: const Icon(
+                                    icon: Icon(
                                       Icons.access_time_rounded,
-                                      color: Color(0xFF4D7E3E),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
                                       size: 24.0,
                                     ),
                                     onPressed: () async {
@@ -704,7 +707,8 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                             onChanged: (val) => setState(() => _model
                                 .intensitychoicechipsValue = val?.firstOrNull),
                             selectedChipStyle: ChipStyle(
-                              backgroundColor: const Color(0xFF4D7E3E),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
@@ -781,7 +785,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                 24.0, 0.0, 24.0, 0.0),
                             iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF4D7E3E),
+                            color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
