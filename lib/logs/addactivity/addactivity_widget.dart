@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -6,16 +5,17 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'addactivity_model.dart';
 export 'addactivity_model.dart';
 
 class AddactivityWidget extends StatefulWidget {
-  const AddactivityWidget({super.key});
+  const AddactivityWidget({
+    super.key,
+    required this.completed,
+  });
+
+  final bool? completed;
 
   @override
   State<AddactivityWidget> createState() => _AddactivityWidgetState();
@@ -57,7 +57,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
       height: 560.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(20.0),
@@ -69,7 +69,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -86,7 +86,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -106,7 +106,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                   },
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(104.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(104.0, 0.0, 0.0, 0.0),
                   child: Text(
                     'Log activity',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -120,7 +120,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
               ],
             ),
           ),
-          Container(
+          SizedBox(
             width: double.infinity,
             child: Form(
               key: _model.formKey,
@@ -130,7 +130,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -148,7 +148,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                     child: TextFormField(
                       controller: _model.activitTextFieldTextController,
                       focusNode: _model.activitTextFieldFocusNode,
@@ -206,7 +206,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -224,7 +224,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                     child: TextFormField(
                       controller: _model.distanceTextFieldTextController,
                       focusNode: _model.distanceTextFieldFocusNode,
@@ -283,7 +283,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -301,7 +301,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                     child: Card(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -314,7 +314,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
-                              final _datePicked1Date = await showDatePicker(
+                              final datePicked1Date = await showDatePicker(
                                 context: context,
                                 initialDate: getCurrentTimestamp,
                                 firstDate: DateTime(1900),
@@ -343,7 +343,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                         FlutterFlowTheme.of(context)
                                             .primaryText,
                                     selectedDateTimeBackgroundColor:
-                                        Color(0xFF994488),
+                                        const Color(0xFF994488),
                                     selectedDateTimeForegroundColor:
                                         FlutterFlowTheme.of(context).info,
                                     actionButtonForegroundColor:
@@ -354,12 +354,12 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                 },
                               );
 
-                              if (_datePicked1Date != null) {
+                              if (datePicked1Date != null) {
                                 safeSetState(() {
                                   _model.datePicked1 = DateTime(
-                                    _datePicked1Date.year,
-                                    _datePicked1Date.month,
-                                    _datePicked1Date.day,
+                                    datePicked1Date.year,
+                                    datePicked1Date.month,
+                                    datePicked1Date.day,
                                   );
                                 });
                               }
@@ -367,11 +367,11 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                             text: 'Pick Date ',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF4D7E3E),
+                              color: const Color(0xFF4D7E3E),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -380,7 +380,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -388,7 +388,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 50.0, 0.0, 0.0, 0.0),
                             child: Text(
                               valueOrDefault<String>(
@@ -409,7 +409,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -445,7 +445,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         5.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Start Time',
@@ -467,13 +467,13 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                     borderRadius: 20.0,
                                     borderWidth: 1.0,
                                     buttonSize: 40.0,
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.access_time_rounded,
                                       color: Color(0xFF4D7E3E),
                                       size: 24.0,
                                     ),
                                     onPressed: () async {
-                                      final _datePicked2Time =
+                                      final datePicked2Time =
                                           await showTimePicker(
                                         context: context,
                                         initialTime: TimeOfDay.fromDateTime(
@@ -517,14 +517,14 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                           );
                                         },
                                       );
-                                      if (_datePicked2Time != null) {
+                                      if (datePicked2Time != null) {
                                         safeSetState(() {
                                           _model.datePicked2 = DateTime(
                                             getCurrentTimestamp.year,
                                             getCurrentTimestamp.month,
                                             getCurrentTimestamp.day,
-                                            _datePicked2Time.hour,
-                                            _datePicked2Time.minute,
+                                            datePicked2Time.hour,
+                                            datePicked2Time.minute,
                                           );
                                         });
                                       }
@@ -561,7 +561,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     5.0, 0.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -586,13 +586,13 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                     borderRadius: 20.0,
                                     borderWidth: 1.0,
                                     buttonSize: 40.0,
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.access_time_rounded,
                                       color: Color(0xFF4D7E3E),
                                       size: 24.0,
                                     ),
                                     onPressed: () async {
-                                      final _datePicked3Time =
+                                      final datePicked3Time =
                                           await showTimePicker(
                                         context: context,
                                         initialTime: TimeOfDay.fromDateTime(
@@ -636,14 +636,14 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                           );
                                         },
                                       );
-                                      if (_datePicked3Time != null) {
+                                      if (datePicked3Time != null) {
                                         safeSetState(() {
                                           _model.datePicked3 = DateTime(
                                             getCurrentTimestamp.year,
                                             getCurrentTimestamp.month,
                                             getCurrentTimestamp.day,
-                                            _datePicked3Time.hour,
-                                            _datePicked3Time.minute,
+                                            datePicked3Time.hour,
+                                            datePicked3Time.minute,
                                           );
                                         });
                                       }
@@ -671,7 +671,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -693,10 +693,10 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 10.0, 10.0, 0.0),
                           child: FlutterFlowChoiceChips(
-                            options: [
+                            options: const [
                               ChipData('Low'),
                               ChipData('Medium'),
                               ChipData('High')
@@ -704,7 +704,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                             onChanged: (val) => setState(() => _model
                                 .intensitychoicechipsValue = val?.firstOrNull),
                             selectedChipStyle: ChipStyle(
-                              backgroundColor: Color(0xFF4D7E3E),
+                              backgroundColor: const Color(0xFF4D7E3E),
                               textStyle: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
@@ -753,7 +753,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -777,11 +777,11 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                           text: 'Add',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF4D7E3E),
+                            color: const Color(0xFF4D7E3E),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -790,7 +790,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

@@ -10,9 +10,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class MealsRecord extends FirestoreRecord {
   MealsRecord._(
-    DocumentReference reference,
-    Map<String, dynamic> data,
-  ) : super(reference, data) {
+    super.reference,
+    super.data,
+  ) {
     _initializeFields();
   }
 

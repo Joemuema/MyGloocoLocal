@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -10,11 +9,8 @@ import '/medication/new_reminder/new_reminder_widget.dart';
 import '/medication/no_elements/no_elements_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'medication_form_model.dart';
 export 'medication_form_model.dart';
@@ -25,7 +21,7 @@ class MedicationFormWidget extends StatefulWidget {
     required this.newMedicineID,
     required this.editMode,
     bool? addReminder,
-  }) : this.addReminder = addReminder ?? false;
+  }) : addReminder = addReminder ?? false;
 
   final DocumentReference? newMedicineID;
   final bool? editMode;
@@ -51,7 +47,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
       setState(() {});
       await _model.mainColumn?.animateTo(
         _model.mainColumn!.position.maxScrollExtent,
-        duration: Duration(milliseconds: 100),
+        duration: const Duration(milliseconds: 100),
         curve: Curves.ease,
       );
     });
@@ -79,7 +75,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
     context.watch<FFAppState>();
 
     return StreamBuilder<MedicineRecord>(
-      stream: MedicineRecord.getDocument(widget!.newMedicineID!),
+      stream: MedicineRecord.getDocument(widget.newMedicineID!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -116,29 +112,29 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                 borderRadius: 30.0,
                 borderWidth: 1.0,
                 buttonSize: 60.0,
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back_rounded,
                   color: Colors.white,
                   size: 30.0,
                 ),
                 onPressed: () async {
-                  if (widget!.addReminder) {
+                  if (widget.addReminder) {
                     context.goNamed('MedicationHome');
                   } else {
                     await actions.deleteDocuments(
                       _model.reminderIDList.toList(),
                     );
-                    if (!widget!.editMode!) {
-                      await widget!.newMedicineID!.delete();
+                    if (!widget.editMode!) {
+                      await widget.newMedicineID!.delete();
                     }
                     context.safePop();
                   }
                 },
               ),
               title: Text(
-                widget!.addReminder
+                widget.addReminder
                     ? 'Add Reminder'
-                    : '${widget!.editMode! ? 'Edit' : 'Add'} Medication',
+                    : '${widget.editMode! ? 'Edit' : 'Add'} Medication',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Inter',
                       color: Colors.white,
@@ -146,7 +142,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                       letterSpacing: 0.0,
                     ),
               ),
-              actions: [],
+              actions: const [],
               centerTitle: true,
               elevation: 2.0,
             ),
@@ -159,7 +155,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           10.0, 20.0, 10.0, 10.0),
                       child: Container(
                         width: 364.0,
@@ -171,7 +167,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   3.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Medicine Name',
@@ -186,7 +182,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   5.0, 10.0, 5.0, 0.0),
                               child: Container(
                                 decoration: BoxDecoration(
@@ -197,7 +193,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                       blurRadius: 4.0,
                                       color: FlutterFlowTheme.of(context)
                                           .boxShadowColor,
-                                      offset: Offset(
+                                      offset: const Offset(
                                         0.0,
                                         2.0,
                                       ),
@@ -206,18 +202,18 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       15.0, 0.0, 15.0, 0.0),
                                   child: TextFormField(
                                     controller: _model.medNameTextController ??=
                                         TextEditingController(
-                                      text: widget!.editMode!
+                                      text: widget.editMode!
                                           ? medicationFormMedicineRecord.name
                                           : '',
                                     ),
                                     focusNode: _model.medNameFocusNode,
                                     autofocus: true,
-                                    readOnly: widget!.addReminder,
+                                    readOnly: widget.addReminder,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelStyle: FlutterFlowTheme.of(context)
@@ -256,7 +252,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           10.0, 10.0, 10.0, 10.0),
                       child: Container(
                         width: 364.0,
@@ -268,7 +264,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   3.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Medicine Type',
@@ -283,7 +279,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   5.0, 10.0, 5.0, 0.0),
                               child: Container(
                                 decoration: BoxDecoration(
@@ -294,7 +290,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                       blurRadius: 4.0,
                                       color: FlutterFlowTheme.of(context)
                                           .boxShadowColor,
-                                      offset: Offset(
+                                      offset: const Offset(
                                         0.0,
                                         2.0,
                                       ),
@@ -305,11 +301,11 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                 child: FlutterFlowDropDown<String>(
                                   controller: _model.medTypeValueController ??=
                                       FormFieldController<String>(
-                                    _model.medTypeValue ??= widget!.editMode!
+                                    _model.medTypeValue ??= widget.editMode!
                                         ? medicationFormMedicineRecord.form
                                         : '',
                                   ),
-                                  options: [
+                                  options: const [
                                     'Pill',
                                     'Tablet',
                                     'Emulsion',
@@ -338,10 +334,10 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                   borderColor: Colors.transparent,
                                   borderWidth: 2.0,
                                   borderRadius: 12.0,
-                                  margin: EdgeInsetsDirectional.fromSTEB(
+                                  margin: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 4.0, 16.0, 4.0),
                                   hidesUnderline: true,
-                                  disabled: widget!.addReminder,
+                                  disabled: widget.addReminder,
                                   isOverButton: true,
                                   isSearchable: false,
                                   isMultiSelect: false,
@@ -360,7 +356,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           10.0, 10.0, 10.0, 10.0),
                       child: Container(
                         width: 364.0,
@@ -376,7 +372,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       3.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     'Amount per dose',
@@ -391,7 +387,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 5.0, 0.0),
                                   child: Container(
                                     width: 168.0,
@@ -404,7 +400,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                           blurRadius: 4.0,
                                           color: FlutterFlowTheme.of(context)
                                               .boxShadowColor,
-                                          offset: Offset(
+                                          offset: const Offset(
                                             0.0,
                                             2.0,
                                           ),
@@ -413,13 +409,13 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           15.0, 0.0, 15.0, 0.0),
                                       child: TextFormField(
                                         controller:
                                             _model.singleDoseTextController ??=
                                                 TextEditingController(
-                                          text: widget!.editMode!
+                                          text: widget.editMode!
                                               ? medicationFormMedicineRecord
                                                   .singleDose
                                                   .toString()
@@ -427,7 +423,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                         ),
                                         focusNode: _model.singleDoseFocusNode,
                                         autofocus: true,
-                                        readOnly: widget!.addReminder,
+                                        readOnly: widget.addReminder,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelStyle:
@@ -472,7 +468,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       3.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     'Total dosage',
@@ -487,7 +483,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 5.0, 0.0),
                                   child: Container(
                                     width: 168.0,
@@ -500,7 +496,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                           blurRadius: 4.0,
                                           color: FlutterFlowTheme.of(context)
                                               .boxShadowColor,
-                                          offset: Offset(
+                                          offset: const Offset(
                                             0.0,
                                             2.0,
                                           ),
@@ -509,13 +505,13 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           15.0, 0.0, 15.0, 0.0),
                                       child: TextFormField(
                                         controller:
                                             _model.totalDoseTextController ??=
                                                 TextEditingController(
-                                          text: widget!.editMode!
+                                          text: widget.editMode!
                                               ? medicationFormMedicineRecord
                                                   .totalDose
                                                   .toString()
@@ -523,7 +519,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                         ),
                                         focusNode: _model.totalDoseFocusNode,
                                         autofocus: true,
-                                        readOnly: widget!.addReminder,
+                                        readOnly: widget.addReminder,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelStyle:
@@ -568,7 +564,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           10.0, 10.0, 10.0, 10.0),
                       child: Container(
                         width: 364.0,
@@ -580,7 +576,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   3.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Description',
@@ -595,7 +591,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   5.0, 10.0, 5.0, 0.0),
                               child: Container(
                                 decoration: BoxDecoration(
@@ -606,7 +602,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                       blurRadius: 4.0,
                                       color: FlutterFlowTheme.of(context)
                                           .boxShadowColor,
-                                      offset: Offset(
+                                      offset: const Offset(
                                         0.0,
                                         2.0,
                                       ),
@@ -615,20 +611,20 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       15.0, 0.0, 15.0, 0.0),
                                   child: TextFormField(
                                     controller:
                                         _model.descriptionTextTextController ??=
                                             TextEditingController(
-                                      text: widget!.editMode!
+                                      text: widget.editMode!
                                           ? medicationFormMedicineRecord
                                               .description
                                           : '',
                                     ),
                                     focusNode: _model.descriptionTextFocusNode,
                                     autofocus: true,
-                                    readOnly: widget!.addReminder,
+                                    readOnly: widget.addReminder,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelStyle: FlutterFlowTheme.of(context)
@@ -670,7 +666,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                       child: Container(
                         width: 364.0,
                         decoration: BoxDecoration(
@@ -685,7 +681,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       3.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     'Start Date',
@@ -700,15 +696,15 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       5.0, 10.0, 5.0, 10.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       FFButtonWidget(
                                         onPressed: () async {
-                                          if (!widget!.addReminder) {
-                                            final _datePicked1Date =
+                                          if (!widget.addReminder) {
+                                            final datePicked1Date =
                                                 await showDatePicker(
                                               context: context,
                                               initialDate: getCurrentTimestamp,
@@ -762,19 +758,19 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                               },
                                             );
 
-                                            if (_datePicked1Date != null) {
+                                            if (datePicked1Date != null) {
                                               safeSetState(() {
                                                 _model.datePicked1 = DateTime(
-                                                  _datePicked1Date.year,
-                                                  _datePicked1Date.month,
-                                                  _datePicked1Date.day,
+                                                  datePicked1Date.year,
+                                                  datePicked1Date.month,
+                                                  datePicked1Date.day,
                                                 );
                                               });
                                             }
                                           }
                                         },
                                         text: valueOrDefault<String>(
-                                          widget!.editMode!
+                                          widget.editMode!
                                               ? medicationFormMedicineRecord
                                                   .startDate
                                               : (_model.datePicked1 != null
@@ -787,10 +783,10 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                           width: 168.0,
                                           height: 56.0,
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .alternate,
@@ -805,7 +801,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                           elevation: 3.0,
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -823,7 +819,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       3.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     'Finish Date',
@@ -838,18 +834,18 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 5.0, 10.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            if (!widget!.addReminder) {
-                                              final _datePicked2Date =
+                                            if (!widget.addReminder) {
+                                              final datePicked2Date =
                                                   await showDatePicker(
                                                 context: context,
                                                 initialDate:
@@ -907,19 +903,19 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                                 },
                                               );
 
-                                              if (_datePicked2Date != null) {
+                                              if (datePicked2Date != null) {
                                                 safeSetState(() {
                                                   _model.datePicked2 = DateTime(
-                                                    _datePicked2Date.year,
-                                                    _datePicked2Date.month,
-                                                    _datePicked2Date.day,
+                                                    datePicked2Date.year,
+                                                    datePicked2Date.month,
+                                                    datePicked2Date.day,
                                                   );
                                                 });
                                               }
                                             }
                                           },
                                           text: valueOrDefault<String>(
-                                            widget!.editMode!
+                                            widget.editMode!
                                                 ? medicationFormMedicineRecord
                                                     .endDate
                                                 : (_model.datePicked2 != null
@@ -932,10 +928,10 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                             width: 168.0,
                                             height: 56.0,
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .alternate,
@@ -951,7 +947,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 3.0,
-                                            borderSide: BorderSide(
+                                            borderSide: const BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -969,12 +965,12 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                         ),
                       ),
                     ),
-                    if (widget!.editMode!
+                    if (widget.editMode!
                         ? false
                         : ((_model.datePicked1 == null) ||
                             (_model.datePicked2 == null)))
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             10.0, 0.0, 10.0, 0.0),
                         child: Container(
                           width: 364.0,
@@ -983,7 +979,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                 FlutterFlowTheme.of(context).primaryBackground,
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 10.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'Note: Start and Finish dates for the medicine must be set to enable reminders.',
@@ -1002,21 +998,21 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                       ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 10.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 10.0),
                       child: SwitchListTile.adaptive(
-                        value: _model.remindersSetValue ??= widget!.editMode!
-                            ? (widget!.addReminder
+                        value: _model.remindersSetValue ??= widget.editMode!
+                            ? (widget.addReminder
                                 ? true
                                 : medicationFormMedicineRecord.setReminders)
                             : false,
-                        onChanged: (widget!.addReminder ||
-                                (!widget!.editMode! &&
+                        onChanged: (widget.addReminder ||
+                                (!widget.editMode! &&
                                     ((_model.datePicked1 == null) ||
                                         (_model.datePicked2 == null))))
                             ? null
                             : (newValue) async {
                                 setState(
-                                    () => _model.remindersSetValue = newValue!);
+                                    () => _model.remindersSetValue = newValue);
                               },
                         title: Text(
                           'Set Reminders',
@@ -1034,7 +1030,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                         activeTrackColor: FlutterFlowTheme.of(context).accent1,
                         dense: false,
                         controlAffinity: ListTileControlAffinity.trailing,
-                        contentPadding: EdgeInsets.all(0.0),
+                        contentPadding: const EdgeInsets.all(0.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14.0),
                         ),
@@ -1042,7 +1038,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                     ),
                     if (_model.remindersSetValue ?? true)
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             15.0, 10.0, 15.0, 20.0),
                         child: Container(
                           width: 364.0,
@@ -1055,7 +1051,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     3.0, 0.0, 0.0, 10.0),
                                 child: Text(
                                   'Reminders',
@@ -1079,7 +1075,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                           )
                                           .where(
                                             'MedicineID',
-                                            isEqualTo: widget!.newMedicineID,
+                                            isEqualTo: widget.newMedicineID,
                                           )
                                           .orderBy('DateTimeCreated'),
                                 ),
@@ -1104,7 +1100,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                       listViewRemindersRecordList =
                                       snapshot.data!;
                                   if (listViewRemindersRecordList.isEmpty) {
-                                    return Center(
+                                    return const Center(
                                       child: NoElementsWidget(
                                         additionalText:
                                             'Press \'Add reminder\' to set one ',
@@ -1136,7 +1132,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                           ),
                                           currentReminderID:
                                               listViewRemindersRecord.reference,
-                                          editState: widget!.editMode,
+                                          editState: widget.editMode,
                                           index: _model.reminderIDList.length,
                                           reminderName:
                                               listViewRemindersRecord.name,
@@ -1161,12 +1157,12 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                 },
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 10.0),
                                 child: Container(
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         10.0, 0.0, 0.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -1178,30 +1174,30 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                             RemindersRecord.collection.doc();
                                         await remindersRecordReference
                                             .set(createRemindersRecordData(
-                                          medicineID: widget!.newMedicineID,
+                                          medicineID: widget.newMedicineID,
                                           userID: FFAppState().UserID,
-                                          firstDate: widget!.editMode!
+                                          firstDate: widget.editMode!
                                               ? medicationFormMedicineRecord
                                                   .startDate
                                               : functions
                                                   .getDate(_model.datePicked1!),
-                                          lastDate: widget!.editMode!
+                                          lastDate: widget.editMode!
                                               ? medicationFormMedicineRecord
                                                   .endDate
                                               : functions
                                                   .getDate(_model.datePicked2!),
                                           dateTimeCreated: getCurrentTimestamp,
-                                          lastUpdated: widget!.editMode!
+                                          lastUpdated: widget.editMode!
                                               ? functions.stringToDate(
                                                   medicationFormMedicineRecord
                                                       .startDate)
                                               : _model.datePicked1,
-                                          fIrstDateTime: widget!.editMode!
+                                          fIrstDateTime: widget.editMode!
                                               ? functions.stringToDate(
                                                   medicationFormMedicineRecord
                                                       .startDate)
                                               : _model.datePicked1,
-                                          lastDateTime: widget!.editMode!
+                                          lastDateTime: widget.editMode!
                                               ? functions.stringToDate(
                                                   medicationFormMedicineRecord
                                                       .endDate)
@@ -1215,32 +1211,32 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                             RemindersRecord.getDocumentFromData(
                                                 createRemindersRecordData(
                                                   medicineID:
-                                                      widget!.newMedicineID,
+                                                      widget.newMedicineID,
                                                   userID: FFAppState().UserID,
-                                                  firstDate: widget!.editMode!
+                                                  firstDate: widget.editMode!
                                                       ? medicationFormMedicineRecord
                                                           .startDate
                                                       : functions.getDate(
                                                           _model.datePicked1!),
-                                                  lastDate: widget!.editMode!
+                                                  lastDate: widget.editMode!
                                                       ? medicationFormMedicineRecord
                                                           .endDate
                                                       : functions.getDate(
                                                           _model.datePicked2!),
                                                   dateTimeCreated:
                                                       getCurrentTimestamp,
-                                                  lastUpdated: widget!.editMode!
+                                                  lastUpdated: widget.editMode!
                                                       ? functions.stringToDate(
                                                           medicationFormMedicineRecord
                                                               .startDate)
                                                       : _model.datePicked1,
-                                                  fIrstDateTime: widget!
+                                                  fIrstDateTime: widget
                                                           .editMode!
                                                       ? functions.stringToDate(
                                                           medicationFormMedicineRecord
                                                               .startDate)
                                                       : _model.datePicked1,
-                                                  lastDateTime: widget!
+                                                  lastDateTime: widget
                                                           .editMode!
                                                       ? functions.stringToDate(
                                                           medicationFormMedicineRecord
@@ -1290,17 +1286,17 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                         ),
                       ),
                     Container(
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                if (widget!.addReminder) {
+                                if (widget.addReminder) {
                                   if ((_model.reminderIDList.isNotEmpty) ==
                                       true) {
                                     await actions.setIndividualReminders(
@@ -1310,7 +1306,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
 
                                   context.pushNamed('MedicationHome');
                                 } else {
-                                  if (widget!.editMode!) {
+                                  if (widget.editMode!) {
                                     _model.startDate =
                                         medicationFormMedicineRecord.startDate;
                                     _model.endDate =
@@ -1318,14 +1314,14 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                     setState(() {});
                                   }
 
-                                  await widget!.newMedicineID!
+                                  await widget.newMedicineID!
                                       .update(createMedicineRecordData(
                                     name: _model.medNameTextController.text,
-                                    startDate: widget!.editMode!
+                                    startDate: widget.editMode!
                                         ? _model.startDate
                                         : functions
                                             .getDate(_model.datePicked1!),
-                                    endDate: widget!.editMode!
+                                    endDate: widget.editMode!
                                         ? _model.endDate
                                         : functions
                                             .getDate(_model.datePicked2!),
@@ -1338,7 +1334,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                         _model.totalDoseTextController.text),
                                     setReminders: _model.remindersSetValue,
                                     userID: FFAppState().UserID,
-                                    medId: widget!.newMedicineID,
+                                    medId: widget.newMedicineID,
                                   ));
                                   if ((_model.reminderIDList.isNotEmpty) ==
                                       true) {
@@ -1353,9 +1349,9 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                               options: FFButtonOptions(
                                 width: MediaQuery.sizeOf(context).width * 0.349,
                                 height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).success,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -1366,7 +1362,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -1375,14 +1371,14 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                             ),
                             FFButtonWidget(
                               onPressed: () async {
-                                if (widget!.addReminder) {
+                                if (widget.addReminder) {
                                   context.pushNamed('MedicationHome');
                                 } else {
                                   await actions.deleteDocuments(
                                     _model.reminderIDList.toList(),
                                   );
-                                  if (!widget!.editMode!) {
-                                    await widget!.newMedicineID!.delete();
+                                  if (!widget.editMode!) {
+                                    await widget.newMedicineID!.delete();
                                   }
                                   context.safePop();
                                 }
@@ -1391,9 +1387,9 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                               options: FFButtonOptions(
                                 width: MediaQuery.sizeOf(context).width * 0.349,
                                 height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).error,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -1404,7 +1400,7 @@ class _MedicationFormWidgetState extends State<MedicationFormWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

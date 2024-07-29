@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 
@@ -11,10 +9,7 @@ import '/auth/base_auth_user_provider.dart';
 import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -79,36 +74,36 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : SignupWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const SignupWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : SignupWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const SignupWidget(),
         ),
         FFRoute(
           name: 'Signup',
           path: '/signup',
-          builder: (context, params) => SignupWidget(),
+          builder: (context, params) => const SignupWidget(),
         ),
         FFRoute(
           name: 'Login',
           path: '/login',
-          builder: (context, params) => LoginWidget(),
+          builder: (context, params) => const LoginWidget(),
         ),
         FFRoute(
           name: 'Home',
           path: '/home',
           builder: (context, params) =>
-              params.isEmpty ? NavBarPage(initialPage: 'Home') : HomeWidget(),
+              params.isEmpty ? const NavBarPage(initialPage: 'Home') : const HomeWidget(),
         ),
         FFRoute(
           name: 'MedicationHome',
           path: '/medicationHome',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MedicationHome')
-              : MedicationHomeWidget(),
+              ? const NavBarPage(initialPage: 'MedicationHome')
+              : const MedicationHomeWidget(),
         ),
         FFRoute(
           name: 'MedicationForm',
@@ -147,24 +142,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'userdetails',
           path: '/userdetails',
-          builder: (context, params) => UserdetailsWidget(),
+          builder: (context, params) => const UserdetailsWidget(),
         ),
         FFRoute(
           name: 'Settings',
           path: '/settings',
-          builder: (context, params) => SettingsWidget(),
+          builder: (context, params) => const SettingsWidget(),
         ),
         FFRoute(
           name: 'DietHome',
           path: '/dietHome',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'DietHome')
-              : DietHomeWidget(),
+              ? const NavBarPage(initialPage: 'DietHome')
+              : const DietHomeWidget(),
         ),
         FFRoute(
           name: 'YourMeals',
           path: '/yourMeals',
-          builder: (context, params) => YourMealsWidget(),
+          builder: (context, params) => const YourMealsWidget(),
         ),
         FFRoute(
           name: 'Foodsearch',
@@ -183,7 +178,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Foodview',
           path: '/foodview',
-          builder: (context, params) => FoodviewWidget(),
+          builder: (context, params) => const FoodviewWidget(),
         ),
         FFRoute(
           name: 'Plate',
@@ -202,7 +197,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Recipe_list',
           path: '/recipeList',
-          builder: (context, params) => RecipeListWidget(),
+          builder: (context, params) => const RecipeListWidget(),
         ),
         FFRoute(
           name: 'Recipe',
@@ -254,59 +249,54 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'edhome',
           path: '/edhome',
-          builder: (context, params) => EdhomeWidget(),
+          builder: (context, params) => const EdhomeWidget(),
         ),
         FFRoute(
           name: 'intro2diabetes',
           path: '/intro2diabetes',
-          builder: (context, params) => Intro2diabetesWidget(),
+          builder: (context, params) => const Intro2diabetesWidget(),
         ),
         FFRoute(
           name: 'daily_management',
           path: '/dailyManagement',
-          builder: (context, params) => DailyManagementWidget(),
+          builder: (context, params) => const DailyManagementWidget(),
         ),
         FFRoute(
           name: 'monitoring_and_medication',
           path: '/monitoringAndMedication',
-          builder: (context, params) => MonitoringAndMedicationWidget(),
+          builder: (context, params) => const MonitoringAndMedicationWidget(),
         ),
         FFRoute(
           name: 'healthy_eating',
           path: '/healthyEating',
-          builder: (context, params) => HealthyEatingWidget(),
+          builder: (context, params) => const HealthyEatingWidget(),
         ),
         FFRoute(
           name: 'exercise_ed',
           path: '/exerciseEd',
-          builder: (context, params) => ExerciseEdWidget(),
+          builder: (context, params) => const ExerciseEdWidget(),
         ),
         FFRoute(
           name: 'complications',
           path: '/complications',
-          builder: (context, params) => ComplicationsWidget(),
+          builder: (context, params) => const ComplicationsWidget(),
         ),
         FFRoute(
           name: 'mental_health',
           path: '/mentalHealth',
-          builder: (context, params) => MentalHealthWidget(),
+          builder: (context, params) => const MentalHealthWidget(),
         ),
         FFRoute(
           name: 'exercisehomepage',
           path: '/exercisehomepage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'exercisehomepage')
-              : ExercisehomepageWidget(),
+              ? const NavBarPage(initialPage: 'exercisehomepage')
+              : const ExercisehomepageWidget(),
         ),
         FFRoute(
           name: 'categoriespage',
           path: '/categoriespage',
-          builder: (context, params) => CategoriespageWidget(),
-        ),
-        FFRoute(
-          name: 'addtodaysactivitypage',
-          path: '/addtodaysactivitypage',
-          builder: (context, params) => AddtodaysactivitypageWidget(),
+          builder: (context, params) => const CategoriespageWidget(),
         ),
         FFRoute(
           name: 'addplanpage',
@@ -321,27 +311,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'lowerbodyexercise',
           path: '/lowerbodyexercise',
-          builder: (context, params) => LowerbodyexerciseWidget(),
+          builder: (context, params) => const LowerbodyexerciseWidget(),
         ),
         FFRoute(
           name: 'upperbodyexercises',
           path: '/upperbodyexercises',
-          builder: (context, params) => UpperbodyexercisesWidget(),
+          builder: (context, params) => const UpperbodyexercisesWidget(),
         ),
         FFRoute(
           name: 'Listpage',
           path: '/listpage',
-          builder: (context, params) => ListpageWidget(),
+          builder: (context, params) => const ListpageWidget(),
         ),
         FFRoute(
           name: 'Searchitemspage',
           path: '/searchitemspage',
-          builder: (context, params) => SearchitemspageWidget(),
+          builder: (context, params) => const SearchitemspageWidget(),
         ),
         FFRoute(
           name: 'corebodyexercises',
           path: '/corebodyexercises',
-          builder: (context, params) => CorebodyexercisesWidget(),
+          builder: (context, params) => const CorebodyexercisesWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -579,7 +569,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

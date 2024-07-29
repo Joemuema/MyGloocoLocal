@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'medicine_description_model.dart';
 export 'medicine_description_model.dart';
 
@@ -40,7 +38,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
     _model = createModel(context, () => MedicineDescriptionModel());
 
     _model.textController ??=
-        TextEditingController(text: widget!.medDocRef?.description);
+        TextEditingController(text: widget.medDocRef?.description);
     _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -73,15 +71,15 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Container(
                   width: double.infinity,
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     maxWidth: 700.0,
                   ),
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         blurRadius: 12.0,
                         color: Color(0x33000000),
@@ -94,14 +92,14 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                     borderRadius: BorderRadius.circular(16.0),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -113,7 +111,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                                   children: [
                                     Text(
                                       valueOrDefault<String>(
-                                        widget!.medDocRef?.name,
+                                        widget.medDocRef?.name,
                                         'Medicine',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -124,7 +122,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         'View or Edit medicine information.',
@@ -172,7 +170,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                             ),
                             Text(
                               valueOrDefault<String>(
-                                widget!.medDocRef?.form,
+                                widget.medDocRef?.form,
                                 'form',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -198,23 +196,23 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                                   ),
                             ),
                             Text(
-                              '${widget!.medDocRef?.singleDose?.toString()} ${() {
-                                if (widget!.medDocRef?.form == 'Pill') {
-                                  return (widget!.medDocRef?.singleDose == 1.0
+                              '${widget.medDocRef?.singleDose.toString()} ${() {
+                                if (widget.medDocRef?.form == 'Pill') {
+                                  return (widget.medDocRef?.singleDose == 1.0
                                       ? 'capsule'
                                       : 'capsules');
-                                } else if (widget!.medDocRef?.form ==
+                                } else if (widget.medDocRef?.form ==
                                     'Tablet') {
-                                  return (widget!.medDocRef?.singleDose == 1.0
+                                  return (widget.medDocRef?.singleDose == 1.0
                                       ? 'tablet'
                                       : 'tablets');
-                                } else if (widget!.medDocRef?.form ==
+                                } else if (widget.medDocRef?.form ==
                                     'Emulsion') {
-                                  return (widget!.medDocRef?.singleDose == 1.0
+                                  return (widget.medDocRef?.singleDose == 1.0
                                       ? 'tablespoons'
                                       : 'tablespoons');
                                 } else {
-                                  return (widget!.medDocRef?.singleDose == 1.0
+                                  return (widget.medDocRef?.singleDose == 1.0
                                       ? 'unit'
                                       : 'units');
                                 }
@@ -242,23 +240,23 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                                   ),
                             ),
                             Text(
-                              '${widget!.medDocRef?.totalDose?.toString()} ${() {
-                                if (widget!.medDocRef?.form == 'Pill') {
-                                  return (widget!.medDocRef?.singleDose == 1.0
+                              '${widget.medDocRef?.totalDose.toString()} ${() {
+                                if (widget.medDocRef?.form == 'Pill') {
+                                  return (widget.medDocRef?.singleDose == 1.0
                                       ? 'capsule'
                                       : 'capsules');
-                                } else if (widget!.medDocRef?.form ==
+                                } else if (widget.medDocRef?.form ==
                                     'Tablet') {
-                                  return (widget!.medDocRef?.singleDose == 1.0
+                                  return (widget.medDocRef?.singleDose == 1.0
                                       ? 'tablet'
                                       : 'tablets');
-                                } else if (widget!.medDocRef?.form ==
+                                } else if (widget.medDocRef?.form ==
                                     'Emulsion') {
-                                  return (widget!.medDocRef?.singleDose == 1.0
+                                  return (widget.medDocRef?.singleDose == 1.0
                                       ? 'tablespoons'
                                       : 'tablespoons');
                                 } else {
-                                  return (widget!.medDocRef?.singleDose == 1.0
+                                  return (widget.medDocRef?.singleDose == 1.0
                                       ? 'unit'
                                       : 'units');
                                 }
@@ -287,7 +285,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                             ),
                             Text(
                               valueOrDefault<String>(
-                                widget!.medDocRef?.startDate,
+                                widget.medDocRef?.startDate,
                                 'The day it starts',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -314,7 +312,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                             ),
                             Text(
                               valueOrDefault<String>(
-                                widget!.medDocRef?.endDate,
+                                widget.medDocRef?.endDate,
                                 'The day it ends',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -349,7 +347,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                               child: Builder(
                                 builder: (context) {
                                   final generateTimes =
-                                      widget!.reminderMedRefs!.toList();
+                                      widget.reminderMedRefs!.toList();
 
                                   return Wrap(
                                     spacing: 0.0,
@@ -368,7 +366,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                                           generateTimes[generateTimesIndex];
                                       return Text(
                                         generateTimesIndex ==
-                                                (widget!.reminderMedRefs!
+                                                (widget.reminderMedRefs!
                                                         .length -
                                                     1)
                                             ? generateTimesItem.time
@@ -392,7 +390,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Text(
                                 'Special Instructions: ',
@@ -431,7 +429,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Color(0x00000000),
                                       width: 2.0,
                                     ),
@@ -474,7 +472,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 20.0, 0.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -489,7 +487,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                                     'MedicationForm',
                                     queryParameters: {
                                       'newMedicineID': serializeParam(
-                                        widget!.medDocRef?.reference,
+                                        widget.medDocRef?.reference,
                                         ParamType.DocumentReference,
                                       ),
                                       'editMode': serializeParam(
@@ -503,8 +501,8 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                                 options: FFButtonOptions(
                                   width:
                                       MediaQuery.sizeOf(context).width * 0.25,
-                                  padding: EdgeInsets.all(24.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsets.all(24.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -515,7 +513,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 1.0,
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -523,7 +521,7 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 16.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
@@ -533,8 +531,8 @@ class _MedicineDescriptionWidgetState extends State<MedicineDescriptionWidget> {
                                   options: FFButtonOptions(
                                     width:
                                         MediaQuery.sizeOf(context).width * 0.25,
-                                    padding: EdgeInsets.all(24.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsets.all(24.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,

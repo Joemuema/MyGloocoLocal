@@ -4,8 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'flexibilitybottomsheet_model.dart';
 export 'flexibilitybottomsheet_model.dart';
 
@@ -76,7 +74,7 @@ class _FlexibilitybottomsheetWidgetState
                 },
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(100.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(100.0, 0.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () {
                     print('Button pressed ...');
@@ -86,17 +84,17 @@ class _FlexibilitybottomsheetWidgetState
                     width: 100.0,
                     height: 10.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: Color(0xFF4D7E3E),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFF4D7E3E),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
                           color: Colors.white,
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),
@@ -116,13 +114,13 @@ class _FlexibilitybottomsheetWidgetState
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 0.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Text(
                   valueOrDefault<String>(
-                    widget!.flexibilityexercises?.name,
+                    widget.flexibilityexercises?.name,
                     'name',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -136,7 +134,7 @@ class _FlexibilitybottomsheetWidgetState
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 0.0),
             child: Container(
               width: double.infinity,
               height: 100.0,
@@ -145,10 +143,10 @@ class _FlexibilitybottomsheetWidgetState
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsets.all(5.0),
+                padding: const EdgeInsets.all(5.0),
                 child: Text(
                   valueOrDefault<String>(
-                    widget!.flexibilityexercises?.description,
+                    widget.flexibilityexercises?.description,
                     'description',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -162,7 +160,7 @@ class _FlexibilitybottomsheetWidgetState
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -179,7 +177,7 @@ class _FlexibilitybottomsheetWidgetState
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
             child: Container(
               width: double.infinity,
               height: 50.0,
@@ -188,7 +186,7 @@ class _FlexibilitybottomsheetWidgetState
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -204,7 +202,7 @@ class _FlexibilitybottomsheetWidgetState
                     ),
                     Text(
                       valueOrDefault<String>(
-                        widget!.flexibilityexercises?.duration,
+                        widget.flexibilityexercises?.duration,
                         'duration',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -220,7 +218,7 @@ class _FlexibilitybottomsheetWidgetState
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
             child: Container(
               width: double.infinity,
               height: 50.0,
@@ -229,7 +227,7 @@ class _FlexibilitybottomsheetWidgetState
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -245,7 +243,7 @@ class _FlexibilitybottomsheetWidgetState
                     ),
                     Text(
                       valueOrDefault<String>(
-                        widget!.flexibilityexercises?.sets,
+                        widget.flexibilityexercises?.sets,
                         'sets',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(

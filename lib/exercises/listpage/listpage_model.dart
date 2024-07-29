@@ -1,15 +1,9 @@
-import '/backend/backend.dart';
 import '/components/highintensitylistcomponents_widget.dart';
 import '/components/lowintensitylistcomponent_widget.dart';
 import '/exercises/mediumsintensitylistcomponent/mediumsintensitylistcomponent_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'listpage_widget.dart' show ListpageWidget;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class ListpageModel extends FlutterFlowModel<ListpageWidget> {
   ///  State fields for stateful widgets in this page.

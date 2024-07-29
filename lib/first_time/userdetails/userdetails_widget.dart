@@ -5,15 +5,12 @@ import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'userdetails_model.dart';
 export 'userdetails_model.dart';
@@ -71,14 +68,14 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: double.infinity,
                   child: Stack(
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
                         child: PageView(
                           physics: const NeverScrollableScrollPhysics(),
                           controller: _model.userDetailsPageViewController ??=
@@ -91,9 +88,9 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, -1.0),
+                                  alignment: const AlignmentDirectional(-1.0, -1.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         14.0, 20.0, 0.0, 0.0),
                                     child: Text(
                                       'Set up your Profile',
@@ -108,10 +105,10 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 10.0, 0.0),
                                   child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 100),
+                                    duration: const Duration(milliseconds: 100),
                                     curve: Curves.easeIn,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
@@ -123,7 +120,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                       autovalidateMode:
                                           AutovalidateMode.disabled,
                                       child: Padding(
-                                        padding: EdgeInsets.all(10.0),
+                                        padding: const EdgeInsets.all(10.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -132,7 +129,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: InkWell(
                                                 splashColor: Colors.transparent,
@@ -220,17 +217,17 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                     }
                                                   }
                                                 },
-                                                child: Container(
+                                                child: SizedBox(
                                                   width: 83.0,
                                                   height: 87.0,
                                                   child: Stack(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             -1.0, 1.0),
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Container(
                                                           width: 75.0,
@@ -252,31 +249,31 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                             shape:
                                                                 BoxShape.circle,
                                                             border: Border.all(
-                                                              color: Color(
+                                                              color: const Color(
                                                                   0xFFB2D3C2),
                                                               width: 3.0,
                                                             ),
                                                           ),
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                         ),
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 -1.0, 1.0),
                                                         child:
                                                             FlutterFlowIconButton(
                                                           borderColor:
-                                                              Color(0xFFB2D3C2),
+                                                              const Color(0xFFB2D3C2),
                                                           borderRadius: 20.0,
                                                           borderWidth: 3.0,
                                                           buttonSize: 40.0,
                                                           fillColor: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryBackground,
-                                                          icon: Icon(
+                                                          icon: const Icon(
                                                             Icons.add,
                                                             color: Color(
                                                                 0xFFB2D3C2),
@@ -472,7 +469,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                   .asValidator(context),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 8.0, 0.0),
                                               child: TextFormField(
                                                 controller:
@@ -599,7 +596,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(15.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -616,11 +613,11 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   7.0,
                                                                   0.0,
@@ -628,7 +625,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                                   0.0),
                                                       child:
                                                           FlutterFlowChoiceChips(
-                                                        options: [
+                                                        options: const [
                                                           ChipData('Male',
                                                               Icons.male),
                                                           ChipData('Female',
@@ -672,7 +669,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                         unselectedChipStyle:
                                                             ChipStyle(
                                                           backgroundColor:
-                                                              Color(0xFFB2D3C2),
+                                                              const Color(0xFFB2D3C2),
                                                           textStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -714,16 +711,16 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                   ),
                                                 ]
                                                     .divide(
-                                                        SizedBox(height: 15.0))
+                                                        const SizedBox(height: 15.0))
                                                     .around(
-                                                        SizedBox(height: 15.0)),
+                                                        const SizedBox(height: 15.0)),
                                               ),
                                             ),
                                           ]
-                                              .divide(SizedBox(height: 10.0))
+                                              .divide(const SizedBox(height: 10.0))
                                               .addToStart(
-                                                  SizedBox(height: 20.0))
-                                              .addToEnd(SizedBox(height: 20.0)),
+                                                  const SizedBox(height: 20.0))
+                                              .addToEnd(const SizedBox(height: 20.0)),
                                         ),
                                       ),
                                     ),
@@ -754,8 +751,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                 .validate()) {
                                           return;
                                         }
-                                        if (_model.uploadedFileUrl == null ||
-                                            _model.uploadedFileUrl.isEmpty) {
+                                        if (_model.uploadedFileUrl.isEmpty) {
                                           return;
                                         }
 
@@ -768,7 +764,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                         await _model
                                             .userDetailsPageViewController
                                             ?.nextPage(
-                                          duration: Duration(milliseconds: 300),
+                                          duration: const Duration(milliseconds: 300),
                                           curve: Curves.ease,
                                         );
                                       },
@@ -782,19 +778,19 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 20.0)),
+                                  ].divide(const SizedBox(width: 20.0)),
                                 ),
                               ]
-                                  .divide(SizedBox(height: 20.0))
-                                  .addToStart(SizedBox(height: 10.0))
-                                  .addToEnd(SizedBox(height: 10.0)),
+                                  .divide(const SizedBox(height: 20.0))
+                                  .addToStart(const SizedBox(height: 10.0))
+                                  .addToEnd(const SizedBox(height: 10.0)),
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
                                   child: Text(
                                     'What Are Your Preferred Units Of Measurement?',
@@ -819,10 +815,10 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, -1.0),
+                                            const AlignmentDirectional(-1.0, -1.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 20.0, 0.0, 0.0),
                                           child: Text(
                                             'BG Units',
@@ -841,10 +837,10 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                             AutovalidateMode.always,
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   60.0, 20.0, 60.0, 20.0),
                                           child: FlutterFlowChoiceChips(
-                                            options: [
+                                            options: const [
                                               ChipData('mg/dl'),
                                               ChipData('mmol/L')
                                             ],
@@ -875,7 +871,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                             ),
                                             unselectedChipStyle: ChipStyle(
                                               backgroundColor:
-                                                  Color(0xFFB2D3C2),
+                                                  const Color(0xFFB2D3C2),
                                               textStyle: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -919,14 +915,14 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                     borderRadius: BorderRadius.circular(14.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         75.0, 20.0, 75.0, 20.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-3.0, -1.0),
+                                              const AlignmentDirectional(-3.0, -1.0),
                                           child: Text(
                                             'Calories',
                                             style: FlutterFlowTheme.of(context)
@@ -942,7 +938,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                           autovalidateMode:
                                               AutovalidateMode.always,
                                           child: FlutterFlowChoiceChips(
-                                            options: [
+                                            options: const [
                                               ChipData('kJ'),
                                               ChipData('kCal')
                                             ],
@@ -973,7 +969,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                             ),
                                             unselectedChipStyle: ChipStyle(
                                               backgroundColor:
-                                                  Color(0xFFB2D3C2),
+                                                  const Color(0xFFB2D3C2),
                                               textStyle: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -1010,7 +1006,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 20.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1048,7 +1044,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                               .userDetailsPageViewController
                                               ?.nextPage(
                                             duration:
-                                                Duration(milliseconds: 300),
+                                                const Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
                                         },
@@ -1062,7 +1058,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                       ),
-                                    ].divide(SizedBox(width: 20.0)),
+                                    ].divide(const SizedBox(width: 20.0)),
                                   ),
                                 ),
                               ],
@@ -1072,7 +1068,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
                                   child: Text(
                                     'What Kind Of Diabetes Do You Have?',
@@ -1086,7 +1082,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Container(
                                     width: 300.0,
                                     height: 450.0,
@@ -1096,17 +1092,17 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Form(
                                         key: _model.formKey2,
                                         autovalidateMode:
                                             AutovalidateMode.always,
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   60.0, 2.0, 60.0, 0.0),
                                           child: FlutterFlowChoiceChips(
-                                            options: [
+                                            options: const [
                                               ChipData('Type 1 Diabetes'),
                                               ChipData('Type 2 Diabetes'),
                                               ChipData('Gestational Diabetes'),
@@ -1140,7 +1136,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                             ),
                                             unselectedChipStyle: ChipStyle(
                                               backgroundColor:
-                                                  Color(0xFFB2D3C2),
+                                                  const Color(0xFFB2D3C2),
                                               textStyle: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -1204,7 +1200,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                         await _model
                                             .userDetailsPageViewController
                                             ?.nextPage(
-                                          duration: Duration(milliseconds: 300),
+                                          duration: const Duration(milliseconds: 300),
                                           curve: Curves.ease,
                                         );
                                       },
@@ -1219,8 +1215,8 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                           ),
                                     ),
                                   ]
-                                      .divide(SizedBox(width: 20.0))
-                                      .around(SizedBox(width: 20.0)),
+                                      .divide(const SizedBox(width: 20.0))
+                                      .around(const SizedBox(width: 20.0)),
                                 ),
                               ],
                             ),
@@ -1229,9 +1225,9 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
                                     child: Text(
                                       'How do you take your insulin?',
@@ -1254,15 +1250,15 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                     borderRadius: BorderRadius.circular(12.0),
                                   ),
                                   child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Form(
                                       key: _model.formKey4,
                                       autovalidateMode: AutovalidateMode.always,
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             50.0, 20.0, 50.0, 20.0),
                                         child: FlutterFlowChoiceChips(
-                                          options: [
+                                          options: const [
                                             ChipData('Pen or Syringe'),
                                             ChipData('Insulin Pump'),
                                             ChipData('Insulin Inhaler'),
@@ -1297,7 +1293,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                 BorderRadius.circular(16.0),
                                           ),
                                           unselectedChipStyle: ChipStyle(
-                                            backgroundColor: Color(0xFFB2D3C2),
+                                            backgroundColor: const Color(0xFFB2D3C2),
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -1401,7 +1397,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 20.0)),
+                                  ].divide(const SizedBox(width: 20.0)),
                                 ),
                               ],
                             ),
@@ -1409,9 +1405,9 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 1.0),
+                        alignment: const AlignmentDirectional(0.0, 1.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 16.0),
                           child: smooth_page_indicator.SmoothPageIndicator(
                             controller: _model.userDetailsPageViewController ??=
@@ -1422,7 +1418,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                               await _model.userDetailsPageViewController!
                                   .animateToPage(
                                 i,
-                                duration: Duration(milliseconds: 500),
+                                duration: const Duration(milliseconds: 500),
                                 curve: Curves.ease,
                               );
                               setState(() {});

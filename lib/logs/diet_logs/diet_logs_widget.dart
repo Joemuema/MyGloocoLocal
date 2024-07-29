@@ -3,10 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'diet_logs_model.dart';
 export 'diet_logs_model.dart';
 
@@ -62,7 +59,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 0.0, 0.0),
                 child: Text(
                   'Log Blood Sugar Levels',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -72,7 +69,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -97,7 +94,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
               FlutterFlowDropDown<String>(
                 controller: _model.dropDownValueController1 ??=
                     FormFieldController<String>(null),
-                options: [
+                options: const [
                   'Before breakfast',
                   'After breakfast',
                   'Before lunch',
@@ -123,7 +120,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
                 borderColor: FlutterFlowTheme.of(context).alternate,
                 borderWidth: 2.0,
                 borderRadius: 8.0,
-                margin: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                margin: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                 hidesUnderline: true,
                 isOverButton: true,
                 isSearchable: false,
@@ -131,7 +128,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  final _datePickedDate = await showDatePicker(
+                  final datePickedDate = await showDatePicker(
                     context: context,
                     initialDate: getCurrentTimestamp,
                     firstDate: getCurrentTimestamp,
@@ -166,9 +163,9 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
                     },
                   );
 
-                  TimeOfDay? _datePickedTime;
-                  if (_datePickedDate != null) {
-                    _datePickedTime = await showTimePicker(
+                  TimeOfDay? datePickedTime;
+                  if (datePickedDate != null) {
+                    datePickedTime = await showTimePicker(
                       context: context,
                       initialTime: TimeOfDay.fromDateTime(getCurrentTimestamp),
                       builder: (context, child) {
@@ -203,14 +200,14 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
                     );
                   }
 
-                  if (_datePickedDate != null && _datePickedTime != null) {
+                  if (datePickedDate != null && datePickedTime != null) {
                     safeSetState(() {
                       _model.datePicked = DateTime(
-                        _datePickedDate.year,
-                        _datePickedDate.month,
-                        _datePickedDate.day,
-                        _datePickedTime!.hour,
-                        _datePickedTime.minute,
+                        datePickedDate.year,
+                        datePickedDate.month,
+                        datePickedDate.day,
+                        datePickedTime!.hour,
+                        datePickedTime.minute,
                       );
                     });
                   }
@@ -221,9 +218,9 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
                         getCurrentTimestamp.secondsSinceEpoch)),
                 options: FFButtonOptions(
                   height: 50.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Readex Pro',
@@ -231,7 +228,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.transparent,
                     width: 1.0,
                   ),
@@ -245,7 +242,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: TextFormField(
                     controller: _model.textController,
                     focusNode: _model.textFieldFocusNode,
@@ -306,7 +303,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
                     FormFieldController<String>(
                   _model.dropDownValue2 ??= 'mg/dl',
                 ),
-                options: ['mg/dl', 'mmol/ml'],
+                options: const ['mg/dl', 'mmol/ml'],
                 onChanged: (val) => setState(() => _model.dropDownValue2 = val),
                 width: 126.0,
                 height: 56.0,
@@ -324,7 +321,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
                 borderColor: FlutterFlowTheme.of(context).alternate,
                 borderWidth: 2.0,
                 borderRadius: 8.0,
-                margin: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                margin: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                 hidesUnderline: true,
                 isOverButton: true,
                 isSearchable: false,
@@ -339,8 +336,8 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
             text: 'Done',
             options: FFButtonOptions(
               height: 40.0,
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).primary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: 'Readex Pro',
@@ -348,7 +345,7 @@ class _DietLogsWidgetState extends State<DietLogsWidget> {
                     letterSpacing: 0.0,
                   ),
               elevation: 3.0,
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.transparent,
                 width: 1.0,
               ),

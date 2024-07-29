@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'upperbodycomponent_model.dart';
 export 'upperbodycomponent_model.dart';
 
@@ -48,7 +46,7 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
       child: Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -61,16 +59,16 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsets.all(5.0),
+              padding: const EdgeInsets.all(5.0),
               child: Container(
                 width: 60.0,
                 height: 60.0,
                 clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: Image.network(
-                  widget!.upperbodydocument!.image,
+                  widget.upperbodydocument!.image,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -84,12 +82,12 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
                     children: [
                       Text(
                         valueOrDefault<String>(
-                          widget!.upperbodydocument?.name,
+                          widget.upperbodydocument?.name,
                           'name',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
-                              color: Color(0xFF4D7E3E),
+                              color: const Color(0xFF4D7E3E),
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                             ),
@@ -102,7 +100,7 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
                       Expanded(
                         child: Text(
                           valueOrDefault<String>(
-                            widget!.upperbodydocument?.shortdescription,
+                            widget.upperbodydocument?.shortdescription,
                             'shortdescription',
                           ),
                           style:
@@ -123,7 +121,7 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
               borderRadius: 20.0,
               borderWidth: 1.0,
               buttonSize: 40.0,
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_forward_ios_sharp,
                 color: Color(0xFF4D7E3E),
                 size: 24.0,

@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'corebodyexercisecomponent_model.dart';
 export 'corebodyexercisecomponent_model.dart';
 
@@ -49,7 +47,7 @@ class _CorebodyexercisecomponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
       child: Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -62,23 +60,23 @@ class _CorebodyexercisecomponentWidgetState
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
               child: Container(
                 width: 60.0,
                 height: 60.0,
                 clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: Image.network(
-                  widget!.corebodydocument!.image,
+                  widget.corebodydocument!.image,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -87,13 +85,13 @@ class _CorebodyexercisecomponentWidgetState
                       children: [
                         Text(
                           valueOrDefault<String>(
-                            widget!.corebodydocument?.name,
+                            widget.corebodydocument?.name,
                             'name',
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
-                                    color: Color(0xFF4D7E3E),
+                                    color: const Color(0xFF4D7E3E),
                                     fontSize: 15.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
@@ -103,7 +101,7 @@ class _CorebodyexercisecomponentWidgetState
                     ),
                     Text(
                       valueOrDefault<String>(
-                        widget!.corebodydocument?.shortdescription,
+                        widget.corebodydocument?.shortdescription,
                         'shortdescriptiom',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(

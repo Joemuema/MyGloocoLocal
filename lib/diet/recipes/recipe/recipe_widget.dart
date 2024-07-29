@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'recipe_model.dart';
 export 'recipe_model.dart';
 
@@ -90,7 +88,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
           ),
           title: Text(
             valueOrDefault<String>(
-              widget!.recipeName?.title,
+              widget.recipeName?.title,
               'Meal',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -98,7 +96,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -111,11 +109,11 @@ class _RecipeWidgetState extends State<RecipeWidget>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
                     child: Image.network(
-                      widget!.foodPic!,
+                      widget.foodPic!,
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 230.0,
                       fit: BoxFit.cover,
@@ -123,15 +121,15 @@ class _RecipeWidgetState extends State<RecipeWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(-1.0, -1.0),
+                        alignment: const AlignmentDirectional(-1.0, -1.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 0.0, 16.0),
                           child: Text(
                             'Recipe Details',
@@ -147,7 +145,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                         child: Container(
                           width: 348.0,
                           height: 100.0,
@@ -157,9 +155,9 @@ class _RecipeWidgetState extends State<RecipeWidget>
                           child: Stack(
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(-1.0, -1.0),
+                                alignment: const AlignmentDirectional(-1.0, -1.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       14.0, 0.0, 0.0, 4.0),
                                   child: Icon(
                                     Icons.local_fire_department_outlined,
@@ -170,9 +168,9 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 1.0),
+                                alignment: const AlignmentDirectional(-1.0, 1.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       14.0, 0.0, 0.0, 4.0),
                                   child: Icon(
                                     FFIcons.kicons8Eggs50,
@@ -183,9 +181,9 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.2, -1.0),
+                                alignment: const AlignmentDirectional(0.2, -1.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       61.0, 0.0, 0.0, 4.0),
                                   child: Icon(
                                     FFIcons.kicons8Wheat50,
@@ -196,9 +194,9 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.2, 1.0),
+                                alignment: const AlignmentDirectional(0.2, 1.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       60.0, 0.0, 0.0, 4.0),
                                   child: Icon(
                                     FFIcons.kicons8Pizza50,
@@ -209,13 +207,13 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-0.75, -0.8),
+                                alignment: const AlignmentDirectional(-0.75, -0.8),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       34.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
-                                      widget!.enkcal?.energyKcal?.toString(),
+                                      widget.enkcal?.energyKcal.toString(),
                                       '0',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -229,10 +227,10 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.74, 0.8),
+                                alignment: const AlignmentDirectional(0.74, 0.8),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget!.fats?.fat?.toString(),
+                                    widget.fats?.fat.toString(),
                                     '0',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -245,13 +243,13 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-0.7, 0.8),
+                                alignment: const AlignmentDirectional(-0.7, 0.8),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       28.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
-                                      widget!.proteins?.protein?.toString(),
+                                      widget.proteins?.protein.toString(),
                                       '0',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -265,9 +263,9 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(1.04, 0.8),
+                                alignment: const AlignmentDirectional(1.04, 0.8),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 1.0, 0.0),
                                   child: Text(
                                     'g fats',
@@ -282,9 +280,9 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-0.2, 0.8),
+                                alignment: const AlignmentDirectional(-0.2, 0.8),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 10.0, 0.0),
                                   child: Text(
                                     'g proteins',
@@ -299,9 +297,9 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-0.2, -0.8),
+                                alignment: const AlignmentDirectional(-0.2, -0.8),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 72.0, 0.0),
                                   child: Text(
                                     'kCal',
@@ -316,13 +314,13 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.74, -0.8),
+                                alignment: const AlignmentDirectional(0.74, -0.8),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 15.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
-                                      widget!.carbs?.carbohydrate?.toString(),
+                                      widget.carbs?.carbohydrate.toString(),
                                       '0',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -336,9 +334,9 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(1.04, -0.8),
+                                alignment: const AlignmentDirectional(1.04, -0.8),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     'g carbs',
@@ -368,15 +366,15 @@ class _RecipeWidgetState extends State<RecipeWidget>
                           children: [
                             Stack(
                               children: [
-                                Container(
+                                SizedBox(
                                   height: 200.0,
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         7.0, 5.0, 7.0, 10.0),
                                     child: Column(
                                       children: [
                                         Align(
-                                          alignment: Alignment(0.0, 0),
+                                          alignment: const Alignment(0.0, 0),
                                           child: FlutterFlowButtonTabBar(
                                             useToggleButtonStyle: true,
                                             labelStyle:
@@ -416,10 +414,10 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                             borderRadius: 100.0,
                                             elevation: 0.0,
                                             buttonMargin:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
-                                            padding: EdgeInsets.all(4.0),
-                                            tabs: [
+                                            padding: const EdgeInsets.all(4.0),
+                                            tabs: const [
                                               Tab(
                                                 text: 'Ingredients',
                                               ),
@@ -439,10 +437,10 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                             children: [
                                               Builder(
                                                 builder: (context) {
-                                                  final ingredients = widget!
+                                                  final ingredients = widget
                                                           .ingredients
                                                           ?.ingredients
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [];
 
                                                   return SingleChildScrollView(
@@ -477,10 +475,10 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                               ),
                                               Builder(
                                                 builder: (context) {
-                                                  final instructions = widget!
+                                                  final instructions = widget
                                                           .instructions
                                                           ?.instructions
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [];
 
                                                   return SingleChildScrollView(
@@ -523,9 +521,9 @@ class _RecipeWidgetState extends State<RecipeWidget>
                               ],
                             ),
                             Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 24.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
@@ -547,7 +545,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
                                             child: RecipecheckoutWidget(
-                                              recipename: widget!.recipeName!,
+                                              recipename: widget.recipeName!,
                                             ),
                                           ),
                                         );
@@ -558,9 +556,9 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                   options: FFButtonOptions(
                                     width: 300.0,
                                     height: 60.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -571,7 +569,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),

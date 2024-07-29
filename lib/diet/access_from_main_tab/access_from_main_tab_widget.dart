@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -7,9 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'access_from_main_tab_model.dart';
 export 'access_from_main_tab_model.dart';
@@ -69,7 +66,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
             width: double.infinity,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   blurRadius: 7.0,
                   color: Color(0x33000000),
@@ -79,7 +76,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                   ),
                 )
               ],
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(0.0),
                 bottomRight: Radius.circular(0.0),
                 topLeft: Radius.circular(16.0),
@@ -87,7 +84,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
               ),
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,13 +107,13 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             10.0, 0.0, 10.0, 0.0),
                         child: Form(
                           key: _model.formKey1,
                           autovalidateMode: AutovalidateMode.disabled,
                           child: FlutterFlowChoiceChips(
-                            options: [
+                            options: const [
                               ChipData('Breakfast', Icons.emoji_food_beverage),
                               ChipData('Lunch', Icons.lunch_dining),
                               ChipData('Supper', Icons.food_bank_outlined),
@@ -142,7 +139,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                               borderRadius: BorderRadius.circular(16.0),
                             ),
                             unselectedChipStyle: ChipStyle(
-                              backgroundColor: Color(0xFFCEC4C4),
+                              backgroundColor: const Color(0xFFCEC4C4),
                               textStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -151,7 +148,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                         .secondaryText,
                                     letterSpacing: 0.0,
                                   ),
-                              iconColor: Color(0xFF0D0909),
+                              iconColor: const Color(0xFF0D0909),
                               iconSize: 18.0,
                               elevation: 0.0,
                               borderRadius: BorderRadius.circular(16.0),
@@ -188,7 +185,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                         },
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             10.0, 10.0, 10.0, 7.0),
                         child: Text(
                           'You could also search from our food database',
@@ -206,7 +203,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                     key: _model.formKey2,
                     autovalidateMode: AutovalidateMode.disabled,
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           16.0, 16.0, 16.0, 16.0),
                       child: TextFormField(
                         controller: _model.foodentrysTextController,
@@ -257,7 +254,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 24.0, 20.0, 24.0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -274,7 +271,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         if (_model.formKey1.currentState == null ||
@@ -307,7 +304,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
                             ),
-                            duration: Duration(milliseconds: 2650),
+                            duration: const Duration(milliseconds: 2650),
                             backgroundColor:
                                 FlutterFlowTheme.of(context).secondary,
                           ),
@@ -318,9 +315,9 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                         width: double.infinity,
                         height: 50.0,
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -329,7 +326,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 2.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),

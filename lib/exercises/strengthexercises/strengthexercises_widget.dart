@@ -4,8 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'strengthexercises_model.dart';
 export 'strengthexercises_model.dart';
 
@@ -53,7 +51,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
       height: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(15.0),
@@ -64,7 +62,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -84,7 +82,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                   },
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(100.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(100.0, 0.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () {
                       print('Button pressed ...');
@@ -94,10 +92,10 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                       width: 100.0,
                       height: 10.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Color(0xFF4D7E3E),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF4D7E3E),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',
@@ -105,7 +103,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -117,11 +115,11 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
               child: Image.network(
-                widget!.upperbodyexercisedocument!.image,
+                widget.upperbodyexercisedocument!.image,
                 width: 394.0,
                 height: 200.0,
                 fit: BoxFit.cover,
@@ -129,13 +127,13 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 0.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Text(
                   valueOrDefault<String>(
-                    widget!.upperbodyexercisedocument?.name,
+                    widget.upperbodyexercisedocument?.name,
                     'name',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -149,7 +147,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 0.0),
             child: Container(
               width: double.infinity,
               height: 218.0,
@@ -158,10 +156,10 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
                 child: Text(
                   valueOrDefault<String>(
-                    widget!.upperbodyexercisedocument?.description,
+                    widget.upperbodyexercisedocument?.description,
                     'description',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -173,7 +171,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 0.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -190,7 +188,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -202,7 +200,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                       width: 100.0,
                       height: 100.0,
                       decoration: BoxDecoration(
-                        color: Color(0xFF4D7E3E),
+                        color: const Color(0xFF4D7E3E),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Column(
@@ -224,7 +222,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget!.upperbodyexercisedocument?.weight,
+                              widget.upperbodyexercisedocument?.weight,
                               'weight',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -248,7 +246,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                       width: 100.0,
                       height: 100.0,
                       decoration: BoxDecoration(
-                        color: Color(0xFF4D7E3E),
+                        color: const Color(0xFF4D7E3E),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Column(
@@ -269,7 +267,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget!.upperbodyexercisedocument?.repetition,
+                              widget.upperbodyexercisedocument?.repetition,
                               'repetition',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -293,7 +291,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                       width: 100.0,
                       height: 100.0,
                       decoration: BoxDecoration(
-                        color: Color(0xFF4D7E3E),
+                        color: const Color(0xFF4D7E3E),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Column(
@@ -314,7 +312,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget!.upperbodyexercisedocument?.sets,
+                              widget.upperbodyexercisedocument?.sets,
                               'sets',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -335,7 +333,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -347,7 +345,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                       width: 100.0,
                       height: 100.0,
                       decoration: BoxDecoration(
-                        color: Color(0xFF4D7E3E),
+                        color: const Color(0xFF4D7E3E),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Column(
@@ -369,7 +367,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget!.upperbodyexercisedocument?.rest,
+                              widget.upperbodyexercisedocument?.rest,
                               'rest',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -393,7 +391,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                       width: 100.0,
                       height: 100.0,
                       decoration: BoxDecoration(
-                        color: Color(0xFF4D7E3E),
+                        color: const Color(0xFF4D7E3E),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Column(
@@ -414,7 +412,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget!.upperbodyexercisedocument?.duration,
+                              widget.upperbodyexercisedocument?.duration,
                               'duration',
                             ),
                             style: FlutterFlowTheme.of(context)

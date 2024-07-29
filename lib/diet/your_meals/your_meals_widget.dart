@@ -4,9 +4,7 @@ import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'your_meals_model.dart';
 export 'your_meals_model.dart';
@@ -57,7 +55,7 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -76,7 +74,7 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                   fontWeight: FontWeight.w800,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -92,7 +90,7 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 10.0),
+                          const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 3.0, 10.0),
                       child: StreamBuilder<List<MealsRecord>>(
                         stream: queryMealsRecord(
                           queryBuilder: (mealsRecord) => mealsRecord.where(
@@ -145,7 +143,7 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                                         : FocusScope.of(context).unfocus(),
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
-                                      child: Container(
+                                      child: SizedBox(
                                         height:
                                             MediaQuery.sizeOf(context).height *
                                                 0.65,
@@ -212,7 +210,7 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 15.0, 10.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 15.0, 10.0, 0.0),
                       child: Text(
                         'Select a date to review meals taken  ',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(

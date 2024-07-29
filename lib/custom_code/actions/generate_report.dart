@@ -65,8 +65,23 @@ Future<String> generateReport(
 
   try {
     if (selectedContents.contains(DIET_LOGS)) {
-      final mealLogs = await fetchMealLogs(selectedStartDate, selectedEndDate);
+      List<MealLog> mealLogs;
+      try {
+        final querySnapshot = await FirebaseFirestore.instance
+            .collection('Meals')
+            .where('date', isGreaterThanOrEqualTo: selectedStartDate)
+            .where('date', isLessThanOrEqualTo: selectedEndDate)
+            .get();
+
+        mealLogs = querySnapshot.docs
+            .map((doc) => MealLog.fromFirestore(doc))
+            .toList();
+      } catch (e) {
+        print("Error fetching meal logs: $e");
+        mealLogs = [];
+      }
       print("Fetched ${mealLogs.length} meal logs: $mealLogs");
+
       pdf.addPage(
         pw.Page(
           build: (pw.Context context) => pw.Column(
@@ -75,8 +90,8 @@ Future<String> generateReport(
               pw.Table.fromTextArray(context: context, data: [
                 ['Date', 'Meal', 'Type'],
                 ...mealLogs.map((log) => [
-                      log.date != null
-                          ? DateFormat('dd-MM-yyyy').format(log.date)
+                      log.date! != null
+                          ? DateFormat('dd-MM-yyyy').format(log.date!)
                           : 'N/A',
                       log.meal.toString(),
                       log.type
@@ -89,12 +104,52 @@ Future<String> generateReport(
     }
 
     if (selectedContents.contains(BLOOD_SUGAR_LOGS)) {
-      final bloodSugarReadings =
-          await fetchBloodSugarReadings(selectedStartDate, selectedEndDate);
-      final averageBloodSugar =
-          await calculateAverageBloodSugar(selectedStartDate, selectedEndDate);
+      List<BloodSugarReading> bloodSugarReadings;
+      try {
+        final querySnapshot = await FirebaseFirestore.instance
+            .collection('BGreadings')
+            .where('date', isGreaterThanOrEqualTo: selectedStartDate)
+            .where('date', isLessThanOrEqualTo: selectedEndDate)
+            .get();
+
+        bloodSugarReadings = querySnapshot.docs
+            .map((doc) => BloodSugarReading.fromFirestore(doc))
+            .toList();
+      } catch (e) {
+        print("Error fetching blood sugar readings: $e");
+        bloodSugarReadings = [];
+      }
+
+      double averageBloodSugar;
+      try {
+        List<BloodSugarReading> SugarReadings;
+        try {
+          final querySnapshot = await FirebaseFirestore.instance
+              .collection('BGreadings')
+              .where('date', isGreaterThanOrEqualTo: selectedStartDate)
+              .where('date', isLessThanOrEqualTo: selectedEndDate)
+              .get();
+
+          SugarReadings = querySnapshot.docs
+              .map((doc) => BloodSugarReading.fromFirestore(doc))
+              .toList();
+        } catch (e) {
+          print("Error fetching blood sugar readings: $e");
+          SugarReadings = [];
+        }
+
+        if (SugarReadings.isEmpty) averageBloodSugar = 0.0;
+        final total =
+            SugarReadings.fold(0.0, (sum, reading) => sum + reading.cgmReading);
+        averageBloodSugar = total / SugarReadings.length;
+      } catch (e) {
+        print("Error calculating average blood sugar: $e");
+        averageBloodSugar = 0.0;
+      }
+
       print(
           "Fetched ${bloodSugarReadings.length} blood sugar readings: $bloodSugarReadings");
+
       pdf.addPage(
         pw.Page(
           build: (pw.Context context) => pw.Column(
@@ -104,8 +159,8 @@ Future<String> generateReport(
               pw.Table.fromTextArray(context: context, data: [
                 ['Date', 'Period', 'CGM Reading (mg/dL)'],
                 ...bloodSugarReadings.map((reading) => [
-                      reading.date != null
-                          ? DateFormat('dd-MM-yyyy').format(reading.date)
+                      reading.date! != null
+                          ? DateFormat('dd-MM-yyyy').format(reading.date!)
                           : 'N/A',
                       reading.period,
                       reading.cgmReading.toString()
@@ -136,54 +191,5 @@ Future<String> generateReport(
   } catch (e) {
     print("Error generating report: $e");
     rethrow;
-  }
-}
-
-Future<List<MealLog>> fetchMealLogs(
-    DateTime startDate, DateTime endDate) async {
-  try {
-    final querySnapshot = await FirebaseFirestore.instance
-        .collection('Meals')
-        .where('date', isGreaterThanOrEqualTo: startDate)
-        .where('date', isLessThanOrEqualTo: endDate)
-        .get();
-
-    return querySnapshot.docs.map((doc) => MealLog.fromFirestore(doc)).toList();
-  } catch (e) {
-    print("Error fetching meal logs: $e");
-    return [];
-  }
-}
-
-Future<List<BloodSugarReading>> fetchBloodSugarReadings(
-    DateTime startDate, DateTime endDate) async {
-  try {
-    final querySnapshot = await FirebaseFirestore.instance
-        .collection('BGreadings')
-        .where('date', isGreaterThanOrEqualTo: startDate)
-        .where('date', isLessThanOrEqualTo: endDate)
-        .get();
-
-    return querySnapshot.docs
-        .map((doc) => BloodSugarReading.fromFirestore(doc))
-        .toList();
-  } catch (e) {
-    print("Error fetching blood sugar readings: $e");
-    return [];
-  }
-}
-
-Future<double> calculateAverageBloodSugar(
-    DateTime startDate, DateTime endDate) async {
-  try {
-    final readings = await fetchBloodSugarReadings(startDate, endDate);
-    if (readings.isEmpty) return 0.0;
-
-    final total =
-        readings.fold(0.0, (sum, reading) => sum + reading.cgmReading);
-    return total / readings.length;
-  } catch (e) {
-    print("Error calculating average blood sugar: $e");
-    return 0.0;
   }
 }

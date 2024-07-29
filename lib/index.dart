@@ -37,8 +37,6 @@ export '/exercises/exercisehomepage/exercisehomepage_widget.dart'
     show ExercisehomepageWidget;
 export '/exercises/categoriespage/categoriespage_widget.dart'
     show CategoriespageWidget;
-export '/exercises/addtodaysactivitypage/addtodaysactivitypage_widget.dart'
-    show AddtodaysactivitypageWidget;
 export '/exercises/addplanpage/addplanpage_widget.dart' show AddplanpageWidget;
 export '/exercises/lowerbodyexercise/lowerbodyexercise_widget.dart'
     show LowerbodyexerciseWidget;
