@@ -29,7 +29,7 @@ class MealLog {
   factory MealLog.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return MealLog(
-      date: (data['date'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      date: stringToDate(data['date']),
       meal: data['meal'] ?? [],
       type: data['type'] ?? '',
     );
@@ -50,7 +50,7 @@ class BloodSugarReading {
   factory BloodSugarReading.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return BloodSugarReading(
-      date: (data['date'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      date: stringToDate(data['date']),
       period: data['period'] ?? '',
       cgmReading: (data['CGMreading'] ?? 0).toDouble(),
     );

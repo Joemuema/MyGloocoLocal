@@ -747,6 +747,18 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                   ],
                 ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'Hello World',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

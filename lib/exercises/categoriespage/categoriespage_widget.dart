@@ -1287,7 +1287,10 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color: const Color(0xFF4D7E3E),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -1356,7 +1359,9 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                 width: 90.0,
                                                 height: 80.0,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFF4D7E3E),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10.0),
@@ -1457,7 +1462,10 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color: const Color(0xFF4D7E3E),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -1526,7 +1534,9 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                 width: 90.0,
                                                 height: 80.0,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFF4D7E3E),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10.0),
@@ -1624,7 +1634,10 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color: const Color(0xFF4D7E3E),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -1692,7 +1705,9 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                 width: 90.0,
                                                 height: 80.0,
                                                 decoration: BoxDecoration(
-                                                  color: const Color(0xFF4D7E3E),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10.0),

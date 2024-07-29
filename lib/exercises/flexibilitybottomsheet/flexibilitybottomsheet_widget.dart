@@ -108,7 +108,7 @@ class _FlexibilitybottomsheetWidgetState
             borderRadius: BorderRadius.circular(8.0),
             child: Image.network(
               widget.flexibilityexercises!.image,
-              width: 380.0,
+              width: double.infinity,
               height: 200.0,
               fit: BoxFit.cover,
             ),
