@@ -98,7 +98,7 @@ Future<String> generateReport(
                       log.date != null
                           ? DateFormat('yyyy-MM-dd').format(log.date)
                           : 'N/A',
-                      log.meal.toString(),
+                      log.meal.join(','),
                       log.type
                     ])
               ]),
@@ -112,21 +112,21 @@ Future<String> generateReport(
       List<BloodSugarReading> bloodSugarReadings =
           []; // Declare bloodSugarReadings here
       try {
-        final querySnapshot = await FirebaseFirestore.instance
-            .collection('BGreadings')
-            .where('date', isGreaterThanOrEqualTo: selectedStartDate)
-            .get();
+        final querySnapshot =
+            await FirebaseFirestore.instance.collection('BGreadings').get();
 
         if (querySnapshot.docs.isEmpty) {
           print("No blood sugar readings found for the given date range.");
         } else {
-          bloodSugarReadings = querySnapshot
-              .docs // Assign bloodSugarReadings here
-              .where((doc) => (doc.data()['date'] as Timestamp)
-                  .toDate()
-                  .isBefore(selectedEndDate))
-              .map((doc) => BloodSugarReading.fromFirestore(doc))
-              .toList();
+          bloodSugarReadings =
+              querySnapshot.docs // Assign bloodSugarReadings here
+                  .where((doc) {
+                    final date = DateTime.parse(doc.data()['date']);
+                    return date.isAfter(selectedStartDate) &&
+                        date.isBefore(selectedEndDate);
+                  })
+                  .map((doc) => BloodSugarReading.fromFirestore(doc))
+                  .toList();
         }
       } catch (e) {
         print("Error fetching blood sugar readings: $e");
