@@ -87,8 +87,8 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                 .secondaryBackground,
                             size: 24.0,
                           ),
-                          onPressed: () {
-                            print('IconButton pressed ...');
+                          onPressed: () async {
+                            context.safePop();
                           },
                         ),
                         Padding(

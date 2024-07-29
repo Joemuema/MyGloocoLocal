@@ -90,8 +90,8 @@ Future<String> generateReport(
               pw.Table.fromTextArray(context: context, data: [
                 ['Date', 'Meal', 'Type'],
                 ...mealLogs.map((log) => [
-                      log.date! != null
-                          ? DateFormat('dd-MM-yyyy').format(log.date!)
+                      log.date != null
+                          ? DateFormat('yyyy-MM-dd').format(log.date)
                           : 'N/A',
                       log.meal.toString(),
                       log.type
@@ -122,7 +122,7 @@ Future<String> generateReport(
 
       double averageBloodSugar;
       try {
-        List<BloodSugarReading> SugarReadings;
+        List<BloodSugarReading> sugarReadings;
         try {
           final querySnapshot = await FirebaseFirestore.instance
               .collection('BGreadings')
@@ -130,18 +130,21 @@ Future<String> generateReport(
               .where('date', isLessThanOrEqualTo: selectedEndDate)
               .get();
 
-          SugarReadings = querySnapshot.docs
+          sugarReadings = querySnapshot.docs
               .map((doc) => BloodSugarReading.fromFirestore(doc))
               .toList();
         } catch (e) {
           print("Error fetching blood sugar readings: $e");
-          SugarReadings = [];
+          sugarReadings = [];
         }
 
-        if (SugarReadings.isEmpty) averageBloodSugar = 0.0;
-        final total =
-            SugarReadings.fold(0.0, (sum, reading) => sum + reading.cgmReading);
-        averageBloodSugar = total / SugarReadings.length;
+        if (sugarReadings.isEmpty) {
+          averageBloodSugar = 0.0;
+        } else {
+          final total = sugarReadings.fold(
+              0.0, (sum, reading) => sum + reading.cgmReading);
+          averageBloodSugar = total / sugarReadings.length;
+        }
       } catch (e) {
         print("Error calculating average blood sugar: $e");
         averageBloodSugar = 0.0;
@@ -159,8 +162,8 @@ Future<String> generateReport(
               pw.Table.fromTextArray(context: context, data: [
                 ['Date', 'Period', 'CGM Reading (mg/dL)'],
                 ...bloodSugarReadings.map((reading) => [
-                      reading.date! != null
-                          ? DateFormat('dd-MM-yyyy').format(reading.date!)
+                      reading.date != null
+                          ? DateFormat('yyyy-MM-dd').format(reading.date)
                           : 'N/A',
                       reading.period,
                       reading.cgmReading.toString()
