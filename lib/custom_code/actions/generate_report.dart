@@ -133,36 +133,6 @@ Future<String> generateReport(
         throw Exception("Failed to fetch blood sugar readings: $e");
       }
 
-      double averageBloodSugar;
-      try {
-        List<BloodSugarReading> sugarReadings;
-        try {
-          final querySnapshot = await FirebaseFirestore.instance
-              .collection('BGreadings')
-              .where('date', isGreaterThanOrEqualTo: selectedStartDate)
-              .where('date', isLessThanOrEqualTo: selectedEndDate)
-              .get();
-
-          sugarReadings = querySnapshot.docs
-              .map((doc) => BloodSugarReading.fromFirestore(doc))
-              .toList();
-        } catch (e) {
-          print("Error fetching blood sugar readings: $e");
-          sugarReadings = [];
-        }
-
-        if (sugarReadings.isEmpty) {
-          averageBloodSugar = 0.0;
-        } else {
-          final total = sugarReadings.fold(
-              0.0, (sum, reading) => sum + reading.cgmReading);
-          averageBloodSugar = total / sugarReadings.length;
-        }
-      } catch (e) {
-        print("Error calculating average blood sugar: $e");
-        averageBloodSugar = 0.0;
-      }
-
       print(
           "Fetched ${bloodSugarReadings.length} blood sugar readings: $bloodSugarReadings");
 
@@ -183,9 +153,6 @@ Future<String> generateReport(
                     ])
               ]),
               pw.SizedBox(height: 10),
-              pw.Text(
-                  'Average Blood Sugar: ${averageBloodSugar.toStringAsFixed(2)} mg/dL',
-                  style: pw.TextStyle(fontSize: 16)),
             ],
           ),
         ),

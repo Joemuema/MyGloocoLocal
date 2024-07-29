@@ -327,7 +327,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                                               .fromSTEB(
                                                                   10.0,
                                                                   10.0,
-                                                                  10.0,
+                                                                  3.0,
                                                                   15.0),
                                                       child: Text(
                                                         'You can review recent meals from here',

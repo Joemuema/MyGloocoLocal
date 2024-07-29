@@ -111,7 +111,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   children: [
                                     Container(
                                       decoration: const BoxDecoration(
-                                        color: Color(0xCD99CC33),
+                                        color: Color(0x5000A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -126,7 +126,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xCDB1CC33),
+                                        color: const Color(0x7000A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
@@ -187,7 +187,9 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                           focusColor: Colors.transparent,
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
-                          onTap: () async {},
+                          onTap: () async {
+                            context.pushNamed('healthy_eating');
+                          },
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -200,7 +202,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   children: [
                                     Container(
                                       decoration: const BoxDecoration(
-                                        color: Color(0xCD99CC33),
+                                        color: Color(0x7000A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -215,7 +217,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xCD99CC33),
+                                        color: const Color(0x7000A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
@@ -291,7 +293,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   children: [
                                     Container(
                                       decoration: const BoxDecoration(
-                                        color: Color(0xCD99CC33),
+                                        color: Color(0x7000A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -306,7 +308,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xCB99CC33),
+                                        color: const Color(0x7000A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
@@ -382,7 +384,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   children: [
                                     Container(
                                       decoration: const BoxDecoration(
-                                        color: Color(0xCD99CC33),
+                                        color: Color(0x7000A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -397,7 +399,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xCC99CC33),
+                                        color: const Color(0x7000A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
@@ -472,7 +474,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   children: [
                                     Container(
                                       decoration: const BoxDecoration(
-                                        color: Color(0xCD99CC33),
+                                        color: Color(0x7000A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -487,7 +489,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xCC99CC33),
+                                        color: const Color(0x7000A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
@@ -552,7 +554,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                               children: [
                                 Container(
                                   decoration: const BoxDecoration(
-                                    color: Color(0xCD99CC33),
+                                    color: Color(0x7000A8AF),
                                     shape: BoxShape.circle,
                                   ),
                                   child: Padding(
@@ -567,7 +569,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                    color: const Color(0xCC99CC33),
+                                    color: const Color(0x7000A8AF),
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
                                   child: Padding(
@@ -640,7 +642,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   children: [
                                     Container(
                                       decoration: const BoxDecoration(
-                                        color: Color(0xCC99CC33),
+                                        color: Color(0x7000A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -655,7 +657,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xCB99CC33),
+                                        color: const Color(0x7000A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
