@@ -96,84 +96,100 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                           children: [
                             Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: 330.0,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.network(
-                                        'https://images.unsplash.com/photo-1504674900247-0877df9cc836?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyfHxmb29kfGVufDB8fHx8MTcyMDM2MDI4NHww&ixlib=rb-4.0.3&q=80&w=1080',
-                                      ).image,
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 20.0, 20.0, 0.0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 200.0,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.network(
+                                          'https://images.unsplash.com/photo-1504674900247-0877df9cc836?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyfHxmb29kfGVufDB8fHx8MTcyMDM2MDI4NHww&ixlib=rb-4.0.3&q=80&w=1080',
+                                        ).image,
+                                      ),
+                                      borderRadius: BorderRadius.circular(14.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(14.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Text(
-                                      'Healthy Eating for \nDiabetes',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            color: const Color(0xFFFFF9F9),
-                                            letterSpacing: 0.0,
-                                          ),
+                                    child: Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, 1.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 0.0, 20.0),
+                                        child: Text(
+                                          'Healthy Eating for \nDiabetes',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleLarge
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                color: const Color(0xFFFFF9F9),
+                                                fontSize: 25.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(18.0),
-                                    child: Container(
-                                      width: 350.0,
-                                      height: 420.0,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(14.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: SingleChildScrollView(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Text(
-                                                  'Healthy eating is a cornerstone of diabetes management, as the food you consume directly affects blood sugar levels.\n\nFor people with diabetes, understanding the impact of carbohydrates, fats, and proteins on blood sugar is crucial.',
-                                                  textAlign: TextAlign.start,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ),
-                                              Text(
-                                                'Carbohydrates, in particular, have the most significant effect on blood sugar, so managing intake through portion control and choosing complex carbohydrates over simple sugars can help maintain stable blood sugar levels.\n\nIncorporating a variety of foods from all food groups ensures that your body gets the necessary nutrients while keeping blood sugar levels in check.',
+                                  child: Container(
+                                    width: 350.0,
+                                    height: 530.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(14.0),
+                                    ),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Align(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 20.0, 0.0, 0.0),
+                                              child: Text(
+                                                'Healthy eating is a cornerstone of diabetes management, as the food you consume directly affects blood sugar levels.\n\nFor people with diabetes, understanding the impact of carbohydrates, fats, and proteins on blood sugar is crucial.',
+                                                textAlign: TextAlign.start,
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyLarge
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 20.0, 0.0, 0.0),
+                                            child: Text(
+                                              'Carbohydrates, in particular, have the most significant effect on blood sugar, so managing intake through portion control and choosing complex carbohydrates over simple sugars can help maintain stable blood sugar levels.\n\nIncorporating a variety of foods from all food groups ensures that your body gets the necessary nutrients while keeping blood sugar levels in check.',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -189,14 +205,17 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                   Align(
                                     alignment: const AlignmentDirectional(-1.0, -1.0),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(20.0),
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 10.0, 0.0, 0.0),
                                       child: Text(
                                         'Overview',
                                         style: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
                                               fontFamily: 'Inter',
+                                              fontSize: 24.0,
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                       ),
                                     ),
@@ -224,7 +243,10 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 19.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
                                               ),
                                               Text(
@@ -235,20 +257,28 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                              Text(
-                                                'Diabetes-Friendly Foods:',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Diabetes-Friendly Foods:',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                ),
                                               ),
                                               Text(
                                                 'Foods with a low glycemic index (GI) that cause slower, more gradual increases in blood sugar levels.\nHigh-fiber foods that help regulate blood sugar.\nHealthy fats from sources like avocados, nuts, and olive oil.',
@@ -258,20 +288,28 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                              Text(
-                                                'Meal Planning Tips:',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Meal Planning Tips:',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                ),
                                               ),
                                               Text(
                                                 'Create a Meal Plan: Plan your meals and snacks ahead of time to avoid unhealthy choices.\nReading Labels: Learn to read food labels to make informed choices.\nHydration: Stay hydrated with water or sugar-free beverages.',
@@ -282,7 +320,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -306,6 +344,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
+                                                fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -332,6 +371,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                                     .override(
                                                       fontFamily: 'Readex Pro',
                                                       color: const Color(0xFF99CC33),
+                                                      fontSize: 15.0,
                                                       letterSpacing: 0.0,
                                                       decoration: TextDecoration
                                                           .underline,

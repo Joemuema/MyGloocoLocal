@@ -81,83 +81,84 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                           children: [
                             Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: 330.0,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.network(
-                                        'https://images.unsplash.com/photo-1546198632-9ef6368bef12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxMHx8c2NoZWR1bGV8ZW58MHx8fHwxNzIxOTc3NDcyfDA&ixlib=rb-4.0.3&q=80&w=1080',
-                                      ).image,
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 20.0, 20.0, 0.0),
+                                  child: Container(
+                                    height: 200.0,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.network(
+                                          'https://images.unsplash.com/photo-1546198632-9ef6368bef12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxMHx8c2NoZWR1bGV8ZW58MHx8fHwxNzIxOTc3NDcyfDA&ixlib=rb-4.0.3&q=80&w=1080',
+                                        ).image,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Text(
-                                      'Daily Diabetes Management\nTips',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            color: const Color(0xFFFFF9F9),
-                                            letterSpacing: 0.0,
-                                          ),
+                                    child: Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, 1.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 0.0, 20.0),
+                                        child: Text(
+                                          'Daily Diabetes Management\nTips',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleLarge
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                color: const Color(0xFFFFF9F9),
+                                                fontSize: 25.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(18.0),
-                                    child: Container(
-                                      width: 350.0,
-                                      height: 450.0,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(14.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Text(
-                                                'Daily management of diabetes involves a consistent routine that incorporates healthy habits and regular monitoring. \n\nEstablishing a structured daily routine helps maintain stable blood sugar levels and reduces the risk of complications.',
-                                                textAlign: TextAlign.start,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Text(
-                                              'This includes eating balanced meals at regular intervals, monitoring blood sugar levels as advised by a healthcare provider, taking medications as prescribed, and incorporating physical activity into daily life. \n\nConsistency is key to managing diabetes effectively and minimizing fluctuations in blood sugar levels.',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ],
+                                  child: Container(
+                                    width: 350.0,
+                                    height: 450.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(14.0),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            'Daily management of diabetes involves a consistent routine that incorporates healthy habits and regular monitoring. \n\nEstablishing a structured daily routine helps maintain stable blood sugar levels and reduces the risk of complications.',
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyLarge
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
                                         ),
-                                      ),
+                                        Text(
+                                          'This includes eating balanced meals at regular intervals, monitoring blood sugar levels as advised by a healthcare provider, taking medications as prescribed, and incorporating physical activity into daily life. \n\nConsistency is key to managing diabetes effectively and minimizing fluctuations in blood sugar levels.',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyLarge
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -172,14 +173,17 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                                   Align(
                                     alignment: const AlignmentDirectional(-1.0, -1.0),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(20.0),
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 10.0, 0.0, 0.0),
                                       child: Text(
                                         'Overview',
                                         style: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
                                               fontFamily: 'Inter',
+                                              fontSize: 24.0,
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                       ),
                                     ),
@@ -207,7 +211,10 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 20.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
                                               ),
                                               Text(
@@ -218,7 +225,7 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -230,7 +237,10 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 20.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
                                               ),
                                               Text(
@@ -242,7 +252,7 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -254,7 +264,10 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 20.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
                                               ),
                                               Text(
@@ -265,7 +278,7 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -289,7 +302,9 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
+                                                fontSize: 16.0,
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                         ),
                                         Row(
@@ -315,6 +330,7 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                                                     .override(
                                                       fontFamily: 'Readex Pro',
                                                       color: const Color(0xFF99CC33),
+                                                      fontSize: 16.0,
                                                       letterSpacing: 0.0,
                                                       decoration: TextDecoration
                                                           .underline,

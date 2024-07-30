@@ -84,22 +84,25 @@ class _BglogsWidgetState extends State<BglogsWidget> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                FlutterFlowIconButton(
-                  borderColor: Colors.transparent,
-                  borderRadius: 20.0,
-                  borderWidth: 1.0,
-                  buttonSize: 40.0,
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    size: 20.0,
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 0.0, 0.0),
+                  child: FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 20.0,
+                    borderWidth: 1.0,
+                    buttonSize: 40.0,
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 20.0,
+                    ),
+                    onPressed: () async {
+                      Navigator.pop(context);
+                    },
                   ),
-                  onPressed: () async {
-                    Navigator.pop(context);
-                  },
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(104.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(96.0, 0.0, 0.0, 0.0),
                   child: Text(
                     'Log activity',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -143,7 +146,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                 ),
                 fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                 elevation: 2.0,
-                borderColor: FlutterFlowTheme.of(context).alternate,
+                borderColor: FlutterFlowTheme.of(context).primary,
                 borderWidth: 2.0,
                 borderRadius: 22.0,
                 margin: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
@@ -240,7 +243,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                 },
                 text: valueOrDefault<String>(
                   dateTimeFormat('d/M h:mm a', _model.datePicked),
-                  'Not set',
+                  'Date + Time',
                 ),
                 options: FFButtonOptions(
                   height: 50.0,
@@ -288,14 +291,14 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                               ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
+                          color: FlutterFlowTheme.of(context).primary,
                           width: 2.0,
                         ),
                         borderRadius: BorderRadius.circular(22.0),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
+                          color: FlutterFlowTheme.of(context).secondary,
                           width: 2.0,
                         ),
                         borderRadius: BorderRadius.circular(22.0),
@@ -359,8 +362,10 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                   return FlutterFlowDropDown<String>(
                     controller: _model.dropDownValueController2 ??=
                         FormFieldController<String>(
-                      _model.dropDownValue2 ??=
-                          dropDownProfileRecord?.preferredBG,
+                      _model.dropDownValue2 ??= valueOrDefault<String>(
+                        dropDownProfileRecord?.preferredBG,
+                        'mg/dl',
+                      ),
                     ),
                     options: const ['mg/dl', 'mmol/ml'],
                     onChanged: (val) =>
@@ -369,8 +374,10 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                     height: 56.0,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
+                          color: FlutterFlowTheme.of(context).primaryText,
                           letterSpacing: 0.0,
                         ),
+                    hintText: 'unit',
                     icon: Icon(
                       Icons.keyboard_arrow_down_rounded,
                       color: FlutterFlowTheme.of(context).primaryText,

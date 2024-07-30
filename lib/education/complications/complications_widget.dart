@@ -81,82 +81,89 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                           children: [
                             Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: 330.0,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.network(
-                                        'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyfHxob3NwaXRhbHxlbnwwfHx8fDE3MjE5NzY5NDd8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                                      ).image,
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 20.0, 20.0, 0.0),
+                                  child: Container(
+                                    height: 200.0,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.network(
+                                          'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyfHxob3NwaXRhbHxlbnwwfHx8fDE3MjE5NzY5NDd8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                        ).image,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Text(
-                                      'Preventing and Managing Complications',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            color: const Color(0xFFFFF9F9),
-                                            letterSpacing: 0.0,
-                                          ),
+                                    child: Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, 1.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 0.0, 20.0),
+                                        child: Text(
+                                          'Preventing and Managing Complications',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleLarge
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                color: const Color(0xFFFFF9F9),
+                                                fontSize: 25.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(18.0),
-                                    child: Container(
-                                      width: 350.0,
-                                      height: 450.0,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(14.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Text(
-                                                'Managing complications is a vital aspect of diabetes care, as chronic high blood sugar levels can lead to serious health issues over time.\n\nCommon complications include neuropathy (nerve damage), retinopathy (eye damage), nephropathy (kidney damage), and cardiovascular diseases.',
-                                                textAlign: TextAlign.start,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Text(
-                                              'Each of these complications can significantly impact quality of life and may lead to disability or premature death if not managed effectively. \n\nEarly detection and proactive management are essential to prevent or mitigate the severity of these complications.',
+                                  child: Container(
+                                    width: 350.0,
+                                    height: 504.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 15.0, 0.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Align(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
+                                            child: Text(
+                                              'Managing complications is a vital aspect of diabetes care, as chronic high blood sugar levels can lead to serious health issues over time.\n\nCommon complications include neuropathy (nerve damage), retinopathy (eye damage), nephropathy (kidney damage), and cardiovascular diseases.',
+                                              textAlign: TextAlign.start,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
                                                       .override(
                                                         fontFamily:
                                                             'Readex Pro',
+                                                        fontSize: 18.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                          Text(
+                                            'Each of these complications can significantly impact quality of life and may lead to disability or premature death if not managed effectively. \n\nEarly detection and proactive management are essential to prevent or mitigate the severity of these complications.',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyLarge
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -172,14 +179,17 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                   Align(
                                     alignment: const AlignmentDirectional(-1.0, -1.0),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(20.0),
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 15.0, 0.0, 0.0),
                                       child: Text(
                                         'Overview',
                                         style: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
                                               fontFamily: 'Inter',
+                                              fontSize: 24.0,
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                       ),
                                     ),
@@ -207,7 +217,10 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 19.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
                                               ),
                                               Text(
@@ -218,33 +231,48 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                              Text(
-                                                'Emergency Signs:',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                              Text(
-                                                'Hyperglycemia: Symptoms include frequent urination, extreme thirst, and high blood sugar levels.\nHypoglycemia: Symptoms include shakiness, sweating, confusion, and low blood sugar levels.\nDiabetic Ketoacidosis (DKA): A serious condition with symptoms such as nausea, vomiting, and high ketone levels in the urine.',
-                                                textAlign: TextAlign.start,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 30.0, 0.0, 0.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      'Emergency Signs:',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 19.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                    ),
+                                                    Text(
+                                                      'Hyperglycemia: Symptoms include frequent urination, extreme thirst, and high blood sugar levels.\nHypoglycemia: Symptoms include shakiness, sweating, confusion, and low blood sugar levels.\nDiabetic Ketoacidosis (DKA): A serious condition with symptoms such as nausea, vomiting, and high ketone levels in the urine.',
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 18.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ]
                                                 .divide(const SizedBox(height: 10.0))
@@ -266,6 +294,7 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
+                                                fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -292,6 +321,7 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                                     .override(
                                                       fontFamily: 'Readex Pro',
                                                       color: const Color(0xFF99CC33),
+                                                      fontSize: 15.0,
                                                       letterSpacing: 0.0,
                                                       decoration: TextDecoration
                                                           .underline,

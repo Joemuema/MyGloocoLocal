@@ -117,9 +117,8 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                               snapshot.data!;
 
                           return FlutterFlowCalendar(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            iconColor:
-                                FlutterFlowTheme.of(context).secondaryText,
+                            color: FlutterFlowTheme.of(context).secondary,
+                            iconColor: FlutterFlowTheme.of(context).primary,
                             weekFormat: false,
                             weekStartsMonday: false,
                             rowHeight: 50.0,
@@ -171,6 +170,7 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                                 .headlineSmall
                                 .override(
                                   fontFamily: 'Inter',
+                                  color: FlutterFlowTheme.of(context).primary,
                                   letterSpacing: 0.0,
                                 ),
                             dayOfWeekStyle: FlutterFlowTheme.of(context)

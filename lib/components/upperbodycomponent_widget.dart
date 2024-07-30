@@ -80,17 +80,23 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Text(
-                        valueOrDefault<String>(
-                          widget.upperbodydocument?.name,
-                          'name',
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
+                        child: Text(
+                          valueOrDefault<String>(
+                            widget.upperbodydocument?.name,
+                            'name',
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color: FlutterFlowTheme.of(context).secondary,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w600,
+                              ),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              color: FlutterFlowTheme.of(context).secondary,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                            ),
                       ),
                     ],
                   ),
@@ -98,17 +104,22 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        child: Text(
-                          valueOrDefault<String>(
-                            widget.upperbodydocument?.shortdescription,
-                            'shortdescription',
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 5.0),
+                          child: Text(
+                            valueOrDefault<String>(
+                              widget.upperbodydocument?.shortdescription,
+                              'shortdescription',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
                         ),
                       ),
                     ],

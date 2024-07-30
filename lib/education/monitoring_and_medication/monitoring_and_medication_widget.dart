@@ -83,71 +83,85 @@ class _MonitoringAndMedicationWidgetState
                           children: [
                             Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: 330.0,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.network(
-                                        'https://images.unsplash.com/photo-1685061972799-d721ffba1923?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyMnx8aW5zdWxpbnxlbnwwfHx8fDE3MjE5NzgwNjN8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                                      ).image,
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 20.0, 20.0, 0.0),
+                                  child: Container(
+                                    height: 200.0,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.network(
+                                          'https://images.unsplash.com/photo-1685061972799-d721ffba1923?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyMnx8aW5zdWxpbnxlbnwwfHx8fDE3MjE5NzgwNjN8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                        ).image,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Text(
-                                      'Monitoring and Managing Medications',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            color: const Color(0xFFFFF9F9),
-                                            letterSpacing: 0.0,
-                                          ),
+                                    child: Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, 1.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 0.0, 20.0),
+                                        child: Text(
+                                          'Monitoring and Managing Medications',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleLarge
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                color: const Color(0xFFFFF9F9),
+                                                fontSize: 25.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(18.0),
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 15.0, 0.0, 0.0),
                                     child: Container(
                                       width: 350.0,
-                                      height: 520.0,
+                                      height: 609.0,
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(14.0),
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: SingleChildScrollView(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Text(
-                                                  'Regular monitoring of blood glucose levels is essential for people with diabetes to manage their condition effectively.\n\nBy tracking blood sugar levels, individuals can identify patterns and make informed decisions about their diet, physical activity, and medications',
-                                                  textAlign: TextAlign.start,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                'Regular monitoring of blood glucose levels is essential for people with diabetes to manage their condition effectively.\n\nBy tracking blood sugar levels, individuals can identify patterns and make informed decisions about their diet, physical activity, and medications',
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
                                               ),
-                                              Text(
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 20.0, 0.0, 0.0),
+                                              child: Text(
                                                 'Medications play a critical role in diabetes management, particularly for those with Type 1 diabetes who require insulin therapy. \n\nFor people with Type 2 diabetes, medications may include oral hypoglycemics, non-insulin injectables, or insulin, depending on the severity of their condition.\n\nEffective use of medications, combined with regular monitoring, forms the backbone of successful diabetes management.',
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -155,11 +169,12 @@ class _MonitoringAndMedicationWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -176,14 +191,17 @@ class _MonitoringAndMedicationWidgetState
                                   Align(
                                     alignment: const AlignmentDirectional(-1.0, -1.0),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(20.0),
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 10.0, 0.0, 0.0),
                                       child: Text(
                                         'Overview',
                                         style: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
                                               fontFamily: 'Inter',
+                                              fontSize: 24.0,
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                       ),
                                     ),
@@ -211,7 +229,10 @@ class _MonitoringAndMedicationWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 19.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
                                               ),
                                               Text(
@@ -222,20 +243,28 @@ class _MonitoringAndMedicationWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                              Text(
-                                                'Medication Management:',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Medication Management:',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                ),
                                               ),
                                               Text(
                                                 'Types of Medications: Information on different diabetes medications, including metformin, sulfonylureas, and GLP-1 agonists.\nHow They Work: Understand how each medication helps control blood sugar levels.\nSide Effects: Be aware of potential side effects and how to manage them.',
@@ -245,20 +274,28 @@ class _MonitoringAndMedicationWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                              Text(
-                                                'Insulin Usage:',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Insulin Usage:',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                ),
                                               ),
                                               Text(
                                                 'Types of Insulin: Different types of insulin (rapid-acting, short-acting, intermediate-acting, and long-acting) and their uses.\nInjection Techniques: Proper techniques for injecting insulin and rotating injection sites.\nStorage Tips: How to store insulin to maintain its effectiveness.',
@@ -269,7 +306,7 @@ class _MonitoringAndMedicationWidgetState
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -293,6 +330,7 @@ class _MonitoringAndMedicationWidgetState
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
+                                                fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -319,6 +357,7 @@ class _MonitoringAndMedicationWidgetState
                                                     .override(
                                                       fontFamily: 'Readex Pro',
                                                       color: const Color(0xFF99CC33),
+                                                      fontSize: 15.0,
                                                       letterSpacing: 0.0,
                                                       decoration: TextDecoration
                                                           .underline,

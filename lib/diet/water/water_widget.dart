@@ -99,10 +99,11 @@ class _WaterWidgetState extends State<WaterWidget> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(10.0, 16.0, 0.0, 0.0),
                     child: Text(
-                      'Water& Drinks',
+                      'Water & Drinks',
                       style:
                           FlutterFlowTheme.of(context).headlineSmall.override(
                                 fontFamily: 'Roboto',
+                                color: FlutterFlowTheme.of(context).primary,
                                 letterSpacing: 0.0,
                               ),
                     ),

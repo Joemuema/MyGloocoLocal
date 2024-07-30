@@ -125,19 +125,23 @@ class _HomeWidgetState extends State<HomeWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            icon: Icon(
-                              Icons.person,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 10.0, 0.0),
+                            child: FlutterFlowIconButton(
+                              borderColor: FlutterFlowTheme.of(context).primary,
+                              borderRadius: 20.0,
+                              borderWidth: 1.0,
+                              buttonSize: 40.0,
+                              icon: Icon(
+                                Icons.person,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                context.pushNamed('Settings');
+                              },
                             ),
-                            onPressed: () async {
-                              context.pushNamed('Settings');
-                            },
                           ),
                         ].divide(const SizedBox(width: 10.0)),
                       ),
@@ -183,18 +187,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      fontSize: 15.0,
+                                      fontSize: 16.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
-                                    ),
-                              ),
-                              Text(
-                                'today avg:  mg/dl',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
                                     ),
                               ),
                             ],
@@ -525,12 +520,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Make logs',
+                                    'Add logs',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
+                                          fontSize: 15.0,
                                           letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                   ),
                                   Icon(

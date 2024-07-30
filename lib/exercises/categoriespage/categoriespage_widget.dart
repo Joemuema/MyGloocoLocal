@@ -1303,104 +1303,122 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       10.0, 10.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
-                                    height: 120.0,
+                                    height: 173.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
                                     ),
-                                    child: StreamBuilder<
-                                        List<StrengthexercisesRecord>>(
-                                      stream: queryStrengthexercisesRecord(
-                                        queryBuilder:
-                                            (strengthexercisesRecord) =>
-                                                strengthexercisesRecord.where(
-                                          'Type',
-                                          isEqualTo: 'upperbody',
+                                    child: Align(
+                                      alignment:
+                                          const AlignmentDirectional(0.0, -1.0),
+                                      child: StreamBuilder<
+                                          List<StrengthexercisesRecord>>(
+                                        stream: queryStrengthexercisesRecord(
+                                          queryBuilder:
+                                              (strengthexercisesRecord) =>
+                                                  strengthexercisesRecord.where(
+                                            'Type',
+                                            isEqualTo: 'upperbody',
+                                          ),
+                                          limit: 4,
                                         ),
-                                        limit: 4,
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          );
-                                        }
-                                        List<StrengthexercisesRecord>
-                                            listViewStrengthexercisesRecordList =
-                                            snapshot.data!;
+                                            );
+                                          }
+                                          List<StrengthexercisesRecord>
+                                              listViewStrengthexercisesRecordList =
+                                              snapshot.data!;
 
-                                        return ListView.builder(
-                                          padding: EdgeInsets.zero,
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount:
-                                              listViewStrengthexercisesRecordList
-                                                  .length,
-                                          itemBuilder:
-                                              (context, listViewIndex) {
-                                            final listViewStrengthexercisesRecord =
-                                                listViewStrengthexercisesRecordList[
-                                                    listViewIndex];
-                                            return Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 5.0, 5.0, 5.0),
-                                              child: Container(
-                                                width: 90.0,
-                                                height: 80.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      child: Image.network(
-                                                        listViewStrengthexercisesRecord
-                                                            .image,
-                                                        width: 80.0,
-                                                        height: 60.0,
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  5.0,
-                                                                  0.0,
+                                          return ListView.builder(
+                                            padding: EdgeInsets.zero,
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount:
+                                                listViewStrengthexercisesRecordList
+                                                    .length,
+                                            itemBuilder:
+                                                (context, listViewIndex) {
+                                              final listViewStrengthexercisesRecord =
+                                                  listViewStrengthexercisesRecordList[
+                                                      listViewIndex];
+                                              return Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        5.0, 5.0, 5.0, 5.0),
+                                                child: Container(
+                                                  width: 137.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      ClipRRect(
+                                                        borderRadius:
+                                                            const BorderRadius.only(
+                                                          bottomLeft:
+                                                              Radius.circular(
                                                                   0.0),
-                                                      child: Text(
-                                                        valueOrDefault<String>(
-                                                          listViewStrengthexercisesRecord
-                                                              .name,
-                                                          'name',
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  0.0),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  10.0),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  10.0),
                                                         ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
+                                                        child: Image.network(
+                                                          listViewStrengthexercisesRecord
+                                                              .image,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      5.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              listViewStrengthexercisesRecord
+                                                                  .name,
+                                                              'name',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
@@ -1416,15 +1434,17 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                                       FontWeight
                                                                           .w500,
                                                                 ),
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      },
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -1478,7 +1498,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       10.0, 5.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
-                                    height: 120.0,
+                                    height: 173.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
@@ -1531,8 +1551,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 5.0, 5.0, 5.0),
                                               child: Container(
-                                                width: 90.0,
-                                                height: 80.0,
+                                                width: 137.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -1545,49 +1564,62 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                      MainAxisAlignment.start,
                                                   children: [
                                                     ClipRRect(
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
+                                                          const BorderRadius.only(
+                                                        bottomLeft:
+                                                            Radius.circular(
+                                                                0.0),
+                                                        bottomRight:
+                                                            Radius.circular(
+                                                                0.0),
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                10.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                10.0),
+                                                      ),
                                                       child: Image.network(
                                                         listViewStrengthexercisesRecord
                                                             .image,
-                                                        width: 80.0,
-                                                        height: 60.0,
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  5.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        listViewStrengthexercisesRecord
-                                                            .name,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, -1.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    5.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          listViewStrengthexercisesRecord
+                                                              .name,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                                fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
@@ -1650,10 +1682,11 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       10.0, 5.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
-                                    height: 120.0,
+                                    height: 173.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(0.0),
                                     ),
                                     child: StreamBuilder<
                                         List<StrengthexercisesRecord>>(
@@ -1702,8 +1735,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                             return Padding(
                                               padding: const EdgeInsets.all(5.0),
                                               child: Container(
-                                                width: 90.0,
-                                                height: 80.0,
+                                                width: 137.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -1716,17 +1748,27 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                      MainAxisAlignment.start,
                                                   children: [
                                                     ClipRRect(
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
+                                                          const BorderRadius.only(
+                                                        bottomLeft:
+                                                            Radius.circular(
+                                                                0.0),
+                                                        bottomRight:
+                                                            Radius.circular(
+                                                                0.0),
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                10.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                10.0),
+                                                      ),
                                                       child: Image.network(
                                                         listViewStrengthexercisesRecord
                                                             .image,
-                                                        width: 80.0,
-                                                        height: 60.0,
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),

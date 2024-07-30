@@ -92,7 +92,10 @@ Future setIndividualReminders(List<DocumentReference> reminderDocs) async {
         } else if (form == 'Tablet') {
           unit = dose > 1 ? 'tablets' : 'tablet';
         } else if (form == 'Emulsion') {
-          unit = dose > 1 ? 'tablespoons' : 'tablespoon';
+          unit = 'ml(';
+          unit += '${dose / 15} ';
+          unit += dose / 15 == 1 ? 'tablespoons' : 'tablespoon';
+          unit += ')';
         } else if (form == 'Injection') {
           unit = dose == 1 ? 'unit' : 'units';
         }

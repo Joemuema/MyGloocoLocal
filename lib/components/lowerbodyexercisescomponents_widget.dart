@@ -83,32 +83,40 @@ class _LowerbodyexercisescomponentsWidgetState
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Text(
-                          valueOrDefault<String>(
-                            widget.lowerbodyexercisedocument?.name,
-                            'name',
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 5.0, 0.0, 5.0),
+                          child: Text(
+                            valueOrDefault<String>(
+                              widget.lowerbodyexercisedocument?.name,
+                              'name',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color: FlutterFlowTheme.of(context).secondary,
-                                fontSize: 14.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w600,
-                              ),
                         ),
                       ],
                     ),
-                    Text(
-                      valueOrDefault<String>(
-                        widget.lowerbodyexercisedocument?.shortdescription,
-                        'shortdescription',
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                      child: Text(
+                        valueOrDefault<String>(
+                          widget.lowerbodyexercisedocument?.shortdescription,
+                          'shortdescription',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              letterSpacing: 0.0,
+                            ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            letterSpacing: 0.0,
-                          ),
                     ),
                   ],
                 ),

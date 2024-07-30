@@ -83,31 +83,39 @@ class _FlexibilityexercisecomponentWidgetState
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Text(
-                          valueOrDefault<String>(
-                            widget.flexibilityexercisedocument?.name,
-                            'name',
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 5.0, 0.0, 5.0),
+                          child: Text(
+                            valueOrDefault<String>(
+                              widget.flexibilityexercisedocument?.name,
+                              'name',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  fontSize: 15.0,
+                                  letterSpacing: 0.0,
+                                ),
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color: FlutterFlowTheme.of(context).secondary,
-                                fontSize: 15.0,
-                                letterSpacing: 0.0,
-                              ),
                         ),
                       ],
                     ),
-                    Text(
-                      valueOrDefault<String>(
-                        widget.flexibilityexercisedocument?.description,
-                        'description',
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                      child: Text(
+                        valueOrDefault<String>(
+                          widget.flexibilityexercisedocument?.description,
+                          'description',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              letterSpacing: 0.0,
+                            ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            letterSpacing: 0.0,
-                          ),
                     ),
                   ],
                 ),

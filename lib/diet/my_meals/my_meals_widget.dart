@@ -153,6 +153,9 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                               .override(
                                                                 fontFamily:
                                                                     'Inter',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
                                                                 fontSize: 26.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -297,6 +300,9 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                               .override(
                                                                 fontFamily:
                                                                     'Inter',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
                                                                 fontSize: 26.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -439,6 +445,9 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                                 .override(
                                                                   fontFamily:
                                                                       'Inter',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
                                                                   fontSize:
                                                                       26.0,
                                                                   letterSpacing:
@@ -584,6 +593,9 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                                 .override(
                                                                   fontFamily:
                                                                       'Inter',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
                                                                   fontSize:
                                                                       26.0,
                                                                   letterSpacing:

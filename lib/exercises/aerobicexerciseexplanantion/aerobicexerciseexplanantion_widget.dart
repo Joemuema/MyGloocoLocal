@@ -42,7 +42,7 @@ class _AerobicexerciseexplanantionWidgetState
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: double.infinity,
+      height: 730.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).alternate,
         borderRadius: const BorderRadius.only(
@@ -94,7 +94,7 @@ class _AerobicexerciseexplanantionWidgetState
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Container(
                   width: double.infinity,
-                  height: 529.0,
+                  height: 728.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: const BorderRadius.only(
@@ -122,6 +122,7 @@ class _AerobicexerciseexplanantionWidgetState
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
+                                      fontSize: 19.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -142,13 +143,14 @@ class _AerobicexerciseexplanantionWidgetState
                             ),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 0.0, 5.0, 0.0),
+                                  5.0, 10.0, 5.0, 10.0),
                               child: Text(
                                 'Cardiovascular exercises, also known as cardio or aerobic exercises, are activities that increase your heart rate and improve the efficiency of your cardiovascular system. These exercises typically involve repetitive, rhythmic movements that engage large muscle groups, enhancing the body\'s ability to use oxygen. Some of them include: Walking,Running/Jogging,Swimming,Cycling,Dancing ,Rowing,Hiking ,Elliptical Training and Jump Rope',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -181,6 +183,7 @@ class _AerobicexerciseexplanantionWidgetState
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
+                                              fontSize: 19.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -190,13 +193,14 @@ class _AerobicexerciseexplanantionWidgetState
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 0.0, 0.0),
+                                      10.0, 10.0, 0.0, 10.0),
                                   child: Text(
                                     'Improved Blood Sugar Control,It burns calories, helping with weight loss or maintenance , It strengthens the heart and improves circulation, It  releases endorphins, which are natural mood lifter',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
+                                          fontSize: 18.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -231,6 +235,7 @@ class _AerobicexerciseexplanantionWidgetState
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
+                                              fontSize: 19.0,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -247,6 +252,7 @@ class _AerobicexerciseexplanantionWidgetState
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
+                                          fontSize: 18.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -258,14 +264,16 @@ class _AerobicexerciseexplanantionWidgetState
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                10.0, 10.0, 10.0, 0.0),
+                                10.0, 15.0, 10.0, 0.0),
                             child: Text(
-                              'Always consult with a healthcare provider before starting any new exercise regimen, especially if you have diabetes or other health conditions',
+                              '*Always consult with a healthcare provider before starting any new exercise regimen, especially if you have diabetes or other health conditions*',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Readex Pro',
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ),

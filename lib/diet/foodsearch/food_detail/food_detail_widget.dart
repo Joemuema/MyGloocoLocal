@@ -154,7 +154,7 @@ class _FoodDetailWidgetState extends State<FoodDetailWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(17.0, 5.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(17.0, 5.0, 8.0, 5.0),
                       child: Text(
                         valueOrDefault<String>(
                           widget.carb?.carbohydrates.toString(),
@@ -172,7 +172,7 @@ class _FoodDetailWidgetState extends State<FoodDetailWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 7.0, 5.0),
                         child: Text(
-                          'g Carbs',
+                          'g  Carbs',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -185,7 +185,7 @@ class _FoodDetailWidgetState extends State<FoodDetailWidget> {
                       alignment: const AlignmentDirectional(7.5, 0.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(7.0, 5.0, 0.0, 5.0),
+                            const EdgeInsetsDirectional.fromSTEB(7.0, 5.0, 8.0, 5.0),
                         child: Text(
                           valueOrDefault<String>(
                             widget.protein?.protein.toString(),
@@ -224,7 +224,7 @@ class _FoodDetailWidgetState extends State<FoodDetailWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(17.0, 5.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(17.0, 5.0, 8.0, 5.0),
                       child: Text(
                         valueOrDefault<String>(
                           widget.fat?.fat.toString(),
@@ -249,7 +249,7 @@ class _FoodDetailWidgetState extends State<FoodDetailWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(7.0, 5.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(7.0, 5.0, 8.0, 5.0),
                       child: Text(
                         valueOrDefault<String>(
                           widget.fibre?.fibre.toString(),

@@ -138,8 +138,10 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                 .headlineMedium
                                 .override(
                                   fontFamily: 'Inter',
-                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                         ),
@@ -457,17 +459,26 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                                         final ingredientsItem =
                                                             ingredients[
                                                                 ingredientsIndex];
-                                                        return Text(
-                                                          ingredientsItem,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      30.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            ingredientsItem,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
                                                         );
                                                       }),
                                                     ),
@@ -495,17 +506,26 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                                         final instructionsItem =
                                                             instructions[
                                                                 instructionsIndex];
-                                                        return Text(
-                                                          instructionsItem,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      30.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            instructionsItem,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
                                                         );
                                                       }),
                                                     ),
@@ -555,8 +575,8 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                   },
                                   text: 'Record as meal',
                                   options: FFButtonOptions(
-                                    width: 300.0,
-                                    height: 60.0,
+                                    width: 294.0,
+                                    height: 49.0,
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     iconPadding: const EdgeInsetsDirectional.fromSTEB(
@@ -567,6 +587,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                         .override(
                                           fontFamily: 'Inter',
                                           color: Colors.white,
+                                          fontSize: 22.0,
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,

@@ -81,71 +81,85 @@ class _ExerciseEdWidgetState extends State<ExerciseEdWidget> {
                           children: [
                             Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: 330.0,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.network(
-                                        'https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyMXx8cnVubmluZ3xlbnwwfHx8fDE3MjE4MjAyNTl8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                                      ).image,
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 20.0, 20.0, 0.0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 200.0,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.network(
+                                          'https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyMXx8cnVubmluZ3xlbnwwfHx8fDE3MjE4MjAyNTl8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                        ).image,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Text(
-                                      'Exercise and\nDiabetes Management',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            color: const Color(0xFFFFF9F9),
-                                            letterSpacing: 0.0,
-                                          ),
+                                    child: Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, 1.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 0.0, 20.0),
+                                        child: Text(
+                                          'Exercise and\nDiabetes Management',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleLarge
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                color: const Color(0xFFFFF9F9),
+                                                fontSize: 25.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(18.0),
-                                    child: Container(
-                                      width: 350.0,
-                                      height: 420.0,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(14.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: SingleChildScrollView(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Text(
-                                                  'Exercise is a powerful tool for managing diabetes, as it helps to lower blood sugar levels and increase insulin sensitivity. \n\nWhen you exercise, your muscles use glucose for energy, which can help reduce blood sugar levels both during and after physical activity.',
-                                                  textAlign: TextAlign.start,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
+                                  child: Container(
+                                    width: 363.0,
+                                    height: 547.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(0.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 20.0, 0.0, 0.0),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                'Exercise is a powerful tool for managing diabetes, as it helps to lower blood sugar levels and increase insulin sensitivity. \n\nWhen you exercise, your muscles use glucose for energy, which can help reduce blood sugar levels both during and after physical activity.',
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 18.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
                                               ),
-                                              Text(
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 25.0, 0.0, 0.0),
+                                              child: Text(
                                                 'Regular exercise can also help manage weight, reduce the risk of cardiovascular disease, and improve overall physical fitness, all of which are important for people with diabetes.\n\nBy incorporating a variety of aerobic, strength-training, and flexibility exercises into your routine, you can achieve comprehensive health benefits.',
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -153,11 +167,12 @@ class _ExerciseEdWidgetState extends State<ExerciseEdWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -176,7 +191,8 @@ class _ExerciseEdWidgetState extends State<ExerciseEdWidget> {
                                       alignment:
                                           const AlignmentDirectional(-1.0, -1.0),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(20.0),
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 10.0, 0.0, 0.0),
                                         child: Text(
                                           'Overview',
                                           style: FlutterFlowTheme.of(context)
@@ -184,6 +200,7 @@ class _ExerciseEdWidgetState extends State<ExerciseEdWidget> {
                                               .override(
                                                 fontFamily: 'Inter',
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
                                               ),
                                         ),
                                       ),
@@ -210,7 +227,10 @@ class _ExerciseEdWidgetState extends State<ExerciseEdWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 19.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
                                               ),
                                               Text(
@@ -221,20 +241,28 @@ class _ExerciseEdWidgetState extends State<ExerciseEdWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                              Text(
-                                                'Recommended Activities:',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Recommended Activities:',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                ),
                                               ),
                                               Text(
                                                 'Aerobic Exercise: Activities like walking, swimming, and cycling that increase heart rate.\nStrength Training: Exercises like weightlifting that build muscle mass.\nFlexibility and Balance: Activities like yoga and tai chi that improve flexibility and balance.',
@@ -244,7 +272,7 @@ class _ExerciseEdWidgetState extends State<ExerciseEdWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -256,7 +284,10 @@ class _ExerciseEdWidgetState extends State<ExerciseEdWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
+                                                          fontSize: 19.0,
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
                                               ),
                                               Text(
@@ -268,7 +299,7 @@ class _ExerciseEdWidgetState extends State<ExerciseEdWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          fontSize: 16.0,
+                                                          fontSize: 18.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -296,6 +327,7 @@ class _ExerciseEdWidgetState extends State<ExerciseEdWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
+                                                fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -322,6 +354,7 @@ class _ExerciseEdWidgetState extends State<ExerciseEdWidget> {
                                                     .override(
                                                       fontFamily: 'Readex Pro',
                                                       color: const Color(0xFF99CC33),
+                                                      fontSize: 15.0,
                                                       letterSpacing: 0.0,
                                                       decoration: TextDecoration
                                                           .underline,

@@ -113,8 +113,8 @@ class _PlateWidgetState extends State<PlateWidget> {
                                 child: Image.asset(
                                   'assets/images/output-onlinepngtools.png',
                                   width: double.infinity,
-                                  height: 763.0,
-                                  fit: BoxFit.cover,
+                                  height: 700.0,
+                                  fit: BoxFit.contain,
                                 ),
                               ),
                             ),
@@ -220,7 +220,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 10.0, 10.0, 10.0, 10.0),
                             child: Text(
-                              'Estimations are per 100g of edible portion on fresh weight baisis',
+                              'Estimations are per 100g of edible portion on fresh weight basis',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -289,7 +289,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  7.0, 10.0, 0.0, 10.0),
+                                                  22.0, 10.0, 0.0, 10.0),
                                           child: Text(
                                             'kCal',
                                             style: FlutterFlowTheme.of(context)
@@ -308,7 +308,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  9.0, 0.0, 0.0, 10.0),
+                                                  30.0, 0.0, 0.0, 10.0),
                                           child: Text(
                                             'g Carbs',
                                             style: FlutterFlowTheme.of(context)
@@ -327,7 +327,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 10.0, 7.0, 10.0),
+                                                  16.0, 10.0, 7.0, 10.0),
                                           child: Text(
                                             'g Fat',
                                             style: FlutterFlowTheme.of(context)
@@ -346,7 +346,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  7.0, 10.0, 7.0, 10.0),
+                                                  72.0, 10.0, 7.0, 10.0),
                                           child: Text(
                                             'g Protein',
                                             style: FlutterFlowTheme.of(context)

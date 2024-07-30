@@ -773,248 +773,262 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                             ],
                           ),
                         if ((_model.takenReminders.isNotEmpty) == true)
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Taken Reminders',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              ),
-                              Builder(
-                                builder: (context) {
-                                  final takenTimeList =
-                                      _model.listOfTakenTimes.toList();
-                                  if (takenTimeList.isEmpty) {
-                                    return const Center(
-                                      child: NoElementsWidget(
-                                        additionalText:
-                                            'Add one by pressing \'\'Add reminder\"  below',
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 15.0, 0.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Taken Reminders',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 18.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
-                                    );
-                                  }
-
-                                  return ListView.separated(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 5.0),
-                                    primary: false,
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount: takenTimeList.length,
-                                    separatorBuilder: (_, __) =>
-                                        const SizedBox(height: 5.0),
-                                    itemBuilder: (context, takenTimeListIndex) {
-                                      final takenTimeListItem =
-                                          takenTimeList[takenTimeListIndex];
-                                      return Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 5.0, 10.0, 5.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  child: Text(
-                                                    takenTimeListItem,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 20.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Builder(
-                                                  builder: (context) {
-                                                    final takenReminderList =
-                                                        _model
-                                                            .takenReminders
-                                                            .where((e) =>
-                                                                e.time ==
-                                                                takenTimeListItem)
-                                                            .toList();
-
-                                                    return ListView.builder(
-                                                      padding: EdgeInsets.zero,
-                                                      primary: false,
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount:
-                                                          takenReminderList
-                                                              .length,
-                                                      itemBuilder: (context,
-                                                          takenReminderListIndex) {
-                                                        final takenReminderListItem =
-                                                            takenReminderList[
-                                                                takenReminderListIndex];
-                                                        return PastReminderWidget(
-                                                          key: Key(
-                                                              'Keyzdi_${takenReminderListIndex}_of_${takenReminderList.length}'),
-                                                          reminderRef:
-                                                              takenReminderListItem
-                                                                  .parentReference,
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                ),
+                                Builder(
+                                  builder: (context) {
+                                    final takenTimeList =
+                                        _model.listOfTakenTimes.toList();
+                                    if (takenTimeList.isEmpty) {
+                                      return const Center(
+                                        child: NoElementsWidget(
+                                          additionalText:
+                                              'Add one by pressing \'\'Add reminder\"  below',
                                         ),
                                       );
-                                    },
-                                  );
-                                },
-                              ),
-                            ],
+                                    }
+
+                                    return ListView.separated(
+                                      padding:
+                                          const EdgeInsets.symmetric(vertical: 5.0),
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: takenTimeList.length,
+                                      separatorBuilder: (_, __) =>
+                                          const SizedBox(height: 5.0),
+                                      itemBuilder:
+                                          (context, takenTimeListIndex) {
+                                        final takenTimeListItem =
+                                            takenTimeList[takenTimeListIndex];
+                                        return Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 5.0, 10.0, 5.0),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(8.0),
+                                                    child: Text(
+                                                      takenTimeListItem,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 20.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Builder(
+                                                    builder: (context) {
+                                                      final takenReminderList =
+                                                          _model.takenReminders
+                                                              .where((e) =>
+                                                                  e.time ==
+                                                                  takenTimeListItem)
+                                                              .toList();
+
+                                                      return ListView.builder(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        primary: false,
+                                                        shrinkWrap: true,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemCount:
+                                                            takenReminderList
+                                                                .length,
+                                                        itemBuilder: (context,
+                                                            takenReminderListIndex) {
+                                                          final takenReminderListItem =
+                                                              takenReminderList[
+                                                                  takenReminderListIndex];
+                                                          return PastReminderWidget(
+                                                            key: Key(
+                                                                'Keyzdi_${takenReminderListIndex}_of_${takenReminderList.length}'),
+                                                            reminderRef:
+                                                                takenReminderListItem
+                                                                    .parentReference,
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         if ((_model.missedReminders.isNotEmpty) == true)
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Missed Reminders',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              ),
-                              Builder(
-                                builder: (context) {
-                                  final missedTimeList =
-                                      _model.listOfMissedTimes.toList();
-                                  if (missedTimeList.isEmpty) {
-                                    return const Center(
-                                      child: NoElementsWidget(
-                                        additionalText:
-                                            'Add one by pressing \'\'Add reminder\"  below',
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 15.0, 0.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Missed Reminders',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 18.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
                                       ),
-                                    );
-                                  }
-
-                                  return ListView.separated(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 5.0),
-                                    primary: false,
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount: missedTimeList.length,
-                                    separatorBuilder: (_, __) =>
-                                        const SizedBox(height: 5.0),
-                                    itemBuilder:
-                                        (context, missedTimeListIndex) {
-                                      final missedTimeListItem =
-                                          missedTimeList[missedTimeListIndex];
-                                      return Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 5.0, 10.0, 5.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  child: Text(
-                                                    missedTimeListItem,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 20.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Builder(
-                                                  builder: (context) {
-                                                    final missedTimeReminderList =
-                                                        _model.missedReminders
-                                                            .where((e) =>
-                                                                e.time ==
-                                                                missedTimeListItem)
-                                                            .toList();
-
-                                                    return ListView.builder(
-                                                      padding: EdgeInsets.zero,
-                                                      primary: false,
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount:
-                                                          missedTimeReminderList
-                                                              .length,
-                                                      itemBuilder: (context,
-                                                          missedTimeReminderListIndex) {
-                                                        final missedTimeReminderListItem =
-                                                            missedTimeReminderList[
-                                                                missedTimeReminderListIndex];
-                                                        return PastReminderWidget(
-                                                          key: Key(
-                                                              'Keylz6_${missedTimeReminderListIndex}_of_${missedTimeReminderList.length}'),
-                                                          reminderRef:
-                                                              missedTimeReminderListItem
-                                                                  .parentReference,
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                ),
+                                Builder(
+                                  builder: (context) {
+                                    final missedTimeList =
+                                        _model.listOfMissedTimes.toList();
+                                    if (missedTimeList.isEmpty) {
+                                      return const Center(
+                                        child: NoElementsWidget(
+                                          additionalText:
+                                              'Add one by pressing \'\'Add reminder\"  below',
                                         ),
                                       );
-                                    },
-                                  );
-                                },
-                              ),
-                            ],
+                                    }
+
+                                    return ListView.separated(
+                                      padding:
+                                          const EdgeInsets.symmetric(vertical: 5.0),
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: missedTimeList.length,
+                                      separatorBuilder: (_, __) =>
+                                          const SizedBox(height: 5.0),
+                                      itemBuilder:
+                                          (context, missedTimeListIndex) {
+                                        final missedTimeListItem =
+                                            missedTimeList[missedTimeListIndex];
+                                        return Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 5.0, 10.0, 5.0),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(8.0),
+                                                    child: Text(
+                                                      missedTimeListItem,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            fontSize: 20.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                  Builder(
+                                                    builder: (context) {
+                                                      final missedTimeReminderList =
+                                                          _model.missedReminders
+                                                              .where((e) =>
+                                                                  e.time ==
+                                                                  missedTimeListItem)
+                                                              .toList();
+
+                                                      return ListView.builder(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        primary: false,
+                                                        shrinkWrap: true,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemCount:
+                                                            missedTimeReminderList
+                                                                .length,
+                                                        itemBuilder: (context,
+                                                            missedTimeReminderListIndex) {
+                                                          final missedTimeReminderListItem =
+                                                              missedTimeReminderList[
+                                                                  missedTimeReminderListIndex];
+                                                          return PastReminderWidget(
+                                                            key: Key(
+                                                                'Keylz6_${missedTimeReminderListIndex}_of_${missedTimeReminderList.length}'),
+                                                            reminderRef:
+                                                                missedTimeReminderListItem
+                                                                    .parentReference,
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                       ],
                     ),

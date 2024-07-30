@@ -96,83 +96,84 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                           children: [
                             Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: 330.0,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.network(
-                                        'https://images.unsplash.com/photo-1599814516142-dbecedc5eb32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw0fHxkaWFiZXRlc3xlbnwwfHx8fDE3MjE5NzY5NTl8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                                      ).image,
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 20.0, 20.0, 0.0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 200.0,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.network(
+                                          'https://images.unsplash.com/photo-1599814516142-dbecedc5eb32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw0fHxkaWFiZXRlc3xlbnwwfHx8fDE3MjE5NzY5NTl8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                        ).image,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Text(
-                                      'Welcome to\nDiabetes Management',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            color: const Color(0xFFFFF9F9),
-                                            letterSpacing: 0.0,
-                                          ),
+                                    child: Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, 1.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 0.0, 20.0),
+                                        child: Text(
+                                          'Welcome to\nDiabetes Management',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleLarge
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                color: const Color(0xFFFFF9F9),
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(18.0),
-                                    child: Container(
-                                      width: 350.0,
-                                      height: 430.0,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(14.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Text(
-                                                'Diabetes is a chronic condition that significantly impacts how the body manages blood sugar levels.\n\nIn people with diabetes, the body\'s ability to produce or respond to insulin—a hormone that regulates blood sugar—is impaired.\n\nThis leads to elevated blood sugar levels, which can cause a range of health issues if not properly managed.',
-                                                textAlign: TextAlign.start,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Text(
-                                              'Understanding diabetes is the first step in managing the condition effectively, as it provides insight into the mechanisms behind blood sugar regulation and the importance of maintaining balanced levels. ',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ],
+                                  child: Container(
+                                    width: 360.0,
+                                    height: 491.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(14.0),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            'Diabetes is a chronic condition that significantly impacts how the body manages blood sugar levels.\n\nIn people with diabetes, the body\'s ability to produce or respond to insulin—a hormone that regulates blood sugar—is impaired.\n\nThis leads to elevated blood sugar levels, which can cause a range of health issues if not properly managed.',
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyLarge
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
                                         ),
-                                      ),
+                                        Text(
+                                          'Understanding diabetes is the first step in managing the condition effectively, as it provides insight into the mechanisms behind blood sugar regulation and the importance of maintaining balanced levels. ',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyLarge
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -180,19 +181,22 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Align(
                                   alignment: const AlignmentDirectional(-1.0, -1.0),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 10.0, 0.0, 0.0),
                                     child: Text(
                                       'Overview',
                                       style: FlutterFlowTheme.of(context)
                                           .titleLarge
                                           .override(
                                             fontFamily: 'Inter',
+                                            fontSize: 24.0,
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                     ),
                                   ),
@@ -216,7 +220,9 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
+                                                  fontSize: 19.0,
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                           ),
                                           Text(
@@ -225,18 +231,26 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  fontSize: 16.0,
+                                                  fontSize: 18.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                          Text(
-                                            'Symptoms and Complications:',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  letterSpacing: 0.0,
-                                                ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 10.0, 0.0, 0.0),
+                                            child: Text(
+                                              'Symptoms and Complications:',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    fontSize: 19.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
                                           ),
                                           Text(
                                             'Common symptoms include increased thirst, frequent urination, fatigue, and blurred vision.\nLong-term complications can include cardiovascular disease, nerve damage, kidney damage, and eye problems.',
@@ -244,7 +258,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  fontSize: 16.0,
+                                                  fontSize: 18.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -267,6 +281,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Readex Pro',
+                                              fontSize: 15.0,
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -292,6 +307,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                                   .override(
                                                     fontFamily: 'Readex Pro',
                                                     color: const Color(0xFF99CC33),
+                                                    fontSize: 15.0,
                                                     letterSpacing: 0.0,
                                                     decoration: TextDecoration
                                                         .underline,
