@@ -4,7 +4,10 @@ import '/exercises/strengthexercises/strengthexercises_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'upperbodyexercises_model.dart';
 export 'upperbodyexercises_model.dart';
 
@@ -53,7 +56,7 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -71,7 +74,7 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -80,7 +83,7 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -97,7 +100,7 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                 child: Container(
                   width: double.infinity,
                   height: 100.0,
@@ -134,7 +137,7 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
                         padding: EdgeInsets.zero,
                         scrollDirection: Axis.horizontal,
                         itemCount: listViewStrengthexercisesRecordList.length,
-                        separatorBuilder: (_, __) => const SizedBox(width: 10.0),
+                        separatorBuilder: (_, __) => SizedBox(width: 10.0),
                         itemBuilder: (context, listViewIndex) {
                           final listViewStrengthexercisesRecord =
                               listViewStrengthexercisesRecordList[
@@ -150,7 +153,7 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 5.0, 5.0, 0.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -163,7 +166,7 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
@@ -192,7 +195,7 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [

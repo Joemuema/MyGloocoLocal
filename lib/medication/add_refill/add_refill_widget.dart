@@ -1,10 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_refill_model.dart';
 export 'add_refill_model.dart';
 
@@ -61,7 +65,7 @@ class _AddRefillWidgetState extends State<AddRefillWidget> {
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).accent4,
           ),
-          alignment: const AlignmentDirectional(0.0, 1.0),
+          alignment: AlignmentDirectional(0.0, 1.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -70,7 +74,7 @@ class _AddRefillWidgetState extends State<AddRefillWidget> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       blurRadius: 7.0,
                       color: Color(0x33000000),
@@ -80,7 +84,7 @@ class _AddRefillWidgetState extends State<AddRefillWidget> {
                       ),
                     )
                   ],
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(0.0),
                     bottomRight: Radius.circular(0.0),
                     topLeft: Radius.circular(16.0),
@@ -88,7 +92,7 @@ class _AddRefillWidgetState extends State<AddRefillWidget> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,10 +112,10 @@ class _AddRefillWidgetState extends State<AddRefillWidget> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 0.0, 0.0),
                         child: Text(
-                          'Refill Medicine(${widget.medDoc?.name})',
+                          'Refill Medicine(${widget!.medDoc?.name})',
                           style: FlutterFlowTheme.of(context)
                               .titleLarge
                               .override(
@@ -123,7 +127,7 @@ class _AddRefillWidgetState extends State<AddRefillWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 16.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -141,9 +145,9 @@ class _AddRefillWidgetState extends State<AddRefillWidget> {
                                   ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 10.0, 0.0),
-                              child: SizedBox(
+                              child: Container(
                                 width: 100.0,
                                 child: TextFormField(
                                   controller: _model.textController,
@@ -211,11 +215,11 @@ class _AddRefillWidgetState extends State<AddRefillWidget> {
                             ),
                             Text(
                               () {
-                                if (widget.medDoc?.form == 'Pill') {
+                                if (widget!.medDoc?.form == 'Pill') {
                                   return 'pills';
-                                } else if (widget.medDoc?.form == 'Tablet') {
+                                } else if (widget!.medDoc?.form == 'Tablet') {
                                   return 'tablets';
-                                } else if (widget.medDoc?.form == 'Emulsion') {
+                                } else if (widget!.medDoc?.form == 'Emulsion') {
                                   return 'ml';
                                 } else {
                                   return 'units';
@@ -233,14 +237,15 @@ class _AddRefillWidgetState extends State<AddRefillWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 10.0, 16.0, 30.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            if (_model.textController.text != '') {
+                            if (_model.textController.text != null &&
+                                _model.textController.text != '') {
                               Navigator.pop(context);
 
-                              await widget.medDoc!.reference.update({
+                              await widget!.medDoc!.reference.update({
                                 ...mapToFirestore(
                                   {
                                     'TotalDose': FieldValue.increment(
@@ -257,9 +262,9 @@ class _AddRefillWidgetState extends State<AddRefillWidget> {
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -270,7 +275,7 @@ class _AddRefillWidgetState extends State<AddRefillWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 2.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

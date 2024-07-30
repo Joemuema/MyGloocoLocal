@@ -5,8 +5,11 @@ import '/exercises/mediumsintensitylistcomponent/mediumsintensitylistcomponent_w
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/medication/no_elements/no_elements_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'listpage_model.dart';
 export 'listpage_model.dart';
 
@@ -77,7 +80,7 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                 borderRadius: 30.0,
                 borderWidth: 1.0,
                 buttonSize: 60.0,
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_back_rounded,
                   color: Colors.white,
                   size: 30.0,
@@ -95,7 +98,7 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                       letterSpacing: 0.0,
                     ),
               ),
-              actions: const [],
+              actions: [],
               centerTitle: true,
               elevation: 2.0,
             ),
@@ -105,12 +108,12 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 0.0, 0.0),
                           child: Text(
                             'Search',
@@ -137,7 +140,7 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                     ),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -164,7 +167,7 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                                 borderRadius: 20.0,
                                 borderWidth: 1.0,
                                 buttonSize: 40.0,
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.search,
                                   color: Color(0xFF4D7E3E),
                                   size: 24.0,
@@ -181,12 +184,12 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 0.0, 0.0),
                           child: Text(
                             'Low Intensity',
@@ -206,7 +209,7 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: StreamBuilder<List<AddpagecollectionRecord>>(
                       stream: queryAddpagecollectionRecord(
                         queryBuilder: (addpagecollectionRecord) =>
@@ -239,7 +242,7 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                             listViewAddpagecollectionRecordList =
                             snapshot.data!;
                         if (listViewAddpagecollectionRecordList.isEmpty) {
-                          return const NoElementsWidget(
+                          return NoElementsWidget(
                             additionalText: ' ',
                           );
                         }
@@ -276,12 +279,12 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 0.0, 0.0),
                           child: Text(
                             'Medium Intensity',
@@ -330,7 +333,7 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                       List<AddpagecollectionRecord>
                           listViewAddpagecollectionRecordList = snapshot.data!;
                       if (listViewAddpagecollectionRecordList.isEmpty) {
-                        return const NoElementsWidget(
+                        return NoElementsWidget(
                           additionalText: '   ',
                         );
                       }
@@ -366,12 +369,12 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 0.0, 0.0),
                           child: Text(
                             'High Intensity',
@@ -420,7 +423,7 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                       List<AddpagecollectionRecord>
                           listViewAddpagecollectionRecordList = snapshot.data!;
                       if (listViewAddpagecollectionRecordList.isEmpty) {
-                        return const NoElementsWidget(
+                        return NoElementsWidget(
                           additionalText: '  ',
                         );
                       }

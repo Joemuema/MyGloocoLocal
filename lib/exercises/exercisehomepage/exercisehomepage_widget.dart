@@ -9,6 +9,9 @@ import '/medication/no_elements/no_elements_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'exercisehomepage_model.dart';
 export 'exercisehomepage_model.dart';
 
@@ -61,7 +64,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -70,14 +73,14 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Categories',
                         style: FlutterFlowTheme.of(context)
@@ -113,8 +116,8 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                child: SizedBox(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                child: Container(
                   width: double.infinity,
                   height: 180.0,
                   child: CarouselSlider(
@@ -139,7 +142,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Text(
                                 'Aerobic Exercises',
@@ -177,7 +180,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Text(
                                 'Strength Training',
@@ -215,7 +218,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Text(
                                 'Flexibility and Balance',
@@ -252,13 +255,13 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 10.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             30.0, 0.0, 30.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
@@ -267,9 +270,9 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                           text: 'View Activity History',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -280,7 +283,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -293,13 +296,13 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -330,7 +333,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                         : FocusScope.of(context).unfocus(),
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
-                                      child: const AddactivityWidget(
+                                      child: AddactivityWidget(
                                         completed: false,
                                       ),
                                     ),
@@ -339,15 +342,15 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                               ).then((value) => safeSetState(() {}));
                             },
                             text: 'Add',
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.add,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               height: 25.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -358,7 +361,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -370,7 +373,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: StreamBuilder<List<AddpagecollectionRecord>>(
                         stream: queryAddpagecollectionRecord(
                           queryBuilder: (addpagecollectionRecord) =>
@@ -400,7 +403,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                               listViewAddpagecollectionRecordList =
                               snapshot.data!;
                           if (listViewAddpagecollectionRecordList.isEmpty) {
-                            return const NoElementsWidget(
+                            return NoElementsWidget(
                               additionalText: 'Enter a plan',
                             );
                           }
@@ -411,7 +414,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                             scrollDirection: Axis.vertical,
                             itemCount:
                                 listViewAddpagecollectionRecordList.length,
-                            separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                            separatorBuilder: (_, __) => SizedBox(height: 10.0),
                             itemBuilder: (context, listViewIndex) {
                               final listViewAddpagecollectionRecord =
                                   listViewAddpagecollectionRecordList[
@@ -440,14 +443,14 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -481,7 +484,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: const AddactivityWidget(
+                                        child: AddactivityWidget(
                                           completed: true,
                                         ),
                                       ),
@@ -490,15 +493,15 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                 ).then((value) => safeSetState(() {}));
                               },
                               text: 'Add',
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.add,
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
                                 height: 25.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -509,7 +512,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -521,7 +524,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: StreamBuilder<List<AddpagecollectionRecord>>(
                           stream: queryAddpagecollectionRecord(
                             queryBuilder: (addpagecollectionRecord) =>
@@ -555,7 +558,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                 listViewAddpagecollectionRecordList =
                                 snapshot.data!;
                             if (listViewAddpagecollectionRecordList.isEmpty) {
-                              return const NoElementsWidget(
+                              return NoElementsWidget(
                                 additionalText: 'Enter today\'s activities',
                               );
                             }
@@ -567,7 +570,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                               itemCount:
                                   listViewAddpagecollectionRecordList.length,
                               separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 10.0),
+                                  SizedBox(height: 10.0),
                               itemBuilder: (context, listViewIndex) {
                                 final listViewAddpagecollectionRecord =
                                     listViewAddpagecollectionRecordList[

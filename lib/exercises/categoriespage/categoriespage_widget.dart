@@ -6,7 +6,10 @@ import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'categoriespage_model.dart';
 export 'categoriespage_model.dart';
 
@@ -60,7 +63,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -78,7 +81,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -87,11 +90,11 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: Column(
                   children: [
                     Align(
-                      alignment: const Alignment(0.0, 0),
+                      alignment: Alignment(0.0, 0),
                       child: FlutterFlowButtonTabBar(
                         useToggleButtonStyle: false,
                         labelStyle:
@@ -99,7 +102,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                 ),
-                        unselectedLabelStyle: const TextStyle(),
+                        unselectedLabelStyle: TextStyle(),
                         labelColor:
                             FlutterFlowTheme.of(context).primaryBackground,
                         unselectedLabelColor:
@@ -113,9 +116,9 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                         borderRadius: 8.0,
                         elevation: 0.0,
                         buttonMargin:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                        padding: const EdgeInsets.all(4.0),
-                        tabs: const [
+                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                        padding: EdgeInsets.all(4.0),
+                        tabs: [
                           Tab(
                             text: 'Aerobic',
                           ),
@@ -141,7 +144,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -161,7 +164,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 5.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -176,7 +179,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 5.0, 0.0, 0.0),
                                           child: Text(
                                             'Also known as cardiovascular exercises,Aerobic exercise is highly beneficial for individuals with diabetes, as it helps manage blood sugar levels, improve cardiovascular health, and enhance overall well-being.',
@@ -191,7 +194,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -226,7 +229,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                               .viewInsetsOf(
                                                                   context),
                                                           child:
-                                                              const AerobicexerciseexplanantionWidget(),
+                                                              AerobicexerciseexplanantionWidget(),
                                                         ),
                                                       );
                                                     },
@@ -250,7 +253,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 5.0, 0.0, 0.0),
                                                 child: FlutterFlowIconButton(
@@ -259,7 +262,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                   borderRadius: 20.0,
                                                   borderWidth: 1.0,
                                                   buttonSize: 40.0,
-                                                  icon: const Icon(
+                                                  icon: Icon(
                                                     Icons.arrow_forward_ios,
                                                     size: 20.0,
                                                   ),
@@ -287,7 +290,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                                 .viewInsetsOf(
                                                                     context),
                                                             child:
-                                                                const AerobicexerciseexplanantionWidget(),
+                                                                AerobicexerciseexplanantionWidget(),
                                                           ),
                                                         );
                                                       },
@@ -304,7 +307,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -323,7 +326,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -338,7 +341,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -368,7 +371,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       10.0, 0.0, 10.0, 0.0),
                                               child: Text(
@@ -386,7 +389,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       10.0, 0.0, 10.0, 0.0),
                                               child: Text(
@@ -405,7 +408,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -413,7 +416,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         10.0, 0.0, 10.0, 0.0),
                                                 child: Text(
@@ -432,7 +435,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 10.0, 0.0),
                                                   child: Text(
@@ -456,7 +459,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -470,7 +473,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -495,7 +498,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -529,7 +532,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -570,7 +573,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -585,7 +588,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -610,7 +613,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -629,7 +632,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                         ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -649,7 +652,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -671,7 +674,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -695,7 +698,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -710,7 +713,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -735,7 +738,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -754,7 +757,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                         ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -774,7 +777,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -796,7 +799,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -820,7 +823,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -835,7 +838,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -860,7 +863,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -879,7 +882,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                         ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -899,7 +902,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -921,7 +924,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -945,7 +948,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -960,7 +963,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -985,7 +988,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1004,7 +1007,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                         ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -1024,7 +1027,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1046,7 +1049,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -1070,7 +1073,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -1085,7 +1088,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1110,7 +1113,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1129,7 +1132,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                         ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -1149,7 +1152,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -1171,7 +1174,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -1202,7 +1205,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 10.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1222,7 +1225,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 5.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -1237,7 +1240,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 5.0, 0.0),
                                           child: Text(
                                             'Strength training exercises play a crucial role in a well-rounded fitness program, offering numerous benefits for the body, mind, and overall well-being.',
@@ -1254,7 +1257,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 10.0, 5.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1299,7 +1302,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -1310,7 +1313,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                     ),
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(0.0, -1.0),
+                                          AlignmentDirectional(0.0, -1.0),
                                       child: StreamBuilder<
                                           List<StrengthexercisesRecord>>(
                                         stream: queryStrengthexercisesRecord(
@@ -1357,7 +1360,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                   listViewStrengthexercisesRecordList[
                                                       listViewIndex];
                                               return Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 5.0, 5.0, 5.0),
                                                 child: Container(
@@ -1378,7 +1381,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                     children: [
                                                       ClipRRect(
                                                         borderRadius:
-                                                            const BorderRadius.only(
+                                                            BorderRadius.only(
                                                           bottomLeft:
                                                               Radius.circular(
                                                                   0.0),
@@ -1400,11 +1403,11 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       5.0,
@@ -1449,7 +1452,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 10.0, 5.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1494,7 +1497,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 5.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -1548,7 +1551,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                 listViewStrengthexercisesRecordList[
                                                     listViewIndex];
                                             return Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 5.0, 5.0, 5.0),
                                               child: Container(
                                                 width: 137.0,
@@ -1568,7 +1571,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                   children: [
                                                     ClipRRect(
                                                       borderRadius:
-                                                          const BorderRadius.only(
+                                                          BorderRadius.only(
                                                         bottomLeft:
                                                             Radius.circular(
                                                                 0.0),
@@ -1590,11 +1593,11 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, -1.0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     5.0,
@@ -1633,7 +1636,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 10.0, 5.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1678,7 +1681,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 5.0, 10.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -1733,7 +1736,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                 listViewStrengthexercisesRecordList[
                                                     listViewIndex];
                                             return Padding(
-                                              padding: const EdgeInsets.all(5.0),
+                                              padding: EdgeInsets.all(5.0),
                                               child: Container(
                                                 width: 137.0,
                                                 decoration: BoxDecoration(
@@ -1752,7 +1755,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                   children: [
                                                     ClipRRect(
                                                       borderRadius:
-                                                          const BorderRadius.only(
+                                                          BorderRadius.only(
                                                         bottomLeft:
                                                             Radius.circular(
                                                                 0.0),
@@ -1774,7 +1777,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   5.0,
@@ -1821,7 +1824,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 10.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1841,7 +1844,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 5.0, 5.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -1855,7 +1858,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 5.0, 0.0),
                                           child: Text(
                                             'Flexibility exercises are activities aimed at improving the range of motion around a joint or group of joints, which can enhance overall mobility and muscle elasticity. These exercises are essential for maintaining and improving functional movements and reducing the risk of injuries',
@@ -1872,7 +1875,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 10.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,

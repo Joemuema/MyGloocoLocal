@@ -1,9 +1,12 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'healthy_eating_model.dart';
 export 'healthy_eating_model.dart';
 
@@ -51,7 +54,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -70,7 +73,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -81,14 +84,14 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
-                child: SizedBox(
+                child: Container(
                   width: double.infinity,
                   height: 500.0,
                   child: Stack(
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
                         child: PageView(
                           controller: _model.pageViewController ??=
                               PageController(initialPage: 0),
@@ -100,7 +103,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 20.0, 20.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -116,9 +119,9 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                     ),
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 1.0),
+                                          AlignmentDirectional(-1.0, 1.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 0.0, 20.0),
                                         child: Text(
                                           'Healthy Eating for \nDiabetes',
@@ -127,7 +130,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                               .titleLarge
                                               .override(
                                                 fontFamily: 'Inter',
-                                                color: const Color(0xFFFFF9F9),
+                                                color: Color(0xFFFFF9F9),
                                                 fontSize: 25.0,
                                                 letterSpacing: 0.0,
                                               ),
@@ -137,7 +140,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Container(
                                     width: 350.0,
                                     height: 530.0,
@@ -152,9 +155,9 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                         children: [
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 20.0, 0.0, 0.0),
                                               child: Text(
@@ -174,7 +177,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 20.0, 0.0, 0.0),
                                             child: Text(
                                               'Carbohydrates, in particular, have the most significant effect on blood sugar, so managing intake through portion control and choosing complex carbohydrates over simple sugars can help maintain stable blood sugar levels.\n\nIncorporating a variety of foods from all food groups ensures that your body gets the necessary nutrients while keeping blood sugar levels in check.',
@@ -203,9 +206,9 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, -1.0),
+                                    alignment: AlignmentDirectional(-1.0, -1.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           10.0, 10.0, 0.0, 0.0),
                                       child: Text(
                                         'Overview',
@@ -221,7 +224,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(10.0),
                                     child: Container(
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
@@ -230,7 +233,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                             BorderRadius.circular(12.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
+                                        padding: EdgeInsets.all(10.0),
                                         child: SingleChildScrollView(
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -262,7 +265,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                                         ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: Text(
@@ -293,7 +296,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                                         ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: Text(
@@ -325,15 +328,15 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                                         ),
                                               ),
                                             ]
-                                                .divide(const SizedBox(height: 10.0))
-                                                .around(const SizedBox(height: 10.0)),
+                                                .divide(SizedBox(height: 10.0))
+                                                .around(SizedBox(height: 10.0)),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(20.0),
+                                    padding: EdgeInsets.all(20.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -370,7 +373,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                                                     .bodyMedium
                                                     .override(
                                                       fontFamily: 'Readex Pro',
-                                                      color: const Color(0xFF99CC33),
+                                                      color: Color(0xFF99CC33),
                                                       fontSize: 15.0,
                                                       letterSpacing: 0.0,
                                                       decoration: TextDecoration
@@ -390,9 +393,9 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 1.0),
+                        alignment: AlignmentDirectional(0.0, 1.0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 16.0),
                           child: smooth_page_indicator.SmoothPageIndicator(
                             controller: _model.pageViewController ??=
@@ -402,7 +405,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                             onDotClicked: (i) async {
                               await _model.pageViewController!.animateToPage(
                                 i,
-                                duration: const Duration(milliseconds: 500),
+                                duration: Duration(milliseconds: 500),
                                 curve: Curves.ease,
                               );
                               setState(() {});
