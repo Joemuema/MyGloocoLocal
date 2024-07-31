@@ -1,11 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'mental_health_model.dart';
 export 'mental_health_model.dart';
 
@@ -58,7 +55,7 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -69,14 +66,14 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: 500.0,
                   child: Stack(
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
                         child: PageView(
                           controller: _model.pageViewController ??=
                               PageController(initialPage: 0),
@@ -88,7 +85,7 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 20.0, 20.0, 0.0),
                                   child: Container(
                                     height: 200.0,
@@ -103,9 +100,9 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                     ),
                                     child: Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 1.0),
+                                          const AlignmentDirectional(-1.0, 1.0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 0.0, 20.0),
                                         child: Text(
                                           'Supporting Mental and Emotional Health',
@@ -114,7 +111,7 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                               .titleLarge
                                               .override(
                                                 fontFamily: 'Inter',
-                                                color: Color(0xFFFFF9F9),
+                                                color: const Color(0xFFFFF9F9),
                                                 fontSize: 24.0,
                                                 letterSpacing: 0.0,
                                               ),
@@ -124,9 +121,9 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: Container(
                                       width: 359.0,
@@ -142,7 +139,7 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                         children: [
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Text(
                                               'Mental and emotional health is an often-overlooked aspect of diabetes management, yet it is crucial for overall well-being. \n\nLiving with diabetes can be stressful and emotionally challenging, leading to conditions such as depression, anxiety, and diabetes distress.',
                                               textAlign: TextAlign.start,
@@ -159,7 +156,7 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 20.0, 0.0, 0.0),
                                             child: Text(
                                               'Managing a chronic condition requires constant attention to blood sugar levels, diet, exercise, and medication, which can be overwhelming and contribute to mental fatigue. \n\nAddressing these emotional challenges is essential for maintaining motivation and adherence to diabetes management plans.',
@@ -188,9 +185,9 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Align(
-                                    alignment: AlignmentDirectional(-1.0, -1.0),
+                                    alignment: const AlignmentDirectional(-1.0, -1.0),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           10.0, 10.0, 0.0, 0.0),
                                       child: Text(
                                         'Overview',
@@ -206,7 +203,7 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(10.0),
+                                    padding: const EdgeInsets.all(10.0),
                                     child: Container(
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
@@ -215,7 +212,7 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                             BorderRadius.circular(12.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(10.0),
+                                        padding: const EdgeInsets.all(10.0),
                                         child: SingleChildScrollView(
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -247,7 +244,7 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                                         ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: Text(
@@ -279,7 +276,7 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                                         ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: Text(
@@ -310,15 +307,15 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                                         ),
                                               ),
                                             ]
-                                                .divide(SizedBox(height: 10.0))
-                                                .around(SizedBox(height: 10.0)),
+                                                .divide(const SizedBox(height: 10.0))
+                                                .around(const SizedBox(height: 10.0)),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(20.0),
+                                    padding: const EdgeInsets.all(20.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -355,7 +352,7 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                                     .bodyMedium
                                                     .override(
                                                       fontFamily: 'Readex Pro',
-                                                      color: Color(0xFF99CC33),
+                                                      color: const Color(0xFF99CC33),
                                                       fontSize: 15.0,
                                                       letterSpacing: 0.0,
                                                       decoration: TextDecoration
@@ -375,9 +372,9 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 1.0),
+                        alignment: const AlignmentDirectional(0.0, 1.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 16.0),
                           child: smooth_page_indicator.SmoothPageIndicator(
                             controller: _model.pageViewController ??=
@@ -387,7 +384,7 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                             onDotClicked: (i) async {
                               await _model.pageViewController!.animateToPage(
                                 i,
-                                duration: Duration(milliseconds: 500),
+                                duration: const Duration(milliseconds: 500),
                                 curve: Curves.ease,
                               );
                               setState(() {});

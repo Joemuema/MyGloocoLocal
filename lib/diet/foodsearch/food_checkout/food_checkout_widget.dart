@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -7,9 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'food_checkout_model.dart';
 export 'food_checkout_model.dart';
@@ -57,11 +54,11 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color(0xB20B191E),
       ),
       child: Align(
-        alignment: AlignmentDirectional(0.0, 1.0),
+        alignment: const AlignmentDirectional(0.0, 1.0),
         child: SingleChildScrollView(
           primary: false,
           child: Column(
@@ -69,9 +66,9 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Align(
-                alignment: AlignmentDirectional(1.0, 0.0),
+                alignment: const AlignmentDirectional(1.0, 0.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 16.0),
                   child: FlutterFlowIconButton(
                     borderColor: Colors.transparent,
                     borderRadius: 30.0,
@@ -92,7 +89,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
               Material(
                 color: Colors.transparent,
                 elevation: 5.0,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(0.0),
                     bottomRight: Radius.circular(0.0),
@@ -104,7 +101,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(0.0),
                       bottomRight: Radius.circular(0.0),
                       topLeft: Radius.circular(16.0),
@@ -117,13 +114,13 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 5.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 5.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 0.0, 10.0),
                               child: Text(
                                 'Confirm?',
@@ -151,7 +148,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                               child: FlutterFlowDropDown<String>(
                                 controller: _model.dropDownValueController ??=
                                     FormFieldController<String>(null),
-                                options: [
+                                options: const [
                                   'Breakfast',
                                   'Lunch',
                                   'Supper',
@@ -181,7 +178,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 2.0,
                                 borderRadius: 8.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
+                                margin: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 4.0, 16.0, 4.0),
                                 hidesUnderline: true,
                                 isOverButton: true,
@@ -190,7 +187,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                               ),
                             ),
                           ),
-                        ].divide(SizedBox(width: 0.0)),
+                        ].divide(const SizedBox(width: 0.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -206,7 +203,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                               child: Builder(
                                 builder: (context) {
                                   final fInallist =
-                                      widget!.finalfoodlist!.toList();
+                                      widget.finalfoodlist!.toList();
 
                                   return ListView.builder(
                                     padding: EdgeInsets.zero,
@@ -216,7 +213,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                                       final fInallistItem =
                                           fInallist[fInallistIndex];
                                       return Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 10.0, 10.0, 7.0),
                                         child: Text(
                                           fInallistItem.food,
@@ -237,7 +234,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             8.0, 15.0, 16.0, 44.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -252,13 +249,13 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                                 if (_model.dropDownValue == null) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text(
+                                      content: const Text(
                                         'Please choose the meal category',
                                         style: TextStyle(
                                           color: Colors.white,
                                         ),
                                       ),
-                                      duration: Duration(milliseconds: 4000),
+                                      duration: const Duration(milliseconds: 4000),
                                       backgroundColor:
                                           FlutterFlowTheme.of(context).error,
                                     ),
@@ -275,7 +272,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                                   ),
                                   ...mapToFirestore(
                                     {
-                                      'meals': widget!.finalfoodlist
+                                      'meals': widget.finalfoodlist
                                           ?.map((e) => e.food)
                                           .toList(),
                                     },
@@ -290,7 +287,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: Duration(milliseconds: 1500),
+                                    duration: const Duration(milliseconds: 1500),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
@@ -299,15 +296,15 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                                 context.pushNamed('DietHome');
                               },
                               text: 'Record as meal',
-                              icon: Icon(
+                              icon: const Icon(
                                 FFIcons.kicons8Supper50,
                                 size: 25.0,
                               ),
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -318,7 +315,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

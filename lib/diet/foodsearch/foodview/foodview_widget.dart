@@ -1,17 +1,12 @@
 import '/backend/backend.dart';
 import '/diet/foodsearch/food_detail/food_detail_widget.dart';
 import '/diet/foodsearch/foodsearchcomponent/foodsearchcomponent_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'foodview_model.dart';
@@ -73,7 +68,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -92,7 +87,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -103,21 +98,21 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Align(
-                alignment: AlignmentDirectional(1.0, 0.0),
+                alignment: const AlignmentDirectional(1.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 4.0, 16.0, 0.0),
                         child: TextFormField(
                           controller: _model.searchbarTextController,
                           focusNode: _model.searchbarFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.searchbarTextController',
-                            Duration(milliseconds: 2000),
+                            const Duration(milliseconds: 2000),
                             () async {
                               await queryFoodRecordOnce()
                                   .then(
@@ -127,7 +122,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                                           .map(
                                             (record) =>
                                                 TextSearchItem.fromTerms(
-                                                    record, [record.food!]),
+                                                    record, [record.food]),
                                           )
                                           .toList(),
                                     )
@@ -229,7 +224,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
                     child: Text(
                       'Food items matching search:',
                       style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -240,10 +235,10 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(1.0, 0.0),
+                    alignment: const AlignmentDirectional(1.0, 0.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(14.0, 12.0, 16.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(14.0, 12.0, 16.0, 0.0),
                       child: Text(
                         _model.simpleSearchResults.length.toString(),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -258,7 +253,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
               if (!FFAppState().searchActive)
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
                     child: StreamBuilder<List<FoodRecord>>(
                       stream: FFAppState().foodlist(
                         requestFn: () => queryFoodRecord(
@@ -312,7 +307,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: Container(
+                                        child: SizedBox(
                                           height: 240.0,
                                           child: FoodDetailWidget(
                                             foodName: listViewFoodRecord,
@@ -345,7 +340,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
               if (FFAppState().searchActive)
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
                     child: Builder(
                       builder: (context) {
                         final results = _model.simpleSearchResults.toList();
@@ -358,7 +353,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                           itemBuilder: (context, resultsIndex) {
                             final resultsItem = results[resultsIndex];
                             return Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -382,7 +377,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: Container(
+                                          child: SizedBox(
                                             height: 240.0,
                                             child: FoodDetailWidget(
                                               foodName: resultsItem,
@@ -408,7 +403,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                                         blurRadius: 0.0,
                                         color: FlutterFlowTheme.of(context)
                                             .alternate,
-                                        offset: Offset(
+                                        offset: const Offset(
                                           0.0,
                                           1.0,
                                         ),
@@ -416,7 +411,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                                     ],
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -427,7 +422,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         12.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -443,7 +438,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 4.0, 0.0, 0.0),
                                                 child: Row(
@@ -452,7 +447,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   12.0,
                                                                   0.0,
@@ -487,7 +482,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   14.0,
                                                                   0.0,

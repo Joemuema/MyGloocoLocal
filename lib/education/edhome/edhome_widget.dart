@@ -1,10 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'edhome_model.dart';
 export 'edhome_model.dart';
 
@@ -56,14 +53,14 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -99,7 +96,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                           width: 380.0,
                           height: 120.0,
                           decoration: BoxDecoration(
-                            color: Color(0x3C0C0101),
+                            color: const Color(0x3C0C0101),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Column(
@@ -107,18 +104,18 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Container(
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Color(0x5000A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: FaIcon(
                                           FontAwesomeIcons.bookOpen,
                                           color: FlutterFlowTheme.of(context)
@@ -129,12 +126,12 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0x7000A8AF),
+                                        color: const Color(0x7000A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 5.0, 5.0, 5.0),
                                         child: Text(
                                           'Introduction to Diabetes Management',
@@ -143,7 +140,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color: Color(0xFEFFFFFF),
+                                                color: const Color(0xFEFFFFFF),
                                                 fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
@@ -151,8 +148,8 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                       ),
                                     ),
                                   ]
-                                      .divide(SizedBox(width: 10.0))
-                                      .around(SizedBox(width: 10.0)),
+                                      .divide(const SizedBox(width: 10.0))
+                                      .around(const SizedBox(width: 10.0)),
                                 ),
                               ),
                             ],
@@ -182,7 +179,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                         width: 380.0,
                         height: 120.0,
                         decoration: BoxDecoration(
-                          color: Color(0x3C0C0101),
+                          color: const Color(0x3C0C0101),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: InkWell(
@@ -199,17 +196,17 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Container(
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Color(0x7000A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: Icon(
                                           Icons.fastfood_rounded,
                                           color: FlutterFlowTheme.of(context)
@@ -220,12 +217,12 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0x7000A8AF),
+                                        color: const Color(0x7000A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 5.0, 5.0, 5.0),
                                         child: Text(
                                           'Diabetes and Healthy Eating',
@@ -234,7 +231,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color: Color(0xFEFFFFFF),
+                                                color: const Color(0xFEFFFFFF),
                                                 fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
@@ -242,8 +239,8 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                       ),
                                     ),
                                   ]
-                                      .divide(SizedBox(width: 10.0))
-                                      .around(SizedBox(width: 10.0)),
+                                      .divide(const SizedBox(width: 10.0))
+                                      .around(const SizedBox(width: 10.0)),
                                 ),
                               ),
                             ],
@@ -273,7 +270,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                         width: 380.0,
                         height: 120.0,
                         decoration: BoxDecoration(
-                          color: Color(0x3C0C0101),
+                          color: const Color(0x3C0C0101),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: InkWell(
@@ -290,17 +287,17 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Container(
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Color(0x7000A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(4.0),
                                         child: FaIcon(
                                           FontAwesomeIcons.running,
                                           color: FlutterFlowTheme.of(context)
@@ -311,12 +308,12 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0x7000A8AF),
+                                        color: const Color(0x7000A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Text(
                                           'Exercise and Physical Activity',
@@ -325,7 +322,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color: Color(0xFEFFFFFF),
+                                                color: const Color(0xFEFFFFFF),
                                                 fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
@@ -333,8 +330,8 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                       ),
                                     ),
                                   ]
-                                      .divide(SizedBox(width: 10.0))
-                                      .around(SizedBox(width: 10.0)),
+                                      .divide(const SizedBox(width: 10.0))
+                                      .around(const SizedBox(width: 10.0)),
                                 ),
                               ),
                             ],
@@ -364,7 +361,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                         width: 380.0,
                         height: 120.0,
                         decoration: BoxDecoration(
-                          color: Color(0x3C0C0101),
+                          color: const Color(0x3C0C0101),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: InkWell(
@@ -381,17 +378,17 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Container(
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Color(0x7000A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(6.0),
+                                        padding: const EdgeInsets.all(6.0),
                                         child: FaIcon(
                                           FontAwesomeIcons.pills,
                                           color: FlutterFlowTheme.of(context)
@@ -402,12 +399,12 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0x7000A8AF),
+                                        color: const Color(0x7000A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Text(
                                           'Monitoring and Medication',
@@ -416,7 +413,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color: Color(0xFEFFFFFF),
+                                                color: const Color(0xFEFFFFFF),
                                                 fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
@@ -424,8 +421,8 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                       ),
                                     ),
                                   ]
-                                      .divide(SizedBox(width: 10.0))
-                                      .around(SizedBox(width: 10.0)),
+                                      .divide(const SizedBox(width: 10.0))
+                                      .around(const SizedBox(width: 10.0)),
                                 ),
                               ),
                             ],
@@ -454,7 +451,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                       Container(
                         width: 380.0,
                         height: 120.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0x3C0C0101),
                         ),
                         child: InkWell(
@@ -471,17 +468,17 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Container(
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Color(0x7000A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(4.0),
                                         child: Icon(
                                           Icons.sick,
                                           color: FlutterFlowTheme.of(context)
@@ -492,12 +489,12 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0x7000A8AF),
+                                        color: const Color(0x7000A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Text(
                                           'Managing Complications',
@@ -506,7 +503,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color: Color(0xFEFFFFFF),
+                                                color: const Color(0xFEFFFFFF),
                                                 fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
@@ -514,8 +511,8 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                       ),
                                     ),
                                   ]
-                                      .divide(SizedBox(width: 10.0))
-                                      .around(SizedBox(width: 10.0)),
+                                      .divide(const SizedBox(width: 10.0))
+                                      .around(const SizedBox(width: 10.0)),
                                 ),
                               ),
                             ],
@@ -551,17 +548,17 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Container(
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Color(0x7000A8AF),
                                     shape: BoxShape.circle,
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(6.0),
+                                    padding: const EdgeInsets.all(6.0),
                                     child: FaIcon(
                                       FontAwesomeIcons.brain,
                                       color: FlutterFlowTheme.of(context)
@@ -572,11 +569,11 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                 ),
                                 Container(
                                   decoration: BoxDecoration(
-                                    color: Color(0x7000A8AF),
+                                    color: const Color(0x7000A8AF),
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         10.0, 5.0, 10.0, 5.0),
                                     child: Text(
                                       'Mental and Emotional Health',
@@ -585,7 +582,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
-                                            color: Color(0xFEFFFFFF),
+                                            color: const Color(0xFEFFFFFF),
                                             fontSize: 15.0,
                                             letterSpacing: 0.0,
                                           ),
@@ -593,8 +590,8 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   ),
                                 ),
                               ]
-                                  .divide(SizedBox(width: 10.0))
-                                  .around(SizedBox(width: 10.0)),
+                                  .divide(const SizedBox(width: 10.0))
+                                  .around(const SizedBox(width: 10.0)),
                             ),
                           ),
                         ],
@@ -622,7 +619,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                         width: 380.0,
                         height: 120.0,
                         decoration: BoxDecoration(
-                          color: Color(0x3C0C0101),
+                          color: const Color(0x3C0C0101),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: InkWell(
@@ -639,17 +636,17 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Container(
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Color(0x7000A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(4.0),
                                         child: Icon(
                                           Icons.calendar_month,
                                           color: FlutterFlowTheme.of(context)
@@ -660,12 +657,12 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0x7000A8AF),
+                                        color: const Color(0x7000A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Text(
                                           'Tips for Daily Management',
@@ -674,7 +671,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color: Color(0xFEFFFFFF),
+                                                color: const Color(0xFEFFFFFF),
                                                 fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
@@ -682,8 +679,8 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                       ),
                                     ),
                                   ]
-                                      .divide(SizedBox(width: 10.0))
-                                      .around(SizedBox(width: 10.0)),
+                                      .divide(const SizedBox(width: 10.0))
+                                      .around(const SizedBox(width: 10.0)),
                                 ),
                               ),
                             ],
@@ -692,7 +689,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                       ),
                     ],
                   ),
-                ].divide(SizedBox(height: 10.0)),
+                ].divide(const SizedBox(height: 10.0)),
               ),
             ),
           ),

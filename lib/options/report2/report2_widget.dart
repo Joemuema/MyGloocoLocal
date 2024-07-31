@@ -5,9 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/custom_code/actions/index.dart' as actions;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'report2_model.dart';
 export 'report2_model.dart';
@@ -45,6 +43,8 @@ class _Report2WidgetState extends State<Report2Widget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: 384.0,
       height: 457.0,
@@ -56,7 +56,7 @@ class _Report2WidgetState extends State<Report2Widget> {
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -76,14 +76,14 @@ class _Report2WidgetState extends State<Report2Widget> {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  final _datePickedDate = await showDatePicker(
+                  final datePickedDate = await showDatePicker(
                     context: context,
                     initialDate: getCurrentTimestamp,
                     firstDate: DateTime(1900),
@@ -118,12 +118,12 @@ class _Report2WidgetState extends State<Report2Widget> {
                     },
                   );
 
-                  if (_datePickedDate != null) {
+                  if (datePickedDate != null) {
                     safeSetState(() {
                       _model.datePicked = DateTime(
-                        _datePickedDate.year,
-                        _datePickedDate.month,
-                        _datePickedDate.day,
+                        datePickedDate.year,
+                        datePickedDate.month,
+                        datePickedDate.day,
                       );
                     });
                   }
@@ -159,7 +159,7 @@ class _Report2WidgetState extends State<Report2Widget> {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -188,7 +188,7 @@ class _Report2WidgetState extends State<Report2Widget> {
           ),
           Flexible(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -202,7 +202,7 @@ class _Report2WidgetState extends State<Report2Widget> {
                         'BloodSugarLogs',
                         'PhysicalActivityLogs'
                       ]),
-                      optionLabels: [
+                      optionLabels: const [
                         'Diet Logs',
                         'Medication Logs',
                         'Blood Sugar Logs',
@@ -228,7 +228,7 @@ class _Report2WidgetState extends State<Report2Widget> {
                       borderWidth: 2.0,
                       borderRadius: 8.0,
                       margin:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                       hidesUnderline: true,
                       isOverButton: true,
                       isSearchable: false,
@@ -243,7 +243,7 @@ class _Report2WidgetState extends State<Report2Widget> {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -253,6 +253,7 @@ class _Report2WidgetState extends State<Report2Widget> {
                       _model.maybe = await actions.generateReport(
                         _model.datePicked!,
                         _model.dropDownValue!.toList(),
+                        FFAppState().UserID!,
                       );
                       Navigator.pop(context);
 
@@ -263,9 +264,9 @@ class _Report2WidgetState extends State<Report2Widget> {
                       width: 120.0,
                       height: 40.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -274,7 +275,7 @@ class _Report2WidgetState extends State<Report2Widget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

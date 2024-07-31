@@ -6,8 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'diet_home_model.dart';
 export 'diet_home_model.dart';
 
@@ -59,7 +57,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -70,20 +68,20 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 5.0, 10.0),
+                          const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 5.0, 10.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Flexible(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 10.0, 0.0, 10.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -94,7 +92,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                       context.pushNamed(
                                         'DietHome',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.rightToLeft,
@@ -106,10 +104,10 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                     options: FFButtonOptions(
                                       width: 120.0,
                                       height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -122,7 +120,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
@@ -134,12 +132,12 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                           ),
                           Flexible(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 10.0, 10.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 1.0,
                                     child: VerticalDivider(
                                       thickness: 1.0,
@@ -150,7 +148,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                       context.pushNamed(
                                         'Recipe_list',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
+                                          kTransitionInfoKey: const TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.leftToRight,
@@ -162,10 +160,10 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                     options: FFButtonOptions(
                                       width: 120.0,
                                       height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
@@ -178,7 +176,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -194,7 +192,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 3.0, 10.0),
+                          const EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 3.0, 10.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -215,7 +213,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                             },
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 10.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'Review food information from here',
@@ -233,7 +231,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 10.0, 8.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 10.0, 8.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -248,7 +246,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                           children: [
                             Flexible(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     3.0, 5.0, 3.0, 0.0),
                                 child: Text(
                                   'Your Meals',
@@ -289,7 +287,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(3.0, 1.0, 3.0, 3.0),
+                          const EdgeInsetsDirectional.fromSTEB(3.0, 1.0, 3.0, 3.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -323,7 +321,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(3.0, 10.0,
                                                                 3.0, 15.0),
                                                     child: Text(
@@ -360,13 +358,13 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 3.0, 10.0),
+                          const EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 3.0, 10.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(-1.0, -1.0),
+                            alignment: const AlignmentDirectional(-1.0, -1.0),
                             child: Text(
                               'Add Meal & Drink',
                               style: FlutterFlowTheme.of(context)
@@ -380,13 +378,13 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(1.0, -1.0),
+                            alignment: const AlignmentDirectional(1.0, -1.0),
                             child: FlutterFlowIconButton(
                               borderColor: Colors.transparent,
                               borderRadius: 20.0,
                               borderWidth: 1.0,
                               buttonSize: 40.0,
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.add,
                                 color: Colors.black,
                                 size: 24.0,
@@ -407,11 +405,11 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: Container(
+                                        child: SizedBox(
                                           height: MediaQuery.sizeOf(context)
                                                   .height *
                                               0.4,
-                                          child: AccessFromMainTabWidget(),
+                                          child: const AccessFromMainTabWidget(),
                                         ),
                                       ),
                                     );
@@ -425,7 +423,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 15.0, 8.0, 15.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 15.0, 8.0, 15.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -462,7 +460,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: Container(
+                                          child: const SizedBox(
                                             height: 370.0,
                                             child: ManualFoodWidget(
                                               foodPeriod: 'Breakfast',
@@ -490,7 +488,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderColor:
                                       FlutterFlowTheme.of(context).primary,
@@ -521,7 +519,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
-                                            child: Container(
+                                            child: const SizedBox(
                                               height: 370.0,
                                               child: ManualFoodWidget(
                                                 foodPeriod: 'Lunch',
@@ -578,7 +576,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: Container(
+                                          child: const SizedBox(
                                             height: 370.0,
                                             child: ManualFoodWidget(
                                               foodPeriod: 'Supper',
@@ -634,7 +632,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: Container(
+                                          child: const SizedBox(
                                             height: 370.0,
                                             child: ManualFoodWidget(
                                               foodPeriod: 'Snack',
@@ -673,14 +671,14 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               30.0, 20.0, 30.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               context.pushNamed(
                                 'Plate',
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
+                                  kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,
                                     transitionType:
                                         PageTransitionType.rightToLeft,
@@ -691,9 +689,9 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                             text: 'Go to plate',
                             options: FFButtonOptions(
                               height: 60.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -705,7 +703,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -722,7 +720,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               30.0, 30.0, 30.0, 30.0),
                           child: FFButtonWidget(
                             onPressed: () async {
@@ -740,7 +738,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                         : FocusScope.of(context).unfocus(),
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
-                                      child: Container(
+                                      child: const SizedBox(
                                         height: 320.0,
                                         child: WaterWidget(),
                                       ),
@@ -752,9 +750,9 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                             text: 'Record drinks',
                             options: FFButtonOptions(
                               height: 60.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -766,7 +764,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

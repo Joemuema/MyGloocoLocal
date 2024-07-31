@@ -1,11 +1,7 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'incompleteactivitylist_model.dart';
 export 'incompleteactivitylist_model.dart';
 
@@ -50,14 +46,14 @@ class _IncompleteactivitylistWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
           borderRadius: BorderRadius.circular(10.0),
           border: Border.all(
-            color: Color(0xFF4D7E3E),
+            color: const Color(0xFF4D7E3E),
           ),
         ),
         child: Row(
@@ -66,7 +62,7 @@ class _IncompleteactivitylistWidgetState
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.all(5.0),
+              padding: const EdgeInsets.all(5.0),
               child: Icon(
                 Icons.next_plan_outlined,
                 color: FlutterFlowTheme.of(context).primary,
@@ -79,7 +75,7 @@ class _IncompleteactivitylistWidgetState
               children: [
                 Text(
                   valueOrDefault<String>(
-                    widget!.incompleteactivitydocument?.activity,
+                    widget.incompleteactivitydocument?.activity,
                     'name',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -90,7 +86,7 @@ class _IncompleteactivitylistWidgetState
                 Text(
                   valueOrDefault<String>(
                     dateTimeFormat(
-                        'd/M/y', widget!.incompleteactivitydocument?.date),
+                        'd/M/y', widget.incompleteactivitydocument?.date),
                     '0',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -114,11 +110,11 @@ class _IncompleteactivitylistWidgetState
               ),
               child: Checkbox(
                 value: _model.checkboxValue ??=
-                    widget!.incompleteactivitydocument!.completed,
+                    widget.incompleteactivitydocument!.completed,
                 onChanged: (newValue) async {
                   setState(() => _model.checkboxValue = newValue!);
                   if (newValue!) {
-                    await widget!.incompleteactivitydocument!.reference
+                    await widget.incompleteactivitydocument!.reference
                         .update(createAddpagecollectionRecordData(
                       completed: true,
                     ));

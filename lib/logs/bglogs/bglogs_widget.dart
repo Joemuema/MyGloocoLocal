@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -7,10 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'bglogs_model.dart';
 export 'bglogs_model.dart';
@@ -57,7 +53,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
       height: 300.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(20.0),
@@ -83,13 +79,13 @@ class _BglogsWidgetState extends State<BglogsWidget> {
             ],
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 0.0, 0.0),
                   child: FlutterFlowIconButton(
                     borderColor: Colors.transparent,
                     borderRadius: 20.0,
@@ -106,7 +102,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(96.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(96.0, 0.0, 0.0, 0.0),
                   child: Text(
                     'Log activity',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -127,7 +123,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
               FlutterFlowDropDown<String>(
                 controller: _model.dropDownValueController1 ??=
                     FormFieldController<String>(null),
-                options: [
+                options: const [
                   'Before breakfast',
                   'After breakfast',
                   'Before lunch',
@@ -153,7 +149,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                 borderColor: FlutterFlowTheme.of(context).primary,
                 borderWidth: 2.0,
                 borderRadius: 22.0,
-                margin: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                margin: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                 hidesUnderline: true,
                 isOverButton: true,
                 isSearchable: false,
@@ -161,7 +157,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  final _datePickedDate = await showDatePicker(
+                  final datePickedDate = await showDatePicker(
                     context: context,
                     initialDate: getCurrentTimestamp,
                     firstDate: DateTime(1900),
@@ -196,9 +192,9 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                     },
                   );
 
-                  TimeOfDay? _datePickedTime;
-                  if (_datePickedDate != null) {
-                    _datePickedTime = await showTimePicker(
+                  TimeOfDay? datePickedTime;
+                  if (datePickedDate != null) {
+                    datePickedTime = await showTimePicker(
                       context: context,
                       initialTime: TimeOfDay.fromDateTime(getCurrentTimestamp),
                       builder: (context, child) {
@@ -233,14 +229,14 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                     );
                   }
 
-                  if (_datePickedDate != null && _datePickedTime != null) {
+                  if (datePickedDate != null && datePickedTime != null) {
                     safeSetState(() {
                       _model.datePicked = DateTime(
-                        _datePickedDate.year,
-                        _datePickedDate.month,
-                        _datePickedDate.day,
-                        _datePickedTime!.hour,
-                        _datePickedTime.minute,
+                        datePickedDate.year,
+                        datePickedDate.month,
+                        datePickedDate.day,
+                        datePickedTime!.hour,
+                        datePickedTime.minute,
                       );
                     });
                   }
@@ -251,9 +247,9 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                 ),
                 options: FFButtonOptions(
                   height: 50.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Readex Pro',
@@ -261,7 +257,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.transparent,
                     width: 1.0,
                   ),
@@ -275,7 +271,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: TextFormField(
                     controller: _model.textController,
                     focusNode: _model.textFieldFocusNode,
@@ -371,7 +367,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                         'mg/dl',
                       ),
                     ),
-                    options: ['mg/dl', 'mmol/ml'],
+                    options: const ['mg/dl', 'mmol/ml'],
                     onChanged: (val) =>
                         setState(() => _model.dropDownValue2 = val),
                     width: 126.0,
@@ -393,7 +389,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                     borderWidth: 2.0,
                     borderRadius: 22.0,
                     margin:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                     hidesUnderline: true,
                     isOverButton: true,
                     isSearchable: false,
@@ -430,8 +426,8 @@ class _BglogsWidgetState extends State<BglogsWidget> {
             text: 'Done',
             options: FFButtonOptions(
               height: 40.0,
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).primary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: 'Readex Pro',
@@ -439,7 +435,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                     letterSpacing: 0.0,
                   ),
               elevation: 3.0,
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Colors.transparent,
                 width: 1.0,
               ),

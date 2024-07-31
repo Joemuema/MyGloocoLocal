@@ -4,8 +4,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'refill_model.dart';
 export 'refill_model.dart';
 
@@ -57,7 +55,7 @@ class _RefillWidgetState extends State<RefillWidget> {
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0x33000000),
           ),
           child: Column(
@@ -65,17 +63,17 @@ class _RefillWidgetState extends State<RefillWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                   child: Container(
                     width: double.infinity,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 530.0,
                     ),
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           blurRadius: 3.0,
                           color: Color(0x33000000),
@@ -93,13 +91,13 @@ class _RefillWidgetState extends State<RefillWidget> {
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 16.0, 24.0, 16.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -122,10 +120,10 @@ class _RefillWidgetState extends State<RefillWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 0.0),
                                       child: Text(
-                                        'You are running low on ${widget!.medRefillList?.length == 1 ? 'this medicine' : 'these medicines'}. Make sure you refill ${widget!.medRefillList?.length == 1 ? 'it' : 'them'} before ${widget!.medRefillList?.length == 1 ? 'it' : 'they'} run out.',
+                                        'You are running low on ${widget.medRefillList?.length == 1 ? 'this medicine' : 'these medicines'}. Make sure you refill ${widget.medRefillList?.length == 1 ? 'it' : 'them'} before ${widget.medRefillList?.length == 1 ? 'it' : 'they'} run out.',
                                         style: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .override(
@@ -142,12 +140,12 @@ class _RefillWidgetState extends State<RefillWidget> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Builder(
                                     builder: (context) {
                                       final medsToRefill =
-                                          widget!.medRefillList?.toList() ?? [];
+                                          widget.medRefillList?.toList() ?? [];
 
                                       return ListView.builder(
                                         padding: EdgeInsets.zero,
@@ -162,7 +160,7 @@ class _RefillWidgetState extends State<RefillWidget> {
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 5.0, 0.0, 5.0),
                                                 child: Text(
@@ -185,7 +183,7 @@ class _RefillWidgetState extends State<RefillWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 5.0, 0.0, 5.0),
                                                 child: Text(
@@ -265,7 +263,7 @@ class _RefillWidgetState extends State<RefillWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 12.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -278,9 +276,9 @@ class _RefillWidgetState extends State<RefillWidget> {
                                   text: 'Ok',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -290,7 +288,7 @@ class _RefillWidgetState extends State<RefillWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 0.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                     ),
                                     borderRadius: BorderRadius.circular(40.0),

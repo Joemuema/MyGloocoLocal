@@ -65,6 +65,7 @@ dependencies:
   google_sign_in_ios: 5.7.6
   google_sign_in_platform_interface: 2.4.2
   google_sign_in_web: 0.12.1
+  image: ^4.1.0
   image_picker: 1.0.4
   image_picker_android: 0.8.8
   image_picker_for_web: 3.0.1
@@ -126,7 +127,6 @@ dependency_overrides:
 dev_dependencies:
   flutter_launcher_icons: 0.13.1
   flutter_lints: 4.0.0
-  image: 4.0.17
   lints: 4.0.0
 
   flutter_test:

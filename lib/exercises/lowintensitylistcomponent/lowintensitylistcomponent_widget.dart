@@ -4,29 +4,27 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'highintensitylistcomponents_model.dart';
-export 'highintensitylistcomponents_model.dart';
+import 'lowintensitylistcomponent_model.dart';
+export 'lowintensitylistcomponent_model.dart';
 
-class HighintensitylistcomponentsWidget extends StatefulWidget {
-  const HighintensitylistcomponentsWidget({
+class LowintensitylistcomponentWidget extends StatefulWidget {
+  const LowintensitylistcomponentWidget({
     super.key,
-    required this.highintensitylistdocument,
+    required this.lowintensitylistcomponent,
     required this.checkboxaction,
   });
 
-  final AddpagecollectionRecord? highintensitylistdocument;
+  final AddpagecollectionRecord? lowintensitylistcomponent;
   final Future Function()? checkboxaction;
 
   @override
-  State<HighintensitylistcomponentsWidget> createState() =>
-      _HighintensitylistcomponentsWidgetState();
+  State<LowintensitylistcomponentWidget> createState() =>
+      _LowintensitylistcomponentWidgetState();
 }
 
-class _HighintensitylistcomponentsWidgetState
-    extends State<HighintensitylistcomponentsWidget> {
-  late HighintensitylistcomponentsModel _model;
+class _LowintensitylistcomponentWidgetState
+    extends State<LowintensitylistcomponentWidget> {
+  late LowintensitylistcomponentModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -37,7 +35,7 @@ class _HighintensitylistcomponentsWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => HighintensitylistcomponentsModel());
+    _model = createModel(context, () => LowintensitylistcomponentModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -52,12 +50,12 @@ class _HighintensitylistcomponentsWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 20.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 20.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -71,10 +69,11 @@ class _HighintensitylistcomponentsWidgetState
         ),
         child: Row(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 20.0,
@@ -90,35 +89,37 @@ class _HighintensitylistcomponentsWidgetState
                 },
               ),
             ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Activity:',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        color: FlutterFlowTheme.of(context).secondary,
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                Text(
-                  'Distance:',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        color: FlutterFlowTheme.of(context).secondary,
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                Text(
-                  'Date:',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        color: FlutterFlowTheme.of(context).secondary,
-                        letterSpacing: 0.0,
-                      ),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    'Activity:',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          color: FlutterFlowTheme.of(context).secondary,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                  Text(
+                    'Distance:',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          color: FlutterFlowTheme.of(context).secondary,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                  Text(
+                    'Date:',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          color: FlutterFlowTheme.of(context).secondary,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ],
+              ),
             ),
             Column(
               mainAxisSize: MainAxisSize.max,
@@ -126,7 +127,7 @@ class _HighintensitylistcomponentsWidgetState
               children: [
                 Text(
                   valueOrDefault<String>(
-                    widget!.highintensitylistdocument?.activity,
+                    widget.lowintensitylistcomponent?.activity,
                     'name',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -136,7 +137,7 @@ class _HighintensitylistcomponentsWidgetState
                 ),
                 Text(
                   valueOrDefault<String>(
-                    widget!.highintensitylistdocument?.distance?.toString(),
+                    widget.lowintensitylistcomponent?.distance.toString(),
                     '0',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -146,8 +147,7 @@ class _HighintensitylistcomponentsWidgetState
                 ),
                 Text(
                   valueOrDefault<String>(
-                    dateTimeFormat(
-                        'd/M/y', widget!.highintensitylistdocument?.date),
+                    widget.lowintensitylistcomponent?.date?.toString(),
                     '0',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(

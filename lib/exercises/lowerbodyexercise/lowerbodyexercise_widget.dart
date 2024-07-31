@@ -1,13 +1,10 @@
 import '/backend/backend.dart';
-import '/components/lowerbodyexercisescomponents_widget.dart';
+import '/exercises/lowerbodyexercisescomponents/lowerbodyexercisescomponents_widget.dart';
 import '/exercises/strengthexercises/strengthexercises_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'lowerbodyexercise_model.dart';
 export 'lowerbodyexercise_model.dart';
 
@@ -56,7 +53,7 @@ class _LowerbodyexerciseWidgetState extends State<LowerbodyexerciseWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -74,7 +71,7 @@ class _LowerbodyexerciseWidgetState extends State<LowerbodyexerciseWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -82,7 +79,7 @@ class _LowerbodyexerciseWidgetState extends State<LowerbodyexerciseWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -99,7 +96,7 @@ class _LowerbodyexerciseWidgetState extends State<LowerbodyexerciseWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 0.0),
               child: Container(
                 width: double.infinity,
                 height: 145.0,
@@ -107,7 +104,7 @@ class _LowerbodyexerciseWidgetState extends State<LowerbodyexerciseWidget> {
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 0.0),
                   child: Text(
                     'Lower body exercises focus on strengthening the muscles in the legs, hips, and lower back. These exercises are essential for improving overall strength, stability, balance, and mobility.It\'s important to perform these exercises with proper form and gradually increase the intensity to prevent injuries and maximize the benefits.',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -119,7 +116,7 @@ class _LowerbodyexerciseWidgetState extends State<LowerbodyexerciseWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 0.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [

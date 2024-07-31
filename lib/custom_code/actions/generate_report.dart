@@ -22,15 +22,17 @@ const String BLOOD_SUGAR_LOGS = 'BloodSugarLogs';
 
 class MealLog {
   final DateTime date;
-  final List meal;
+  final List<String> meal;
   final String type;
+  // final DocumentReference userid;
 
   MealLog({required this.date, required this.meal, required this.type});
+
   factory MealLog.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return MealLog(
       date: stringToDate(data['date']),
-      meal: data['meal'] ?? [],
+      meal: data['meals'] ?? [],
       type: data['type'] ?? '',
     );
   }
@@ -50,21 +52,24 @@ class BloodSugarReading {
   factory BloodSugarReading.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return BloodSugarReading(
-      date: stringToDate(data['date']),
-      period: data['period'] ?? '',
-      cgmReading: (data['CGMreading'] ?? 0).toDouble(),
+      date: stringToDate(data['Date']),
+      period: data['Period'] ?? '',
+      cgmReading: data['CGMreading'],
     );
   }
 }
 
 Future<String> generateReport(
-    DateTime selectedStartDate, List<String> selectedContents) async {
+  DateTime selectedStartDate,
+  List<String> selectedContents,
+  DocumentReference userID,
+) async {
   final pdf = pw.Document();
   final selectedEndDate = DateTime.now();
 
   try {
     if (selectedContents.contains(DIET_LOGS)) {
-      List<MealLog> mealLogs = []; // Declare mealLogs here
+      List<MealLog> mealLogs = [];
       try {
         final querySnapshot =
             await FirebaseFirestore.instance.collection('Meals').get();
@@ -72,10 +77,13 @@ Future<String> generateReport(
         if (querySnapshot.docs.isEmpty) {
           print("No meal logs found for the given date range.");
         } else {
-          mealLogs = querySnapshot.docs // Assign mealLogs here
+          mealLogs = querySnapshot.docs
               .where((doc) {
                 final date = DateTime.parse(doc.data()['date']);
-                return date.isAfter(selectedStartDate) &&
+                DocumentReference user_id = doc.data()['UserID'];
+
+                return user_id == userID &&
+                    date.isAfter(selectedStartDate) &&
                     date.isBefore(selectedEndDate);
               })
               .map((doc) => MealLog.fromFirestore(doc))
@@ -109,8 +117,7 @@ Future<String> generateReport(
     }
 
     if (selectedContents.contains(BLOOD_SUGAR_LOGS)) {
-      List<BloodSugarReading> bloodSugarReadings =
-          []; // Declare bloodSugarReadings here
+      List<BloodSugarReading> bloodSugarReadings = [];
       try {
         final querySnapshot =
             await FirebaseFirestore.instance.collection('BGreadings').get();
@@ -121,8 +128,11 @@ Future<String> generateReport(
           bloodSugarReadings =
               querySnapshot.docs // Assign bloodSugarReadings here
                   .where((doc) {
-                    final date = DateTime.parse(doc.data()['date']);
-                    return date.isAfter(selectedStartDate) &&
+                    final date = DateTime.parse(doc.data()['Date']);
+                    DocumentReference user_id = doc.data()['UserID'];
+
+                    return user_id == userID &&
+                        date.isAfter(selectedStartDate) &&
                         date.isBefore(selectedEndDate);
                   })
                   .map((doc) => BloodSugarReading.fromFirestore(doc))

@@ -3,26 +3,25 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'upperbodycomponent_model.dart';
-export 'upperbodycomponent_model.dart';
+import 'flexibilityexercisecomponent_model.dart';
+export 'flexibilityexercisecomponent_model.dart';
 
-class UpperbodycomponentWidget extends StatefulWidget {
-  const UpperbodycomponentWidget({
+class FlexibilityexercisecomponentWidget extends StatefulWidget {
+  const FlexibilityexercisecomponentWidget({
     super.key,
-    required this.upperbodydocument,
+    required this.flexibilityexercisedocument,
   });
 
-  final StrengthexercisesRecord? upperbodydocument;
+  final FlexibilitycollectionRecord? flexibilityexercisedocument;
 
   @override
-  State<UpperbodycomponentWidget> createState() =>
-      _UpperbodycomponentWidgetState();
+  State<FlexibilityexercisecomponentWidget> createState() =>
+      _FlexibilityexercisecomponentWidgetState();
 }
 
-class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
-  late UpperbodycomponentModel _model;
+class _FlexibilityexercisecomponentWidgetState
+    extends State<FlexibilityexercisecomponentWidget> {
+  late FlexibilityexercisecomponentModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -33,7 +32,7 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => UpperbodycomponentModel());
+    _model = createModel(context, () => FlexibilityexercisecomponentModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -48,7 +47,7 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
       child: Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -61,72 +60,65 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsets.all(5.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
               child: Container(
                 width: 60.0,
                 height: 60.0,
                 clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: Image.network(
-                  widget!.upperbodydocument!.image,
+                  widget.flexibilityexercisedocument!.image,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                        child: Text(
-                          valueOrDefault<String>(
-                            widget!.upperbodydocument?.name,
-                            'name',
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: 'Readex Pro',
-                                color: FlutterFlowTheme.of(context).secondary,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w600,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 5.0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 5.0, 0.0, 5.0),
                           child: Text(
                             valueOrDefault<String>(
-                              widget!.upperbodydocument?.shortdescription,
-                              'shortdescription',
+                              widget.flexibilityexercisedocument?.name,
+                              'name',
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Readex Pro',
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  fontSize: 15.0,
                                   letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
                                 ),
                           ),
                         ),
+                      ],
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                      child: Text(
+                        valueOrDefault<String>(
+                          widget.flexibilityexercisedocument?.description,
+                          'description',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              letterSpacing: 0.0,
+                            ),
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
             FlutterFlowIconButton(

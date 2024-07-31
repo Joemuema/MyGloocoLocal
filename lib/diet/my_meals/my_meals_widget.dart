@@ -2,7 +2,6 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'my_meals_model.dart';
 export 'my_meals_model.dart';
@@ -62,7 +61,7 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
       child: Column(
         children: [
           Align(
-            alignment: Alignment(0.0, 0),
+            alignment: const Alignment(0.0, 0),
             child: TabBar(
               labelColor: FlutterFlowTheme.of(context).primaryText,
               unselectedLabelColor: FlutterFlowTheme.of(context).secondaryText,
@@ -70,10 +69,10 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                     fontFamily: 'Readex Pro',
                     letterSpacing: 0.0,
                   ),
-              unselectedLabelStyle: TextStyle(),
+              unselectedLabelStyle: const TextStyle(),
               indicatorColor: FlutterFlowTheme.of(context).primary,
-              padding: EdgeInsets.all(4.0),
-              tabs: [
+              padding: const EdgeInsets.all(4.0),
+              tabs: const [
                 Tab(
                   text: 'Food',
                 ),
@@ -92,14 +91,14 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
               controller: _model.tabBarController,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(2.0, 2.0, 2.0, 2.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(2.0, 2.0, 2.0, 2.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               2.0, 2.0, 2.0, 2.0),
                           child: ListView(
                             padding: EdgeInsets.zero,
@@ -126,13 +125,13 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    if (widget!.foodItems
+                                                    if (widget.foodItems
                                                                 ?.where((e) =>
                                                                     e.type ==
                                                                     'Breakfast')
                                                                 .toList() !=
                                                             null &&
-                                                        (widget!.foodItems
+                                                        (widget.foodItems
                                                                 ?.where((e) =>
                                                                     e.type ==
                                                                     'Breakfast')
@@ -140,7 +139,7 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                             .isNotEmpty)
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     0.0,
@@ -172,7 +171,7 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                             ),
                                             Builder(
                                               builder: (context) {
-                                                final breakfast = widget!
+                                                final breakfast = widget
                                                     .foodItems!
                                                     .where((e) =>
                                                         e.type == 'Breakfast')
@@ -191,11 +190,11 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                             breakfastIndex];
                                                     return Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     0.0,
@@ -273,13 +272,13 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    if (widget!.foodItems
+                                                    if (widget.foodItems
                                                                 ?.where((e) =>
                                                                     e.type ==
                                                                     'Lunch')
                                                                 .toList() !=
                                                             null &&
-                                                        (widget!.foodItems
+                                                        (widget.foodItems
                                                                 ?.where((e) =>
                                                                     e.type ==
                                                                     'Lunch')
@@ -287,7 +286,7 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                             .isNotEmpty)
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     0.0,
@@ -319,7 +318,7 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                             ),
                                             Builder(
                                               builder: (context) {
-                                                final lunch = widget!.foodItems!
+                                                final lunch = widget.foodItems!
                                                     .where((e) =>
                                                         e.type == 'Lunch')
                                                     .toList();
@@ -336,11 +335,11 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                         lunch[lunchIndex];
                                                     return Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     0.0,
@@ -418,13 +417,13 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      if (widget!.foodItems
+                                                      if (widget.foodItems
                                                                   ?.where((e) =>
                                                                       e.type ==
                                                                       'Supper')
                                                                   .toList() !=
                                                               null &&
-                                                          (widget!.foodItems
+                                                          (widget.foodItems
                                                                   ?.where((e) =>
                                                                       e.type ==
                                                                       'Supper')
@@ -432,7 +431,7 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                               .isNotEmpty)
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       0.0,
@@ -466,7 +465,7 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                             ),
                                             Builder(
                                               builder: (context) {
-                                                final supper = widget!
+                                                final supper = widget
                                                     .foodItems!
                                                     .where((e) =>
                                                         e.type == 'Supper')
@@ -484,11 +483,11 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                         supper[supperIndex];
                                                     return Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     0.0,
@@ -566,13 +565,13 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      if (widget!.foodItems
+                                                      if (widget.foodItems
                                                                   ?.where((e) =>
                                                                       e.type ==
                                                                       'Snack')
                                                                   .toList() !=
                                                               null &&
-                                                          (widget!.foodItems
+                                                          (widget.foodItems
                                                                   ?.where((e) =>
                                                                       e.type ==
                                                                       'Snack')
@@ -580,7 +579,7 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                               .isNotEmpty)
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       0.0,
@@ -614,7 +613,7 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                             ),
                                             Builder(
                                               builder: (context) {
-                                                final snack = widget!.foodItems!
+                                                final snack = widget.foodItems!
                                                     .where((e) =>
                                                         e.type == 'Snack')
                                                     .toList();
@@ -631,11 +630,11 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                                         snack[snackIndex];
                                                     return Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     0.0,
@@ -705,7 +704,7 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                         .where(
                           'Date',
                           isEqualTo:
-                              dateTimeFormat('yyyy-MM-dd', widget!.drinkdate),
+                              dateTimeFormat('yyyy-MM-dd', widget.drinkdate),
                         )
                         .where(
                           'UserID',
@@ -738,14 +737,14 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                         final listViewDrinksRecord =
                             listViewDrinksRecordList[listViewIndex];
                         return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 10.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     7.0, 0.0, 0.0, 7.0),
                                 child: Text(
                                   listViewDrinksRecord.time,
@@ -760,13 +759,13 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 10.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           5.0, 0.0, 10.0, 0.0),
                                       child: Text(
                                         listViewDrinksRecord.drink,
@@ -780,7 +779,7 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           10.0, 0.0, 10.0, 0.0),
                                       child: Text(
                                         listViewDrinksRecord.volume,

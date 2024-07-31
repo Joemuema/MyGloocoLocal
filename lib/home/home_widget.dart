@@ -10,12 +10,8 @@ import '/logs/addactivity/addactivity_widget.dart';
 import '/logs/bglogs/bglogs_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_model.dart';
 export 'home_model.dart';
@@ -92,7 +88,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,12 +121,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 10.0, 0.0),
                             child: FlutterFlowIconButton(
                               borderColor: FlutterFlowTheme.of(context).primary,
@@ -147,16 +143,16 @@ class _HomeWidgetState extends State<HomeWidget> {
                               },
                             ),
                           ),
-                        ].divide(SizedBox(width: 10.0)),
+                        ].divide(const SizedBox(width: 10.0)),
                       ),
                     ),
                   ],
                 ),
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                     child: Text(
                       'Summaries & Insights',
                       textAlign: TextAlign.start,
@@ -168,7 +164,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                   child: Container(
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -179,7 +175,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 10.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -200,7 +196,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               5.0, 0.0, 5.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -225,7 +221,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  final _datePickedDate = await showDatePicker(
+                                  final datePickedDate = await showDatePicker(
                                     context: context,
                                     initialDate: getCurrentTimestamp,
                                     firstDate: DateTime(1900),
@@ -267,12 +263,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     },
                                   );
 
-                                  if (_datePickedDate != null) {
+                                  if (datePickedDate != null) {
                                     safeSetState(() {
                                       _model.datePicked = DateTime(
-                                        _datePickedDate.year,
-                                        _datePickedDate.month,
-                                        _datePickedDate.day,
+                                        datePickedDate.year,
+                                        datePickedDate.month,
+                                        datePickedDate.day,
                                       );
                                     });
                                   }
@@ -285,9 +281,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     : 'Today',
                                 options: FFButtonOptions(
                                   height: 30.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).alternate,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -299,7 +295,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -327,7 +323,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 20.0, 20.0, 0.0),
                           child: StreamBuilder<List<BGreadingsRecord>>(
                             stream: queryBGreadingsRecord(
@@ -364,7 +360,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               List<BGreadingsRecord>
                                   bgChartBGreadingsRecordList = snapshot.data!;
 
-                              return Container(
+                              return SizedBox(
                                 height:
                                     MediaQuery.sizeOf(context).height * 0.492,
                                 child: Stack(
@@ -424,14 +420,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 .secondaryText,
                                         borderWidth: 1.0,
                                       ),
-                                      axisBounds: AxisBounds(),
+                                      axisBounds: const AxisBounds(),
                                       xAxisLabelInfo: AxisLabelInfo(
                                         title: 'Time (24hr format)',
-                                        titleTextStyle: TextStyle(
+                                        titleTextStyle: const TextStyle(
                                           fontSize: 12.0,
                                         ),
                                         showLabels: true,
-                                        labelTextStyle: TextStyle(
+                                        labelTextStyle: const TextStyle(
                                           fontSize: 10.0,
                                         ),
                                         labelInterval: 2.0,
@@ -445,7 +441,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                         reservedSize: 10.0,
                                       ),
-                                      yAxisLabelInfo: AxisLabelInfo(
+                                      yAxisLabelInfo: const AxisLabelInfo(
                                         title: ' Sugar level (mg/dl)',
                                         titleTextStyle: TextStyle(
                                           fontSize: 12.0,
@@ -459,7 +455,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: AlignmentDirectional(1.0, 1.0),
+                                      alignment: const AlignmentDirectional(1.0, 1.0),
                                       child: FlutterFlowChartLegendWidget(
                                         entries: [
                                           LegendEntry(
@@ -481,9 +477,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         textPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 5.0, 0.0, 0.0, 0.0),
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 23.0, 5.0, 0.0),
                                         borderColor: Colors.transparent,
                                         indicatorSize: 10.0,
@@ -505,7 +501,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color:
@@ -517,7 +513,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 10.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -540,11 +536,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         .secondaryText,
                                     size: 24.0,
                                   ),
-                                ].divide(SizedBox(width: 8.0)),
+                                ].divide(const SizedBox(width: 8.0)),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 10.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -573,7 +569,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             child: Padding(
                                               padding: MediaQuery.viewInsetsOf(
                                                   context),
-                                              child: BglogsWidget(),
+                                              child: const BglogsWidget(),
                                             ),
                                           );
                                         },
@@ -584,7 +580,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 3.0),
                                           child: Icon(
                                             Icons.water_drop,
@@ -628,7 +624,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             child: Padding(
                                               padding: MediaQuery.viewInsetsOf(
                                                   context),
-                                              child: AccessFromMainTabWidget(),
+                                              child: const AccessFromMainTabWidget(),
                                             ),
                                           );
                                         },
@@ -639,7 +635,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 3.0),
                                           child: Icon(
                                             Icons.fastfood_outlined,
@@ -683,7 +679,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             child: Padding(
                                               padding: MediaQuery.viewInsetsOf(
                                                   context),
-                                              child: AddactivityWidget(
+                                              child: const AddactivityWidget(
                                                 completed: true,
                                               ),
                                             ),
@@ -696,7 +692,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 3.0),
                                           child: Icon(
                                             Icons.directions_run_rounded,
@@ -724,7 +720,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ),
                       ),
                     ),
-                  ].divide(SizedBox(height: 20.0)),
+                  ].divide(const SizedBox(height: 20.0)),
                 ),
               ],
             ),
