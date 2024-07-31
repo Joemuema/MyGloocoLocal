@@ -54,7 +54,7 @@ class BloodSugarReading {
     return BloodSugarReading(
       date: stringToDate(data['Date']),
       period: data['Period'] ?? '',
-      cgmReading: data['CGMreading'],
+      cgmReading: (data['CGMreading']).toDouble(),
     );
   }
 }
@@ -106,7 +106,7 @@ Future<String> generateReport(
                       log.date != null
                           ? DateFormat('yyyy-MM-dd').format(log.date)
                           : 'N/A',
-                      log.meal.join(','),
+                      log.meal.map((meal) => meal).join('\n'),
                       log.type
                     ])
               ]),
