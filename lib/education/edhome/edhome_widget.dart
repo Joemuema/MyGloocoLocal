@@ -111,7 +111,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   children: [
                                     Container(
                                       decoration: const BoxDecoration(
-                                        color: Color(0x5000A8AF),
+                                        color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -126,7 +126,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7000A8AF),
+                                        color: const Color(0xCC00A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
@@ -161,7 +161,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                   Stack(
                     children: [
                       Container(
-                        width: 480.0,
+                        width: 380.0,
                         height: 120.0,
                         decoration: BoxDecoration(
                           color:
@@ -202,7 +202,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   children: [
                                     Container(
                                       decoration: const BoxDecoration(
-                                        color: Color(0x7000A8AF),
+                                        color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -217,7 +217,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7000A8AF),
+                                        color: const Color(0xCC00A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
@@ -252,7 +252,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                   Stack(
                     children: [
                       Container(
-                        width: 480.0,
+                        width: 380.0,
                         height: 120.0,
                         decoration: BoxDecoration(
                           color:
@@ -293,7 +293,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   children: [
                                     Container(
                                       decoration: const BoxDecoration(
-                                        color: Color(0x7000A8AF),
+                                        color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -308,7 +308,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7000A8AF),
+                                        color: const Color(0xCC00A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
@@ -343,7 +343,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                   Stack(
                     children: [
                       Container(
-                        width: 480.0,
+                        width: 380.0,
                         height: 120.0,
                         decoration: BoxDecoration(
                           color:
@@ -384,7 +384,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   children: [
                                     Container(
                                       decoration: const BoxDecoration(
-                                        color: Color(0x7000A8AF),
+                                        color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -399,7 +399,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7000A8AF),
+                                        color: const Color(0xCC00A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
@@ -434,7 +434,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                   Stack(
                     children: [
                       Container(
-                        width: 480.0,
+                        width: 380.0,
                         height: 120.0,
                         decoration: BoxDecoration(
                           color:
@@ -474,7 +474,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   children: [
                                     Container(
                                       decoration: const BoxDecoration(
-                                        color: Color(0x7000A8AF),
+                                        color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -489,7 +489,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7000A8AF),
+                                        color: const Color(0xCC00A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),
@@ -521,87 +521,107 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                       ),
                     ],
                   ),
-                  Container(
-                    width: 480.0,
-                    height: 120.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      image: DecorationImage(
-                        fit: BoxFit.fitWidth,
-                        image: Image.network(
-                          'https://images.unsplash.com/photo-1493836512294-502baa1986e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw0fHxtZW50YWwlMjBoZWFsdGh8ZW58MHx8fHwxNzIwNDI0MTM5fDA&ixlib=rb-4.0.3&q=80&w=1080',
-                        ).image,
-                      ),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.pushNamed('mental_health');
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    color: Color(0x7000A8AF),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: FaIcon(
-                                      FontAwesomeIcons.brain,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      size: 22.0,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: const Color(0x7000A8AF),
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 5.0, 10.0, 5.0),
-                                    child: Text(
-                                      'Mental and Emotional Health',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: const Color(0xFEFFFFFF),
-                                            fontSize: 15.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                              ]
-                                  .divide(const SizedBox(width: 10.0))
-                                  .around(const SizedBox(width: 10.0)),
-                            ),
+                  Stack(
+                    children: [
+                      Container(
+                        width: 380.0,
+                        height: 120.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          image: DecorationImage(
+                            fit: BoxFit.fitWidth,
+                            image: Image.network(
+                              'https://images.unsplash.com/photo-1493836512294-502baa1986e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw0fHxtZW50YWwlMjBoZWFsdGh8ZW58MHx8fHwxNzIwNDI0MTM5fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                            ).image,
                           ),
-                        ],
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                       ),
-                    ),
+                      Container(
+                        width: 480.0,
+                        height: 120.0,
+                        decoration: BoxDecoration(
+                          color: const Color(0x3C0C0101),
+                          image: DecorationImage(
+                            fit: BoxFit.fitWidth,
+                            image: Image.network(
+                              '',
+                            ).image,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed('mental_health');
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Container(
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xCC00A8AF),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(6.0),
+                                        child: FaIcon(
+                                          FontAwesomeIcons.brain,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          size: 22.0,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xCC00A8AF),
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 5.0, 10.0, 5.0),
+                                        child: Text(
+                                          'Mental and Emotional Health',
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: const Color(0xFEFFFFFF),
+                                                fontSize: 15.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ]
+                                      .divide(const SizedBox(width: 10.0))
+                                      .around(const SizedBox(width: 10.0)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   Stack(
                     children: [
                       Container(
-                        width: 480.0,
+                        width: 380.0,
                         height: 120.0,
                         decoration: BoxDecoration(
                           color:
@@ -642,7 +662,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                   children: [
                                     Container(
                                       decoration: const BoxDecoration(
-                                        color: Color(0x7000A8AF),
+                                        color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
                                       child: Padding(
@@ -657,7 +677,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7000A8AF),
+                                        color: const Color(0xCC00A8AF),
                                         borderRadius:
                                             BorderRadius.circular(10.0),
                                       ),

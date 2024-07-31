@@ -22,7 +22,7 @@ const String BLOOD_SUGAR_LOGS = 'BloodSugarLogs';
 
 class MealLog {
   final DateTime date;
-  final List<String> meal;
+  final List meal;
   final String type;
   // final DocumentReference userid;
 

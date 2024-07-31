@@ -121,11 +121,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       const Duration(milliseconds: 2000),
                                       () => setState(() {}),
                                     ),
-                                    autofocus: true,
-                                    textInputAction: TextInputAction.next,
+                                    autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'Username or Email',
+                                      labelText: 'Email',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -200,6 +199,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               .primaryText,
                                           letterSpacing: 0.0,
                                         ),
+                                    keyboardType: TextInputType.emailAddress,
                                     validator: _model
                                         .loginEmailTextControllerValidator
                                         .asValidator(context),
@@ -213,7 +213,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         _model.loginPasswordTextController,
                                     focusNode: _model.loginPasswordFocusNode,
                                     autofocus: false,
-                                    textInputAction: TextInputAction.done,
                                     obscureText:
                                         !_model.loginPasswordVisibility,
                                     decoration: InputDecoration(

@@ -122,8 +122,7 @@ class _SignupWidgetState extends State<SignupWidget> {
                                       const Duration(milliseconds: 2000),
                                       () => setState(() {}),
                                     ),
-                                    autofocus: true,
-                                    textInputAction: TextInputAction.next,
+                                    autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
                                       labelText: 'Email Address',
@@ -216,7 +215,6 @@ class _SignupWidgetState extends State<SignupWidget> {
                                         _model.enterPasswordTextController,
                                     focusNode: _model.enterPasswordFocusNode,
                                     autofocus: false,
-                                    textInputAction: TextInputAction.next,
                                     obscureText:
                                         !_model.enterPasswordVisibility,
                                     decoration: InputDecoration(
@@ -304,7 +302,6 @@ class _SignupWidgetState extends State<SignupWidget> {
                                         _model.confirmPasswordTextController,
                                     focusNode: _model.confirmPasswordFocusNode,
                                     autofocus: false,
-                                    textInputAction: TextInputAction.done,
                                     obscureText:
                                         !_model.confirmPasswordVisibility,
                                     decoration: InputDecoration(
