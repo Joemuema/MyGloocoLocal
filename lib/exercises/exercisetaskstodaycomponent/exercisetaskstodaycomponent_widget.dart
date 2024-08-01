@@ -2,6 +2,8 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'exercisetaskstodaycomponent_model.dart';
 export 'exercisetaskstodaycomponent_model.dart';
 
@@ -46,7 +48,7 @@ class _ExercisetaskstodaycomponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
       child: Container(
         width: double.infinity,
         height: 50.0,
@@ -58,7 +60,7 @@ class _ExercisetaskstodaycomponentWidgetState
           ),
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,7 +76,7 @@ class _ExercisetaskstodaycomponentWidgetState
                 children: [
                   Text(
                     valueOrDefault<String>(
-                      widget.taskstodaydocument?.activity,
+                      widget!.taskstodaydocument?.activity,
                       'name',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -84,7 +86,7 @@ class _ExercisetaskstodaycomponentWidgetState
                   ),
                   Text(
                     valueOrDefault<String>(
-                      dateTimeFormat('d/M/y', widget.taskstodaydocument?.date),
+                      dateTimeFormat('d/M/y', widget!.taskstodaydocument?.date),
                       '0',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(

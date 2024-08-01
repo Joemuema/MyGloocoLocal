@@ -7,6 +7,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'plate_model.dart';
 export 'plate_model.dart';
 
@@ -35,7 +37,7 @@ class _PlateWidgetState extends State<PlateWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.updatedFoodList =
-          widget.updatedFoodList!.toList().cast<FoodRecord>();
+          widget!.updatedFoodList!.toList().cast<FoodRecord>();
       setState(() {});
     });
 
@@ -66,7 +68,7 @@ class _PlateWidgetState extends State<PlateWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -85,7 +87,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -99,14 +101,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    SizedBox(
+                    Container(
                       height: 406.0,
                       child: Stack(
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 8.0, 8.0, 8.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12.0),
@@ -120,14 +122,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.43, 0.41),
+                            alignment: AlignmentDirectional(0.43, 0.41),
                             child: FlutterFlowIconButton(
                               borderColor: FlutterFlowTheme.of(context).primary,
                               borderRadius: 20.0,
                               borderWidth: 1.0,
                               buttonSize: 40.0,
                               fillColor: Colors.white,
-                              icon: const Icon(
+                              icon: Icon(
                                 FFIcons.kicons8Meat50,
                                 color: Color(0xFF0D0D0D),
                                 size: 24.0,
@@ -150,14 +152,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-0.51, -0.01),
+                            alignment: AlignmentDirectional(-0.51, -0.01),
                             child: FlutterFlowIconButton(
                               borderColor: FlutterFlowTheme.of(context).primary,
                               borderRadius: 20.0,
                               borderWidth: 1.0,
                               buttonSize: 40.0,
                               fillColor: Colors.white,
-                              icon: const FaIcon(
+                              icon: FaIcon(
                                 FontAwesomeIcons.carrot,
                                 color: Color(0xFF0D0D0D),
                                 size: 24.0,
@@ -180,14 +182,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.44, -0.4),
+                            alignment: AlignmentDirectional(0.44, -0.4),
                             child: FlutterFlowIconButton(
                               borderColor: FlutterFlowTheme.of(context).primary,
                               borderRadius: 20.0,
                               borderWidth: 1.0,
                               buttonSize: 40.0,
                               fillColor: Colors.white,
-                              icon: const Icon(
+                              icon: Icon(
                                 FFIcons.kicons8Wheat50,
                                 color: Color(0xFF0D0D0D),
                                 size: 24.0,
@@ -217,7 +219,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                       children: [
                         Flexible(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 10.0, 10.0, 10.0, 10.0),
                             child: Text(
                               'Estimations are per 100g of edible portion on fresh weight basis',
@@ -235,10 +237,10 @@ class _PlateWidgetState extends State<PlateWidget> {
                       ],
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                      alignment: AlignmentDirectional(-1.0, 0.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 0.0),
                         child: Text(
                           'Summary',
                           style:
@@ -271,7 +273,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                                     .secondaryBackground,
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 10.0, 10.0, 10.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -285,10 +287,10 @@ class _PlateWidgetState extends State<PlateWidget> {
                                     children: [
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(-0.8, 0.0),
+                                            AlignmentDirectional(-0.8, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   22.0, 10.0, 0.0, 10.0),
                                           child: Text(
                                             'kCal',
@@ -304,10 +306,10 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(-0.8, 1.0),
+                                            AlignmentDirectional(-0.8, 1.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   30.0, 0.0, 0.0, 10.0),
                                           child: Text(
                                             'g Carbs',
@@ -323,10 +325,10 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.3, 1.0),
+                                            AlignmentDirectional(0.3, 1.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 10.0, 7.0, 10.0),
                                           child: Text(
                                             'g Fat',
@@ -342,10 +344,10 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.45, 0.0),
+                                            AlignmentDirectional(0.45, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   72.0, 10.0, 7.0, 10.0),
                                           child: Text(
                                             'g Protein',
@@ -361,7 +363,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(1.0, 0.0),
+                                            AlignmentDirectional(1.0, 0.0),
                                         child: FlutterFlowIconButton(
                                           borderColor: Colors.transparent,
                                           borderRadius: 20.0,
@@ -382,10 +384,10 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   7.0, 10.0, 0.0, 10.0),
                                           child: Text(
                                             valueOrDefault<String>(
@@ -405,10 +407,10 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.1, 0.0),
+                                            AlignmentDirectional(0.1, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 7.0, 10.0),
                                           child: Text(
                                             valueOrDefault<String>(
@@ -427,10 +429,10 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.0, 1.0),
+                                            AlignmentDirectional(-1.0, 1.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   7.0, 0.0, 0.0, 10.0),
                                           child: Text(
                                             valueOrDefault<String>(
@@ -450,10 +452,10 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.1, 1.0),
+                                            AlignmentDirectional(0.1, 1.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 7.0, 10.0),
                                           child: Text(
                                             valueOrDefault<String>(
@@ -471,7 +473,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             7.0, 10.0, 0.0, 10.0),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -498,7 +500,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 20.0, 24.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(24.0, 20.0, 24.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           await showModalBottomSheet(
@@ -526,9 +528,9 @@ class _PlateWidgetState extends State<PlateWidget> {
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:

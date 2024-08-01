@@ -1,7 +1,10 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'past_reminder_model.dart';
 export 'past_reminder_model.dart';
 
@@ -44,9 +47,9 @@ class _PastReminderWidgetState extends State<PastReminderWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+      padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
       child: StreamBuilder<RemindersRecord>(
-        stream: RemindersRecord.getDocument(widget.reminderRef!),
+        stream: RemindersRecord.getDocument(widget!.reminderRef!),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.
           if (!snapshot.hasData) {
@@ -70,7 +73,7 @@ class _PastReminderWidgetState extends State<PastReminderWidget> {
             height: 77.0,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
                   blurRadius: 4.0,
                   color: Color(0x33000000),
@@ -115,7 +118,7 @@ class _PastReminderWidgetState extends State<PastReminderWidget> {
                           children: [
                             if (rowMedicineRecord.form == 'Pill' ? true : false)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Icon(
                                   FFIcons.kdrug,
@@ -128,7 +131,7 @@ class _PastReminderWidgetState extends State<PastReminderWidget> {
                                 ? true
                                 : false)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Icon(
                                   FFIcons.kmedicine,
@@ -141,7 +144,7 @@ class _PastReminderWidgetState extends State<PastReminderWidget> {
                                 ? true
                                 : false)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Icon(
                                   FFIcons.ksyrup,
@@ -154,7 +157,7 @@ class _PastReminderWidgetState extends State<PastReminderWidget> {
                                 ? true
                                 : false)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Icon(
                                   FFIcons.kinjection,

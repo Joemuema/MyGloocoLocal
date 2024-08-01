@@ -4,7 +4,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'report2_model.dart';
 export 'report2_model.dart';
@@ -46,9 +48,10 @@ class _Report2WidgetState extends State<Report2Widget> {
 
     return Container(
       width: double.infinity,
+      height: 422.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(15.0),
@@ -56,12 +59,12 @@ class _Report2WidgetState extends State<Report2Widget> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+        padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -78,7 +81,7 @@ class _Report2WidgetState extends State<Report2Widget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -96,7 +99,7 @@ class _Report2WidgetState extends State<Report2Widget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 15.0, 5.0, 5.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 15.0, 5.0, 5.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -113,7 +116,7 @@ class _Report2WidgetState extends State<Report2Widget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 5.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 5.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -121,10 +124,10 @@ class _Report2WidgetState extends State<Report2Widget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          final datePicked1Date = await showDatePicker(
+                          final _datePicked1Date = await showDatePicker(
                             context: context,
                             initialDate: getCurrentTimestamp,
                             firstDate: DateTime(1900),
@@ -161,12 +164,12 @@ class _Report2WidgetState extends State<Report2Widget> {
                             },
                           );
 
-                          if (datePicked1Date != null) {
+                          if (_datePicked1Date != null) {
                             safeSetState(() {
                               _model.datePicked1 = DateTime(
-                                datePicked1Date.year,
-                                datePicked1Date.month,
-                                datePicked1Date.day,
+                                _datePicked1Date.year,
+                                _datePicked1Date.month,
+                                _datePicked1Date.day,
                               );
                             });
                           }
@@ -179,9 +182,9 @@ class _Report2WidgetState extends State<Report2Widget> {
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -191,7 +194,7 @@ class _Report2WidgetState extends State<Report2Widget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -204,7 +207,7 @@ class _Report2WidgetState extends State<Report2Widget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 15.0, 5.0, 5.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 15.0, 5.0, 5.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -221,7 +224,7 @@ class _Report2WidgetState extends State<Report2Widget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -229,10 +232,10 @@ class _Report2WidgetState extends State<Report2Widget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          final datePicked2Date = await showDatePicker(
+                          final _datePicked2Date = await showDatePicker(
                             context: context,
                             initialDate: getCurrentTimestamp,
                             firstDate: DateTime(1900),
@@ -269,12 +272,12 @@ class _Report2WidgetState extends State<Report2Widget> {
                             },
                           );
 
-                          if (datePicked2Date != null) {
+                          if (_datePicked2Date != null) {
                             safeSetState(() {
                               _model.datePicked2 = DateTime(
-                                datePicked2Date.year,
-                                datePicked2Date.month,
-                                datePicked2Date.day,
+                                _datePicked2Date.year,
+                                _datePicked2Date.month,
+                                _datePicked2Date.day,
                               );
                             });
                           }
@@ -287,9 +290,9 @@ class _Report2WidgetState extends State<Report2Widget> {
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -299,7 +302,7 @@ class _Report2WidgetState extends State<Report2Widget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -313,7 +316,7 @@ class _Report2WidgetState extends State<Report2Widget> {
             ),
             Flexible(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 15.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 15.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -328,7 +331,7 @@ class _Report2WidgetState extends State<Report2Widget> {
                           'BloodSugarLogs',
                           'PhysicalActivityLogs'
                         ]),
-                        optionLabels: const [
+                        optionLabels: [
                           'Diet Logs',
                           'Medication Logs',
                           'Blood Sugar Logs',
@@ -353,7 +356,7 @@ class _Report2WidgetState extends State<Report2Widget> {
                         borderColor: FlutterFlowTheme.of(context).alternate,
                         borderWidth: 2.0,
                         borderRadius: 8.0,
-                        margin: const EdgeInsetsDirectional.fromSTEB(
+                        margin: EdgeInsetsDirectional.fromSTEB(
                             16.0, 4.0, 16.0, 4.0),
                         hidesUnderline: true,
                         isOverButton: true,
@@ -368,7 +371,7 @@ class _Report2WidgetState extends State<Report2Widget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 10.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -390,9 +393,9 @@ class _Report2WidgetState extends State<Report2Widget> {
                       width: 120.0,
                       height: 40.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).secondary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -401,7 +404,7 @@ class _Report2WidgetState extends State<Report2Widget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

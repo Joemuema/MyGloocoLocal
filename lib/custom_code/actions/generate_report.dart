@@ -51,7 +51,7 @@ class PhysicalActivity {
   factory PhysicalActivity.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return PhysicalActivity(
-      date: data['date'],
+      date: (data['date']).toDate(),
       activity: data['activity'] ?? [],
       intensity: data['intensity'] ?? '',
     );
@@ -150,7 +150,7 @@ Future<String> generateReport(
         } else {
           physicalactivities = querySnapshot.docs
               .where((doc) {
-                final date = doc.data()['date'];
+                final date = (doc.data()['date']).toDate();
                 DocumentReference user_id = doc.data()['UserID'];
 
                 return user_id == userID &&

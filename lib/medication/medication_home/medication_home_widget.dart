@@ -1,7 +1,9 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/medication/home_reminder/home_reminder_widget.dart';
 import '/medication/med_menu/med_menu_widget.dart';
 import '/medication/no_elements/no_elements_widget.dart';
@@ -9,8 +11,11 @@ import '/medication/past_reminder/past_reminder_widget.dart';
 import '/medication/refill/refill_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'medication_home_model.dart';
 export 'medication_home_model.dart';
@@ -262,7 +267,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                       : FocusScope.of(context).unfocus(),
                   child: Padding(
                     padding: MediaQuery.viewInsetsOf(context),
-                    child: const MedMenuWidget(),
+                    child: MedMenuWidget(),
                   ),
                 );
               },
@@ -288,7 +293,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -604,7 +609,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                           ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                   child: Container(
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
@@ -653,7 +658,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                   final generatingTimeList =
                                       _model.listOfUpcomingTimes.toList();
                                   if (generatingTimeList.isEmpty) {
-                                    return const Center(
+                                    return Center(
                                       child: NoElementsWidget(
                                         additionalText:
                                             'Add one by pressing \'\'Add reminder\"  below',
@@ -663,20 +668,20 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
 
                                   return ListView.separated(
                                     padding:
-                                        const EdgeInsets.symmetric(vertical: 5.0),
+                                        EdgeInsets.symmetric(vertical: 5.0),
                                     primary: false,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
                                     itemCount: generatingTimeList.length,
                                     separatorBuilder: (_, __) =>
-                                        const SizedBox(height: 5.0),
+                                        SizedBox(height: 5.0),
                                     itemBuilder:
                                         (context, generatingTimeListIndex) {
                                       final generatingTimeListItem =
                                           generatingTimeList[
                                               generatingTimeListIndex];
                                       return Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: ClipRRect(
                                           borderRadius:
@@ -695,7 +700,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsets.all(8.0),
+                                                  padding: EdgeInsets.all(8.0),
                                                   child: Text(
                                                     generatingTimeListItem,
                                                     style: FlutterFlowTheme.of(
@@ -774,7 +779,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                           ),
                         if ((_model.takenReminders.isNotEmpty) == true)
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -795,7 +800,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                     final takenTimeList =
                                         _model.listOfTakenTimes.toList();
                                     if (takenTimeList.isEmpty) {
-                                      return const Center(
+                                      return Center(
                                         child: NoElementsWidget(
                                           additionalText:
                                               'Add one by pressing \'\'Add reminder\"  below',
@@ -805,20 +810,20 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
 
                                     return ListView.separated(
                                       padding:
-                                          const EdgeInsets.symmetric(vertical: 5.0),
+                                          EdgeInsets.symmetric(vertical: 5.0),
                                       primary: false,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
                                       itemCount: takenTimeList.length,
                                       separatorBuilder: (_, __) =>
-                                          const SizedBox(height: 5.0),
+                                          SizedBox(height: 5.0),
                                       itemBuilder:
                                           (context, takenTimeListIndex) {
                                         final takenTimeListItem =
                                             takenTimeList[takenTimeListIndex];
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 10.0, 5.0),
                                           child: ClipRRect(
                                             borderRadius:
@@ -838,7 +843,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.all(8.0),
+                                                        EdgeInsets.all(8.0),
                                                     child: Text(
                                                       takenTimeListItem,
                                                       style: FlutterFlowTheme
@@ -903,7 +908,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                           ),
                         if ((_model.missedReminders.isNotEmpty) == true)
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -924,7 +929,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                     final missedTimeList =
                                         _model.listOfMissedTimes.toList();
                                     if (missedTimeList.isEmpty) {
-                                      return const Center(
+                                      return Center(
                                         child: NoElementsWidget(
                                           additionalText:
                                               'Add one by pressing \'\'Add reminder\"  below',
@@ -934,20 +939,20 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
 
                                     return ListView.separated(
                                       padding:
-                                          const EdgeInsets.symmetric(vertical: 5.0),
+                                          EdgeInsets.symmetric(vertical: 5.0),
                                       primary: false,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
                                       itemCount: missedTimeList.length,
                                       separatorBuilder: (_, __) =>
-                                          const SizedBox(height: 5.0),
+                                          SizedBox(height: 5.0),
                                       itemBuilder:
                                           (context, missedTimeListIndex) {
                                         final missedTimeListItem =
                                             missedTimeList[missedTimeListIndex];
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 10.0, 5.0),
                                           child: ClipRRect(
                                             borderRadius:
@@ -967,7 +972,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.all(8.0),
+                                                        EdgeInsets.all(8.0),
                                                     child: Text(
                                                       missedTimeListItem,
                                                       style: FlutterFlowTheme

@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'upperbodycomponent_model.dart';
 export 'upperbodycomponent_model.dart';
 
@@ -46,7 +48,7 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 0.0),
       child: Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -59,16 +61,16 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.all(5.0),
+              padding: EdgeInsets.all(5.0),
               child: Container(
                 width: 60.0,
                 height: 60.0,
                 clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: Image.network(
-                  widget.upperbodydocument!.image,
+                  widget!.upperbodydocument!.image,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -82,10 +84,10 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
                         child: Text(
                           valueOrDefault<String>(
-                            widget.upperbodydocument?.name,
+                            widget!.upperbodydocument?.name,
                             'name',
                           ),
                           style: FlutterFlowTheme.of(context)
@@ -105,11 +107,11 @@ class _UpperbodycomponentWidgetState extends State<UpperbodycomponentWidget> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 5.0),
                           child: Text(
                             valueOrDefault<String>(
-                              widget.upperbodydocument?.shortdescription,
+                              widget!.upperbodydocument?.shortdescription,
                               'shortdescription',
                             ),
                             style: FlutterFlowTheme.of(context)

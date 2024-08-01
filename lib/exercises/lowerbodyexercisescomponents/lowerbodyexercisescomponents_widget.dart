@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'lowerbodyexercisescomponents_model.dart';
 export 'lowerbodyexercisescomponents_model.dart';
 
@@ -47,7 +49,7 @@ class _LowerbodyexercisescomponentsWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
       child: Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -60,23 +62,23 @@ class _LowerbodyexercisescomponentsWidgetState
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 5.0),
               child: Container(
                 width: 60.0,
                 height: 60.0,
                 clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: Image.network(
-                  widget.lowerbodyexercisedocument!.image,
+                  widget!.lowerbodyexercisedocument!.image,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -84,11 +86,11 @@ class _LowerbodyexercisescomponentsWidgetState
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 0.0, 5.0),
                           child: Text(
                             valueOrDefault<String>(
-                              widget.lowerbodyexercisedocument?.name,
+                              widget!.lowerbodyexercisedocument?.name,
                               'name',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -106,10 +108,10 @@ class _LowerbodyexercisescomponentsWidgetState
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget.lowerbodyexercisedocument?.shortdescription,
+                          widget!.lowerbodyexercisedocument?.shortdescription,
                           'shortdescription',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(

@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'highintensitylistcomponents_model.dart';
 export 'highintensitylistcomponents_model.dart';
 
@@ -50,12 +52,12 @@ class _HighintensitylistcomponentsWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 20.0),
+      padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 20.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -72,7 +74,7 @@ class _HighintensitylistcomponentsWidgetState
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 20.0,
@@ -124,7 +126,7 @@ class _HighintensitylistcomponentsWidgetState
               children: [
                 Text(
                   valueOrDefault<String>(
-                    widget.highintensitylistdocument?.activity,
+                    widget!.highintensitylistdocument?.activity,
                     'name',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -134,7 +136,7 @@ class _HighintensitylistcomponentsWidgetState
                 ),
                 Text(
                   valueOrDefault<String>(
-                    widget.highintensitylistdocument?.distance.toString(),
+                    widget!.highintensitylistdocument?.distance?.toString(),
                     '0',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -145,7 +147,7 @@ class _HighintensitylistcomponentsWidgetState
                 Text(
                   valueOrDefault<String>(
                     dateTimeFormat(
-                        'd/M/y', widget.highintensitylistdocument?.date),
+                        'd/M/y', widget!.highintensitylistdocument?.date),
                     '0',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(

@@ -1,7 +1,13 @@
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'foodsearchcomponent_model.dart';
 export 'foodsearchcomponent_model.dart';
 
@@ -50,7 +56,7 @@ class _FoodsearchcomponentWidgetState extends State<FoodsearchcomponentWidget>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
       child: StreamBuilder<List<FoodRecord>>(
         stream: queryFoodRecord(),
         builder: (context, snapshot) {
@@ -78,7 +84,7 @@ class _FoodsearchcomponentWidgetState extends State<FoodsearchcomponentWidget>
                 BoxShadow(
                   blurRadius: 0.0,
                   color: FlutterFlowTheme.of(context).alternate,
-                  offset: const Offset(
+                  offset: Offset(
                     0.0,
                     1.0,
                   ),
@@ -86,7 +92,7 @@ class _FoodsearchcomponentWidgetState extends State<FoodsearchcomponentWidget>
               ],
             ),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -96,11 +102,11 @@ class _FoodsearchcomponentWidgetState extends State<FoodsearchcomponentWidget>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 0.0),
                           child: Text(
                             valueOrDefault<String>(
-                              widget.parameter1,
+                              widget!.parameter1,
                               '---',
                             ),
                             style:
@@ -111,17 +117,17 @@ class _FoodsearchcomponentWidgetState extends State<FoodsearchcomponentWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 4.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.parameter2?.toString(),
+                                    widget!.parameter2?.toString(),
                                     '---',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -142,11 +148,11 @@ class _FoodsearchcomponentWidgetState extends State<FoodsearchcomponentWidget>
                                     ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     14.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.parameter3?.toString(),
+                                    widget!.parameter3?.toString(),
                                     '---',
                                   ),
                                   style: FlutterFlowTheme.of(context)

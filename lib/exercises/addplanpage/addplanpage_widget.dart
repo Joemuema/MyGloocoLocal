@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -5,7 +6,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'addplanpage_model.dart';
 export 'addplanpage_model.dart';
 
@@ -64,7 +69,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -83,7 +88,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -91,7 +96,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(
+            Container(
               width: double.infinity,
               child: Form(
                 key: _model.formKey,
@@ -101,7 +106,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -121,7 +126,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                       child: TextFormField(
                         controller: _model.activitTextFieldTextController,
                         focusNode: _model.activitTextFieldFocusNode,
@@ -180,7 +185,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -200,7 +205,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                       child: TextFormField(
                         controller: _model.distanceTextFieldTextController,
                         focusNode: _model.distanceTextFieldFocusNode,
@@ -260,7 +265,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -280,7 +285,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Card(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -293,7 +298,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                final datePicked1Date = await showDatePicker(
+                                final _datePicked1Date = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
                                   firstDate: DateTime(1900),
@@ -322,7 +327,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                           FlutterFlowTheme.of(context)
                                               .primaryText,
                                       selectedDateTimeBackgroundColor:
-                                          const Color(0xFF994488),
+                                          Color(0xFF994488),
                                       selectedDateTimeForegroundColor:
                                           FlutterFlowTheme.of(context).info,
                                       actionButtonForegroundColor:
@@ -333,12 +338,12 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                   },
                                 );
 
-                                if (datePicked1Date != null) {
+                                if (_datePicked1Date != null) {
                                   safeSetState(() {
                                     _model.datePicked1 = DateTime(
-                                      datePicked1Date.year,
-                                      datePicked1Date.month,
-                                      datePicked1Date.day,
+                                      _datePicked1Date.year,
+                                      _datePicked1Date.month,
+                                      _datePicked1Date.day,
                                     );
                                   });
                                 }
@@ -346,9 +351,9 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                               text: 'Pick Date ',
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -359,7 +364,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -367,7 +372,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   50.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
@@ -388,7 +393,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -425,7 +430,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           5.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Start Time',
@@ -447,13 +452,13 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                       borderRadius: 20.0,
                                       borderWidth: 1.0,
                                       buttonSize: 40.0,
-                                      icon: const Icon(
+                                      icon: Icon(
                                         Icons.access_time_rounded,
                                         color: Color(0xFF4D7E3E),
                                         size: 24.0,
                                       ),
                                       onPressed: () async {
-                                        final datePicked2Time =
+                                        final _datePicked2Time =
                                             await showTimePicker(
                                           context: context,
                                           initialTime: TimeOfDay.fromDateTime(
@@ -497,14 +502,14 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                             );
                                           },
                                         );
-                                        if (datePicked2Time != null) {
+                                        if (_datePicked2Time != null) {
                                           safeSetState(() {
                                             _model.datePicked2 = DateTime(
                                               getCurrentTimestamp.year,
                                               getCurrentTimestamp.month,
                                               getCurrentTimestamp.day,
-                                              datePicked2Time.hour,
-                                              datePicked2Time.minute,
+                                              _datePicked2Time.hour,
+                                              _datePicked2Time.minute,
                                             );
                                           });
                                         }
@@ -542,7 +547,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -567,13 +572,13 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                       borderRadius: 20.0,
                                       borderWidth: 1.0,
                                       buttonSize: 40.0,
-                                      icon: const Icon(
+                                      icon: Icon(
                                         Icons.access_time_rounded,
                                         color: Color(0xFF4D7E3E),
                                         size: 24.0,
                                       ),
                                       onPressed: () async {
-                                        final datePicked3Time =
+                                        final _datePicked3Time =
                                             await showTimePicker(
                                           context: context,
                                           initialTime: TimeOfDay.fromDateTime(
@@ -617,14 +622,14 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                             );
                                           },
                                         );
-                                        if (datePicked3Time != null) {
+                                        if (_datePicked3Time != null) {
                                           safeSetState(() {
                                             _model.datePicked3 = DateTime(
                                               getCurrentTimestamp.year,
                                               getCurrentTimestamp.month,
                                               getCurrentTimestamp.day,
-                                              datePicked3Time.hour,
-                                              datePicked3Time.minute,
+                                              _datePicked3Time.hour,
+                                              _datePicked3Time.minute,
                                             );
                                           });
                                         }
@@ -653,7 +658,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -676,10 +681,10 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 10.0, 10.0, 10.0, 0.0),
                             child: FlutterFlowChoiceChips(
-                              options: const [
+                              options: [
                                 ChipData('Low'),
                                 ChipData('Medium'),
                                 ChipData('High')
@@ -736,7 +741,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -760,9 +765,9 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                             text: 'Save Changes',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -773,7 +778,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

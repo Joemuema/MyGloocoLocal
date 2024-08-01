@@ -1,9 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_reminder_name_model.dart';
 export 'edit_reminder_name_model.dart';
 
@@ -60,7 +64,7 @@ class _EditReminderNameWidgetState extends State<EditReminderNameWidget> {
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).accent4,
           ),
-          alignment: const AlignmentDirectional(0.0, 1.0),
+          alignment: AlignmentDirectional(0.0, 1.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
@@ -69,7 +73,7 @@ class _EditReminderNameWidgetState extends State<EditReminderNameWidget> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       blurRadius: 7.0,
                       color: Color(0x33000000),
@@ -79,7 +83,7 @@ class _EditReminderNameWidgetState extends State<EditReminderNameWidget> {
                       ),
                     )
                   ],
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(0.0),
                     bottomRight: Radius.circular(0.0),
                     topLeft: Radius.circular(16.0),
@@ -87,7 +91,7 @@ class _EditReminderNameWidgetState extends State<EditReminderNameWidget> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +111,7 @@ class _EditReminderNameWidgetState extends State<EditReminderNameWidget> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 0.0, 0.0),
                         child: Text(
                           'Set reminder name',
@@ -119,7 +123,7 @@ class _EditReminderNameWidgetState extends State<EditReminderNameWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 0.0),
                         child: TextFormField(
                           controller: _model.reminderNameTextTextController,
@@ -170,7 +174,7 @@ class _EditReminderNameWidgetState extends State<EditReminderNameWidget> {
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 24.0, 20.0, 24.0),
                           ),
                           style:
@@ -185,16 +189,18 @@ class _EditReminderNameWidgetState extends State<EditReminderNameWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 44.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             if (_model.reminderNameTextTextController.text !=
+                                    null &&
+                                _model.reminderNameTextTextController.text !=
                                     '') {
                               Navigator.pop(context,
                                   _model.reminderNameTextTextController.text);
 
-                              await widget.reminderNameID!
+                              await widget!.reminderNameID!
                                   .update(createRemindersRecordData(
                                 name:
                                     _model.reminderNameTextTextController.text,
@@ -207,9 +213,9 @@ class _EditReminderNameWidgetState extends State<EditReminderNameWidget> {
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -220,7 +226,7 @@ class _EditReminderNameWidgetState extends State<EditReminderNameWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 2.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

@@ -1,7 +1,17 @@
+import '/backend/backend.dart';
+import '/exercises/aerobicexerciseexplanantion/aerobicexerciseexplanantion_widget.dart';
+import '/exercises/flexibilitybottomsheet/flexibilitybottomsheet_widget.dart';
 import '/exercises/flexibilityexercisecomponent/flexibilityexercisecomponent_widget.dart';
+import '/exercises/strengthexercises/strengthexercises_widget.dart';
+import '/flutter_flow/flutter_flow_button_tabbar.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'categoriespage_widget.dart' show CategoriespageWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CategoriespageModel extends FlutterFlowModel<CategoriespageWidget> {
   ///  State fields for stateful widgets in this page.
