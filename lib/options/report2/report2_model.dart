@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 class Report2Model extends FlutterFlowModel<Report2Widget> {
   ///  State fields for stateful widgets in this component.
 
-  DateTime? datePicked;
+  DateTime? datePicked1;
+  DateTime? datePicked2;
   // State field(s) for DropDown widget.
   List<String>? dropDownValue;
   FormFieldController<List<String>>? dropDownValueController;

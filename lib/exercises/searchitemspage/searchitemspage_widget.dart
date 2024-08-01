@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
@@ -105,32 +106,36 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                           child: TextFormField(
                             controller: _model.textController,
                             focusNode: _model.textFieldFocusNode,
-                            onFieldSubmitted: (_) async {
-                              await queryAddpagecollectionRecordOnce()
-                                  .then(
-                                    (records) => _model.simpleSearchResults1 =
-                                        TextSearch(
-                                      records
-                                          .map(
-                                            (record) =>
-                                                TextSearchItem.fromTerms(
-                                                    record, [
-                                              record.activity,
-                                              record.intensity
-                                            ]),
-                                          )
+                            onChanged: (_) => EasyDebounce.debounce(
+                              '_model.textController',
+                              const Duration(milliseconds: 2000),
+                              () async {
+                                await queryAddpagecollectionRecordOnce()
+                                    .then(
+                                      (records) => _model
+                                          .simpleSearchResults1 = TextSearch(
+                                        records
+                                            .map(
+                                              (record) =>
+                                                  TextSearchItem.fromTerms(
+                                                      record, [
+                                                record.activity,
+                                                record.intensity
+                                              ]),
+                                            )
+                                            .toList(),
+                                      )
+                                          .search(_model.textController.text)
+                                          .map((r) => r.object)
                                           .toList(),
                                     )
-                                            .search(_model.textController.text)
-                                            .map((r) => r.object)
-                                            .toList(),
-                                  )
-                                  .onError((_, __) =>
-                                      _model.simpleSearchResults1 = [])
-                                  .whenComplete(() => setState(() {}));
+                                    .onError((_, __) =>
+                                        _model.simpleSearchResults1 = [])
+                                    .whenComplete(() => setState(() {}));
 
-                              setState(() {});
-                            },
+                                setState(() {});
+                              },
+                            ),
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(

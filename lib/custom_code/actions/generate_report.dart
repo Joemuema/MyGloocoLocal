@@ -18,6 +18,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Constants for log types
 const String DIET_LOGS = 'DietLogs';
+const String PHYSICAL_ACTIVITY = 'PhysicalActivityLogs';
 const String BLOOD_SUGAR_LOGS = 'BloodSugarLogs';
 
 class MealLog {
@@ -34,6 +35,25 @@ class MealLog {
       date: stringToDate(data['date']),
       meal: data['meals'] ?? [],
       type: data['type'] ?? '',
+    );
+  }
+}
+
+class PhysicalActivity {
+  final DateTime date;
+  final String activity;
+  final String intensity;
+  // final DocumentReference userid;
+
+  PhysicalActivity(
+      {required this.date, required this.activity, required this.intensity});
+
+  factory PhysicalActivity.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return PhysicalActivity(
+      date: data['date'],
+      activity: data['activity'] ?? [],
+      intensity: data['intensity'] ?? '',
     );
   }
 }
@@ -63,9 +83,11 @@ Future<String> generateReport(
   DateTime selectedStartDate,
   List<String> selectedContents,
   DocumentReference userID,
+  DateTime selectedEndDate,
 ) async {
   final pdf = pw.Document();
-  final selectedEndDate = DateTime.now();
+  selectedEndDate = incrementDate(selectedEndDate);
+  selectedStartDate = decrementDate(selectedStartDate);
 
   try {
     if (selectedContents.contains(DIET_LOGS)) {
@@ -109,6 +131,52 @@ Future<String> generateReport(
                       log.meal.map((meal) => meal).join('\n'),
                       log.type
                     ])
+              ]),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (selectedContents.contains(PHYSICAL_ACTIVITY)) {
+      List<PhysicalActivity> physicalactivities = [];
+      try {
+        final querySnapshot = await FirebaseFirestore.instance
+            .collection('addpagecollection')
+            .get();
+
+        if (querySnapshot.docs.isEmpty) {
+          print("No physical activity logs found for the given date range.");
+        } else {
+          physicalactivities = querySnapshot.docs
+              .where((doc) {
+                final date = doc.data()['date'];
+                DocumentReference user_id = doc.data()['UserID'];
+
+                return user_id == userID &&
+                    date.isAfter(selectedStartDate) &&
+                    date.isBefore(selectedEndDate);
+              })
+              .map((doc) => PhysicalActivity.fromFirestore(doc))
+              .toList();
+        }
+      } catch (e) {
+        print("Error fetching physical activity logs: $e");
+        throw Exception("Failed to fetch physical activity: $e");
+      }
+      print(
+          "Fetched ${physicalactivities.length} physical activities: $physicalactivities");
+
+      pdf.addPage(
+        pw.Page(
+          build: (pw.Context context) => pw.Column(
+            children: [
+              pw.Text('Physical Activity Information',
+                  style: pw.TextStyle(fontSize: 18)),
+              pw.Table.fromTextArray(context: context, data: [
+                ['Date', 'Activity', 'Intensity'],
+                ...physicalactivities.map(
+                    (log) => [getDate(log.date), log.activity, log.intensity])
               ]),
             ],
           ),

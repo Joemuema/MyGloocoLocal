@@ -20,11 +20,6 @@ class AddpagecollectionRecord extends FirestoreRecord {
   String get activity => _activity ?? '';
   bool hasActivity() => _activity != null;
 
-  // "weight" field.
-  double? _weight;
-  double get weight => _weight ?? 0.0;
-  bool hasWeight() => _weight != null;
-
   // "distance" field.
   double? _distance;
   double get distance => _distance ?? 0.0;
@@ -55,15 +50,20 @@ class AddpagecollectionRecord extends FirestoreRecord {
   bool get completed => _completed ?? false;
   bool hasCompleted() => _completed != null;
 
+  // "UserID" field.
+  DocumentReference? _userID;
+  DocumentReference? get userID => _userID;
+  bool hasUserID() => _userID != null;
+
   void _initializeFields() {
     _activity = snapshotData['activity'] as String?;
-    _weight = castToType<double>(snapshotData['weight']);
     _distance = castToType<double>(snapshotData['distance']);
     _startTime = snapshotData['start_time'] as DateTime?;
     _finishTime = snapshotData['finish_time'] as DateTime?;
     _date = snapshotData['date'] as DateTime?;
     _intensity = snapshotData['intensity'] as String?;
     _completed = snapshotData['completed'] as bool?;
+    _userID = snapshotData['UserID'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -103,24 +103,24 @@ class AddpagecollectionRecord extends FirestoreRecord {
 
 Map<String, dynamic> createAddpagecollectionRecordData({
   String? activity,
-  double? weight,
   double? distance,
   DateTime? startTime,
   DateTime? finishTime,
   DateTime? date,
   String? intensity,
   bool? completed,
+  DocumentReference? userID,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'activity': activity,
-      'weight': weight,
       'distance': distance,
       'start_time': startTime,
       'finish_time': finishTime,
       'date': date,
       'intensity': intensity,
       'completed': completed,
+      'UserID': userID,
     }.withoutNulls,
   );
 
@@ -134,25 +134,25 @@ class AddpagecollectionRecordDocumentEquality
   @override
   bool equals(AddpagecollectionRecord? e1, AddpagecollectionRecord? e2) {
     return e1?.activity == e2?.activity &&
-        e1?.weight == e2?.weight &&
         e1?.distance == e2?.distance &&
         e1?.startTime == e2?.startTime &&
         e1?.finishTime == e2?.finishTime &&
         e1?.date == e2?.date &&
         e1?.intensity == e2?.intensity &&
-        e1?.completed == e2?.completed;
+        e1?.completed == e2?.completed &&
+        e1?.userID == e2?.userID;
   }
 
   @override
   int hash(AddpagecollectionRecord? e) => const ListEquality().hash([
         e?.activity,
-        e?.weight,
         e?.distance,
         e?.startTime,
         e?.finishTime,
         e?.date,
         e?.intensity,
-        e?.completed
+        e?.completed,
+        e?.userID
       ]);
 
   @override

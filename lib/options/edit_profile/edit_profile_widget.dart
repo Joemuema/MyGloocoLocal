@@ -66,9 +66,15 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         ),
         child: Container(
           width: double.infinity,
-          height: double.infinity,
+          height: 526.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).accent4,
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(0.0),
+              bottomRight: Radius.circular(0.0),
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+            ),
           ),
           child: StreamBuilder<List<ProfileRecord>>(
             stream: queryProfileRecord(
@@ -107,7 +113,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 100),
                       curve: Curves.easeIn,

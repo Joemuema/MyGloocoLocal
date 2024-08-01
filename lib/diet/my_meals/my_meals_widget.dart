@@ -105,591 +105,638 @@ class _MyMealsWidgetState extends State<MyMealsWidget>
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Row(
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 20.0, 0.0, 10.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 10.0),
+                                                child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
-                                                    if (widget.foodItems
-                                                                ?.where((e) =>
-                                                                    e.type ==
-                                                                    'Breakfast')
-                                                                .toList() !=
-                                                            null &&
-                                                        (widget.foodItems
-                                                                ?.where((e) =>
-                                                                    e.type ==
-                                                                    'Breakfast')
-                                                                .toList())!
-                                                            .isNotEmpty)
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    5.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          'Breakfast',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .headlineSmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                fontSize: 26.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                        ),
-                                                      ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        if (widget.foodItems
+                                                                    ?.where((e) =>
+                                                                        e.type ==
+                                                                        'Breakfast')
+                                                                    .toList() !=
+                                                                null &&
+                                                            (widget.foodItems
+                                                                    ?.where((e) =>
+                                                                        e.type ==
+                                                                        'Breakfast')
+                                                                    .toList())!
+                                                                .isNotEmpty)
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Breakfast',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .headlineSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    fontSize:
+                                                                        26.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                      ],
+                                                    ),
                                                   ],
                                                 ),
-                                              ],
-                                            ),
-                                            Builder(
-                                              builder: (context) {
-                                                final breakfast = widget
-                                                    .foodItems!
-                                                    .where((e) =>
-                                                        e.type == 'Breakfast')
-                                                    .toList();
+                                              ),
+                                              Builder(
+                                                builder: (context) {
+                                                  final breakfast = widget
+                                                      .foodItems!
+                                                      .where((e) =>
+                                                          e.type == 'Breakfast')
+                                                      .toList();
 
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  shrinkWrap: true,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount: breakfast.length,
-                                                  itemBuilder: (context,
-                                                      breakfastIndex) {
-                                                    final breakfastItem =
-                                                        breakfast[
-                                                            breakfastIndex];
-                                                    return Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              -1.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Builder(
-                                                          builder: (context) {
-                                                            final mealscolumn =
-                                                                breakfastItem
-                                                                    .meals
-                                                                    .toList();
-
-                                                            return Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: List.generate(
-                                                                  mealscolumn
-                                                                      .length,
-                                                                  (mealscolumnIndex) {
-                                                                final mealscolumnItem =
-                                                                    mealscolumn[
-                                                                        mealscolumnIndex];
-                                                                return Text(
-                                                                  mealscolumnItem,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        fontSize:
-                                                                            17.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                );
-                                                              }),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Flexible(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    if (widget.foodItems
-                                                                ?.where((e) =>
-                                                                    e.type ==
-                                                                    'Lunch')
-                                                                .toList() !=
-                                                            null &&
-                                                        (widget.foodItems
-                                                                ?.where((e) =>
-                                                                    e.type ==
-                                                                    'Lunch')
-                                                                .toList())!
-                                                            .isNotEmpty)
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    5.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          'Lunch',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .headlineSmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                fontSize: 26.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                            Builder(
-                                              builder: (context) {
-                                                final lunch = widget.foodItems!
-                                                    .where((e) =>
-                                                        e.type == 'Lunch')
-                                                    .toList();
-
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  shrinkWrap: true,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount: lunch.length,
-                                                  itemBuilder:
-                                                      (context, lunchIndex) {
-                                                    final lunchItem =
-                                                        lunch[lunchIndex];
-                                                    return Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              -1.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Builder(
-                                                          builder: (context) {
-                                                            final lunchitems =
-                                                                lunchItem.meals
-                                                                    .toList();
-
-                                                            return Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: List.generate(
-                                                                  lunchitems
-                                                                      .length,
-                                                                  (lunchitemsIndex) {
-                                                                final lunchitemsItem =
-                                                                    lunchitems[
-                                                                        lunchitemsIndex];
-                                                                return Text(
-                                                                  lunchitemsItem,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        fontSize:
-                                                                            17.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                );
-                                                              }),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Flexible(
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      if (widget.foodItems
-                                                                  ?.where((e) =>
-                                                                      e.type ==
-                                                                      'Supper')
-                                                                  .toList() !=
-                                                              null &&
-                                                          (widget.foodItems
-                                                                  ?.where((e) =>
-                                                                      e.type ==
-                                                                      'Supper')
-                                                                  .toList())!
-                                                              .isNotEmpty)
-                                                        Padding(
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    shrinkWrap: true,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount: breakfast.length,
+                                                    itemBuilder: (context,
+                                                        breakfastIndex) {
+                                                      final breakfastItem =
+                                                          breakfast[
+                                                              breakfastIndex];
+                                                      return Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                -1.0, 0.0),
+                                                        child: Padding(
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
+                                                                      10.0,
                                                                       5.0,
                                                                       0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            'Supper',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .headlineSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Inter',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  fontSize:
-                                                                      26.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
+                                                                      5.0),
+                                                          child: Builder(
+                                                            builder: (context) {
+                                                              final mealscolumn =
+                                                                  breakfastItem
+                                                                      .meals
+                                                                      .toList();
+
+                                                              return Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: List.generate(
+                                                                    mealscolumn
+                                                                        .length,
+                                                                    (mealscolumnIndex) {
+                                                                  final mealscolumnItem =
+                                                                      mealscolumn[
+                                                                          mealscolumnIndex];
+                                                                  return Text(
+                                                                    mealscolumnItem,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Readex Pro',
+                                                                          fontSize:
+                                                                              17.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                        ),
+                                                                  );
+                                                                }),
+                                                              );
+                                                            },
                                                           ),
                                                         ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Builder(
-                                              builder: (context) {
-                                                final supper = widget
-                                                    .foodItems!
-                                                    .where((e) =>
-                                                        e.type == 'Supper')
-                                                    .toList();
-
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  shrinkWrap: true,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount: supper.length,
-                                                  itemBuilder:
-                                                      (context, supperIndex) {
-                                                    final supperItem =
-                                                        supper[supperIndex];
-                                                    return Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              -1.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Builder(
-                                                          builder: (context) {
-                                                            final supperitem =
-                                                                supperItem.meals
-                                                                    .toList();
-
-                                                            return Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: List.generate(
-                                                                  supperitem
-                                                                      .length,
-                                                                  (supperitemIndex) {
-                                                                final supperitemItem =
-                                                                    supperitem[
-                                                                        supperitemIndex];
-                                                                return Text(
-                                                                  supperitemItem,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        fontSize:
-                                                                            17.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                );
-                                                              }),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ],
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Flexible(
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      if (widget.foodItems
-                                                                  ?.where((e) =>
-                                                                      e.type ==
-                                                                      'Snack')
-                                                                  .toList() !=
-                                                              null &&
-                                                          (widget.foodItems
-                                                                  ?.where((e) =>
-                                                                      e.type ==
-                                                                      'Snack')
-                                                                  .toList())!
-                                                              .isNotEmpty)
-                                                        Padding(
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 10.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Flexible(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 10.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        if (widget.foodItems
+                                                                    ?.where((e) =>
+                                                                        e.type ==
+                                                                        'Lunch')
+                                                                    .toList() !=
+                                                                null &&
+                                                            (widget.foodItems
+                                                                    ?.where((e) =>
+                                                                        e.type ==
+                                                                        'Lunch')
+                                                                    .toList())!
+                                                                .isNotEmpty)
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Lunch',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .headlineSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Inter',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    fontSize:
+                                                                        26.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Builder(
+                                                builder: (context) {
+                                                  final lunch = widget
+                                                      .foodItems!
+                                                      .where((e) =>
+                                                          e.type == 'Lunch')
+                                                      .toList();
+
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    shrinkWrap: true,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount: lunch.length,
+                                                    itemBuilder:
+                                                        (context, lunchIndex) {
+                                                      final lunchItem =
+                                                          lunch[lunchIndex];
+                                                      return Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                -1.0, 0.0),
+                                                        child: Padding(
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
+                                                                      10.0,
                                                                       5.0,
                                                                       0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            'Snacks',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .headlineSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Inter',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  fontSize:
-                                                                      26.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
+                                                                      5.0),
+                                                          child: Builder(
+                                                            builder: (context) {
+                                                              final lunchitems =
+                                                                  lunchItem
+                                                                      .meals
+                                                                      .toList();
+
+                                                              return Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: List.generate(
+                                                                    lunchitems
+                                                                        .length,
+                                                                    (lunchitemsIndex) {
+                                                                  final lunchitemsItem =
+                                                                      lunchitems[
+                                                                          lunchitemsIndex];
+                                                                  return Text(
+                                                                    lunchitemsItem,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Readex Pro',
+                                                                          fontSize:
+                                                                              17.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                        ),
+                                                                  );
+                                                                }),
+                                                              );
+                                                            },
                                                           ),
                                                         ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Builder(
-                                              builder: (context) {
-                                                final snack = widget.foodItems!
-                                                    .where((e) =>
-                                                        e.type == 'Snack')
-                                                    .toList();
-
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  shrinkWrap: true,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount: snack.length,
-                                                  itemBuilder:
-                                                      (context, snackIndex) {
-                                                    final snackItem =
-                                                        snack[snackIndex];
-                                                    return Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              -1.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Builder(
-                                                          builder: (context) {
-                                                            final snackitem =
-                                                                snackItem.meals
-                                                                    .toList();
-
-                                                            return Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: List.generate(
-                                                                  snackitem
-                                                                      .length,
-                                                                  (snackitemIndex) {
-                                                                final snackitemItem =
-                                                                    snackitem[
-                                                                        snackitemIndex];
-                                                                return Text(
-                                                                  snackitemItem,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        fontSize:
-                                                                            17.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                );
-                                                              }),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ],
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 10.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 10.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Flexible(
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          if (widget.foodItems
+                                                                      ?.where((e) =>
+                                                                          e.type ==
+                                                                          'Supper')
+                                                                      .toList() !=
+                                                                  null &&
+                                                              (widget.foodItems
+                                                                      ?.where((e) =>
+                                                                          e.type ==
+                                                                          'Supper')
+                                                                      .toList())!
+                                                                  .isNotEmpty)
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          5.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Supper',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      fontSize:
+                                                                          26.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Builder(
+                                                builder: (context) {
+                                                  final supper = widget
+                                                      .foodItems!
+                                                      .where((e) =>
+                                                          e.type == 'Supper')
+                                                      .toList();
+
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    shrinkWrap: true,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount: supper.length,
+                                                    itemBuilder:
+                                                        (context, supperIndex) {
+                                                      final supperItem =
+                                                          supper[supperIndex];
+                                                      return Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                -1.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      10.0,
+                                                                      5.0,
+                                                                      0.0,
+                                                                      5.0),
+                                                          child: Builder(
+                                                            builder: (context) {
+                                                              final supperitem =
+                                                                  supperItem
+                                                                      .meals
+                                                                      .toList();
+
+                                                              return Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: List.generate(
+                                                                    supperitem
+                                                                        .length,
+                                                                    (supperitemIndex) {
+                                                                  final supperitemItem =
+                                                                      supperitem[
+                                                                          supperitemIndex];
+                                                                  return Text(
+                                                                    supperitemItem,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Readex Pro',
+                                                                          fontSize:
+                                                                              17.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                        ),
+                                                                  );
+                                                                }),
+                                                              );
+                                                            },
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 10.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 10.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Flexible(
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          if (widget.foodItems
+                                                                      ?.where((e) =>
+                                                                          e.type ==
+                                                                          'Snack')
+                                                                      .toList() !=
+                                                                  null &&
+                                                              (widget.foodItems
+                                                                      ?.where((e) =>
+                                                                          e.type ==
+                                                                          'Snack')
+                                                                      .toList())!
+                                                                  .isNotEmpty)
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          5.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Snacks',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      fontSize:
+                                                                          26.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Builder(
+                                                builder: (context) {
+                                                  final snack = widget
+                                                      .foodItems!
+                                                      .where((e) =>
+                                                          e.type == 'Snack')
+                                                      .toList();
+
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    shrinkWrap: true,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount: snack.length,
+                                                    itemBuilder:
+                                                        (context, snackIndex) {
+                                                      final snackItem =
+                                                          snack[snackIndex];
+                                                      return Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                -1.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      10.0,
+                                                                      5.0,
+                                                                      0.0,
+                                                                      5.0),
+                                                          child: Builder(
+                                                            builder: (context) {
+                                                              final snackitem =
+                                                                  snackItem
+                                                                      .meals
+                                                                      .toList();
+
+                                                              return Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: List.generate(
+                                                                    snackitem
+                                                                        .length,
+                                                                    (snackitemIndex) {
+                                                                  final snackitemItem =
+                                                                      snackitem[
+                                                                          snackitemIndex];
+                                                                  return Text(
+                                                                    snackitemItem,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Readex Pro',
+                                                                          fontSize:
+                                                                              17.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                        ),
+                                                                  );
+                                                                }),
+                                                              );
+                                                            },
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),

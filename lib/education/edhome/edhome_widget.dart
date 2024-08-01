@@ -114,12 +114,11 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                         color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(6.0),
                                         child: FaIcon(
                                           FontAwesomeIcons.bookOpen,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          color: Color(0xFFF4F5F6),
                                           size: 20.0,
                                         ),
                                       ),
@@ -140,7 +139,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color: const Color(0xFEFFFFFF),
+                                                color: const Color(0xFFF8FAFB),
                                                 fontSize: 15.0,
                                                 letterSpacing: 0.0,
                                               ),
@@ -205,12 +204,11 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                         color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(6.0),
                                         child: Icon(
                                           Icons.fastfood_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          color: Color(0xFFF4F5F6),
                                           size: 20.0,
                                         ),
                                       ),
@@ -296,12 +294,11 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                         color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(4.0),
                                         child: FaIcon(
                                           FontAwesomeIcons.running,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          color: Color(0xFFF4F5F6),
                                           size: 24.0,
                                         ),
                                       ),
@@ -387,12 +384,11 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                         color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(6.0),
                                         child: FaIcon(
                                           FontAwesomeIcons.pills,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          color: Color(0xFFF8FAFB),
                                           size: 20.0,
                                         ),
                                       ),
@@ -477,12 +473,11 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                         color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(4.0),
                                         child: Icon(
                                           Icons.sick,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          color: Color(0xFFF8FAFB),
                                           size: 24.0,
                                         ),
                                       ),
@@ -539,7 +534,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                         ),
                       ),
                       Container(
-                        width: 480.0,
+                        width: 380.0,
                         height: 120.0,
                         decoration: BoxDecoration(
                           color: const Color(0x3C0C0101),
@@ -574,12 +569,11 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                         color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(6.0),
                                         child: FaIcon(
                                           FontAwesomeIcons.brain,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          color: Color(0xFFF8FAFB),
                                           size: 22.0,
                                         ),
                                       ),
@@ -665,12 +659,11 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                                         color: Color(0xCC00A8AF),
                                         shape: BoxShape.circle,
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(4.0),
                                         child: Icon(
                                           Icons.calendar_month,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          color: Color(0xFFF8FAFB),
                                           size: 24.0,
                                         ),
                                       ),

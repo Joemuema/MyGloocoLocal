@@ -93,17 +93,10 @@ class _LowintensitylistcomponentsWidgetState
               padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
                     'Activity:',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          color: FlutterFlowTheme.of(context).secondary,
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                  Text(
-                    'Weight:',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           color: FlutterFlowTheme.of(context).secondary,
@@ -123,22 +116,12 @@ class _LowintensitylistcomponentsWidgetState
             ),
             Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
                   valueOrDefault<String>(
                     widget.lowintensitylist?.activity,
                     'Name',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                Text(
-                  valueOrDefault<String>(
-                    widget.lowintensitylist?.weight.toString(),
-                    '0',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',

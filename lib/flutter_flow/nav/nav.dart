@@ -8,6 +8,7 @@ import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -297,7 +298,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'categoriespage',
           path: '/categoriespage',
-          builder: (context, params) => const CategoriespageWidget(),
+          builder: (context, params) => CategoriespageWidget(
+            tabIndex: params.getParam(
+              'tabIndex',
+              ParamType.int,
+            ),
+          ),
         ),
         FFRoute(
           name: 'addplanpage',
@@ -518,7 +524,7 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: Colors.transparent,
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
                   child: Image.asset(
                     'assets/images/logo.png',
                     fit: BoxFit.fitWidth,

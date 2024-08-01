@@ -83,14 +83,17 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text(
-                    'What are core body exercises?',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          fontSize: 15.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w600,
-                        ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                    child: Text(
+                      'What are core body exercises?',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 16.0,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
                   ),
                 ],
               ),
@@ -99,7 +102,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
               padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
               child: Container(
                 width: double.infinity,
-                height: 158.0,
+                height: 164.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   borderRadius: BorderRadius.circular(10.0),
@@ -110,6 +113,7 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
                     'Core exercises focus on strengthening the muscles in the abdomen, lower back, hips, and pelvis. These muscles form the core of your body and are essential for stability, balance, and overall functional strength.By performing core exercises with proper form and gradually increasing the intensity, you can enhance your overall functional strength and reduce the risk of injuries.',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
+                          fontSize: 15.0,
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -121,14 +125,17 @@ class _CorebodyexercisesWidgetState extends State<CorebodyexercisesWidget> {
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text(
-                    'Categories',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          fontSize: 16.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w600,
-                        ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                    child: Text(
+                      'Categories',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 16.0,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
                   ),
                 ],
               ),

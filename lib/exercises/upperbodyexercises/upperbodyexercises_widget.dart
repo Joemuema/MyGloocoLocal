@@ -85,7 +85,7 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      'Recently Viewed',
+                      'Upper body exercises',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             fontSize: 16.0,
@@ -97,97 +97,24 @@ class _UpperbodyexercisesWidgetState extends State<UpperbodyexercisesWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 0.0),
                 child: Container(
                   width: double.infinity,
-                  height: 100.0,
+                  height: 109.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: StreamBuilder<List<StrengthexercisesRecord>>(
-                    stream: queryStrengthexercisesRecord(
-                      queryBuilder: (strengthexercisesRecord) =>
-                          strengthexercisesRecord.where(
-                        'Type',
-                        isEqualTo: 'upperbody',
-                      ),
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
-                            ),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 0.0),
+                    child: Text(
+                      'Upper body exercises target the muscles in the chest, back, shoulders, and arms. These exercises are crucial for building upper body strength, improving posture, and enhancing overall functional fitness. ',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 15.0,
+                            letterSpacing: 0.0,
                           ),
-                        );
-                      }
-                      List<StrengthexercisesRecord>
-                          listViewStrengthexercisesRecordList = snapshot.data!;
-
-                      return ListView.separated(
-                        padding: EdgeInsets.zero,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: listViewStrengthexercisesRecordList.length,
-                        separatorBuilder: (_, __) => const SizedBox(width: 10.0),
-                        itemBuilder: (context, listViewIndex) {
-                          final listViewStrengthexercisesRecord =
-                              listViewStrengthexercisesRecordList[
-                                  listViewIndex];
-                          return Container(
-                            width: 120.0,
-                            height: 120.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).primary,
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      5.0, 5.0, 5.0, 0.0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.network(
-                                      listViewStrengthexercisesRecord.image,
-                                      width: double.infinity,
-                                      height: 60.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 5.0, 0.0, 0.0),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      listViewStrengthexercisesRecord.name,
-                                      'name',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      );
-                    },
+                    ),
                   ),
                 ),
               ),

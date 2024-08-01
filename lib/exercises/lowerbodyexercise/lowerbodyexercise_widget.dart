@@ -102,13 +102,15 @@ class _LowerbodyexerciseWidgetState extends State<LowerbodyexerciseWidget> {
                 height: 145.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 0.0),
                   child: Text(
-                    'Lower body exercises focus on strengthening the muscles in the legs, hips, and lower back. These exercises are essential for improving overall strength, stability, balance, and mobility.It\'s important to perform these exercises with proper form and gradually increase the intensity to prevent injuries and maximize the benefits.',
+                    'Lower body exercises focus on strengthening the muscles in the legs, hips, and lower back. These exercises are essential for improving overall strength, stability, balance, and mobility. It\'s important to perform these exercises with proper form and gradually increase the intensity to prevent injuries and maximize the benefits.',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
+                          fontSize: 15.0,
                           letterSpacing: 0.0,
                         ),
                   ),

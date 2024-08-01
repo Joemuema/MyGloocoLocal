@@ -12,6 +12,8 @@ class AddactivityModel extends FlutterFlowModel<AddactivityWidget> {
   TextEditingController? activitTextFieldTextController;
   String? Function(BuildContext, String?)?
       activitTextFieldTextControllerValidator;
+  // State field(s) for SwitchListTile widget.
+  bool? switchListTileValue;
   // State field(s) for DistanceTextField widget.
   FocusNode? distanceTextFieldFocusNode;
   TextEditingController? distanceTextFieldTextController;
