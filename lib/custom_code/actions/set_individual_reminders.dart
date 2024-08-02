@@ -94,7 +94,7 @@ Future setIndividualReminders(List<DocumentReference> reminderDocs) async {
         } else if (form == 'Emulsion') {
           unit = 'ml(';
           unit += '${dose / 15} ';
-          unit += dose / 15 == 1 ? 'tablespoons' : 'tablespoon';
+          unit += dose / 15 == 1 ? 'tablespoon' : 'tablespoons';
           unit += ')';
         } else if (form == 'Injection') {
           unit = dose == 1 ? 'unit' : 'units';

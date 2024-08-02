@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+// set all past reminders to missed after a period of time (lastupdated var)
+
 import 'package:pdf/widgets.dart' as pw;
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
@@ -96,14 +98,14 @@ class MedicineRecord {
       required this.unit});
 
   factory MedicineRecord.fromFirestore(DocumentSnapshot doc,
-      String medicineName, double doseAmount, String medicineUnit) {
+      String medicineName, String doseAmount, String medicineUnit) {
     final data = doc.data() as Map<String, dynamic>;
 
     return MedicineRecord(
         date: stringToDate(data['Date']),
         time: data['Time'],
         name: medicineName,
-        dose: doseAmount.toString(),
+        dose: doseAmount,
         status: data['Status'],
         unit: medicineUnit);
   }
@@ -272,6 +274,10 @@ Future<String> generateReport(
       try {
         final querySnapshot = await FirebaseFirestore.instance
             .collectionGroup('IndividualReminders')
+            .where('UserID', isEqualTo: userID)
+            .where('Status', whereIn: ['Taken', 'Missed'])
+            .where('Date', isGreaterThan: selectedStartDate)
+            .where('Date', isLessThan: selectedEndDate)
             .get();
 
         if (querySnapshot.docs.isEmpty) {
@@ -279,39 +285,39 @@ Future<String> generateReport(
         } else {
           for (var doc in querySnapshot.docs) {
             final data = doc.data() as Map<String, dynamic>;
-            final date = stringToDate(data['Date']);
-            DocumentReference user_id = data['UserID'];
 
-            if (user_id == userID &&
-                date.isAfter(selectedStartDate) &&
-                date.isBefore(selectedEndDate)) {
-              DocumentSnapshot reminderSnapshot =
-                  await data['ReminderID'].get();
-              DocumentReference medicineRef = reminderSnapshot['MedicineID'];
-              DocumentSnapshot medicineSnapshot = await medicineRef.get();
+            DocumentSnapshot reminderSnapshot = await data['ReminderID'].get();
+            DocumentReference medicineRef = reminderSnapshot['MedicineID'];
+            DocumentSnapshot medicineSnapshot = await medicineRef.get();
 
-              String medicineName = medicineSnapshot['Name'];
-              double dose = (medicineSnapshot['SingleDose']).toDouble();
-              String form = medicineSnapshot['Form'];
-              String unit = 'units';
+            String medicineName = medicineSnapshot['Name'];
+            double dose = (medicineSnapshot['SingleDose']).toDouble();
+            String dosage = dose.toString();
+            String form = medicineSnapshot['Form'];
+            String unit = 'units';
 
-              if (form == 'Pill') {
-                unit = dose > 1 ? 'pills' : 'pill';
-              } else if (form == 'Tablet') {
-                unit = dose > 1 ? 'tablets' : 'tablet';
-              } else if (form == 'Emulsion') {
-                unit = 'ml(';
-                unit += '${dose / 15} ';
-                unit += dose / 15 == 1 ? 'tablespoons' : 'tablespoon';
-                unit += ')';
-              } else if (form == 'Injection') {
-                unit = dose == 1 ? 'unit' : 'units';
-              }
-
-              MedicineRecord medRecord =
-                  MedicineRecord.fromFirestore(doc, medicineName, dose, unit);
-              medLogs.add(medRecord);
+            if (form == 'Pill') {
+              unit = dose > 1 ? 'pills' : 'pill';
+            } else if (form == 'Tablet') {
+              unit = dose > 1 ? 'tablets' : 'tablet';
+            } else if (form == 'Emulsion') {
+              unit = 'ml(';
+              unit += '${dose / 15} ';
+              unit += dose / 15 == 1 ? 'tablespoon' : 'tablespoons';
+              unit += ')';
+            } else if (form == 'Injection') {
+              unit = dose == 1 ? 'unit' : 'units';
             }
+
+            if (dose % 1 == 0) {
+              dosage = dose.toInt().toString();
+            } else {
+              dosage = dose.toStringAsFixed(2);
+            }
+
+            MedicineRecord medRecord =
+                MedicineRecord.fromFirestore(doc, medicineName, dosage, unit);
+            medLogs.add(medRecord);
           }
         }
       } catch (e) {
