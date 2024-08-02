@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'searchitemspage_model.dart';
@@ -61,7 +60,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -79,7 +78,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -87,7 +86,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -96,20 +95,20 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
                           child: TextFormField(
                             controller: _model.textController,
                             focusNode: _model.textFieldFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textController',
-                              Duration(milliseconds: 2000),
+                              const Duration(milliseconds: 2000),
                               () async {
                                 await queryAddpagecollectionRecordOnce()
                                     .then(
@@ -120,8 +119,8 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                               (record) =>
                                                   TextSearchItem.fromTerms(
                                                       record, [
-                                                record.activity!,
-                                                record.intensity!
+                                                record.activity,
+                                                record.intensity
                                               ]),
                                             )
                                             .toList(),
@@ -203,8 +202,8 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                       .map(
                                         (record) => TextSearchItem.fromTerms(
                                             record, [
-                                          record.activity!,
-                                          record.intensity!
+                                          record.activity,
+                                          record.intensity
                                         ]),
                                       )
                                       .toList(),
@@ -223,9 +222,9 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                         text: 'Search',
                         options: FFButtonOptions(
                           height: 30.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -235,7 +234,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -265,7 +264,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
               builder: (context) {
                 if (FFAppState().searchActive) {
                   return Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                     child: StreamBuilder<List<AddpagecollectionRecord>>(
                       stream: queryAddpagecollectionRecord(
                         queryBuilder: (addpagecollectionRecord) =>
@@ -295,7 +294,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: listViewAddpagecollectionRecordList.length,
-                          separatorBuilder: (_, __) => SizedBox(height: 10.0),
+                          separatorBuilder: (_, __) => const SizedBox(height: 10.0),
                           itemBuilder: (context, listViewIndex) {
                             final listViewAddpagecollectionRecord =
                                 listViewAddpagecollectionRecordList[
@@ -322,7 +321,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                   );
                 } else {
                   return Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                     child: Builder(
                       builder: (context) {
                         final searchResults =
@@ -333,7 +332,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: searchResults.length,
-                          separatorBuilder: (_, __) => SizedBox(height: 10.0),
+                          separatorBuilder: (_, __) => const SizedBox(height: 10.0),
                           itemBuilder: (context, searchResultsIndex) {
                             final searchResultsItem =
                                 searchResults[searchResultsIndex];

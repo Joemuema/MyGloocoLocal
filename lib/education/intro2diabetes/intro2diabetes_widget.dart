@@ -1,12 +1,9 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'intro2diabetes_model.dart';
 export 'intro2diabetes_model.dart';
 
@@ -54,7 +51,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -73,7 +70,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -84,14 +81,14 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   height: 500.0,
                   child: Stack(
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
                         child: PageView(
                           controller: _model.pageViewController ??=
                               PageController(initialPage: 0),
@@ -103,7 +100,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 20.0, 20.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -119,9 +116,9 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                     ),
                                     child: Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 1.0),
+                                          const AlignmentDirectional(-1.0, 1.0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 0.0, 20.0),
                                         child: Text(
                                           'Welcome to\nDiabetes Management',
@@ -130,7 +127,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                               .titleLarge
                                               .override(
                                                 fontFamily: 'Inter',
-                                                color: Color(0xFFFFF9F9),
+                                                color: const Color(0xFFFFF9F9),
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
@@ -139,7 +136,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Container(
                                     width: 360.0,
                                     height: 491.0,
@@ -153,7 +150,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'Diabetes is a chronic condition that significantly impacts how the body manages blood sugar levels.\n\nIn people with diabetes, the body\'s ability to produce or respond to insulin—a hormone that regulates blood sugar—is impaired.\n\nThis leads to elevated blood sugar levels, which can cause a range of health issues if not properly managed.',
                                             textAlign: TextAlign.start,
@@ -187,9 +184,9 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, -1.0),
+                                  alignment: const AlignmentDirectional(-1.0, -1.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         10.0, 10.0, 0.0, 0.0),
                                     child: Text(
                                       'Overview',
@@ -205,7 +202,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(10.0),
+                                  padding: const EdgeInsets.all(10.0),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
@@ -213,7 +210,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(10.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -240,7 +237,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Text(
                                               'Symptoms and Complications:',
@@ -266,14 +263,14 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                                 ),
                                           ),
                                         ]
-                                            .divide(SizedBox(height: 10.0))
-                                            .around(SizedBox(height: 10.0)),
+                                            .divide(const SizedBox(height: 10.0))
+                                            .around(const SizedBox(height: 10.0)),
                                       ),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.all(20.0),
+                                  padding: const EdgeInsets.all(20.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -309,7 +306,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                                   .bodyMedium
                                                   .override(
                                                     fontFamily: 'Readex Pro',
-                                                    color: Color(0xFF99CC33),
+                                                    color: const Color(0xFF99CC33),
                                                     fontSize: 15.0,
                                                     letterSpacing: 0.0,
                                                     decoration: TextDecoration
@@ -328,9 +325,9 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 1.0),
+                        alignment: const AlignmentDirectional(0.0, 1.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 16.0),
                           child: smooth_page_indicator.SmoothPageIndicator(
                             controller: _model.pageViewController ??=
@@ -340,7 +337,7 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                             onDotClicked: (i) async {
                               await _model.pageViewController!.animateToPage(
                                 i,
-                                duration: Duration(milliseconds: 500),
+                                duration: const Duration(milliseconds: 500),
                                 curve: Curves.ease,
                               );
                               setState(() {});

@@ -1,18 +1,13 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/medication/add_refill/add_refill_widget.dart';
 import '/medication/med_list_item/med_list_item_widget.dart';
 import '/medication/medicine_description/medicine_description_widget.dart';
 import '/medication/no_elements/no_elements_widget.dart';
 import 'package:sticky_headers/sticky_headers.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'medication_list_model.dart';
 export 'medication_list_model.dart';
@@ -22,8 +17,8 @@ class MedicationListWidget extends StatefulWidget {
     super.key,
     bool? addReminder,
     String? listOption,
-  })  : this.addReminder = addReminder ?? false,
-        this.listOption = listOption ?? 'view';
+  })  : addReminder = addReminder ?? false,
+        listOption = listOption ?? 'view';
 
   final bool addReminder;
   final String listOption;
@@ -71,7 +66,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -90,7 +85,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -100,8 +95,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                if ((widget!.listOption == 'add') ||
-                    (widget!.listOption == 'refill'))
+                if ((widget.listOption == 'add') ||
+                    (widget.listOption == 'refill'))
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -112,10 +107,10 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
                           child: Text(
-                            'Choose medicine to ${widget!.listOption == 'add' ? 'add reminder for' : 'refill'}',
+                            'Choose medicine to ${widget.listOption == 'add' ? 'add reminder for' : 'refill'}',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -134,19 +129,19 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   header: Container(
                     width: double.infinity,
                     height: 50.0,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 430.0,
                     ),
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: BorderRadius.circular(0.0),
                     ),
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Align(
-                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      alignment: const AlignmentDirectional(-1.0, 0.0),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Pills',
                           style:
@@ -160,7 +155,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   ),
                   content: Container(
                     width: double.infinity,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 430.0,
                     ),
                     decoration: BoxDecoration(
@@ -169,7 +164,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                       child: StreamBuilder<List<MedicineRecord>>(
                         stream: queryMedicineRecord(
                           queryBuilder: (medicineRecord) => medicineRecord
@@ -204,7 +199,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                           List<MedicineRecord> pillsListViewMedicineRecordList =
                               snapshot.data!;
                           if (pillsListViewMedicineRecordList.isEmpty) {
-                            return NoElementsWidget(
+                            return const NoElementsWidget(
                               additionalText: 'Add new pills to display here',
                             );
                           }
@@ -220,9 +215,9 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                   pillsListViewMedicineRecordList[
                                       pillsListViewIndex];
                               return Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       15.0, 0.0, 15.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -230,7 +225,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      if (widget!.listOption == 'add') {
+                                      if (widget.listOption == 'add') {
                                         if (Navigator.of(context).canPop()) {
                                           context.pop();
                                         }
@@ -253,7 +248,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           }.withoutNulls,
                                         );
                                       } else {
-                                        if (widget!.listOption == 'view') {
+                                        if (widget.listOption == 'view') {
                                           _model.pillReminderList =
                                               await queryRemindersRecordOnce(
                                             queryBuilder: (remindersRecord) =>
@@ -363,19 +358,19 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   header: Container(
                     width: double.infinity,
                     height: 50.0,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 430.0,
                     ),
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: BorderRadius.circular(0.0),
                     ),
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Align(
-                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      alignment: const AlignmentDirectional(-1.0, 0.0),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Tablets',
                           style:
@@ -389,7 +384,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   ),
                   content: Container(
                     width: double.infinity,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 430.0,
                     ),
                     decoration: BoxDecoration(
@@ -398,7 +393,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                       child: StreamBuilder<List<MedicineRecord>>(
                         stream: queryMedicineRecord(
                           queryBuilder: (medicineRecord) => medicineRecord
@@ -434,7 +429,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                               tabletsListViewMedicineRecordList =
                               snapshot.data!;
                           if (tabletsListViewMedicineRecordList.isEmpty) {
-                            return NoElementsWidget(
+                            return const NoElementsWidget(
                               additionalText: 'Add new tablets to display here',
                             );
                           }
@@ -450,7 +445,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                   tabletsListViewMedicineRecordList[
                                       tabletsListViewIndex];
                               return Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 15.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -458,7 +453,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    if (widget!.listOption == 'add') {
+                                    if (widget.listOption == 'add') {
                                       if (Navigator.of(context).canPop()) {
                                         context.pop();
                                       }
@@ -481,7 +476,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
-                                      if (widget!.listOption == 'view') {
+                                      if (widget.listOption == 'view') {
                                         _model.tabletReminderList =
                                             await queryRemindersRecordOnce(
                                           queryBuilder: (remindersRecord) =>
@@ -579,19 +574,19 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   header: Container(
                     width: double.infinity,
                     height: 50.0,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 430.0,
                     ),
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: BorderRadius.circular(0.0),
                     ),
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Align(
-                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      alignment: const AlignmentDirectional(-1.0, 0.0),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Emulsions',
                           style:
@@ -605,7 +600,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   ),
                   content: Container(
                     width: double.infinity,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 430.0,
                     ),
                     decoration: BoxDecoration(
@@ -614,7 +609,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                     ),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                       child: StreamBuilder<List<MedicineRecord>>(
                         stream: queryMedicineRecord(
                           queryBuilder: (medicineRecord) => medicineRecord
@@ -650,7 +645,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                               emulsionListViewMedicineRecordList =
                               snapshot.data!;
                           if (emulsionListViewMedicineRecordList.isEmpty) {
-                            return NoElementsWidget(
+                            return const NoElementsWidget(
                               additionalText:
                                   'Add new emulsions to display here',
                             );
@@ -668,7 +663,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                   emulsionListViewMedicineRecordList[
                                       emulsionListViewIndex];
                               return Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 15.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -676,7 +671,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    if (widget!.listOption == 'add') {
+                                    if (widget.listOption == 'add') {
                                       if (Navigator.of(context).canPop()) {
                                         context.pop();
                                       }
@@ -699,7 +694,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                         }.withoutNulls,
                                       );
                                     } else {
-                                      if (widget!.listOption == 'view') {
+                                      if (widget.listOption == 'view') {
                                         _model.emulsionReminderList =
                                             await queryRemindersRecordOnce(
                                           queryBuilder: (remindersRecord) =>
@@ -793,24 +788,24 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 400.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 400.0),
                   child: StickyHeader(
                     overlapHeaders: false,
                     header: Container(
                       width: double.infinity,
                       height: 50.0,
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         maxWidth: 430.0,
                       ),
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         borderRadius: BorderRadius.circular(0.0),
                       ),
-                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      alignment: const AlignmentDirectional(-1.0, 0.0),
                       child: Align(
-                        alignment: AlignmentDirectional(-1.0, 0.0),
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 0.0),
                           child: Text(
                             'Injections',
@@ -826,7 +821,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                     ),
                     content: Container(
                       width: double.infinity,
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         maxWidth: 430.0,
                       ),
                       decoration: BoxDecoration(
@@ -834,7 +829,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                         borderRadius: BorderRadius.circular(0.0),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 10.0, 0.0, 10.0),
                         child: StreamBuilder<List<MedicineRecord>>(
                           stream: queryMedicineRecord(
@@ -871,7 +866,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                 injectionListViewMedicineRecordList =
                                 snapshot.data!;
                             if (injectionListViewMedicineRecordList.isEmpty) {
-                              return NoElementsWidget(
+                              return const NoElementsWidget(
                                 additionalText:
                                     'Add new injections to display here',
                               );
@@ -889,7 +884,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                     injectionListViewMedicineRecordList[
                                         injectionListViewIndex];
                                 return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       15.0, 0.0, 15.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -897,7 +892,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      if (widget!.listOption == 'add') {
+                                      if (widget.listOption == 'add') {
                                         if (Navigator.of(context).canPop()) {
                                           context.pop();
                                         }
@@ -920,7 +915,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           }.withoutNulls,
                                         );
                                       } else {
-                                        if (widget!.listOption == 'view') {
+                                        if (widget.listOption == 'view') {
                                           _model.injectionReminderList =
                                               await queryRemindersRecordOnce(
                                             queryBuilder: (remindersRecord) =>

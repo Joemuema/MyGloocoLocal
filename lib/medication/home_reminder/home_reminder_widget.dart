@@ -1,13 +1,9 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'home_reminder_model.dart';
 export 'home_reminder_model.dart';
 
@@ -52,9 +48,9 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
       child: StreamBuilder<MedicineRecord>(
-        stream: MedicineRecord.getDocument(widget!.medicineReminder!),
+        stream: MedicineRecord.getDocument(widget.medicineReminder!),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.
           if (!snapshot.hasData) {
@@ -78,7 +74,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
             height: 77.0,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   blurRadius: 4.0,
                   color: Color(0x33000000),
@@ -91,7 +87,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: StreamBuilder<RemindersRecord>(
-              stream: RemindersRecord.getDocument(widget!.reminderID!),
+              stream: RemindersRecord.getDocument(widget.reminderID!),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
                 if (!snapshot.hasData) {
@@ -124,7 +120,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 ? true
                                 : false)
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Icon(
                                   FFIcons.kdrug,
@@ -137,7 +133,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 ? true
                                 : false)
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Icon(
                                   FFIcons.kmedicine,
@@ -150,7 +146,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 ? true
                                 : false)
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Icon(
                                   FFIcons.ksyrup,
@@ -163,7 +159,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 ? true
                                 : false)
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Icon(
                                   FFIcons.kinjection,
@@ -289,22 +285,22 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: Switch.adaptive(
                               value: _model.switchValue ??=
                                   containerMedicineRecord.setReminders,
                               onChanged: (newValue) async {
-                                setState(() => _model.switchValue = newValue!);
-                                if (newValue!) {
+                                setState(() => _model.switchValue = newValue);
+                                if (newValue) {
                                   _model.specificReminderOn =
                                       await queryIndividualRemindersRecordOnce(
-                                    parent: widget!.reminderID,
+                                    parent: widget.reminderID,
                                     queryBuilder: (individualRemindersRecord) =>
                                         individualRemindersRecord
                                             .where(Filter.or(
                                       Filter(
                                         'ReminderID',
-                                        isEqualTo: widget!.reminderID,
+                                        isEqualTo: widget.reminderID,
                                       ),
                                       Filter(
                                         'Date',
@@ -339,8 +335,8 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: Text('Turn Off?'),
-                                                content: Text(
+                                                title: const Text('Turn Off?'),
+                                                content: const Text(
                                                     'Are you sure you want to turn off this reminder? It will automatically be marked as missed if you do.'),
                                                 actions: [
                                                   TextButton(
@@ -348,14 +344,14 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             false),
-                                                    child: Text('Cancel'),
+                                                    child: const Text('Cancel'),
                                                   ),
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             true),
-                                                    child: Text('Yes'),
+                                                    child: const Text('Yes'),
                                                   ),
                                                 ],
                                               );
@@ -364,13 +360,13 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                           false;
                                   _model.specificReminderOff =
                                       await queryIndividualRemindersRecordOnce(
-                                    parent: widget!.reminderID,
+                                    parent: widget.reminderID,
                                     queryBuilder: (individualRemindersRecord) =>
                                         individualRemindersRecord
                                             .where(Filter.or(
                                       Filter(
                                         'ReminderID',
-                                        isEqualTo: widget!.reminderID,
+                                        isEqualTo: widget.reminderID,
                                       ),
                                       Filter(
                                         'Date',

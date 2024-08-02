@@ -2,8 +2,6 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'med_list_item_model.dart';
 export 'med_list_item_model.dart';
 
@@ -46,9 +44,9 @@ class _MedListItemWidgetState extends State<MedListItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
@@ -57,7 +55,7 @@ class _MedListItemWidgetState extends State<MedListItemWidget> {
               BoxShadow(
                 blurRadius: 0.0,
                 color: FlutterFlowTheme.of(context).primaryBackground,
-                offset: Offset(
+                offset: const Offset(
                   0.0,
                   1.0,
                 ),
@@ -70,7 +68,7 @@ class _MedListItemWidgetState extends State<MedListItemWidget> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 16.0, 12.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 16.0, 12.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,10 +76,10 @@ class _MedListItemWidgetState extends State<MedListItemWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 0.0, 0.0),
                     child: Text(
                       valueOrDefault<String>(
-                        widget!.medItem?.name,
+                        widget.medItem?.name,
                         'Medicine',
                       ),
                       style: FlutterFlowTheme.of(context).bodyLarge.override(

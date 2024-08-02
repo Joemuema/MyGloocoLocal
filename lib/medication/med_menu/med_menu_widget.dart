@@ -1,13 +1,9 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'med_menu_model.dart';
 export 'med_menu_model.dart';
 
@@ -54,7 +50,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color(0x33000000),
           ),
           child: Column(
@@ -70,13 +66,13 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                     BoxShadow(
                       blurRadius: 4.0,
                       color: FlutterFlowTheme.of(context).boxShadowColor,
-                      offset: Offset(
+                      offset: const Offset(
                         0.0,
                         2.0,
                       ),
                     )
                   ],
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(0.0),
                     bottomRight: Radius.circular(0.0),
                     topLeft: Radius.circular(14.0),
@@ -84,7 +80,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 24.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 24.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,9 +119,9 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                         child: Container(
                           width: double.infinity,
                           height: 60.0,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 8.0, 12.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -139,7 +135,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                     borderRadius: BorderRadius.circular(40.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Icon(
                                       Icons.add_circle_outline_rounded,
                                       color: FlutterFlowTheme.of(context)
@@ -150,7 +146,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -194,9 +190,9 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                         child: Container(
                           width: double.infinity,
                           height: 60.0,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 8.0, 12.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -210,7 +206,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                     borderRadius: BorderRadius.circular(40.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Icon(
                                       Icons.edit_document,
                                       color: FlutterFlowTheme.of(context)
@@ -221,7 +217,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -265,9 +261,9 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                         child: Container(
                           width: double.infinity,
                           height: 60.0,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 8.0, 12.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -281,7 +277,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                     borderRadius: BorderRadius.circular(40.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: FaIcon(
                                       FontAwesomeIcons.briefcaseMedical,
                                       color: FlutterFlowTheme.of(context)
@@ -292,7 +288,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -328,9 +324,9 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                         child: Container(
                           width: double.infinity,
                           height: 60.0,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 12.0, 8.0, 12.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -344,7 +340,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                     borderRadius: BorderRadius.circular(40.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Icon(
                                       Icons.arrow_back_rounded,
                                       color: FlutterFlowTheme.of(context)
@@ -355,7 +351,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,

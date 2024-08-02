@@ -2,8 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'aerobicexerciseexplanantion_model.dart';
 export 'aerobicexerciseexplanantion_model.dart';
 
@@ -52,7 +50,7 @@ class _AerobicexerciseexplanantionWidgetState
       child: Stack(
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -61,7 +59,7 @@ class _AerobicexerciseexplanantionWidgetState
                     opacity: 0.8,
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () {
                           print('Button pressed ...');
@@ -70,9 +68,9 @@ class _AerobicexerciseexplanantionWidgetState
                         options: FFButtonOptions(
                           width: 100.0,
                           height: 10.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -82,7 +80,7 @@ class _AerobicexerciseexplanantionWidgetState
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -93,13 +91,13 @@ class _AerobicexerciseexplanantionWidgetState
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: Container(
                       width: double.infinity,
                       height: 873.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(15.0),
                           bottomRight: Radius.circular(15.0),
                           topLeft: Radius.circular(15.0),
@@ -108,12 +106,12 @@ class _AerobicexerciseexplanantionWidgetState
                       ),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   5.0, 10.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -133,7 +131,7 @@ class _AerobicexerciseexplanantionWidgetState
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   5.0, 0.0, 5.0, 5.0),
                               child: Card(
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -144,7 +142,7 @@ class _AerobicexerciseexplanantionWidgetState
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 10.0),
                                   child: Text(
                                     'Cardiovascular exercises, also known as cardio or aerobic exercises, are activities that increase your heart rate and improve the efficiency of your cardiovascular system. These exercises typically involve repetitive, rhythmic movements that engage large muscle groups, enhancing the body\'s ability to use oxygen. Some of them include: \nWalking, Running/Jogging, Swimming,  Cycling, Dancing, Rowing, Hiking, Elliptical Training and Jump Rope',
@@ -160,7 +158,7 @@ class _AerobicexerciseexplanantionWidgetState
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   5.0, 5.0, 5.0, 0.0),
                               child: Card(
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -171,19 +169,19 @@ class _AerobicexerciseexplanantionWidgetState
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 5.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 5.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 5.0, 0.0, 0.0),
                                               child: Text(
                                                 'Advantages',
@@ -204,7 +202,7 @@ class _AerobicexerciseexplanantionWidgetState
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 5.0, 5.0, 10.0),
                                         child: Text(
                                           '- Improved blood sugar control.\n- It burns calories.\n- Helping with weight loss or maintenance.\n- It strengthens the heart and improves  circulation.\n- It releases endorphins, which are natural  mood lifter.',
@@ -223,7 +221,7 @@ class _AerobicexerciseexplanantionWidgetState
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   5.0, 10.0, 5.0, 0.0),
                               child: Card(
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -234,7 +232,7 @@ class _AerobicexerciseexplanantionWidgetState
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 5.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -244,7 +242,7 @@ class _AerobicexerciseexplanantionWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     5.0, 5.0, 0.0, 0.0),
                                             child: Text(
                                               'Disadvantages',
@@ -262,7 +260,7 @@ class _AerobicexerciseexplanantionWidgetState
                                         ],
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 5.0, 5.0, 10.0),
                                         child: Text(
                                           '- High-impact activities can lead to joint or muscle injuries.\n- Excessive cardio can lead to fatigue and burnout.\n- Excessive cardio without strength training can lead to muscle loss.',
@@ -281,7 +279,7 @@ class _AerobicexerciseexplanantionWidgetState
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   15.0, 15.0, 15.0, 0.0),
                               child: Text(
                                 '*Always consult with a healthcare provider before starting any new exercise regimen, especially if you have diabetes or other health conditions*',
