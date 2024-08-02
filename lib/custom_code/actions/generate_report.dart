@@ -274,8 +274,7 @@ Future<String> generateReport(
       try {
         final querySnapshot = await FirebaseFirestore.instance
             .collectionGroup('IndividualReminders')
-            .where('UserID', isEqualTo: userID)
-            .where('Status', whereIn: ['Taken', 'Missed']).get();
+            .get();
 
         if (querySnapshot.docs.isEmpty) {
           print("No medicine logs found for the given date range.");
@@ -283,11 +282,13 @@ Future<String> generateReport(
           for (var doc in querySnapshot.docs) {
             final data = doc.data() as Map<String, dynamic>;
             final date = stringToDate(data['Date']);
+            String status = data['Status'];
             DocumentReference user_id = data['UserID'];
 
             if (user_id == userID &&
                 date.isAfter(selectedStartDate) &&
-                date.isBefore(selectedEndDate)) {
+                date.isBefore(selectedEndDate) &&
+                (status == 'Taken' || status == 'Missed')) {
               DocumentSnapshot reminderSnapshot =
                   await data['ReminderID'].get();
               DocumentReference medicineRef = reminderSnapshot['MedicineID'];
