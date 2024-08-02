@@ -51,7 +51,6 @@ class _FlexibilitybottomsheetWidgetState
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 480.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
       ),
@@ -106,14 +105,21 @@ class _FlexibilitybottomsheetWidgetState
               ),
             ],
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(
-              widget!.flexibilityexercises!.image,
-              width: double.infinity,
-              height: 200.0,
-              fit: BoxFit.cover,
-            ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    widget!.flexibilityexercises!.image,
+                    height: 200.0,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+            ],
           ),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 0.0, 0.0),

@@ -531,8 +531,8 @@ class FFRoute {
               ? Container(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   child: Image.asset(
-                    'assets/images/logo.png',
-                    fit: BoxFit.fitWidth,
+                    'assets/images/logo_small.png',
+                    fit: BoxFit.contain,
                   ),
                 )
               : page;

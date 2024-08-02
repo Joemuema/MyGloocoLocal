@@ -20,6 +20,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 const String DIET_LOGS = 'DietLogs';
 const String PHYSICAL_ACTIVITY = 'PhysicalActivityLogs';
 const String BLOOD_SUGAR_LOGS = 'BloodSugarLogs';
+const String MEDICINE_LOG = 'MedicationLogs';
 
 class MealLog {
   final DateTime date;
@@ -43,7 +44,6 @@ class PhysicalActivity {
   final DateTime date;
   final String activity;
   final String intensity;
-  // final DocumentReference userid;
 
   PhysicalActivity(
       {required this.date, required this.activity, required this.intensity});
@@ -76,6 +76,36 @@ class BloodSugarReading {
       period: data['Period'] ?? '',
       cgmReading: (data['CGMreading']).toDouble(),
     );
+  }
+}
+
+class MedicineRecord {
+  final DateTime date;
+  final String time;
+  final String status;
+  final String name;
+  final String dose;
+  final String unit;
+
+  MedicineRecord(
+      {required this.date,
+      required this.time,
+      required this.name,
+      required this.dose,
+      required this.status,
+      required this.unit});
+
+  factory MedicineRecord.fromFirestore(DocumentSnapshot doc,
+      String medicineName, double doseAmount, String medicineUnit) {
+    final data = doc.data() as Map<String, dynamic>;
+
+    return MedicineRecord(
+        date: stringToDate(data['Date']),
+        time: data['Time'],
+        name: medicineName,
+        dose: doseAmount.toString(),
+        status: data['Status'],
+        unit: medicineUnit);
   }
 }
 
@@ -231,6 +261,80 @@ Future<String> generateReport(
                     ])
               ]),
               pw.SizedBox(height: 10),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (selectedContents.contains(MEDICINE_LOG)) {
+      List<MedicineRecord> medLogs = [];
+      try {
+        final querySnapshot = await FirebaseFirestore.instance
+            .collectionGroup('IndividualReminders')
+            .get();
+
+        if (querySnapshot.docs.isEmpty) {
+          print("No medicine logs found for the given date range.");
+        } else {
+          for (var doc in querySnapshot.docs) {
+            final data = doc.data() as Map<String, dynamic>;
+            final date = stringToDate(data['Date']);
+            DocumentReference user_id = data['UserID'];
+
+            if (user_id == userID &&
+                date.isAfter(selectedStartDate) &&
+                date.isBefore(selectedEndDate)) {
+              DocumentSnapshot reminderSnapshot =
+                  await data['ReminderID'].get();
+              DocumentReference medicineRef = reminderSnapshot['MedicineID'];
+              DocumentSnapshot medicineSnapshot = await medicineRef.get();
+
+              String medicineName = medicineSnapshot['Name'];
+              double dose = (medicineSnapshot['SingleDose']).toDouble();
+              String form = medicineSnapshot['Form'];
+              String unit = 'units';
+
+              if (form == 'Pill') {
+                unit = dose > 1 ? 'pills' : 'pill';
+              } else if (form == 'Tablet') {
+                unit = dose > 1 ? 'tablets' : 'tablet';
+              } else if (form == 'Emulsion') {
+                unit = 'ml(';
+                unit += '${dose / 15} ';
+                unit += dose / 15 == 1 ? 'tablespoons' : 'tablespoon';
+                unit += ')';
+              } else if (form == 'Injection') {
+                unit = dose == 1 ? 'unit' : 'units';
+              }
+
+              MedicineRecord medRecord =
+                  MedicineRecord.fromFirestore(doc, medicineName, dose, unit);
+              medLogs.add(medRecord);
+            }
+          }
+        }
+      } catch (e) {
+        print("Error fetching medicine logs: $e");
+      }
+
+      pdf.addPage(
+        pw.Page(
+          build: (pw.Context context) => pw.Column(
+            children: [
+              pw.Text('Medicine Records', style: pw.TextStyle(fontSize: 18)),
+              pw.Table.fromTextArray(context: context, data: [
+                ['Date', 'Time taken', 'Medicine Name', 'Dose', 'Status'],
+                ...medLogs.map((log) => [
+                      log.date != null
+                          ? DateFormat('yyyy-MM-dd').format(log.date)
+                          : 'N/A',
+                      log.time,
+                      log.name,
+                      '${log.dose} ${log.unit}',
+                      log.status
+                    ])
+              ]),
             ],
           ),
         ),

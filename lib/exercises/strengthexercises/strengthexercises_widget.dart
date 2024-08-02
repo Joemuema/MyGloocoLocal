@@ -126,7 +126,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                   widget!.upperbodyexercisedocument!.image,
                   width: 394.0,
                   height: 200.0,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
@@ -258,7 +258,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                             ),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -340,7 +340,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                             ),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -423,7 +423,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                             ),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -513,7 +513,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(

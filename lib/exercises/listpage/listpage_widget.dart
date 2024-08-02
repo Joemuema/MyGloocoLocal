@@ -42,6 +42,8 @@ class _ListpageWidgetState extends State<ListpageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return StreamBuilder<List<AddpagecollectionRecord>>(
       stream: queryAddpagecollectionRecord(),
       builder: (context, snapshot) {
@@ -230,6 +232,10 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                                 .where(
                                   'completed',
                                   isEqualTo: true,
+                                )
+                                .where(
+                                  'UserID',
+                                  isEqualTo: FFAppState().UserID,
                                 ),
                       ),
                       builder: (context, snapshot) {
@@ -322,6 +328,10 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                               .where(
                                 'completed',
                                 isEqualTo: true,
+                              )
+                              .where(
+                                'UserID',
+                                isEqualTo: FFAppState().UserID,
                               ),
                     ),
                     builder: (context, snapshot) {
@@ -412,6 +422,10 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                               .where(
                                 'completed',
                                 isEqualTo: true,
+                              )
+                              .where(
+                                'UserID',
+                                isEqualTo: FFAppState().UserID,
                               ),
                     ),
                     builder: (context, snapshot) {

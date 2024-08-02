@@ -44,6 +44,8 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -437,6 +439,10 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                     'completed',
                                     isEqualTo: false,
                                   )
+                                  .where(
+                                    'UserID',
+                                    isEqualTo: FFAppState().UserID,
+                                  )
                                   .orderBy('date'),
                         ),
                         builder: (context, snapshot) {
@@ -592,6 +598,10 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                     .where(
                                       'completed',
                                       isEqualTo: true,
+                                    )
+                                    .where(
+                                      'UserID',
+                                      isEqualTo: FFAppState().UserID,
                                     ),
                           ),
                           builder: (context, snapshot) {

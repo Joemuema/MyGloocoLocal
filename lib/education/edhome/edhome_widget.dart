@@ -62,8 +62,8 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
+          child: Align(
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -705,7 +705,7 @@ class _EdhomeWidgetState extends State<EdhomeWidget> {
                       ),
                     ],
                   ),
-                ].divide(SizedBox(height: 10.0)),
+                ].divide(SizedBox(height: 10.0)).around(SizedBox(height: 10.0)),
               ),
             ),
           ),

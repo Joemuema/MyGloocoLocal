@@ -92,30 +92,17 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                FlutterFlowIconButton(
-                  borderColor: Colors.transparent,
-                  borderRadius: 20.0,
-                  borderWidth: 1.0,
-                  buttonSize: 40.0,
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    size: 20.0,
-                  ),
-                  onPressed: () async {
-                    Navigator.pop(context);
-                  },
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(104.0, 0.0, 0.0, 0.0),
-                  child: Text(
-                    'Log activity',
+          Align(
+            alignment: AlignmentDirectional(0.0, 0.0),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    widget!.completed! ? 'Log activity' : 'Plan activity',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           fontSize: 18.0,
@@ -123,8 +110,8 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                           fontWeight: FontWeight.bold,
                         ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           Container(
@@ -168,13 +155,13 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                       autofocus: true,
                       obscureText: false,
                       decoration: InputDecoration(
-                        labelText: 'Enter an Activity',
                         labelStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: 'Readex Pro',
                                   fontSize: 15.0,
                                   letterSpacing: 0.0,
                                 ),
+                        hintText: 'Enter an Activity',
                         hintStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: 'Readex Pro',
@@ -223,7 +210,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 5.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                     child: SwitchListTile.adaptive(
                       value: _model.switchListTileValue ??= false,
                       onChanged: (newValue) async {
@@ -291,7 +278,6 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'Enter the distance covered',
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -299,6 +285,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                     fontSize: 15.0,
                                     letterSpacing: 0.0,
                                   ),
+                              hintText: 'Enter the distance covered',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -352,135 +339,146 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                         ),
                       ],
                     ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(15.0, 10.0, 10.0, 0.0),
-                    child: Row(
+                  if (!widget!.completed!)
+                    Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Text(
-                          'Date',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              15.0, 10.0, 10.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Date',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              15.0, 5.0, 15.0, 0.0),
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 4.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    final _datePicked1Date =
+                                        await showDatePicker(
+                                      context: context,
+                                      initialDate: getCurrentTimestamp,
+                                      firstDate: DateTime(1900),
+                                      lastDate: DateTime(2050),
+                                      builder: (context, child) {
+                                        return wrapInMaterialDatePickerTheme(
+                                          context,
+                                          child!,
+                                          headerBackgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          headerForegroundColor:
+                                              FlutterFlowTheme.of(context).info,
+                                          headerTextStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineLarge
+                                                  .override(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: 32.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                          pickerBackgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
+                                          pickerForegroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          selectedDateTimeBackgroundColor:
+                                              Color(0xFF994488),
+                                          selectedDateTimeForegroundColor:
+                                              FlutterFlowTheme.of(context).info,
+                                          actionButtonForegroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          iconSize: 24.0,
+                                        );
+                                      },
+                                    );
+
+                                    if (_datePicked1Date != null) {
+                                      safeSetState(() {
+                                        _model.datePicked1 = DateTime(
+                                          _datePicked1Date.year,
+                                          _datePicked1Date.month,
+                                          _datePicked1Date.day,
+                                        );
+                                      });
+                                    }
+                                  },
+                                  text: 'Pick Date ',
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      50.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    valueOrDefault<String>(
+                                      dateTimeFormat(
+                                          'd/M/y', _model.datePicked1),
+                                      'Choose Date',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 15.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 0.0),
-                    child: Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 4.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FFButtonWidget(
-                            onPressed: () async {
-                              final _datePicked1Date = await showDatePicker(
-                                context: context,
-                                initialDate: getCurrentTimestamp,
-                                firstDate: DateTime(1900),
-                                lastDate: DateTime(2050),
-                                builder: (context, child) {
-                                  return wrapInMaterialDatePickerTheme(
-                                    context,
-                                    child!,
-                                    headerBackgroundColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    headerForegroundColor:
-                                        FlutterFlowTheme.of(context).info,
-                                    headerTextStyle:
-                                        FlutterFlowTheme.of(context)
-                                            .headlineLarge
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              fontSize: 32.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                    pickerBackgroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                    pickerForegroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                    selectedDateTimeBackgroundColor:
-                                        Color(0xFF994488),
-                                    selectedDateTimeForegroundColor:
-                                        FlutterFlowTheme.of(context).info,
-                                    actionButtonForegroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                    iconSize: 24.0,
-                                  );
-                                },
-                              );
-
-                              if (_datePicked1Date != null) {
-                                safeSetState(() {
-                                  _model.datePicked1 = DateTime(
-                                    _datePicked1Date.year,
-                                    _datePicked1Date.month,
-                                    _datePicked1Date.day,
-                                  );
-                                });
-                              }
-                            },
-                            text: 'Pick Date ',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                50.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              valueOrDefault<String>(
-                                dateTimeFormat('d/M/y', _model.datePicked1),
-                                'Choose Date',
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(15.0, 10.0, 10.0, 0.0),
@@ -867,7 +865,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                   finishTime: _model.datePicked3,
                                   date: _model.datePicked1,
                                   intensity: _model.intensitychoicechipsValue,
-                                  completed: true,
+                                  completed: widget!.completed,
                                   userID: FFAppState().UserID,
                                 ));
                             Navigator.pop(context);

@@ -71,7 +71,7 @@ class _MediumsintensitylistcomponentWidgetState
         ),
         child: Row(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
@@ -90,70 +90,86 @@ class _MediumsintensitylistcomponentWidgetState
                 },
               ),
             ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(
-                  'Activity:',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        color: FlutterFlowTheme.of(context).secondary,
-                        letterSpacing: 0.0,
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Activity: ',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              color: FlutterFlowTheme.of(context).secondary,
+                              letterSpacing: 0.0,
+                            ),
                       ),
-                ),
-                Text(
-                  'Distance:',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        color: FlutterFlowTheme.of(context).secondary,
-                        letterSpacing: 0.0,
+                      Text(
+                        valueOrDefault<String>(
+                          widget!.mediumintensitylistdocument?.activity,
+                          'none',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              letterSpacing: 0.0,
+                            ),
                       ),
-                ),
-                Text(
-                  'Date:',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        color: FlutterFlowTheme.of(context).secondary,
-                        letterSpacing: 0.0,
-                      ),
-                ),
-              ],
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(
-                  valueOrDefault<String>(
-                    widget!.mediumintensitylistdocument?.activity,
-                    'name',
+                    ],
                   ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
+                  if (widget!.mediumintensitylistdocument?.distance != null)
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          'Distance: ',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color: FlutterFlowTheme.of(context).secondary,
+                                letterSpacing: 0.0,
+                              ),
+                        ),
+                        Text(
+                          valueOrDefault<String>(
+                            widget!.mediumintensitylistdocument?.distance
+                                ?.toString(),
+                            '0',
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                      ],
+                    ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Date: ',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              color: FlutterFlowTheme.of(context).secondary,
+                              letterSpacing: 0.0,
+                            ),
                       ),
-                ),
-                Text(
-                  valueOrDefault<String>(
-                    widget!.mediumintensitylistdocument?.distance?.toString(),
-                    '0',
+                      Text(
+                        dateTimeFormat('d/M/y',
+                            widget!.mediumintensitylistdocument!.date!),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                    ],
                   ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                Text(
-                  valueOrDefault<String>(
-                    dateTimeFormat(
-                        'd/M/y', widget!.mediumintensitylistdocument?.date),
-                    '0',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-              ],
+                ],
+              ),
             ),
             Theme(
               data: ThemeData(

@@ -95,70 +95,85 @@ class _LowintensitylistcomponentWidgetState
               padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Activity:',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          color: FlutterFlowTheme.of(context).secondary,
-                          letterSpacing: 0.0,
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Activity: ',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              color: FlutterFlowTheme.of(context).secondary,
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                      Text(
+                        valueOrDefault<String>(
+                          widget!.lowintensitylistcomponent?.activity,
+                          'name',
                         ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    'Distance:',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          color: FlutterFlowTheme.of(context).secondary,
-                          letterSpacing: 0.0,
+                  if (widget!.lowintensitylistcomponent?.distance != null)
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          'Distance: ',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color: FlutterFlowTheme.of(context).secondary,
+                                letterSpacing: 0.0,
+                              ),
                         ),
-                  ),
-                  Text(
-                    'Date:',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          color: FlutterFlowTheme.of(context).secondary,
-                          letterSpacing: 0.0,
+                        Text(
+                          valueOrDefault<String>(
+                            widget!.lowintensitylistcomponent?.distance
+                                .toString(),
+                            '0',
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
+                      ],
+                    ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Date: ',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              color: FlutterFlowTheme.of(context).secondary,
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                      Text(
+                        valueOrDefault<String>(
+                          dateTimeFormat(
+                              'd/M/y', widget!.lowintensitylistcomponent?.date),
+                          '0',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  valueOrDefault<String>(
-                    widget!.lowintensitylistcomponent?.activity,
-                    'name',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                Text(
-                  valueOrDefault<String>(
-                    widget!.lowintensitylistcomponent?.distance.toString(),
-                    '0',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                Text(
-                  valueOrDefault<String>(
-                    dateTimeFormat(
-                        'yMMMd', widget!.lowintensitylistcomponent?.date),
-                    '0',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-              ],
             ),
             Theme(
               data: ThemeData(
