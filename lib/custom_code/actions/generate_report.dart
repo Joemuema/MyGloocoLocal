@@ -275,49 +275,53 @@ Future<String> generateReport(
         final querySnapshot = await FirebaseFirestore.instance
             .collectionGroup('IndividualReminders')
             .where('UserID', isEqualTo: userID)
-            .where('Status', whereIn: ['Taken', 'Missed'])
-            .where('Date', isGreaterThan: selectedStartDate)
-            .where('Date', isLessThan: selectedEndDate)
-            .get();
+            .where('Status', whereIn: ['Taken', 'Missed']).get();
 
         if (querySnapshot.docs.isEmpty) {
           print("No medicine logs found for the given date range.");
         } else {
           for (var doc in querySnapshot.docs) {
             final data = doc.data() as Map<String, dynamic>;
+            final date = stringToDate(data['Date']);
+            DocumentReference user_id = data['UserID'];
 
-            DocumentSnapshot reminderSnapshot = await data['ReminderID'].get();
-            DocumentReference medicineRef = reminderSnapshot['MedicineID'];
-            DocumentSnapshot medicineSnapshot = await medicineRef.get();
+            if (user_id == userID &&
+                date.isAfter(selectedStartDate) &&
+                date.isBefore(selectedEndDate)) {
+              DocumentSnapshot reminderSnapshot =
+                  await data['ReminderID'].get();
+              DocumentReference medicineRef = reminderSnapshot['MedicineID'];
+              DocumentSnapshot medicineSnapshot = await medicineRef.get();
 
-            String medicineName = medicineSnapshot['Name'];
-            double dose = (medicineSnapshot['SingleDose']).toDouble();
-            String dosage = dose.toString();
-            String form = medicineSnapshot['Form'];
-            String unit = 'units';
+              String medicineName = medicineSnapshot['Name'];
+              double dose = (medicineSnapshot['SingleDose']).toDouble();
+              String dosage = dose.toString();
+              String form = medicineSnapshot['Form'];
+              String unit = 'units';
 
-            if (form == 'Pill') {
-              unit = dose > 1 ? 'pills' : 'pill';
-            } else if (form == 'Tablet') {
-              unit = dose > 1 ? 'tablets' : 'tablet';
-            } else if (form == 'Emulsion') {
-              unit = 'ml(';
-              unit += '${dose / 15} ';
-              unit += dose / 15 == 1 ? 'tablespoon' : 'tablespoons';
-              unit += ')';
-            } else if (form == 'Injection') {
-              unit = dose == 1 ? 'unit' : 'units';
+              if (form == 'Pill') {
+                unit = dose > 1 ? 'pills' : 'pill';
+              } else if (form == 'Tablet') {
+                unit = dose > 1 ? 'tablets' : 'tablet';
+              } else if (form == 'Emulsion') {
+                unit = 'ml(';
+                unit += '${dose / 15} ';
+                unit += dose / 15 == 1 ? 'tablespoon' : 'tablespoons';
+                unit += ')';
+              } else if (form == 'Injection') {
+                unit = dose == 1 ? 'unit' : 'units';
+              }
+
+              if (dose % 1 == 0) {
+                dosage = dose.toInt().toString();
+              } else {
+                dosage = dose.toStringAsFixed(2);
+              }
+
+              MedicineRecord medRecord =
+                  MedicineRecord.fromFirestore(doc, medicineName, dosage, unit);
+              medLogs.add(medRecord);
             }
-
-            if (dose % 1 == 0) {
-              dosage = dose.toInt().toString();
-            } else {
-              dosage = dose.toStringAsFixed(2);
-            }
-
-            MedicineRecord medRecord =
-                MedicineRecord.fromFirestore(doc, medicineName, dosage, unit);
-            medLogs.add(medRecord);
           }
         }
       } catch (e) {
