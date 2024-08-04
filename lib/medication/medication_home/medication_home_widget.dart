@@ -235,7 +235,8 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
             .where(
               'Status',
               isEqualTo: 'Unset',
-            ),
+            )
+            .orderBy('Date'),
       );
       await actions.updateMissedReminders(
         functions

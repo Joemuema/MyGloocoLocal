@@ -87,6 +87,24 @@
       ]
     },
     {
+      "collectionGroup": "IndividualReminders",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Date",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "Reminders",
       "queryScope": "COLLECTION",
       "fields": [
@@ -106,16 +124,6 @@
     }
   ],
   "fieldOverrides": [
-    {
-      "collectionGroup": "IndividualReminders",
-      "fieldPath": "UserID",
-      "indexes": [
-        {
-          "order": "ASCENDING",
-          "queryScope": "COLLECTION_GROUP"
-        }
-      ]
-    },
     {
       "collectionGroup": "IndividualReminders",
       "fieldPath": "UserID",
