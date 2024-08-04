@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/medication/edit_reminder_name/edit_reminder_name_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -197,7 +198,9 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             await widget.deleteFromList?.call();
-                            await widget.currentReminderID!.delete();
+                            await actions.deleteIndividualReminders(
+                              widget.currentReminderID!,
+                            );
                           },
                           child: Icon(
                             Icons.delete_rounded,

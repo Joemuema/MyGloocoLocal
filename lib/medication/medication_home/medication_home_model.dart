@@ -88,6 +88,38 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
 
   String calendarDate = 'date';
 
+  List<IndividualRemindersRecord> pastMissedIndividualReminders = [];
+  void addToPastMissedIndividualReminders(IndividualRemindersRecord item) =>
+      pastMissedIndividualReminders.add(item);
+  void removeFromPastMissedIndividualReminders(
+          IndividualRemindersRecord item) =>
+      pastMissedIndividualReminders.remove(item);
+  void removeAtIndexFromPastMissedIndividualReminders(int index) =>
+      pastMissedIndividualReminders.removeAt(index);
+  void insertAtIndexInPastMissedIndividualReminders(
+          int index, IndividualRemindersRecord item) =>
+      pastMissedIndividualReminders.insert(index, item);
+  void updatePastMissedIndividualRemindersAtIndex(
+          int index, Function(IndividualRemindersRecord) updateFn) =>
+      pastMissedIndividualReminders[index] =
+          updateFn(pastMissedIndividualReminders[index]);
+
+  List<IndividualRemindersRecord> todayMIssedIndividualReminders = [];
+  void addToTodayMIssedIndividualReminders(IndividualRemindersRecord item) =>
+      todayMIssedIndividualReminders.add(item);
+  void removeFromTodayMIssedIndividualReminders(
+          IndividualRemindersRecord item) =>
+      todayMIssedIndividualReminders.remove(item);
+  void removeAtIndexFromTodayMIssedIndividualReminders(int index) =>
+      todayMIssedIndividualReminders.removeAt(index);
+  void insertAtIndexInTodayMIssedIndividualReminders(
+          int index, IndividualRemindersRecord item) =>
+      todayMIssedIndividualReminders.insert(index, item);
+  void updateTodayMIssedIndividualRemindersAtIndex(
+          int index, Function(IndividualRemindersRecord) updateFn) =>
+      todayMIssedIndividualReminders[index] =
+          updateFn(todayMIssedIndividualReminders[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -99,6 +131,8 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
   bool? permissionsGranted;
   // Stores action output result for [Firestore Query - Query a collection] action in MedicationHome widget.
   List<MedicineRecord>? lowCapacityMeds;
+  // Stores action output result for [Firestore Query - Query a collection] action in MedicationHome widget.
+  List<IndividualRemindersRecord>? unmarkedlReminders;
   // State field(s) for Calendar widget.
   DateTimeRange? calendarSelectedDay;
   // Stores action output result for [Firestore Query - Query a collection] action in Calendar widget.

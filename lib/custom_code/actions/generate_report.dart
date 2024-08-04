@@ -313,6 +313,7 @@ Future<String> generateReport(
                 unit = dose == 1 ? 'unit' : 'units';
               }
 
+              // should be for tablespoon too
               if (dose % 1 == 0) {
                 dosage = dose.toInt().toString();
               } else {

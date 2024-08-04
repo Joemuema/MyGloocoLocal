@@ -27,6 +27,12 @@ class FFAppState extends ChangeNotifier {
           prefs.getBool('ff_notificationPermissionsGranted') ??
               _notificationPermissionsGranted;
     });
+    _safeInit(() {
+      _lastUpdatedReminders = prefs.containsKey('ff_lastUpdatedReminders')
+          ? DateTime.fromMillisecondsSinceEpoch(
+              prefs.getInt('ff_lastUpdatedReminders')!)
+          : _lastUpdatedReminders;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -56,6 +62,16 @@ class FFAppState extends ChangeNotifier {
   bool get searchActive => _searchActive;
   set searchActive(bool value) {
     _searchActive = value;
+  }
+
+  DateTime? _lastUpdatedReminders =
+      DateTime.fromMillisecondsSinceEpoch(1704056400000);
+  DateTime? get lastUpdatedReminders => _lastUpdatedReminders;
+  set lastUpdatedReminders(DateTime? value) {
+    _lastUpdatedReminders = value;
+    value != null
+        ? prefs.setInt('ff_lastUpdatedReminders', value.millisecondsSinceEpoch)
+        : prefs.remove('ff_lastUpdatedReminders');
   }
 
   final _foodlistManager = StreamRequestManager<List<FoodRecord>>();

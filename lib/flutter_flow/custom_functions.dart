@@ -257,3 +257,19 @@ int getHour(DateTime time) {
 int getMinute(DateTime time) {
   return time.minute;
 }
+
+DateTime currentTimeXHoursBack(
+  DateTime currentTime,
+  double hours,
+) {
+  final totalMinutes = (hours * 60).toInt();
+  final duration = Duration(minutes: totalMinutes);
+  return currentTime.subtract(duration);
+}
+
+List<IndividualRemindersRecord> combineIndividualReminders(
+  List<IndividualRemindersRecord> pastIndividualReminders,
+  List<IndividualRemindersRecord> todayIndividualReminders,
+) {
+  return List.from(pastIndividualReminders)..addAll(todayIndividualReminders);
+}

@@ -226,6 +226,39 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
           },
         ).then((value) => safeSetState(() {}));
       }
+      _model.unmarkedlReminders = await queryIndividualRemindersRecordOnce(
+        queryBuilder: (individualRemindersRecord) => individualRemindersRecord
+            .where(
+              'UserID',
+              isEqualTo: FFAppState().UserID,
+            )
+            .where(
+              'Status',
+              isEqualTo: 'Unset',
+            ),
+      );
+      await actions.updateMissedReminders(
+        functions
+            .combineIndividualReminders(
+                _model.unmarkedlReminders!
+                    .where((e) =>
+                        (functions.stringToDate(e.date) >=
+                            FFAppState().lastUpdatedReminders!) &&
+                        (functions.stringToDate(e.date) <
+                            functions.currentDate(getCurrentTimestamp)))
+                    .toList()
+                    .toList(),
+                _model.unmarkedlReminders!
+                    .where((e) =>
+                        (functions.stringToDate(e.date) ==
+                            functions.currentDate(getCurrentTimestamp)) &&
+                        (functions.todayTime(e.time) <
+                            functions.currentTimeXHoursBack(
+                                getCurrentTimestamp, 1.0)))
+                    .toList()
+                    .toList())
+            .toList(),
+      );
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
