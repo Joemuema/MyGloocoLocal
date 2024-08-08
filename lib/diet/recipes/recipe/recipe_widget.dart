@@ -64,9 +64,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -438,99 +436,147 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                           child: TabBarView(
                                             controller: _model.tabBarController,
                                             children: [
-                                              Builder(
-                                                builder: (context) {
-                                                  final ingredients = widget
-                                                          .ingredients
-                                                          ?.ingredients
-                                                          .toList() ??
-                                                      [];
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          16.0),
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    width: 2.0,
+                                                  ),
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 0.0),
+                                                  child: Builder(
+                                                    builder: (context) {
+                                                      final ingredients =
+                                                          widget.ingredients
+                                                                  ?.ingredients
+                                                                  .toList() ??
+                                                              [];
 
-                                                  return SingleChildScrollView(
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: List.generate(
-                                                          ingredients.length,
-                                                          (ingredientsIndex) {
-                                                        final ingredientsItem =
-                                                            ingredients[
-                                                                ingredientsIndex];
-                                                        return Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      30.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            ingredientsItem,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                        );
-                                                      }),
-                                                    ),
-                                                  );
-                                                },
+                                                      return SingleChildScrollView(
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: List.generate(
+                                                              ingredients
+                                                                  .length,
+                                                              (ingredientsIndex) {
+                                                            final ingredientsItem =
+                                                                ingredients[
+                                                                    ingredientsIndex];
+                                                            return Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          15.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                ingredientsItem,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      fontSize:
+                                                                          15.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                            );
+                                                          }),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
                                               ),
-                                              Builder(
-                                                builder: (context) {
-                                                  final instructions = widget
-                                                          .instructions
-                                                          ?.instructions
-                                                          .toList() ??
-                                                      [];
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          16.0),
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    width: 2.0,
+                                                  ),
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 0.0),
+                                                  child: Builder(
+                                                    builder: (context) {
+                                                      final instructions =
+                                                          widget.instructions
+                                                                  ?.instructions
+                                                                  .toList() ??
+                                                              [];
 
-                                                  return SingleChildScrollView(
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: List.generate(
-                                                          instructions.length,
-                                                          (instructionsIndex) {
-                                                        final instructionsItem =
-                                                            instructions[
-                                                                instructionsIndex];
-                                                        return Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      30.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            instructionsItem,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                        );
-                                                      }),
-                                                    ),
-                                                  );
-                                                },
+                                                      return SingleChildScrollView(
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: List.generate(
+                                                              instructions
+                                                                  .length,
+                                                              (instructionsIndex) {
+                                                            final instructionsItem =
+                                                                instructions[
+                                                                    instructionsIndex];
+                                                            return Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          15.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                instructionsItem,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      fontSize:
+                                                                          15.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                            );
+                                                          }),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -555,13 +601,8 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
+                                          onTap: () =>
+                                              FocusScope.of(context).unfocus(),
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
@@ -587,7 +628,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                         .override(
                                           fontFamily: 'Inter',
                                           color: Colors.white,
-                                          fontSize: 22.0,
+                                          fontSize: 20.0,
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class CategoriespageModel extends FlutterFlowModel<CategoriespageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -24,7 +23,6 @@ class CategoriespageModel extends FlutterFlowModel<CategoriespageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     tabBarController?.dispose();
     flexibilityexercisecomponentModels.dispose();
   }

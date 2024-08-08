@@ -15,12 +15,9 @@ export 'medication_list_model.dart';
 class MedicationListWidget extends StatefulWidget {
   const MedicationListWidget({
     super.key,
-    bool? addReminder,
     String? listOption,
-  })  : addReminder = addReminder ?? false,
-        listOption = listOption ?? 'view';
+  }) : listOption = listOption ?? 'view';
 
-  final bool addReminder;
   final String listOption;
 
   @override
@@ -52,9 +49,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -273,12 +268,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                             context: context,
                                             builder: (context) {
                                               return GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
+                                                onTap: () =>
+                                                    FocusScope.of(context)
                                                         .unfocus(),
                                                 child: Padding(
                                                   padding:
@@ -304,12 +295,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                             context: context,
                                             builder: (context) {
                                               return GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
+                                                onTap: () =>
+                                                    FocusScope.of(context)
                                                         .unfocus(),
                                                 child: Padding(
                                                   padding:
@@ -501,12 +488,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           context: context,
                                           builder: (context) {
                                             return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
+                                              onTap: () =>
+                                                  FocusScope.of(context)
                                                       .unfocus(),
                                               child: Padding(
                                                 padding:
@@ -531,12 +514,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           context: context,
                                           builder: (context) {
                                             return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
+                                              onTap: () =>
+                                                  FocusScope.of(context)
                                                       .unfocus(),
                                               child: Padding(
                                                 padding:
@@ -719,12 +698,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           context: context,
                                           builder: (context) {
                                             return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
+                                              onTap: () =>
+                                                  FocusScope.of(context)
                                                       .unfocus(),
                                               child: Padding(
                                                 padding:
@@ -749,12 +724,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           context: context,
                                           builder: (context) {
                                             return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
+                                              onTap: () =>
+                                                  FocusScope.of(context)
                                                       .unfocus(),
                                               child: Padding(
                                                 padding:
@@ -940,12 +911,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                             context: context,
                                             builder: (context) {
                                               return GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
+                                                onTap: () =>
+                                                    FocusScope.of(context)
                                                         .unfocus(),
                                                 child: Padding(
                                                   padding:
@@ -971,12 +938,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                             context: context,
                                             builder: (context) {
                                               return GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
+                                                onTap: () =>
+                                                    FocusScope.of(context)
                                                         .unfocus(),
                                                 child: Padding(
                                                   padding:

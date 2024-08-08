@@ -3,9 +3,9 @@ import '/exercises/searchpageitemscomponent/searchpageitemscomponent_widget.dart
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'searchitemspage_model.dart';
@@ -28,6 +28,12 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
     super.initState();
     _model = createModel(context, () => SearchitemspageModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().searchActive = false;
+      setState(() {});
+    });
+
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -46,9 +52,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -113,15 +117,13 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                 await queryAddpagecollectionRecordOnce()
                                     .then(
                                       (records) => _model
-                                          .simpleSearchResults1 = TextSearch(
+                                          .simpleSearchResults = TextSearch(
                                         records
                                             .map(
                                               (record) =>
                                                   TextSearchItem.fromTerms(
-                                                      record, [
-                                                record.activity,
-                                                record.intensity
-                                              ]),
+                                                      record,
+                                                      [record.activity]),
                                             )
                                             .toList(),
                                       )
@@ -130,9 +132,10 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                           .toList(),
                                     )
                                     .onError((_, __) =>
-                                        _model.simpleSearchResults1 = [])
+                                        _model.simpleSearchResults = [])
                                     .whenComplete(() => setState(() {}));
 
+                                FFAppState().searchActive = true;
                                 setState(() {});
                               },
                             ),
@@ -180,6 +183,51 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
+                              prefixIcon: const Icon(
+                                Icons.search_rounded,
+                                size: 23.0,
+                              ),
+                              suffixIcon: _model.textController!.text.isNotEmpty
+                                  ? InkWell(
+                                      onTap: () async {
+                                        _model.textController?.clear();
+                                        await queryAddpagecollectionRecordOnce()
+                                            .then(
+                                              (records) =>
+                                                  _model.simpleSearchResults =
+                                                      TextSearch(
+                                                records
+                                                    .map(
+                                                      (record) => TextSearchItem
+                                                          .fromTerms(record, [
+                                                        record.activity
+                                                      ]),
+                                                    )
+                                                    .toList(),
+                                              )
+                                                          .search(_model
+                                                              .textController
+                                                              .text)
+                                                          .map((r) => r.object)
+                                                          .toList(),
+                                            )
+                                            .onError((_, __) =>
+                                                _model.simpleSearchResults = [])
+                                            .whenComplete(
+                                                () => setState(() {}));
+
+                                        FFAppState().searchActive = true;
+                                        setState(() {});
+                                        setState(() {});
+                                      },
+                                      child: Icon(
+                                        Icons.clear,
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        size: 20.0,
+                                      ),
+                                    )
+                                  : null,
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
@@ -192,69 +240,6 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                           ),
                         ),
                       ),
-                      FFButtonWidget(
-                        onPressed: () async {
-                          await queryAddpagecollectionRecordOnce()
-                              .then(
-                                (records) => _model.simpleSearchResults2 =
-                                    TextSearch(
-                                  records
-                                      .map(
-                                        (record) => TextSearchItem.fromTerms(
-                                            record, [
-                                          record.activity,
-                                          record.intensity
-                                        ]),
-                                      )
-                                      .toList(),
-                                )
-                                        .search(_model.textController.text)
-                                        .map((r) => r.object)
-                                        .toList(),
-                              )
-                              .onError(
-                                  (_, __) => _model.simpleSearchResults2 = [])
-                              .whenComplete(() => setState(() {}));
-
-                          FFAppState().searchActive = false;
-                          setState(() {});
-                        },
-                        text: 'Search',
-                        options: FFButtonOptions(
-                          height: 30.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                      FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 20.0,
-                        borderWidth: 1.0,
-                        buttonSize: 40.0,
-                        icon: Icon(
-                          Icons.clear,
-                          color: FlutterFlowTheme.of(context).primary,
-                          size: 24.0,
-                        ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
-                        },
-                      ),
                     ],
                   ),
                 ),
@@ -262,7 +247,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
             ),
             Builder(
               builder: (context) {
-                if (FFAppState().searchActive) {
+                if (!FFAppState().searchActive) {
                   return Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                     child: StreamBuilder<List<AddpagecollectionRecord>>(
@@ -325,7 +310,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                     child: Builder(
                       builder: (context) {
                         final searchResults =
-                            _model.simpleSearchResults1.toList();
+                            _model.simpleSearchResults.toList();
 
                         return ListView.separated(
                           padding: EdgeInsets.zero,

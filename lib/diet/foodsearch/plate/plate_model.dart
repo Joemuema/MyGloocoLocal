@@ -17,15 +17,9 @@ class PlateModel extends FlutterFlowModel<PlateWidget> {
   void updateUpdatedFoodListAtIndex(int index, Function(FoodRecord) updateFn) =>
       updatedFoodList[index] = updateFn(updatedFoodList[index]);
 
-  ///  State fields for stateful widgets in this page.
-
-  final unfocusNode = FocusNode();
-
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

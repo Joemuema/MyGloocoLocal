@@ -174,7 +174,7 @@ class _Report2WidgetState extends State<Report2Widget> {
                         },
                         text: valueOrDefault<String>(
                           _model.datePicked1 != null
-                              ? dateTimeFormat('yMMMd', _model.datePicked1)
+                              ? dateTimeFormat("yMMMd", _model.datePicked1)
                               : 'No Date Selected',
                           '00/00/0000',
                         ),
@@ -282,7 +282,7 @@ class _Report2WidgetState extends State<Report2Widget> {
                         },
                         text: valueOrDefault<String>(
                           _model.datePicked2 != null
-                              ? dateTimeFormat('yMMMd', _model.datePicked2)
+                              ? dateTimeFormat("yMMMd", _model.datePicked2)
                               : 'No Date Selected',
                           '00/00/0000',
                         ),

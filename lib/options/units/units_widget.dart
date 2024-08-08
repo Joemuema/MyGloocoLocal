@@ -59,26 +59,52 @@ class _UnitsWidgetState extends State<UnitsWidget> {
     context.watch<FFAppState>();
 
     return Container(
-      width: 422.0,
-      height: 414.0,
+      width: double.infinity,
+      height: 400.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(0.0),
+          bottomRight: Radius.circular(0.0),
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
+        ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 60.0,
+                  height: 5.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).primary,
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 1.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                AutoSizeText(
-                  'Measurement Units',
-                  style: FlutterFlowTheme.of(context).titleLarge.override(
-                        fontFamily: 'Inter',
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w600,
-                      ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 0.0, 0.0),
+                  child: AutoSizeText(
+                    'Measurement Units',
+                    style: FlutterFlowTheme.of(context).titleLarge.override(
+                          fontFamily: 'Inter',
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
                 ),
               ],
             ),
@@ -98,10 +124,12 @@ class _UnitsWidgetState extends State<UnitsWidget> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 0.0, 0.0),
                     child: Text(
-                      'BG Units',
+                      'BG Units:',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
+                            fontSize: 15.0,
                             letterSpacing: 0.0,
+                            fontWeight: FontWeight.w600,
                           ),
                     ),
                   ),
@@ -166,12 +194,14 @@ class _UnitsWidgetState extends State<UnitsWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Align(
-                    alignment: const AlignmentDirectional(-3.0, -1.0),
+                    alignment: const AlignmentDirectional(-3.4, -1.0),
                     child: Text(
-                      'Calories',
+                      'Calories:',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
+                            fontSize: 15.0,
                             letterSpacing: 0.0,
+                            fontWeight: FontWeight.w600,
                           ),
                     ),
                   ),

@@ -50,7 +50,7 @@ class _MediumsintensitylistcomponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 20.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 5.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -157,7 +157,7 @@ class _MediumsintensitylistcomponentWidgetState
                             ),
                       ),
                       Text(
-                        dateTimeFormat('d/M/y',
+                        dateTimeFormat("d/M/y",
                             widget.mediumintensitylistdocument!.date!),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',

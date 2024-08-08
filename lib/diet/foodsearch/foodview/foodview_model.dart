@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class FoodviewModel extends FlutterFlowModel<FoodviewWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Searchbar widget.
   FocusNode? searchbarFocusNode;
   TextEditingController? searchbarTextController;
@@ -18,7 +17,6 @@ class FoodviewModel extends FlutterFlowModel<FoodviewWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     searchbarFocusNode?.dispose();
     searchbarTextController?.dispose();
   }

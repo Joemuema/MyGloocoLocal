@@ -73,15 +73,23 @@
       ]
     },
     {
-      "collectionGroup": "Medicine",
+      "collectionGroup": "addpagecollection",
       "queryScope": "COLLECTION",
       "fields": [
+        {
+          "fieldPath": "intensity",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "completed",
+          "order": "ASCENDING"
+        },
         {
           "fieldPath": "UserID",
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "TotalDose",
+          "fieldPath": "date",
           "order": "ASCENDING"
         }
       ]
@@ -100,6 +108,20 @@
         },
         {
           "fieldPath": "Date",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Medicine",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "TotalDose",
           "order": "ASCENDING"
         }
       ]

@@ -57,7 +57,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
     context.watch<FFAppState>();
 
     return Container(
-      height: 655.0,
+      height: 650.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
         borderRadius: const BorderRadius.only(
@@ -457,7 +457,7 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                   child: Text(
                                     valueOrDefault<String>(
                                       dateTimeFormat(
-                                          'd/M/y', _model.datePicked1),
+                                          "d/M/y", _model.datePicked1),
                                       'Choose Date',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -610,8 +610,11 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                         },
                                       ),
                                       Text(
-                                        dateTimeFormat(
-                                            'yMMMd', _model.datePicked2),
+                                        valueOrDefault<String>(
+                                          dateTimeFormat(
+                                              "yMMMd", _model.datePicked2),
+                                          'Choose Time',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -737,8 +740,11 @@ class _AddactivityWidgetState extends State<AddactivityWidget> {
                                         },
                                       ),
                                       Text(
-                                        dateTimeFormat(
-                                            'yMMMd', _model.datePicked3),
+                                        valueOrDefault<String>(
+                                          dateTimeFormat(
+                                              "yMMMd", _model.datePicked3),
+                                          'Choose Time',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(

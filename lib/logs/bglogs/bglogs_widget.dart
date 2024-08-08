@@ -242,7 +242,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                   }
                 },
                 text: valueOrDefault<String>(
-                  dateTimeFormat('d/M h:mm a', _model.datePicked),
+                  dateTimeFormat("d/M h:mm a", _model.datePicked),
                   'Date + Time',
                 ),
                 options: FFButtonOptions(

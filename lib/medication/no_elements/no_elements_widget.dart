@@ -8,9 +8,11 @@ class NoElementsWidget extends StatefulWidget {
   const NoElementsWidget({
     super.key,
     required this.additionalText,
-  });
+    bool? showFirstLine,
+  }) : showFirstLine = showFirstLine ?? true;
 
   final String? additionalText;
+  final bool showFirstLine;
 
   @override
   State<NoElementsWidget> createState() => _NoElementsWidgetState();
@@ -44,24 +46,25 @@ class _NoElementsWidgetState extends State<NoElementsWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 100.0,
+      height: 68.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 20.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'None available to show',
-              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Readex Pro',
-                    fontSize: 14.0,
-                    letterSpacing: 0.0,
-                  ),
-            ),
+            if (widget.showFirstLine == true)
+              Text(
+                'None available to show',
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Readex Pro',
+                      fontSize: 14.0,
+                      letterSpacing: 0.0,
+                    ),
+              ),
             Text(
               widget.additionalText!,
               style: FlutterFlowTheme.of(context).bodyMedium.override(

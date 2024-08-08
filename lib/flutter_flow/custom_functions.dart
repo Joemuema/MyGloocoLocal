@@ -273,3 +273,20 @@ List<IndividualRemindersRecord> combineIndividualReminders(
 ) {
   return List.from(pastIndividualReminders)..addAll(todayIndividualReminders);
 }
+
+double avgSugarReadings(List<double> readings) {
+  double total = 0.0;
+  int count = 0;
+
+  for (double reading in readings) {
+    total += reading;
+    count++;
+  }
+
+  if (count == 0) {
+    return 0.0;
+  }
+
+  double avg = total / count;
+  return double.parse(avg.toStringAsFixed(2));
+}

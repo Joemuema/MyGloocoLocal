@@ -129,10 +129,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'MedicationList',
           path: '/medicationList',
           builder: (context, params) => MedicationListWidget(
-            addReminder: params.getParam(
-              'addReminder',
-              ParamType.bool,
-            ),
             listOption: params.getParam(
               'listOption',
               ParamType.String,

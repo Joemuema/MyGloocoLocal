@@ -142,7 +142,7 @@ class _LowintensitylistcomponentsWidgetState
             ),
             Text(
               valueOrDefault<String>(
-                dateTimeFormat('d/M/y', widget.lowintensitylist?.date),
+                dateTimeFormat("d/M/y", widget.lowintensitylist?.date),
                 '0',
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(

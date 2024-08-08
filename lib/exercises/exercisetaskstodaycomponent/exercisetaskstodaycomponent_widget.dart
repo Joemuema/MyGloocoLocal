@@ -84,7 +84,7 @@ class _ExercisetaskstodaycomponentWidgetState
                   ),
                   Text(
                     valueOrDefault<String>(
-                      dateTimeFormat('d/M/y', widget.taskstodaydocument?.date),
+                      dateTimeFormat("d/M/y", widget.taskstodaydocument?.date),
                       '0',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(

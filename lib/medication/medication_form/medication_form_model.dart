@@ -28,7 +28,6 @@ class MedicationFormModel extends FlutterFlowModel<MedicationFormWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for mainColumn widget.
   ScrollController? mainColumn;
   // State field(s) for MedName widget.
@@ -71,7 +70,6 @@ class MedicationFormModel extends FlutterFlowModel<MedicationFormWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainColumn?.dispose();
     medNameFocusNode?.dispose();
     medNameTextController?.dispose();

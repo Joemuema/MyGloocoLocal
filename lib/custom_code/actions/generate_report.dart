@@ -305,9 +305,9 @@ Future<String> generateReport(
               } else if (form == 'Tablet') {
                 unit = dose > 1 ? 'tablets' : 'tablet';
               } else if (form == 'Emulsion') {
-                unit = 'ml(';
-                unit += '${dose / 15} ';
-                unit += dose / 15 == 1 ? 'tablespoon' : 'tablespoons';
+                double tbsp = dose / 15;
+                unit = 'ml(${tbsp.toStringAsFixed(2)} ';
+                unit += tbsp == 1 ? 'tablespoon' : 'tablespoons';
                 unit += ')';
               } else if (form == 'Injection') {
                 unit = dose == 1 ? 'unit' : 'units';

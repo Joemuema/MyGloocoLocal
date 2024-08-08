@@ -74,6 +74,12 @@ class FFAppState extends ChangeNotifier {
         : prefs.remove('ff_lastUpdatedReminders');
   }
 
+  bool _medicineRemindersUpdated = false;
+  bool get medicineRemindersUpdated => _medicineRemindersUpdated;
+  set medicineRemindersUpdated(bool value) {
+    _medicineRemindersUpdated = value;
+  }
+
   final _foodlistManager = StreamRequestManager<List<FoodRecord>>();
   Stream<List<FoodRecord>> foodlist({
     String? uniqueQueryKey,

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class UserdetailsModel extends FlutterFlowModel<UserdetailsWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey1 = GlobalKey<FormState>();
   final formKey3 = GlobalKey<FormState>();
   final formKey5 = GlobalKey<FormState>();
@@ -102,7 +101,6 @@ class UserdetailsModel extends FlutterFlowModel<UserdetailsWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
 

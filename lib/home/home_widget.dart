@@ -36,7 +36,6 @@ class _HomeWidgetState extends State<HomeWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.currentChartDate = getCurrentTimestamp;
-      setState(() {});
       _model.todayReadings = await queryBGreadingsRecordOnce(
         queryBuilder: (bGreadingsRecord) => bGreadingsRecord
             .where(
@@ -45,12 +44,52 @@ class _HomeWidgetState extends State<HomeWidget> {
             )
             .where(
               'Date',
-              isEqualTo: functions.getDate(getCurrentTimestamp),
+              isEqualTo: functions.getDate(_model.currentChartDate!),
             ),
       );
-      _model.averageGlucose = await actions.averageGlucoseToday(
-        _model.todayReadings!.map((e) => e.reference).toList().toList(),
+      _model.bloodSugarAvg = valueOrDefault<double>(
+        functions.avgSugarReadings(
+            _model.todayReadings!.map((e) => e.cGMreading).toList().toList()),
+        0.0,
       );
+      setState(() {});
+      if (FFAppState().medicineRemindersUpdated == false) {
+        _model.unmarkedReminders = await queryIndividualRemindersRecordOnce(
+          queryBuilder: (individualRemindersRecord) => individualRemindersRecord
+              .where(
+                'UserID',
+                isEqualTo: FFAppState().UserID,
+              )
+              .where(
+                'Status',
+                isEqualTo: 'Unset',
+              )
+              .orderBy('Date'),
+        );
+        await actions.updateMissedReminders(
+          functions
+              .combineIndividualReminders(
+                  _model.unmarkedReminders!
+                      .where((e) =>
+                          (functions.stringToDate(e.date) >=
+                              FFAppState().lastUpdatedReminders!) &&
+                          (functions.stringToDate(e.date) <
+                              functions.currentDate(getCurrentTimestamp)))
+                      .toList()
+                      .toList(),
+                  _model.unmarkedReminders!
+                      .where((e) =>
+                          (functions.stringToDate(e.date) ==
+                              functions.currentDate(getCurrentTimestamp)) &&
+                          (functions.todayTime(e.time) <
+                              functions.currentTimeXHoursBack(
+                                  getCurrentTimestamp, 1.0)))
+                      .toList()
+                      .toList())
+              .toList(),
+        );
+        FFAppState().medicineRemindersUpdated = true;
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -68,9 +107,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -107,7 +144,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ),
                         ),
                         Text(
-                          dateTimeFormat('E, d MMMM', getCurrentTimestamp),
+                          dateTimeFormat("E, d MMMM", getCurrentTimestamp),
                           style:
                               FlutterFlowTheme.of(context).labelSmall.override(
                                     fontFamily: 'Readex Pro',
@@ -164,18 +201,63 @@ class _HomeWidgetState extends State<HomeWidget> {
                               0.0, 10.0, 0.0, 10.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'Blood Glucose chart',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontSize: 16.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Blood Glucose chart',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 10.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      'Avg: ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 15.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                     ),
+                                    Text(
+                                      valueOrDefault<String>(
+                                        _model.bloodSugarAvg?.toString(),
+                                        '0.0',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    Text(
+                                      ' mg/dl',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -195,6 +277,30 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 onTap: () async {
                                   _model.currentChartDate = functions
                                       .decrementDate(_model.currentChartDate!);
+                                  setState(() {});
+                                  _model.prevDayReadings =
+                                      await queryBGreadingsRecordOnce(
+                                    queryBuilder: (bGreadingsRecord) =>
+                                        bGreadingsRecord
+                                            .where(
+                                              'UserID',
+                                              isEqualTo: FFAppState().UserID,
+                                            )
+                                            .where(
+                                              'Date',
+                                              isEqualTo: functions.getDate(
+                                                  _model.currentChartDate!),
+                                            ),
+                                  );
+                                  _model.bloodSugarAvg = valueOrDefault<double>(
+                                    functions.avgSugarReadings(_model
+                                        .prevDayReadings!
+                                        .map((e) => e.cGMreading)
+                                        .toList()),
+                                    0.0,
+                                  );
+                                  setState(() {});
+
                                   setState(() {});
                                 },
                                 child: Icon(
@@ -262,7 +368,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 },
                                 text: _model.currentChartDate != null
                                     ? dateTimeFormat(
-                                        'yMMMd', _model.currentChartDate)
+                                        "yMMMd", _model.currentChartDate)
                                     : 'Today',
                                 options: FFButtonOptions(
                                   height: 30.0,
@@ -295,6 +401,30 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 onTap: () async {
                                   _model.currentChartDate = functions
                                       .incrementDate(_model.currentChartDate!);
+                                  setState(() {});
+                                  _model.nextDayReadings =
+                                      await queryBGreadingsRecordOnce(
+                                    queryBuilder: (bGreadingsRecord) =>
+                                        bGreadingsRecord
+                                            .where(
+                                              'UserID',
+                                              isEqualTo: FFAppState().UserID,
+                                            )
+                                            .where(
+                                              'Date',
+                                              isEqualTo: functions.getDate(
+                                                  _model.currentChartDate!),
+                                            ),
+                                  );
+                                  _model.bloodSugarAvg = valueOrDefault<double>(
+                                    functions.avgSugarReadings(_model
+                                        .nextDayReadings!
+                                        .map((e) => e.cGMreading)
+                                        .toList()),
+                                    0.0,
+                                  );
+                                  setState(() {});
+
                                   setState(() {});
                                 },
                                 child: Icon(
@@ -549,13 +679,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
+                                          onTap: () =>
+                                              FocusScope.of(context).unfocus(),
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
@@ -599,17 +724,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     showModalBottomSheet(
                                       isScrollControlled: true,
                                       backgroundColor: Colors.transparent,
-                                      enableDrag: false,
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
+                                          onTap: () =>
+                                              FocusScope.of(context).unfocus(),
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
@@ -653,17 +772,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     showModalBottomSheet(
                                       isScrollControlled: true,
                                       backgroundColor: Colors.transparent,
-                                      enableDrag: false,
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
+                                          onTap: () =>
+                                              FocusScope.of(context).unfocus(),
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class RecipeModel extends FlutterFlowModel<RecipeWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -16,7 +15,6 @@ class RecipeModel extends FlutterFlowModel<RecipeWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     tabBarController?.dispose();
   }
 }

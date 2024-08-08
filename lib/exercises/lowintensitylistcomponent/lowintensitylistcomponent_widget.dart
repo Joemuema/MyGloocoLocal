@@ -50,7 +50,7 @@ class _LowintensitylistcomponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 20.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 5.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -160,7 +160,7 @@ class _LowintensitylistcomponentWidgetState
                       Text(
                         valueOrDefault<String>(
                           dateTimeFormat(
-                              'd/M/y', widget.lowintensitylistcomponent?.date),
+                              "d/M/y", widget.lowintensitylistcomponent?.date),
                           '0',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(

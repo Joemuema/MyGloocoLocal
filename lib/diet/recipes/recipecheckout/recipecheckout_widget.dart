@@ -145,45 +145,49 @@ class _RecipecheckoutWidgetState extends State<RecipecheckoutWidget> {
                             child: Form(
                               key: _model.formKey,
                               autovalidateMode: AutovalidateMode.disabled,
-                              child: FlutterFlowDropDown<String>(
-                                controller: _model.dropDownValueController ??=
-                                    FormFieldController<String>(null),
-                                options: const [
-                                  'Breakfast',
-                                  'Lunch',
-                                  'Supper',
-                                  'Snack'
-                                ],
-                                onChanged: (val) =>
-                                    setState(() => _model.dropDownValue = val),
-                                width: 309.0,
-                                height: 56.0,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
-                                    ),
-                                hintText: 'Please select meal type...',
-                                icon: Icon(
-                                  Icons.keyboard_arrow_down_rounded,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 10.0, 0.0),
+                                child: FlutterFlowDropDown<String>(
+                                  controller: _model.dropDownValueController ??=
+                                      FormFieldController<String>(null),
+                                  options: const [
+                                    'Breakfast',
+                                    'Lunch',
+                                    'Supper',
+                                    'Snack'
+                                  ],
+                                  onChanged: (val) => setState(
+                                      () => _model.dropDownValue = val),
+                                  width: 309.0,
+                                  height: 56.0,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
+                                  hintText: 'Please select meal type...',
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_down_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  elevation: 2.0,
+                                  borderColor:
+                                      FlutterFlowTheme.of(context).alternate,
+                                  borderWidth: 2.0,
+                                  borderRadius: 8.0,
+                                  margin: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 4.0, 16.0, 4.0),
+                                  hidesUnderline: true,
+                                  isOverButton: true,
+                                  isSearchable: false,
+                                  isMultiSelect: false,
                                 ),
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                elevation: 2.0,
-                                borderColor:
-                                    FlutterFlowTheme.of(context).alternate,
-                                borderWidth: 2.0,
-                                borderRadius: 8.0,
-                                margin: const EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 4.0, 16.0, 4.0),
-                                hidesUnderline: true,
-                                isOverButton: true,
-                                isSearchable: false,
-                                isMultiSelect: false,
                               ),
                             ),
                           ),
@@ -206,7 +210,7 @@ class _RecipecheckoutWidgetState extends State<RecipecheckoutWidget> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 10.0, 10.0, 7.0),
+                                        15.0, 10.0, 10.0, 7.0),
                                     child: Text(
                                       valueOrDefault<String>(
                                         widget.recipename?.title,

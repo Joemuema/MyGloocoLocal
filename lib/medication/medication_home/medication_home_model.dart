@@ -122,7 +122,6 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Firestore Query - Query a collection] action in MedicationHome widget.
   List<RemindersRecord>? allReminders;
   // Stores action output result for [Firestore Query - Query a collection] action in MedicationHome widget.
@@ -131,8 +130,6 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
   bool? permissionsGranted;
   // Stores action output result for [Firestore Query - Query a collection] action in MedicationHome widget.
   List<MedicineRecord>? lowCapacityMeds;
-  // Stores action output result for [Firestore Query - Query a collection] action in MedicationHome widget.
-  List<IndividualRemindersRecord>? unmarkedlReminders;
   // State field(s) for Calendar widget.
   DateTimeRange? calendarSelectedDay;
   // Stores action output result for [Firestore Query - Query a collection] action in Calendar widget.
@@ -141,10 +138,14 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
   List<IndividualRemindersRecord>? todaySubReminders;
   // Stores action output result for [Firestore Query - Query a collection] action in Calendar widget.
   List<IndividualRemindersRecord>? calendarSubReminders;
-  // Model for noElements component.
-  late NoElementsModel noElementsModel;
   // Models for homeReminder dynamic component.
   late FlutterFlowDynamicModels<HomeReminderModel> homeReminderModels;
+  // Model for noElements component.
+  late NoElementsModel noElementsModel1;
+  // Model for noElements component.
+  late NoElementsModel noElementsModel2;
+  // Model for noElements component.
+  late NoElementsModel noElementsModel3;
 
   @override
   void initState(BuildContext context) {
@@ -152,14 +153,17 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
       start: DateTime.now().startOfDay,
       end: DateTime.now().endOfDay,
     );
-    noElementsModel = createModel(context, () => NoElementsModel());
     homeReminderModels = FlutterFlowDynamicModels(() => HomeReminderModel());
+    noElementsModel1 = createModel(context, () => NoElementsModel());
+    noElementsModel2 = createModel(context, () => NoElementsModel());
+    noElementsModel3 = createModel(context, () => NoElementsModel());
   }
 
   @override
   void dispose() {
-    unfocusNode.dispose();
-    noElementsModel.dispose();
     homeReminderModels.dispose();
+    noElementsModel1.dispose();
+    noElementsModel2.dispose();
+    noElementsModel3.dispose();
   }
 }

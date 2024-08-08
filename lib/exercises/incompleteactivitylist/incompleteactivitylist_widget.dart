@@ -86,7 +86,7 @@ class _IncompleteactivitylistWidgetState
                 Text(
                   valueOrDefault<String>(
                     dateTimeFormat(
-                        'd/M/y', widget.incompleteactivitydocument?.date),
+                        "d/M/y", widget.incompleteactivitydocument?.date),
                     '0',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(

@@ -3,15 +3,9 @@ import 'diet_home_widget.dart' show DietHomeWidget;
 import 'package:flutter/material.dart';
 
 class DietHomeModel extends FlutterFlowModel<DietHomeWidget> {
-  ///  State fields for stateful widgets in this page.
-
-  final unfocusNode = FocusNode();
-
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

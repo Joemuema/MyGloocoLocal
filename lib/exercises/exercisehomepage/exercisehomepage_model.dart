@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 class ExercisehomepageModel extends FlutterFlowModel<ExercisehomepageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Carousel widget.
   CarouselController? carouselController;
   int carouselCurrentIndex = 1;
@@ -30,7 +29,6 @@ class ExercisehomepageModel extends FlutterFlowModel<ExercisehomepageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     incompleteactivitylistModels.dispose();
     exercisetaskstodaycomponentModels.dispose();
   }

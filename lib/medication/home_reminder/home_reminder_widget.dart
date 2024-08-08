@@ -2,6 +2,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'home_reminder_model.dart';
@@ -297,20 +298,19 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                     parent: widget.reminderID,
                                     queryBuilder: (individualRemindersRecord) =>
                                         individualRemindersRecord
-                                            .where(Filter.or(
-                                      Filter(
-                                        'ReminderID',
-                                        isEqualTo: widget.reminderID,
-                                      ),
-                                      Filter(
-                                        'Date',
-                                        isEqualTo: rowRemindersRecord.date,
-                                      ),
-                                      Filter(
-                                        'Time',
-                                        isEqualTo: rowRemindersRecord.time,
-                                      ),
-                                    )),
+                                            .where(
+                                              'Date',
+                                              isEqualTo: valueOrDefault<String>(
+                                                functions.getDate(
+                                                    getCurrentTimestamp),
+                                                'today',
+                                              ),
+                                            )
+                                            .where(
+                                              'Time',
+                                              isEqualTo:
+                                                  rowRemindersRecord.time,
+                                            ),
                                     singleRecord: true,
                                   ).then((s) => s.firstOrNull);
 
@@ -337,7 +337,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                               return AlertDialog(
                                                 title: const Text('Turn Off?'),
                                                 content: const Text(
-                                                    'Are you sure you want to turn off this reminder? It will automatically be marked as missed if you do.'),
+                                                    'Are you sure you want to turn off this reminder? It will not be triggered at the scheduled time but and will be marked as missed by default.'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
@@ -363,20 +363,19 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                     parent: widget.reminderID,
                                     queryBuilder: (individualRemindersRecord) =>
                                         individualRemindersRecord
-                                            .where(Filter.or(
-                                      Filter(
-                                        'ReminderID',
-                                        isEqualTo: widget.reminderID,
-                                      ),
-                                      Filter(
-                                        'Date',
-                                        isEqualTo: rowRemindersRecord.date,
-                                      ),
-                                      Filter(
-                                        'Time',
-                                        isEqualTo: rowRemindersRecord.time,
-                                      ),
-                                    )),
+                                            .where(
+                                              'Date',
+                                              isEqualTo: valueOrDefault<String>(
+                                                functions.getDate(
+                                                    getCurrentTimestamp),
+                                                'today',
+                                              ),
+                                            )
+                                            .where(
+                                              'Time',
+                                              isEqualTo:
+                                                  rowRemindersRecord.time,
+                                            ),
                                     singleRecord: true,
                                   ).then((s) => s.firstOrNull);
 

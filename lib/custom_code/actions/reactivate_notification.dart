@@ -58,7 +58,7 @@ Future reactivateNotification(
   Map<String, String?> additionalInfo = {
     'Date': date,
     'Time': time,
-    'ReminderID': reminderID.path,
+    'ReminderID': reminderID.id,
   };
 
   try {

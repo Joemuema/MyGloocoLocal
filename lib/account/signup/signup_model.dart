@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class SignupModel extends FlutterFlowModel<SignupWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // State field(s) for EmailAddress widget.
   FocusNode? emailAddressFocusNode;
@@ -65,7 +64,6 @@ class SignupModel extends FlutterFlowModel<SignupWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     emailAddressFocusNode?.dispose();
     emailAddressTextController?.dispose();
 

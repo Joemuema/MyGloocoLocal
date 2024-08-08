@@ -7,7 +7,6 @@ class UpperbodyexercisesModel
     extends FlutterFlowModel<UpperbodyexercisesWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Models for upperbodycomponent dynamic component.
   late FlutterFlowDynamicModels<UpperbodycomponentModel>
       upperbodycomponentModels;
@@ -20,7 +19,6 @@ class UpperbodyexercisesModel
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     upperbodycomponentModels.dispose();
   }
 }

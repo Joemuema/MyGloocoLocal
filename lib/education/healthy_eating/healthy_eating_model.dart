@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class HealthyEatingModel extends FlutterFlowModel<HealthyEatingWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -19,7 +18,5 @@ class HealthyEatingModel extends FlutterFlowModel<HealthyEatingWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

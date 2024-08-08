@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 class ListpageModel extends FlutterFlowModel<ListpageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Models for lowintensitylistcomponent dynamic component.
   late FlutterFlowDynamicModels<LowintensitylistcomponentModel>
       lowintensitylistcomponentModels;
@@ -31,7 +30,6 @@ class ListpageModel extends FlutterFlowModel<ListpageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     lowintensitylistcomponentModels.dispose();
     mediumsintensitylistcomponentModels.dispose();
     highintensitylistcomponentsModels.dispose();

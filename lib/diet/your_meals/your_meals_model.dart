@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class YourMealsModel extends FlutterFlowModel<YourMealsWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Calendar widget.
   DateTimeRange? calendarSelectedDay;
 
@@ -19,7 +18,5 @@ class YourMealsModel extends FlutterFlowModel<YourMealsWidget> {
   }
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

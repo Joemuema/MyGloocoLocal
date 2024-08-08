@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class ExerciseEdModel extends FlutterFlowModel<ExerciseEdWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -19,7 +18,5 @@ class ExerciseEdModel extends FlutterFlowModel<ExerciseEdWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

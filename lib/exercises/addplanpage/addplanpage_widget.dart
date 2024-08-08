@@ -50,9 +50,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -371,7 +369,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                   50.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
-                                  dateTimeFormat('d/M/y', _model.datePicked1),
+                                  dateTimeFormat("d/M/y", _model.datePicked1),
                                   'Choose Date',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -513,7 +511,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                     Text(
                                       valueOrDefault<String>(
                                         dateTimeFormat(
-                                            'jm', _model.datePicked2),
+                                            "jm", _model.datePicked2),
                                         'Choose Start Time',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -633,7 +631,7 @@ class _AddplanpageWidgetState extends State<AddplanpageWidget> {
                                     Text(
                                       valueOrDefault<String>(
                                         dateTimeFormat(
-                                            'jm', _model.datePicked3),
+                                            "jm", _model.datePicked3),
                                         'Choose Finish Time',
                                       ),
                                       style: FlutterFlowTheme.of(context)

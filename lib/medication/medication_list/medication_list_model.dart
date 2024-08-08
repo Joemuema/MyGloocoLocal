@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class MedicationListModel extends FlutterFlowModel<MedicationListWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Models for medListItem dynamic component.
   late FlutterFlowDynamicModels<MedListItemModel> medListItemModels1;
   // Stores action output result for [Firestore Query - Query a collection] action in medListItem widget.
@@ -26,7 +25,6 @@ class MedicationListModel extends FlutterFlowModel<MedicationListWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     medListItemModels1.dispose();
   }
 }

@@ -66,9 +66,7 @@ class _ListpageWidgetState extends State<ListpageWidget> {
             snapshot.data!;
 
         return GestureDetector(
-          onTap: () => _model.unfocusNode.canRequestFocus
-              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-              : FocusScope.of(context).unfocus(),
+          onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -234,6 +232,10 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                                 .where(
                                   'UserID',
                                   isEqualTo: FFAppState().UserID,
+                                )
+                                .where(
+                                  'date',
+                                  isLessThanOrEqualTo: getCurrentTimestamp,
                                 ),
                       ),
                       builder: (context, snapshot) {
@@ -330,6 +332,10 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                               .where(
                                 'UserID',
                                 isEqualTo: FFAppState().UserID,
+                              )
+                              .where(
+                                'date',
+                                isLessThanOrEqualTo: getCurrentTimestamp,
                               ),
                     ),
                     builder: (context, snapshot) {
@@ -424,6 +430,10 @@ class _ListpageWidgetState extends State<ListpageWidget> {
                               .where(
                                 'UserID',
                                 isEqualTo: FFAppState().UserID,
+                              )
+                              .where(
+                                'date',
+                                isLessThanOrEqualTo: getCurrentTimestamp,
                               ),
                     ),
                     builder: (context, snapshot) {

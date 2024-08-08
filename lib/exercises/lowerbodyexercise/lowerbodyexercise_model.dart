@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class LowerbodyexerciseModel extends FlutterFlowModel<LowerbodyexerciseWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Models for lowerbodyexercisescomponents dynamic component.
   late FlutterFlowDynamicModels<LowerbodyexercisescomponentsModel>
       lowerbodyexercisescomponentsModels;
@@ -19,7 +18,6 @@ class LowerbodyexerciseModel extends FlutterFlowModel<LowerbodyexerciseWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     lowerbodyexercisescomponentsModels.dispose();
   }
 }

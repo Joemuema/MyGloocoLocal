@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class SettingsModel extends FlutterFlowModel<SettingsWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Firestore Query - Query a collection] action in Settings widget.
   UsersRecord? sett;
 
@@ -14,7 +13,5 @@ class SettingsModel extends FlutterFlowModel<SettingsWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

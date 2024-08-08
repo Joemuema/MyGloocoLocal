@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class AddplanpageModel extends FlutterFlowModel<AddplanpageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // State field(s) for ActivitTextField widget.
   FocusNode? activitTextFieldFocusNode;
@@ -33,7 +32,6 @@ class AddplanpageModel extends FlutterFlowModel<AddplanpageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     activitTextFieldFocusNode?.dispose();
     activitTextFieldTextController?.dispose();
 

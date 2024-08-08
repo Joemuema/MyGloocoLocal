@@ -18,7 +18,6 @@ class FoodsearchModel extends FlutterFlowModel<FoodsearchWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Searchbar widget.
   FocusNode? searchbarFocusNode;
   TextEditingController? searchbarTextController;
@@ -30,7 +29,6 @@ class FoodsearchModel extends FlutterFlowModel<FoodsearchWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     searchbarFocusNode?.dispose();
     searchbarTextController?.dispose();
   }

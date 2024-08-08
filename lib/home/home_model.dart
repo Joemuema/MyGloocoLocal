@@ -12,18 +12,19 @@ class HomeModel extends FlutterFlowModel<HomeWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Firestore Query - Query a collection] action in Home widget.
   List<BGreadingsRecord>? todayReadings;
-  // Stores action output result for [Custom Action - averageGlucoseToday] action in Home widget.
-  double? averageGlucose;
+  // Stores action output result for [Firestore Query - Query a collection] action in Home widget.
+  List<IndividualRemindersRecord>? unmarkedReminders;
+  // Stores action output result for [Firestore Query - Query a collection] action in Icon widget.
+  List<BGreadingsRecord>? prevDayReadings;
   DateTime? datePicked;
+  // Stores action output result for [Firestore Query - Query a collection] action in Icon widget.
+  List<BGreadingsRecord>? nextDayReadings;
 
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

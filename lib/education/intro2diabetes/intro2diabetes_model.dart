@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 class Intro2diabetesModel extends FlutterFlowModel<Intro2diabetesWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -19,7 +18,5 @@ class Intro2diabetesModel extends FlutterFlowModel<Intro2diabetesWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

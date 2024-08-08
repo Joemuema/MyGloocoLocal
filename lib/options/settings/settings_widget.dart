@@ -83,9 +83,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -162,11 +160,8 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                 context: context,
                                 builder: (context) {
                                   return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
+                                    onTap: () =>
+                                        FocusScope.of(context).unfocus(),
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
                                       child: SizedBox(
@@ -289,20 +284,13 @@ class _SettingsWidgetState extends State<SettingsWidget>
                     await showModalBottomSheet(
                       isScrollControlled: true,
                       backgroundColor: Colors.transparent,
-                      enableDrag: false,
                       context: context,
                       builder: (context) {
                         return GestureDetector(
-                          onTap: () => _model.unfocusNode.canRequestFocus
-                              ? FocusScope.of(context)
-                                  .requestFocus(_model.unfocusNode)
-                              : FocusScope.of(context).unfocus(),
+                          onTap: () => FocusScope.of(context).unfocus(),
                           child: Padding(
                             padding: MediaQuery.viewInsetsOf(context),
-                            child: SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.65,
-                              child: const EditProfileWidget(),
-                            ),
+                            child: const EditProfileWidget(),
                           ),
                         );
                       },
@@ -376,20 +364,13 @@ class _SettingsWidgetState extends State<SettingsWidget>
                     await showModalBottomSheet(
                       isScrollControlled: true,
                       backgroundColor: Colors.transparent,
-                      enableDrag: false,
                       context: context,
                       builder: (context) {
                         return GestureDetector(
-                          onTap: () => _model.unfocusNode.canRequestFocus
-                              ? FocusScope.of(context)
-                                  .requestFocus(_model.unfocusNode)
-                              : FocusScope.of(context).unfocus(),
+                          onTap: () => FocusScope.of(context).unfocus(),
                           child: Padding(
                             padding: MediaQuery.viewInsetsOf(context),
-                            child: SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.5,
-                              child: const UnitsWidget(),
-                            ),
+                            child: const UnitsWidget(),
                           ),
                         );
                       },
@@ -453,11 +434,8 @@ class _SettingsWidgetState extends State<SettingsWidget>
                                   context: context,
                                   builder: (context) {
                                     return GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
+                                      onTap: () =>
+                                          FocusScope.of(context).unfocus(),
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
@@ -497,14 +475,10 @@ class _SettingsWidgetState extends State<SettingsWidget>
                     await showModalBottomSheet(
                       isScrollControlled: true,
                       backgroundColor: Colors.transparent,
-                      enableDrag: false,
                       context: context,
                       builder: (context) {
                         return GestureDetector(
-                          onTap: () => _model.unfocusNode.canRequestFocus
-                              ? FocusScope.of(context)
-                                  .requestFocus(_model.unfocusNode)
-                              : FocusScope.of(context).unfocus(),
+                          onTap: () => FocusScope.of(context).unfocus(),
                           child: Padding(
                             padding: MediaQuery.viewInsetsOf(context),
                             child: const Report2Widget(),
@@ -861,10 +835,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
                       context: context,
                       builder: (context) {
                         return GestureDetector(
-                          onTap: () => _model.unfocusNode.canRequestFocus
-                              ? FocusScope.of(context)
-                                  .requestFocus(_model.unfocusNode)
-                              : FocusScope.of(context).unfocus(),
+                          onTap: () => FocusScope.of(context).unfocus(),
                           child: Padding(
                             padding: MediaQuery.viewInsetsOf(context),
                             child: const LogoutWidget(),

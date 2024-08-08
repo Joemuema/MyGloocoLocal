@@ -23,5 +23,6 @@ Future<double> averageGlucoseToday(List<DocumentReference> documents) async {
     return 0.0;
   }
 
-  return total / count;
+  double avg = total / count;
+  return double.parse(avg.toStringAsFixed(2));
 }

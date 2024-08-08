@@ -41,9 +41,7 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -135,11 +133,8 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                                 context: context,
                                 builder: (context) {
                                   return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
+                                    onTap: () =>
+                                        FocusScope.of(context).unfocus(),
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
                                       child: SizedBox(
@@ -151,7 +146,7 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                                               .where((e) =>
                                                   e.date ==
                                                   dateTimeFormat(
-                                                      'yyyy-MM-dd',
+                                                      "yyyy-MM-dd",
                                                       _model.calendarSelectedDay
                                                           ?.start))
                                               .toList(),
