@@ -144,216 +144,199 @@ class _RecipeWidgetState extends State<RecipeWidget>
                           ),
                         ),
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                        child: Container(
-                          width: 348.0,
-                          height: 100.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4.0),
-                          ),
-                          child: Stack(
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Align(
-                                alignment: const AlignmentDirectional(-1.0, -1.0),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      14.0, 0.0, 0.0, 4.0),
-                                  child: Icon(
-                                    Icons.local_fire_department_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 34.0,
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(-1.0, 1.0),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      14.0, 0.0, 0.0, 4.0),
-                                  child: Icon(
-                                    FFIcons.kicons8Eggs50,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 34.0,
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(0.2, -1.0),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      61.0, 0.0, 0.0, 4.0),
-                                  child: Icon(
-                                    FFIcons.kicons8Wheat50,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 33.0,
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(0.2, 1.0),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      60.0, 0.0, 0.0, 4.0),
-                                  child: Icon(
-                                    FFIcons.kicons8Pizza50,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 34.0,
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(-0.75, -0.8),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      34.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      widget.enkcal?.energyKcal.toString(),
-                                      '0',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 17.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(0.74, 0.8),
-                                child: Text(
-                                  valueOrDefault<String>(
-                                    widget.fats?.fat.toString(),
-                                    '0',
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 17.0,
-                                        letterSpacing: 0.0,
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 15.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 10.0, 0.0),
+                                      child: Icon(
+                                        Icons.local_fire_department_outlined,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 34.0,
                                       ),
-                                ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(-0.7, 0.8),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      28.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      widget.proteins?.protein.toString(),
-                                      '0',
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 17.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(1.04, 0.8),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 1.0, 0.0),
-                                  child: Text(
-                                    'g fats',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 17.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(-0.2, 0.8),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 10.0, 0.0),
-                                  child: Text(
-                                    'g proteins',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 17.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(-0.2, -0.8),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 72.0, 0.0),
-                                  child: Text(
-                                    'kCal',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 17.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(0.74, -0.8),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 15.0, 0.0),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      widget.carbs?.carbohydrate.toString(),
-                                      '0',
+                                    Text(
+                                      valueOrDefault<String>(
+                                        widget.enkcal?.energyKcal.toString(),
+                                        '0',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                          ),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 17.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
+                                    Text(
+                                      ' kCal',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Align(
-                                alignment: const AlignmentDirectional(1.04, -0.8),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    'g carbs',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 17.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 15.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 10.0, 0.0),
+                                      child: Icon(
+                                        FFIcons.kicons8Eggs50,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 34.0,
+                                      ),
+                                    ),
+                                    Text(
+                                      valueOrDefault<String>(
+                                        widget.proteins?.protein.toString(),
+                                        '0',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    Text(
+                                      'g proteins',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
-                        ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 25.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 15.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 0.0, 10.0, 0.0),
+                                        child: Icon(
+                                          FFIcons.kicons8Wheat50,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 34.0,
+                                        ),
+                                      ),
+                                      Text(
+                                        valueOrDefault<String>(
+                                          widget.carbs?.carbohydrate
+                                              .toString(),
+                                          '0',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Text(
+                                        'g carbs',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 15.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 0.0, 10.0, 0.0),
+                                        child: Icon(
+                                          FFIcons.kicons8Pizza50,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 34.0,
+                                        ),
+                                      ),
+                                      Text(
+                                        valueOrDefault<String>(
+                                          widget.fats?.fat.toString(),
+                                          '0',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 18.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 16.0, 0.0),
+                                        child: Text(
+                                          'g fats',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                       Divider(
                         height: 32.0,
@@ -368,7 +351,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
                             Stack(
                               children: [
                                 SizedBox(
-                                  height: 200.0,
+                                  height: 300.0,
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         7.0, 5.0, 7.0, 10.0),
@@ -437,6 +420,10 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                             controller: _model.tabBarController,
                                             children: [
                                               Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.9,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -454,7 +441,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                                 child: Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          0.0, 10.0, 0.0, 0.0),
+                                                          0.0, 10.0, 0.0, 10.0),
                                                   child: Builder(
                                                     builder: (context) {
                                                       final ingredients =
@@ -483,10 +470,10 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                                                       .fromSTEB(
                                                                           15.0,
                                                                           0.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                          15.0,
+                                                                          7.0),
                                                               child: Text(
-                                                                ingredientsItem,
+                                                                '- $ingredientsItem',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -494,7 +481,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                                                       fontFamily:
                                                                           'Readex Pro',
                                                                       fontSize:
-                                                                          15.0,
+                                                                          16.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
@@ -508,6 +495,10 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                                 ),
                                               ),
                                               Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.9,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -525,7 +516,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                                 child: Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          0.0, 10.0, 0.0, 0.0),
+                                                          0.0, 10.0, 0.0, 10.0),
                                                   child: Builder(
                                                     builder: (context) {
                                                       final instructions =
@@ -554,10 +545,10 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                                                       .fromSTEB(
                                                                           15.0,
                                                                           0.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                          15.0,
+                                                                          7.0),
                                                               child: Text(
-                                                                instructionsItem,
+                                                                '- $instructionsItem',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -565,7 +556,7 @@ class _RecipeWidgetState extends State<RecipeWidget>
                                                                       fontFamily:
                                                                           'Readex Pro',
                                                                       fontSize:
-                                                                          15.0,
+                                                                          16.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),

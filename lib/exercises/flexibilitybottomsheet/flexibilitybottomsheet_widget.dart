@@ -1,5 +1,4 @@
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -49,7 +48,7 @@ class _FlexibilitybottomsheetWidgetState
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 460.0,
+      height: 491.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
       ),
@@ -57,26 +56,13 @@ class _FlexibilitybottomsheetWidgetState
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                FlutterFlowIconButton(
-                  borderColor: Colors.transparent,
-                  borderRadius: 20.0,
-                  borderWidth: 1.0,
-                  buttonSize: 40.0,
-                  icon: Icon(
-                    Icons.arrow_back_ios_sharp,
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    size: 20.0,
-                  ),
-                  onPressed: () async {
-                    context.safePop();
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(100.0, 0.0, 0.0, 0.0),
-                  child: FFButtonWidget(
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FFButtonWidget(
                     onPressed: () {
                       print('Button pressed ...');
                     },
@@ -103,21 +89,20 @@ class _FlexibilitybottomsheetWidgetState
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      widget.flexibilityexercises!.image,
-                      height: 200.0,
-                      fit: BoxFit.fill,
-                    ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    widget.flexibilityexercises!.image,
+                    width: MediaQuery.sizeOf(context).width,
+                    height: 200.0,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ],
@@ -134,6 +119,7 @@ class _FlexibilitybottomsheetWidgetState
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
+                          color: FlutterFlowTheme.of(context).primary,
                           fontSize: 18.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.bold,
@@ -151,7 +137,8 @@ class _FlexibilitybottomsheetWidgetState
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(5.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
                   child: Text(
                     valueOrDefault<String>(
                       widget.flexibilityexercises?.howto,
@@ -172,14 +159,19 @@ class _FlexibilitybottomsheetWidgetState
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text(
-                    'Process Review',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          fontSize: 16.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w600,
-                        ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                    child: Text(
+                      'Process Review',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            color: FlutterFlowTheme.of(context).primary,
+                            fontSize: 16.0,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
                   ),
                 ],
               ),

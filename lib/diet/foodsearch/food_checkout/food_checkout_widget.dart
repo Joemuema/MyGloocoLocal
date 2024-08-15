@@ -17,7 +17,7 @@ class FoodCheckoutWidget extends StatefulWidget {
     required this.finalfoodlist,
   });
 
-  final List<FoodRecord>? finalfoodlist;
+  final List<FilteredFoodRecord>? finalfoodlist;
 
   @override
   State<FoodCheckoutWidget> createState() => _FoodCheckoutWidgetState();

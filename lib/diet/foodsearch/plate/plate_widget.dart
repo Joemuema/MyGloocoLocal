@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/components/meal_food_item_widget.dart';
 import '/diet/foodsearch/food_checkout/food_checkout_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -16,7 +17,7 @@ class PlateWidget extends StatefulWidget {
     this.updatedFoodList,
   });
 
-  final List<FoodRecord>? updatedFoodList;
+  final List<FilteredFoodRecord>? updatedFoodList;
 
   @override
   State<PlateWidget> createState() => _PlateWidgetState();
@@ -35,7 +36,7 @@ class _PlateWidgetState extends State<PlateWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.updatedFoodList =
-          widget.updatedFoodList!.toList().cast<FoodRecord>();
+          widget.updatedFoodList!.toList().cast<FilteredFoodRecord>();
       setState(() {});
     });
 
@@ -106,105 +107,202 @@ class _PlateWidgetState extends State<PlateWidget> {
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   8.0, 8.0, 8.0, 8.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12.0),
-                                child: Image.asset(
-                                  'assets/images/output-onlinepngtools.png',
-                                  width: double.infinity,
-                                  height: 700.0,
-                                  fit: BoxFit.contain,
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'Foodsearch',
+                                    queryParameters: {
+                                      'currentFoodList': serializeParam(
+                                        _model.updatedFoodList,
+                                        ParamType.Document,
+                                        isList: true,
+                                      ),
+                                      'location': serializeParam(
+                                        'Plate',
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'currentFoodList': _model.updatedFoodList,
+                                    },
+                                  );
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  child: Image.asset(
+                                    'assets/images/output-onlinepngtools.png',
+                                    width: double.infinity,
+                                    height: 700.0,
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                           Align(
                             alignment: const AlignmentDirectional(0.43, 0.41),
-                            child: FlutterFlowIconButton(
-                              borderColor: FlutterFlowTheme.of(context).primary,
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              fillColor: Colors.white,
-                              icon: const Icon(
-                                FFIcons.kicons8Meat50,
-                                color: Color(0xFF0D0D0D),
-                                size: 24.0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: FlutterFlowIconButton(
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 49.0,
+                                fillColor: Colors.white,
+                                icon: const Icon(
+                                  FFIcons.kicons8Meat50,
+                                  color: Color(0xFF0D0D0D),
+                                  size: 24.0,
+                                ),
+                                onPressed: () async {
+                                  context.pushNamed(
+                                    'Foodsearch',
+                                    queryParameters: {
+                                      'currentFoodList': serializeParam(
+                                        _model.updatedFoodList,
+                                        ParamType.Document,
+                                        isList: true,
+                                      ),
+                                      'location': serializeParam(
+                                        'Plate',
+                                        ParamType.String,
+                                      ),
+                                      'filter': serializeParam(
+                                        'P',
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'currentFoodList': _model.updatedFoodList,
+                                    },
+                                  );
+                                },
                               ),
-                              onPressed: () async {
-                                context.pushNamed(
-                                  'Foodsearch',
-                                  queryParameters: {
-                                    'currentFoodList': serializeParam(
-                                      _model.updatedFoodList,
-                                      ParamType.Document,
-                                      isList: true,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    'currentFoodList': _model.updatedFoodList,
-                                  },
-                                );
-                              },
                             ),
                           ),
                           Align(
                             alignment: const AlignmentDirectional(-0.51, -0.01),
-                            child: FlutterFlowIconButton(
-                              borderColor: FlutterFlowTheme.of(context).primary,
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              fillColor: Colors.white,
-                              icon: const FaIcon(
-                                FontAwesomeIcons.carrot,
-                                color: Color(0xFF0D0D0D),
-                                size: 24.0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: FlutterFlowIconButton(
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 49.0,
+                                fillColor: Colors.white,
+                                icon: const FaIcon(
+                                  FontAwesomeIcons.carrot,
+                                  color: Color(0xFF0D0D0D),
+                                  size: 24.0,
+                                ),
+                                onPressed: () async {
+                                  context.pushNamed(
+                                    'Foodsearch',
+                                    queryParameters: {
+                                      'currentFoodList': serializeParam(
+                                        _model.updatedFoodList,
+                                        ParamType.Document,
+                                        isList: true,
+                                      ),
+                                      'location': serializeParam(
+                                        'Plate',
+                                        ParamType.String,
+                                      ),
+                                      'filter': serializeParam(
+                                        'V',
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'currentFoodList': _model.updatedFoodList,
+                                    },
+                                  );
+                                },
                               ),
-                              onPressed: () async {
-                                context.pushNamed(
-                                  'Foodsearch',
-                                  queryParameters: {
-                                    'currentFoodList': serializeParam(
-                                      _model.updatedFoodList,
-                                      ParamType.Document,
-                                      isList: true,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    'currentFoodList': _model.updatedFoodList,
-                                  },
-                                );
-                              },
                             ),
                           ),
                           Align(
                             alignment: const AlignmentDirectional(0.44, -0.4),
-                            child: FlutterFlowIconButton(
-                              borderColor: FlutterFlowTheme.of(context).primary,
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              fillColor: Colors.white,
-                              icon: const Icon(
-                                FFIcons.kicons8Wheat50,
-                                color: Color(0xFF0D0D0D),
-                                size: 24.0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: FlutterFlowIconButton(
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 49.0,
+                                fillColor: Colors.white,
+                                icon: const Icon(
+                                  FFIcons.kicons8Wheat50,
+                                  color: Color(0xFF0D0D0D),
+                                  size: 24.0,
+                                ),
+                                onPressed: () async {
+                                  context.pushNamed(
+                                    'Foodsearch',
+                                    queryParameters: {
+                                      'currentFoodList': serializeParam(
+                                        _model.updatedFoodList,
+                                        ParamType.Document,
+                                        isList: true,
+                                      ),
+                                      'location': serializeParam(
+                                        'Plate',
+                                        ParamType.String,
+                                      ),
+                                      'filter': serializeParam(
+                                        'C',
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'currentFoodList': _model.updatedFoodList,
+                                    },
+                                  );
+                                },
                               ),
-                              onPressed: () async {
-                                context.pushNamed(
-                                  'Foodsearch',
-                                  queryParameters: {
-                                    'currentFoodList': serializeParam(
-                                      _model.updatedFoodList,
-                                      ParamType.Document,
-                                      isList: true,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    'currentFoodList': _model.updatedFoodList,
-                                  },
-                                );
-                              },
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(-0.63, 0.15),
+                            child: Text(
+                              'Fruits&Vegetables',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(0.56, -0.18),
+                            child: Text(
+                              'Carbohydrates',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(0.41, 0.18),
+                            child: Text(
+                              'Proteins',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
                             ),
                           ),
                         ],
@@ -218,7 +316,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 10.0, 10.0, 10.0, 10.0),
                             child: Text(
-                              'Estimations are per 100g of edible portion on fresh weight basis',
+                              'Estimations are per 100g of edible portion on fresh weight basis.\nTo search for uncategorized meals, click anywhere on the plate image',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -232,362 +330,134 @@ class _PlateWidgetState extends State<PlateWidget> {
                         ),
                       ],
                     ),
-                    Align(
-                      alignment: const AlignmentDirectional(-1.0, 0.0),
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(24.0, 4.0, 0.0, 0.0),
-                        child: Text(
-                          'Summary',
-                          style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.black,
-                                    fontSize: 29.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                        ),
-                      ),
-                    ),
-                    Builder(
-                      builder: (context) {
-                        final foodList = _model.updatedFoodList.toList();
-
-                        return ListView.builder(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: foodList.length,
-                          itemBuilder: (context, foodListIndex) {
-                            final foodListItem = foodList[foodListIndex];
-                            return Container(
-                              width: 100.0,
-                              height: 129.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                    if (widget.updatedFoodList != null &&
+                        (widget.updatedFoodList)!.isNotEmpty)
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 4.0, 0.0, 0.0),
+                              child: Text(
+                                'Summary',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.black,
+                                      fontSize: 29.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 10.0, 10.0, 10.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Stack(
+                            ),
+                          ),
+                          Builder(
+                            builder: (context) {
+                              final foodList = _model.updatedFoodList.toList();
+
+                              return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: foodList.length,
+                                itemBuilder: (context, foodListIndex) {
+                                  final foodListItem = foodList[foodListIndex];
+                                  return Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 5.0, 10.0, 5.0),
+                                    child: wrapWithModel(
+                                      model: _model.mealFoodItemModels.getModel(
+                                        foodListItem.reference.id,
+                                        foodListIndex,
+                                      ),
+                                      updateCallback: () => setState(() {}),
+                                      child: MealFoodItemWidget(
+                                        key: Key(
+                                          'Key3ub_${foodListItem.reference.id}',
+                                        ),
+                                        foodItem: foodListItem,
+                                        removeFoodItem: () async {
+                                          _model.removeFromUpdatedFoodList(
+                                              foodListItem);
+                                          setState(() {});
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                10.0, 0.0, 10.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(-0.8, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  22.0, 10.0, 0.0, 10.0),
-                                          child: Text(
-                                            'kCal',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  fontSize: 17.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(-0.8, 1.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  30.0, 0.0, 0.0, 10.0),
-                                          child: Text(
-                                            'g Carbs',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  fontSize: 17.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.3, 1.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 10.0, 7.0, 10.0),
-                                          child: Text(
-                                            'g Fat',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  fontSize: 17.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.45, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  72.0, 10.0, 7.0, 10.0),
-                                          child: Text(
-                                            'g Protein',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  fontSize: 17.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(1.0, 0.0),
-                                        child: FlutterFlowIconButton(
-                                          borderColor: Colors.transparent,
-                                          borderRadius: 20.0,
-                                          borderWidth: 1.0,
-                                          buttonSize: 40.0,
-                                          icon: Icon(
-                                            Icons.clear_sharp,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
-                                          ),
-                                          onPressed: () async {
-                                            _model.removeFromUpdatedFoodList(
-                                                foodListItem);
-                                            setState(() {});
-                                          },
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  7.0, 10.0, 0.0, 10.0),
-                                          child: Text(
-                                            valueOrDefault<String>(
-                                              foodListItem.energyKcal
-                                                  .toString(),
-                                              '---',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  fontSize: 17.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.1, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 7.0, 10.0),
-                                          child: Text(
-                                            valueOrDefault<String>(
-                                              foodListItem.protein.toString(),
-                                              '---',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  fontSize: 17.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(-1.0, 1.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  7.0, 0.0, 0.0, 10.0),
-                                          child: Text(
-                                            valueOrDefault<String>(
-                                              foodListItem.carbohydrates
-                                                  .toString(),
-                                              '---',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  fontSize: 17.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.1, 1.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 10.0, 7.0, 10.0),
-                                          child: Text(
-                                            valueOrDefault<String>(
-                                              foodListItem.fat.toString(),
-                                              '---',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  fontSize: 17.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ),
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            7.0, 10.0, 0.0, 10.0),
-                                        child: Text(
-                                          valueOrDefault<String>(
-                                            foodListItem.food,
-                                            '----',
+                                            24.0, 10.0, 24.0, 0.0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              enableDrag: false,
+                                              context: context,
+                                              builder: (context) {
+                                                return GestureDetector(
+                                                  onTap: () =>
+                                                      FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child: FoodCheckoutWidget(
+                                                      finalfoodlist: _model
+                                                          .updatedFoodList,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then(
+                                                (value) => safeSetState(() {}));
+                                          },
+                                          text: 'Record Meal',
+                                          options: FFButtonOptions(
+                                            width: double.infinity,
+                                            height: 50.0,
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            iconPadding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color: Colors.white,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            elevation: 3.0,
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 17.0,
-                                                letterSpacing: 0.0,
-                                              ),
                                         ),
                                       ),
                                     ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Align(
-                                      alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Total kCal content:',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 17.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      'Hello World',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            fontSize: 17.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w800,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 10.0, 24.0, 0.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      await showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: Colors.transparent,
-                                        enableDrag: false,
-                                        context: context,
-                                        builder: (context) {
-                                          return GestureDetector(
-                                            onTap: () => FocusScope.of(context)
-                                                .unfocus(),
-                                            child: Padding(
-                                              padding: MediaQuery.viewInsetsOf(
-                                                  context),
-                                              child: FoodCheckoutWidget(
-                                                finalfoodlist:
-                                                    _model.updatedFoodList,
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ).then((value) => safeSetState(() {}));
-                                    },
-                                    text: 'Record Meal',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 50.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                      iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: Colors.white,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 3.0,
-                                      borderRadius: BorderRadius.circular(12.0),
-                                    ),
                                   ),
                                 ),
                               ],
@@ -595,7 +465,6 @@ class _PlateWidgetState extends State<PlateWidget> {
                           ),
                         ],
                       ),
-                    ),
                   ],
                 ),
               ],

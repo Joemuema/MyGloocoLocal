@@ -79,106 +79,113 @@ class _MonitoringAndMedicationWidgetState
                               PageController(initialPage: 0),
                           scrollDirection: Axis.horizontal,
                           children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 20.0, 20.0, 0.0),
-                                  child: Container(
-                                    height: 200.0,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: Image.network(
-                                          'https://images.unsplash.com/photo-1685061972799-d721ffba1923?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyMnx8aW5zdWxpbnxlbnwwfHx8fDE3MjE5NzgwNjN8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                                        ).image,
-                                      ),
-                                      borderRadius: BorderRadius.circular(12.0),
-                                    ),
-                                    child: Align(
-                                      alignment:
-                                          const AlignmentDirectional(-1.0, 1.0),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 0.0, 20.0),
-                                        child: Text(
-                                          'Monitoring and Managing Medications',
-                                          textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleLarge
-                                              .override(
-                                                fontFamily: 'Inter',
-                                                color: const Color(0xFFFFF9F9),
-                                                fontSize: 25.0,
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
+                            SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 15.0, 0.0, 0.0),
+                                        10.0, 10.0, 10.0, 0.0),
                                     child: Container(
-                                      width: 350.0,
-                                      height: 609.0,
+                                      width: MediaQuery.sizeOf(context).width,
+                                      height:
+                                          MediaQuery.sizeOf(context).height *
+                                              0.25,
                                       decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: Image.network(
+                                            'https://images.unsplash.com/photo-1685061972799-d721ffba1923?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyMnx8aW5zdWxpbnxlbnwwfHx8fDE3MjE5NzgwNjN8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                          ).image,
+                                        ),
                                         borderRadius:
-                                            BorderRadius.circular(14.0),
+                                            BorderRadius.circular(12.0),
                                       ),
-                                      child: SingleChildScrollView(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Text(
-                                                'Regular monitoring of blood glucose levels is essential for people with diabetes to manage their condition effectively.\n\nBy tracking blood sugar levels, individuals can identify patterns and make informed decisions about their diet, physical activity, and medications',
-                                                textAlign: TextAlign.start,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 20.0, 0.0, 0.0),
-                                              child: Text(
-                                                'Medications play a critical role in diabetes management, particularly for those with Type 1 diabetes who require insulin therapy. \n\nFor people with Type 2 diabetes, medications may include oral hypoglycemics, non-insulin injectables, or insulin, depending on the severity of their condition.\n\nEffective use of medications, combined with regular monitoring, forms the backbone of successful diabetes management.',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                          ],
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, 1.0),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  20.0, 0.0, 0.0, 20.0),
+                                          child: Text(
+                                            'Monitoring and Managing Medications',
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleLarge
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  color: const Color(0xFFFFF9F9),
+                                                  fontSize: 25.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 15.0, 0.0, 0.0),
+                                      child: Container(
+                                        width: 350.0,
+                                        height: 609.0,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(14.0),
+                                        ),
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Text(
+                                                  'Regular monitoring of blood glucose levels is essential for people with diabetes to manage their condition effectively.\n\nBy tracking blood sugar levels, individuals can identify patterns and make informed decisions about their diet, physical activity, and medications',
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 20.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Medications play a critical role in diabetes management, particularly for those with Type 1 diabetes who require insulin therapy. \n\nFor people with Type 2 diabetes, medications may include oral hypoglycemics, non-insulin injectables, or insulin, depending on the severity of their condition.\n\nEffective use of medications, combined with regular monitoring, forms the backbone of successful diabetes management.',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 18.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             SingleChildScrollView(
                               child: Column(

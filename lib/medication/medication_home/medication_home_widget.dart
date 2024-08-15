@@ -36,6 +36,8 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.today = functions.getDate(getCurrentTimestamp);
+      _model.expandedCalendar = false;
+      setState(() {});
       _model.allReminders = await queryRemindersRecordOnce(
         queryBuilder: (remindersRecord) => remindersRecord.where(
           'UserID',
@@ -292,310 +294,1168 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                FlutterFlowCalendar(
-                  color: FlutterFlowTheme.of(context).primary,
-                  iconColor: FlutterFlowTheme.of(context).secondaryText,
-                  weekFormat: true,
-                  weekStartsMonday: false,
-                  initialDate: getCurrentTimestamp,
-                  rowHeight: 64.0,
-                  onChange: (DateTimeRange? newSelectedDate) async {
-                    if (_model.calendarSelectedDay == newSelectedDate) {
-                      return;
-                    }
-                    _model.calendarSelectedDay = newSelectedDate;
-                    _model.calendarDate = valueOrDefault<String>(
-                      functions.getDate(_model.calendarSelectedDay!.start),
-                      'date',
-                    );
-                    setState(() {});
-                    _model.calendarReminders = await queryRemindersRecordOnce(
-                      queryBuilder: (remindersRecord) => remindersRecord.where(
-                        'UserID',
-                        isEqualTo: FFAppState().UserID,
-                      ),
-                    );
-                    if (functions.getDate(_model.calendarSelectedDay!.start) ==
-                        functions.getDate(
-                            functions.currentDate(getCurrentTimestamp))) {
-                      _model.todaySubReminders =
-                          await queryIndividualRemindersRecordOnce(
-                        queryBuilder: (individualRemindersRecord) =>
-                            individualRemindersRecord
-                                .where(
+                Stack(
+                  children: [
+                    Builder(
+                      builder: (context) {
+                        if (_model.expandedCalendar) {
+                          return FlutterFlowCalendar(
+                            color: FlutterFlowTheme.of(context).primary,
+                            iconColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            weekFormat: false,
+                            weekStartsMonday: false,
+                            initialDate: _model.datePicked != null
+                                ? _model.calendarDateTime
+                                : getCurrentTimestamp,
+                            rowHeight: 64.0,
+                            onChange: (DateTimeRange? newSelectedDate) async {
+                              if (_model.calendarSelectedDay1 ==
+                                  newSelectedDate) {
+                                return;
+                              }
+                              _model.calendarSelectedDay1 = newSelectedDate;
+                              _model.calendarDate = valueOrDefault<String>(
+                                functions.getDate(
+                                    _model.calendarSelectedDay1!.start),
+                                'date',
+                              );
+                              setState(() {});
+                              if (_model.calendarChanged == true) {
+                                _model.calendarChanged = false;
+                                setState(() {});
+                              }
+                              _model.exCalendarReminders =
+                                  await queryRemindersRecordOnce(
+                                queryBuilder: (remindersRecord) =>
+                                    remindersRecord.where(
                                   'UserID',
                                   isEqualTo: FFAppState().UserID,
-                                )
-                                .where(
-                                  'Date',
-                                  isEqualTo: valueOrDefault<String>(
-                                    _model.today,
-                                    'date',
-                                  ),
                                 ),
-                      );
-                      _model.listOfUpcomingTimes = functions
-                          .combineTimeLists(
-                              _model.allReminders!
-                                  .where((e) =>
-                                      (e.date == functions.getDate(getCurrentTimestamp)) &&
-                                      (functions.todayTime(e.time) >=
-                                          getCurrentTimestamp))
-                                  .toList()
-                                  .map((e) => e.time)
-                                  .toList(),
-                              _model.allReminders!
-                                  .where((e) =>
-                                      (e.frequency == 'Daily') &&
-                                      (e.fIrstDateTime! <=
-                                          functions.currentDate(
-                                              getCurrentTimestamp)) &&
-                                      (e.lastDateTime! >=
-                                          functions.currentDate(
-                                              getCurrentTimestamp)) &&
-                                      (functions.todayTime(e.time) >=
-                                          getCurrentTimestamp))
-                                  .toList()
-                                  .map((e) => e.time)
-                                  .toList(),
-                              _model.allReminders!
-                                  .where((e) =>
-                                      (e.frequency == 'Weekly') &&
-                                      (e.day ==
-                                          functions.getDayofWeek(
-                                              getCurrentTimestamp)) &&
-                                      (e.fIrstDateTime! <=
-                                          functions.currentDate(
-                                              getCurrentTimestamp)) &&
-                                      (e.lastDateTime! >=
-                                          functions.currentDate(getCurrentTimestamp)) &&
-                                      (functions.todayTime(e.time) >= getCurrentTimestamp))
-                                  .toList()
-                                  .map((e) => e.time)
-                                  .toList(),
-                              _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp)).toList().map((e) => e.time).toList())!
-                          .sortedList(keyOf: (e) => e, desc: false)
-                          .unique((e) => e)
-                          .toList()
-                          .cast<String>();
-                      _model.upcomingReminders = functions
-                          .combineReminderLists(
-                              _model.allReminders!
-                                  .where((e) =>
-                                      (e.date == functions.getDate(getCurrentTimestamp)) &&
-                                      (functions.todayTime(e.time) >=
-                                          getCurrentTimestamp))
-                                  .toList(),
-                              _model.allReminders!
-                                  .where((e) =>
-                                      (e.frequency == 'Daily') &&
-                                      (e.fIrstDateTime! <=
-                                          functions.currentDate(
-                                              getCurrentTimestamp)) &&
-                                      (e.lastDateTime! >=
-                                          functions.currentDate(
-                                              getCurrentTimestamp)) &&
-                                      (functions.todayTime(e.time) >=
-                                          getCurrentTimestamp))
-                                  .toList(),
-                              _model.allReminders!
-                                  .where((e) =>
-                                      (e.frequency == 'Weekly') &&
-                                      (e.day ==
-                                          functions.getDayofWeek(
-                                              getCurrentTimestamp)) &&
-                                      (e.fIrstDateTime! <=
-                                          functions.currentDate(
-                                              getCurrentTimestamp)) &&
-                                      (e.lastDateTime! >=
-                                          functions.currentDate(getCurrentTimestamp)) &&
-                                      (e.timeDT! >= functions.commonTimeDT(getCurrentTimestamp)))
-                                  .toList(),
-                              _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp)).toList())!
-                          .toList()
-                          .cast<RemindersRecord>();
-                      _model.listOfTakenTimes = _model.todaySubReminders!
-                          .where((e) =>
-                              (e.status == 'Taken') &&
-                              (functions.todayTime(e.time) <
-                                  getCurrentTimestamp))
-                          .toList()
-                          .map((e) => e.time)
-                          .toList()
-                          .unique((e) => e)
-                          .sortedList(keyOf: (e) => e, desc: false)
-                          .toList()
-                          .cast<String>();
-                      _model.takenReminders = _model.todaySubReminders!
-                          .where((e) =>
-                              (e.status == 'Taken') &&
-                              (functions.todayTime(e.time) <
-                                  getCurrentTimestamp))
-                          .toList()
-                          .cast<IndividualRemindersRecord>();
-                      _model.listOfMissedTimes = _model.todaySubReminders!
-                          .where((e) =>
-                              (e.status == 'Missed') &&
-                              (functions.todayTime(e.time) <
-                                  getCurrentTimestamp))
-                          .toList()
-                          .map((e) => e.time)
-                          .toList()
-                          .unique((e) => e)
-                          .sortedList(keyOf: (e) => e, desc: false)
-                          .toList()
-                          .cast<String>();
-                      _model.missedReminders = _model.todaySubReminders!
-                          .where((e) =>
-                              (e.status == 'Missed') &&
-                              (functions.todayTime(e.time) <
-                                  getCurrentTimestamp))
-                          .toList()
-                          .cast<IndividualRemindersRecord>();
-                      setState(() {});
-                    } else {
-                      _model.calendarSubReminders =
-                          await queryIndividualRemindersRecordOnce(
-                        queryBuilder: (individualRemindersRecord) =>
-                            individualRemindersRecord
-                                .where(
-                                  'UserID',
-                                  isEqualTo: FFAppState().UserID,
-                                )
-                                .where(
-                                  'Date',
-                                  isEqualTo: valueOrDefault<String>(
-                                    _model.calendarDate,
-                                    'date',
-                                  ),
-                                ),
-                      );
-                      _model.listOfUpcomingTimes = functions
-                          .combineTimeLists(
-                              _model.calendarReminders!
-                                  .where((e) =>
-                                      (e.date == functions.getDate(_model.calendarSelectedDay!.start)) &&
-                                      (_model.calendarSelectedDay!.start >=
-                                          functions.currentDate(
-                                              getCurrentTimestamp)))
-                                  .toList()
-                                  .map((e) => e.time)
-                                  .toList(),
-                              _model.calendarReminders!
-                                  .where((e) =>
-                                      (e.frequency == 'Daily') &&
-                                      (_model.calendarSelectedDay!.start >=
-                                          functions.currentDate(
-                                              getCurrentTimestamp)) &&
-                                      (e.fIrstDateTime! <=
-                                          functions.currentDate(_model
-                                              .calendarSelectedDay!.start)) &&
-                                      (e.lastDateTime! >=
-                                          functions.currentDate(
-                                              _model.calendarSelectedDay!.start)))
-                                  .toList()
-                                  .map((e) => e.time)
-                                  .toList(),
-                              _model.calendarReminders!.where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(_model.calendarSelectedDay!.start)) && (_model.calendarSelectedDay!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay!.start))).toList().map((e) => e.time).toList(),
-                              _model.calendarReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(_model.calendarSelectedDay!.start)) && (_model.calendarSelectedDay!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay!.start))).toList().map((e) => e.time).toList())!
-                          .sortedList(keyOf: (e) => e, desc: false)
-                          .unique((e) => e)
-                          .toList()
-                          .cast<String>();
-                      _model.upcomingReminders = functions
-                          .combineReminderLists(
-                              _model.calendarReminders!
-                                  .where((e) =>
-                                      (e.date == functions.getDate(_model.calendarSelectedDay!.start)) &&
-                                      (_model.calendarSelectedDay!.start >=
-                                          functions.currentDate(
-                                              getCurrentTimestamp)))
-                                  .toList(),
-                              _model.calendarReminders!
-                                  .where((e) =>
-                                      (e.frequency == 'Daily') &&
-                                      (_model.calendarSelectedDay!.start >=
-                                          functions.currentDate(
-                                              getCurrentTimestamp)) &&
-                                      (e.fIrstDateTime! <=
-                                          functions.currentDate(_model
-                                              .calendarSelectedDay!.start)) &&
-                                      (e.lastDateTime! >=
-                                          functions.currentDate(
-                                              _model.calendarSelectedDay!.start)))
-                                  .toList(),
-                              _model.calendarReminders!.where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(_model.calendarSelectedDay!.start)) && (_model.calendarSelectedDay!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay!.start))).toList(),
-                              _model.calendarReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(_model.calendarSelectedDay!.start)) && (_model.calendarSelectedDay!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay!.start))).toList())!
-                          .toList()
-                          .cast<RemindersRecord>();
-                      _model.listOfTakenTimes = _model.calendarSubReminders!
-                          .where((e) =>
-                              (e.status == 'Taken') &&
-                              (_model.calendarSelectedDay!.start <
-                                  functions.currentDate(getCurrentTimestamp)))
-                          .toList()
-                          .map((e) => e.time)
-                          .toList()
-                          .unique((e) => e)
-                          .sortedList(keyOf: (e) => e, desc: false)
-                          .toList()
-                          .cast<String>();
-                      _model.takenReminders = _model.calendarSubReminders!
-                          .where((e) =>
-                              (e.status == 'Taken') &&
-                              (_model.calendarSelectedDay!.start <
-                                  functions.currentDate(getCurrentTimestamp)))
-                          .toList()
-                          .cast<IndividualRemindersRecord>();
-                      _model.listOfMissedTimes = _model.calendarSubReminders!
-                          .where((e) =>
-                              (e.status == 'Missed') &&
-                              (_model.calendarSelectedDay!.start <
-                                  functions.currentDate(getCurrentTimestamp)))
-                          .toList()
-                          .map((e) => e.time)
-                          .toList()
-                          .unique((e) => e)
-                          .sortedList(keyOf: (e) => e, desc: false)
-                          .toList()
-                          .cast<String>();
-                      _model.missedReminders = _model.calendarSubReminders!
-                          .where((e) =>
-                              (e.status == 'Missed') &&
-                              (_model.calendarSelectedDay!.start <
-                                  functions.currentDate(getCurrentTimestamp)))
-                          .toList()
-                          .cast<IndividualRemindersRecord>();
-                      setState(() {});
-                    }
+                              );
+                              if (functions.getDate(
+                                      _model.calendarSelectedDay1!.start) ==
+                                  functions.getDate(functions
+                                      .currentDate(getCurrentTimestamp))) {
+                                _model.exTodaySubReminders =
+                                    await queryIndividualRemindersRecordOnce(
+                                  queryBuilder: (individualRemindersRecord) =>
+                                      individualRemindersRecord
+                                          .where(
+                                            'UserID',
+                                            isEqualTo: FFAppState().UserID,
+                                          )
+                                          .where(
+                                            'Date',
+                                            isEqualTo: valueOrDefault<String>(
+                                              _model.today,
+                                              'date',
+                                            ),
+                                          ),
+                                );
+                                _model.listOfUpcomingTimes = functions
+                                    .combineTimeLists(
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.date ==
+                                                    functions.getDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.lastDateTime! >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp)).toList().map((e) => e.time).toList())!
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .unique((e) => e)
+                                    .toList()
+                                    .cast<String>();
+                                _model.upcomingReminders = functions
+                                    .combineReminderLists(
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.date ==
+                                                    functions.getDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.lastDateTime! >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (e.timeDT! >= functions.commonTimeDT(getCurrentTimestamp)))
+                                            .toList(),
+                                        _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp)).toList())!
+                                    .toList()
+                                    .cast<RemindersRecord>();
+                                _model.listOfTakenTimes = _model
+                                    .exTodaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.takenReminders = _model
+                                    .exTodaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                _model.listOfMissedTimes = _model
+                                    .exTodaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.missedReminders = _model
+                                    .exTodaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                setState(() {});
+                              } else {
+                                _model.exCalendarSubReminders =
+                                    await queryIndividualRemindersRecordOnce(
+                                  queryBuilder: (individualRemindersRecord) =>
+                                      individualRemindersRecord
+                                          .where(
+                                            'UserID',
+                                            isEqualTo: FFAppState().UserID,
+                                          )
+                                          .where(
+                                            'Date',
+                                            isEqualTo: valueOrDefault<String>(
+                                              _model.calendarDate,
+                                              'date',
+                                            ),
+                                          ),
+                                );
+                                _model.listOfUpcomingTimes = functions
+                                    .combineTimeLists(
+                                        _model.exCalendarReminders!
+                                            .where((e) =>
+                                                (e.date == functions.getDate(_model.calendarSelectedDay1!.start)) &&
+                                                (_model.calendarSelectedDay1!.start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.exCalendarReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (_model.calendarSelectedDay1!
+                                                        .start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(_model.calendarSelectedDay1!.start)) &&
+                                                (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay1!.start)))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.exCalendarReminders!.where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(_model.calendarSelectedDay1!.start)) && (_model.calendarSelectedDay1!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay1!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay1!.start))).toList().map((e) => e.time).toList(),
+                                        _model.exCalendarReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(_model.calendarSelectedDay1!.start)) && (_model.calendarSelectedDay1!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay1!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay1!.start))).toList().map((e) => e.time).toList())!
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .unique((e) => e)
+                                    .toList()
+                                    .cast<String>();
+                                _model.upcomingReminders = functions
+                                    .combineReminderLists(
+                                        _model.exCalendarReminders!
+                                            .where((e) =>
+                                                (e.date == functions.getDate(_model.calendarSelectedDay1!.start)) &&
+                                                (_model.calendarSelectedDay1!.start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)))
+                                            .toList(),
+                                        _model.exCalendarReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (_model.calendarSelectedDay1!
+                                                        .start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(_model.calendarSelectedDay1!.start)) &&
+                                                (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay1!.start)))
+                                            .toList(),
+                                        _model.exCalendarReminders!.where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(_model.calendarSelectedDay1!.start)) && (_model.calendarSelectedDay1!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay1!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay1!.start))).toList(),
+                                        _model.exCalendarReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(_model.calendarSelectedDay1!.start)) && (_model.calendarSelectedDay1!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay1!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay1!.start))).toList())!
+                                    .toList()
+                                    .cast<RemindersRecord>();
+                                _model.listOfTakenTimes = _model
+                                    .exCalendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (_model.calendarSelectedDay1!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.takenReminders = _model
+                                    .exCalendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (_model.calendarSelectedDay1!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                _model.listOfMissedTimes = _model
+                                    .exCalendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (_model.calendarSelectedDay1!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.missedReminders = _model
+                                    .exCalendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (_model.calendarSelectedDay1!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                setState(() {});
+                              }
 
-                    setState(() {});
-                  },
-                  titleStyle:
-                      FlutterFlowTheme.of(context).headlineSmall.override(
-                            fontFamily: 'Inter',
+                              setState(() {});
+                            },
+                            titleStyle: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  letterSpacing: 0.0,
+                                ),
+                            dayOfWeekStyle: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            dateStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            selectedDateStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            inactiveDateStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                          );
+                        } else {
+                          return FlutterFlowCalendar(
+                            color: FlutterFlowTheme.of(context).primary,
+                            iconColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            weekFormat: true,
+                            weekStartsMonday: false,
+                            initialDate: _model.datePicked ?? getCurrentTimestamp,
+                            rowHeight: 64.0,
+                            onChange: (DateTimeRange? newSelectedDate) async {
+                              if (_model.calendarSelectedDay2 ==
+                                  newSelectedDate) {
+                                return;
+                              }
+                              _model.calendarSelectedDay2 = newSelectedDate;
+                              _model.calendarDate = valueOrDefault<String>(
+                                functions.getDate(
+                                    _model.calendarSelectedDay2!.start),
+                                'date',
+                              );
+                              setState(() {});
+                              if (_model.calendarChanged == true) {
+                                _model.calendarChanged = false;
+                                setState(() {});
+                              }
+                              _model.calendarReminders =
+                                  await queryRemindersRecordOnce(
+                                queryBuilder: (remindersRecord) =>
+                                    remindersRecord.where(
+                                  'UserID',
+                                  isEqualTo: FFAppState().UserID,
+                                ),
+                              );
+                              if (functions.getDate(
+                                      _model.calendarSelectedDay2!.start) ==
+                                  functions.getDate(functions
+                                      .currentDate(getCurrentTimestamp))) {
+                                _model.todaySubReminders =
+                                    await queryIndividualRemindersRecordOnce(
+                                  queryBuilder: (individualRemindersRecord) =>
+                                      individualRemindersRecord
+                                          .where(
+                                            'UserID',
+                                            isEqualTo: FFAppState().UserID,
+                                          )
+                                          .where(
+                                            'Date',
+                                            isEqualTo: valueOrDefault<String>(
+                                              _model.today,
+                                              'date',
+                                            ),
+                                          ),
+                                );
+                                _model.listOfUpcomingTimes = functions
+                                    .combineTimeLists(
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.date ==
+                                                    functions.getDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.lastDateTime! >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp)).toList().map((e) => e.time).toList())!
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .unique((e) => e)
+                                    .toList()
+                                    .cast<String>();
+                                _model.upcomingReminders = functions
+                                    .combineReminderLists(
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.date ==
+                                                    functions.getDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.lastDateTime! >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (e.timeDT! >= functions.commonTimeDT(getCurrentTimestamp)))
+                                            .toList(),
+                                        _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp)).toList())!
+                                    .toList()
+                                    .cast<RemindersRecord>();
+                                _model.listOfTakenTimes = _model
+                                    .todaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.takenReminders = _model
+                                    .todaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                _model.listOfMissedTimes = _model
+                                    .todaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.missedReminders = _model
+                                    .todaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                setState(() {});
+                              } else {
+                                _model.calendarSubReminders =
+                                    await queryIndividualRemindersRecordOnce(
+                                  queryBuilder: (individualRemindersRecord) =>
+                                      individualRemindersRecord
+                                          .where(
+                                            'UserID',
+                                            isEqualTo: FFAppState().UserID,
+                                          )
+                                          .where(
+                                            'Date',
+                                            isEqualTo: valueOrDefault<String>(
+                                              _model.calendarDate,
+                                              'date',
+                                            ),
+                                          ),
+                                );
+                                _model.listOfUpcomingTimes = functions
+                                    .combineTimeLists(
+                                        _model.calendarReminders!
+                                            .where((e) =>
+                                                (e.date == functions.getDate(_model.calendarSelectedDay2!.start)) &&
+                                                (_model.calendarSelectedDay2!.start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.calendarReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (_model.calendarSelectedDay2!
+                                                        .start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(_model.calendarSelectedDay2!.start)) &&
+                                                (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay2!.start)))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.calendarReminders!.where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(_model.calendarSelectedDay2!.start)) && (_model.calendarSelectedDay2!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay2!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay2!.start))).toList().map((e) => e.time).toList(),
+                                        _model.calendarReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(_model.calendarSelectedDay2!.start)) && (_model.calendarSelectedDay2!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay2!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay2!.start))).toList().map((e) => e.time).toList())!
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .unique((e) => e)
+                                    .toList()
+                                    .cast<String>();
+                                _model.upcomingReminders = functions
+                                    .combineReminderLists(
+                                        _model.calendarReminders!
+                                            .where((e) =>
+                                                (e.date == functions.getDate(_model.calendarSelectedDay2!.start)) &&
+                                                (_model.calendarSelectedDay2!.start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)))
+                                            .toList(),
+                                        _model.calendarReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (_model.calendarSelectedDay2!
+                                                        .start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(_model.calendarSelectedDay2!.start)) &&
+                                                (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay2!.start)))
+                                            .toList(),
+                                        _model.calendarReminders!.where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(_model.calendarSelectedDay2!.start)) && (_model.calendarSelectedDay2!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay2!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay2!.start))).toList(),
+                                        _model.calendarReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(_model.calendarSelectedDay2!.start)) && (_model.calendarSelectedDay2!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay2!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay2!.start))).toList())!
+                                    .toList()
+                                    .cast<RemindersRecord>();
+                                _model.listOfTakenTimes = _model
+                                    .calendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (_model.calendarSelectedDay2!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.takenReminders = _model
+                                    .calendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (_model.calendarSelectedDay2!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                _model.listOfMissedTimes = _model
+                                    .calendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (_model.calendarSelectedDay2!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.missedReminders = _model
+                                    .calendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (_model.calendarSelectedDay2!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                setState(() {});
+                              }
+
+                              setState(() {});
+                            },
+                            titleStyle: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  letterSpacing: 0.0,
+                                ),
+                            dayOfWeekStyle: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            dateStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            selectedDateStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                            inactiveDateStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                          );
+                        }
+                      },
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            45.0, 17.0, 0.0, 0.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            _model.expandedCalendar = !_model.expandedCalendar;
+                            setState(() {});
+                            if (_model.expandedCalendar == true) {
+                              if (functions.getDate(
+                                      _model.calendarSelectedDay2!.start) ==
+                                  functions.getDate(functions
+                                      .currentDate(getCurrentTimestamp))) {
+                                _model.listOfUpcomingTimes = functions
+                                    .combineTimeLists(
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.date ==
+                                                    functions.getDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.lastDateTime! >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp)).toList().map((e) => e.time).toList())!
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .unique((e) => e)
+                                    .toList()
+                                    .cast<String>();
+                                _model.upcomingReminders = functions
+                                    .combineReminderLists(
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.date ==
+                                                    functions.getDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.lastDateTime! >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (e.timeDT! >= functions.commonTimeDT(getCurrentTimestamp)))
+                                            .toList(),
+                                        _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp)).toList())!
+                                    .toList()
+                                    .cast<RemindersRecord>();
+                                _model.listOfTakenTimes = _model
+                                    .todaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.takenReminders = _model
+                                    .todaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                _model.listOfMissedTimes = _model
+                                    .todaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.missedReminders = _model
+                                    .todaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                setState(() {});
+                              } else {
+                                _model.listOfUpcomingTimes = functions
+                                    .combineTimeLists(
+                                        _model.calendarReminders!
+                                            .where((e) =>
+                                                (e.date == functions.getDate(_model.calendarSelectedDay2!.start)) &&
+                                                (_model.calendarSelectedDay2!.start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.calendarReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (_model.calendarSelectedDay2!
+                                                        .start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(_model.calendarSelectedDay2!.start)) &&
+                                                (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay2!.start)))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.calendarReminders!.where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(_model.calendarSelectedDay2!.start)) && (_model.calendarSelectedDay2!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay2!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay2!.start))).toList().map((e) => e.time).toList(),
+                                        _model.calendarReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(_model.calendarSelectedDay2!.start)) && (_model.calendarSelectedDay2!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay2!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay2!.start))).toList().map((e) => e.time).toList())!
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .unique((e) => e)
+                                    .toList()
+                                    .cast<String>();
+                                _model.upcomingReminders = functions
+                                    .combineReminderLists(
+                                        _model.calendarReminders!
+                                            .where((e) =>
+                                                (e.date == functions.getDate(_model.calendarSelectedDay2!.start)) &&
+                                                (_model.calendarSelectedDay2!.start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)))
+                                            .toList(),
+                                        _model.calendarReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (_model.calendarSelectedDay2!
+                                                        .start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(_model.calendarSelectedDay2!.start)) &&
+                                                (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay2!.start)))
+                                            .toList(),
+                                        _model.calendarReminders!.where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(_model.calendarSelectedDay2!.start)) && (_model.calendarSelectedDay2!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay2!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay2!.start))).toList(),
+                                        _model.calendarReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(_model.calendarSelectedDay2!.start)) && (_model.calendarSelectedDay2!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay2!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay2!.start))).toList())!
+                                    .toList()
+                                    .cast<RemindersRecord>();
+                                _model.listOfTakenTimes = _model
+                                    .calendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (_model.calendarSelectedDay2!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.takenReminders = _model
+                                    .calendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (_model.calendarSelectedDay2!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                _model.listOfMissedTimes = _model
+                                    .calendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (_model.calendarSelectedDay2!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.missedReminders = _model
+                                    .calendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (_model.calendarSelectedDay2!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                setState(() {});
+                              }
+                            } else {
+                              if (functions.getDate(
+                                      _model.calendarSelectedDay1!.start) ==
+                                  functions.getDate(functions
+                                      .currentDate(getCurrentTimestamp))) {
+                                _model.listOfUpcomingTimes = functions
+                                    .combineTimeLists(
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.date ==
+                                                    functions.getDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.lastDateTime! >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp)).toList().map((e) => e.time).toList())!
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .unique((e) => e)
+                                    .toList()
+                                    .cast<String>();
+                                _model.upcomingReminders = functions
+                                    .combineReminderLists(
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.date ==
+                                                    functions.getDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.lastDateTime! >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (functions.todayTime(e.time) >=
+                                                    getCurrentTimestamp))
+                                            .toList(),
+                                        _model.allReminders!
+                                            .where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (e.timeDT! >= functions.commonTimeDT(getCurrentTimestamp)))
+                                            .toList(),
+                                        _model.allReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(getCurrentTimestamp)) && (e.lastDateTime! >= functions.currentDate(getCurrentTimestamp)) && (functions.todayTime(e.time) >= getCurrentTimestamp)).toList())!
+                                    .toList()
+                                    .cast<RemindersRecord>();
+                                _model.listOfTakenTimes = _model
+                                    .exTodaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.takenReminders = _model
+                                    .exTodaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                _model.listOfMissedTimes = _model
+                                    .exTodaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.missedReminders = _model
+                                    .exTodaySubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (functions.todayTime(e.time) <
+                                            getCurrentTimestamp))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                setState(() {});
+                              } else {
+                                _model.listOfUpcomingTimes = functions
+                                    .combineTimeLists(
+                                        _model.exCalendarReminders!
+                                            .where((e) =>
+                                                (e.date == functions.getDate(_model.calendarSelectedDay1!.start)) &&
+                                                (_model.calendarSelectedDay1!.start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.exCalendarReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (_model.calendarSelectedDay1!
+                                                        .start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(_model.calendarSelectedDay1!.start)) &&
+                                                (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay1!.start)))
+                                            .toList()
+                                            .map((e) => e.time)
+                                            .toList(),
+                                        _model.exCalendarReminders!.where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(_model.calendarSelectedDay1!.start)) && (_model.calendarSelectedDay1!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay1!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay1!.start))).toList().map((e) => e.time).toList(),
+                                        _model.exCalendarReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(_model.calendarSelectedDay1!.start)) && (_model.calendarSelectedDay1!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay1!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay1!.start))).toList().map((e) => e.time).toList())!
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .unique((e) => e)
+                                    .toList()
+                                    .cast<String>();
+                                _model.upcomingReminders = functions
+                                    .combineReminderLists(
+                                        _model.exCalendarReminders!
+                                            .where((e) =>
+                                                (e.date == functions.getDate(_model.calendarSelectedDay1!.start)) &&
+                                                (_model.calendarSelectedDay1!.start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)))
+                                            .toList(),
+                                        _model.exCalendarReminders!
+                                            .where((e) =>
+                                                (e.frequency == 'Daily') &&
+                                                (_model.calendarSelectedDay1!
+                                                        .start >=
+                                                    functions.currentDate(
+                                                        getCurrentTimestamp)) &&
+                                                (e.fIrstDateTime! <=
+                                                    functions.currentDate(_model.calendarSelectedDay1!.start)) &&
+                                                (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay1!.start)))
+                                            .toList(),
+                                        _model.exCalendarReminders!.where((e) => (e.frequency == 'Weekly') && (e.day == functions.getDayofWeek(_model.calendarSelectedDay1!.start)) && (_model.calendarSelectedDay1!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay1!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay1!.start))).toList(),
+                                        _model.exCalendarReminders!.where((e) => (e.frequency == 'Monthly') && (e.dateNumber == functions.extractDayNumber(_model.calendarSelectedDay1!.start)) && (_model.calendarSelectedDay1!.start >= functions.currentDate(getCurrentTimestamp)) && (e.fIrstDateTime! <= functions.currentDate(_model.calendarSelectedDay1!.start)) && (e.lastDateTime! >= functions.currentDate(_model.calendarSelectedDay1!.start))).toList())!
+                                    .toList()
+                                    .cast<RemindersRecord>();
+                                _model.listOfTakenTimes = _model
+                                    .exCalendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (_model.calendarSelectedDay1!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.takenReminders = _model
+                                    .exCalendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Taken') &&
+                                        (_model.calendarSelectedDay1!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                _model.listOfMissedTimes = _model
+                                    .exCalendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (_model.calendarSelectedDay1!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .map((e) => e.time)
+                                    .toList()
+                                    .unique((e) => e)
+                                    .sortedList(keyOf: (e) => e, desc: false)
+                                    .toList()
+                                    .cast<String>();
+                                _model.missedReminders = _model
+                                    .exCalendarSubReminders!
+                                    .where((e) =>
+                                        (e.status == 'Missed') &&
+                                        (_model.calendarSelectedDay1!.start <
+                                            functions.currentDate(
+                                                getCurrentTimestamp)))
+                                    .toList()
+                                    .cast<IndividualRemindersRecord>();
+                                setState(() {});
+                              }
+                            }
+
+                            _model.calendarChanged = true;
+                            setState(() {});
+                          },
+                          child: Icon(
+                            Icons.expand,
                             color: FlutterFlowTheme.of(context).secondaryText,
-                            letterSpacing: 0.0,
+                            size: 26.0,
                           ),
-                  dayOfWeekStyle:
-                      FlutterFlowTheme.of(context).labelLarge.override(
-                            fontFamily: 'Readex Pro',
-                            letterSpacing: 0.0,
-                          ),
-                  dateStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
+                        ),
                       ),
-                  selectedDateStyle:
-                      FlutterFlowTheme.of(context).titleSmall.override(
-                            fontFamily: 'Readex Pro',
-                            letterSpacing: 0.0,
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(-0.9, -0.98),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          final datePickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: getCurrentTimestamp,
+                            firstDate: DateTime(1900),
+                            lastDate: DateTime(2050),
+                            builder: (context, child) {
+                              return wrapInMaterialDatePickerTheme(
+                                context,
+                                child!,
+                                headerBackgroundColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                headerForegroundColor:
+                                    FlutterFlowTheme.of(context).info,
+                                headerTextStyle: FlutterFlowTheme.of(context)
+                                    .headlineLarge
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      fontSize: 32.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                pickerBackgroundColor:
+                                    FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                pickerForegroundColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                selectedDateTimeBackgroundColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                selectedDateTimeForegroundColor:
+                                    FlutterFlowTheme.of(context).info,
+                                actionButtonForegroundColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                iconSize: 24.0,
+                              );
+                            },
+                          );
+
+                          if (datePickedDate != null) {
+                            safeSetState(() {
+                              _model.datePicked = DateTime(
+                                datePickedDate.year,
+                                datePickedDate.month,
+                                datePickedDate.day,
+                              );
+                            });
+                          }
+                          _model.calendarDateTime = _model.datePicked;
+                          setState(() {});
+                        },
+                        child: Container(
+                          width: 162.0,
+                          height: 56.0,
+                          decoration: const BoxDecoration(
+                            color: Colors.transparent,
                           ),
-                  inactiveDateStyle:
-                      FlutterFlowTheme.of(context).labelMedium.override(
-                            fontFamily: 'Readex Pro',
-                            letterSpacing: 0.0,
-                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
@@ -606,7 +1466,23 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        if (_model.calendarSelectedDay!.start >=
+                        if (() {
+                              if ((_model.expandedCalendar == true) &&
+                                  (_model.calendarChanged == false)) {
+                                return _model.calendarSelectedDay1!.start;
+                              } else if ((_model.expandedCalendar == false) &&
+                                  (_model.calendarChanged == false)) {
+                                return _model.calendarSelectedDay2!.start;
+                              } else if ((_model.expandedCalendar == true) &&
+                                  (_model.calendarChanged == true)) {
+                                return _model.calendarSelectedDay2!.start;
+                              } else if ((_model.expandedCalendar == false) &&
+                                  (_model.calendarChanged == true)) {
+                                return _model.calendarSelectedDay1!.start;
+                              } else {
+                                return getCurrentTimestamp;
+                              }
+                            }() >=
                             functions.currentDate(getCurrentTimestamp))
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -758,7 +1634,23 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                               ],
                             ),
                           ),
-                        if (_model.calendarSelectedDay!.start <=
+                        if (() {
+                              if ((_model.expandedCalendar == true) &&
+                                  (_model.calendarChanged == false)) {
+                                return _model.calendarSelectedDay1!.start;
+                              } else if ((_model.expandedCalendar == false) &&
+                                  (_model.calendarChanged == false)) {
+                                return _model.calendarSelectedDay2!.start;
+                              } else if ((_model.expandedCalendar == true) &&
+                                  (_model.calendarChanged == true)) {
+                                return _model.calendarSelectedDay2!.start;
+                              } else if ((_model.expandedCalendar == false) &&
+                                  (_model.calendarChanged == true)) {
+                                return _model.calendarSelectedDay1!.start;
+                              } else {
+                                return getCurrentTimestamp;
+                              }
+                            }() <=
                             functions.currentDate(getCurrentTimestamp))
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -889,7 +1781,23 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                               ],
                             ),
                           ),
-                        if (_model.calendarSelectedDay!.start <=
+                        if (() {
+                              if ((_model.expandedCalendar == true) &&
+                                  (_model.calendarChanged == false)) {
+                                return _model.calendarSelectedDay1!.start;
+                              } else if ((_model.expandedCalendar == false) &&
+                                  (_model.calendarChanged == false)) {
+                                return _model.calendarSelectedDay2!.start;
+                              } else if ((_model.expandedCalendar == true) &&
+                                  (_model.calendarChanged == true)) {
+                                return _model.calendarSelectedDay2!.start;
+                              } else if ((_model.expandedCalendar == false) &&
+                                  (_model.calendarChanged == true)) {
+                                return _model.calendarSelectedDay1!.start;
+                              } else {
+                                return getCurrentTimestamp;
+                              }
+                            }() <=
                             functions.currentDate(getCurrentTimestamp))
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -1025,7 +1933,23 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                     ),
                   ),
                 ),
-                if (_model.calendarSelectedDay!.start >=
+                if (() {
+                      if ((_model.expandedCalendar == true) &&
+                          (_model.calendarChanged == false)) {
+                        return _model.calendarSelectedDay1!.start;
+                      } else if ((_model.expandedCalendar == false) &&
+                          (_model.calendarChanged == false)) {
+                        return _model.calendarSelectedDay2!.start;
+                      } else if ((_model.expandedCalendar == true) &&
+                          (_model.calendarChanged == true)) {
+                        return _model.calendarSelectedDay2!.start;
+                      } else if ((_model.expandedCalendar == false) &&
+                          (_model.calendarChanged == true)) {
+                        return _model.calendarSelectedDay1!.start;
+                      } else {
+                        return getCurrentTimestamp;
+                      }
+                    }() >=
                     functions.currentDate(getCurrentTimestamp))
                   Padding(
                     padding:

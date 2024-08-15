@@ -155,19 +155,41 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'YourMeals',
           path: '/yourMeals',
-          builder: (context, params) => const YourMealsWidget(),
+          asyncParams: {
+            'mealsList': getDocList(['Meals'], MealsRecord.fromSnapshot),
+          },
+          builder: (context, params) => YourMealsWidget(
+            mealsList: params.getParam<MealsRecord>(
+              'mealsList',
+              ParamType.Document,
+              isList: true,
+            ),
+          ),
         ),
         FFRoute(
           name: 'Foodsearch',
           path: '/foodsearch',
           asyncParams: {
-            'currentFoodList': getDocList(['food'], FoodRecord.fromSnapshot),
+            'currentFoodList':
+                getDocList(['filtered_food'], FilteredFoodRecord.fromSnapshot),
           },
           builder: (context, params) => FoodsearchWidget(
-            currentFoodList: params.getParam<FoodRecord>(
+            currentFoodList: params.getParam<FilteredFoodRecord>(
               'currentFoodList',
               ParamType.Document,
               isList: true,
+            ),
+            location: params.getParam(
+              'location',
+              ParamType.String,
+            ),
+            filter: params.getParam(
+              'filter',
+              ParamType.String,
+            ),
+            foodPeriod: params.getParam(
+              'foodPeriod',
+              ParamType.String,
             ),
           ),
         ),
@@ -180,10 +202,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Plate',
           path: '/plate',
           asyncParams: {
-            'updatedFoodList': getDocList(['food'], FoodRecord.fromSnapshot),
+            'updatedFoodList':
+                getDocList(['filtered_food'], FilteredFoodRecord.fromSnapshot),
           },
           builder: (context, params) => PlateWidget(
-            updatedFoodList: params.getParam<FoodRecord>(
+            updatedFoodList: params.getParam<FilteredFoodRecord>(
               'updatedFoodList',
               ParamType.Document,
               isList: true,

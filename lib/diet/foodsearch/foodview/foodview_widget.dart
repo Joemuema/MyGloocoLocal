@@ -253,7 +253,7 @@ class _FoodviewWidgetState extends State<FoodviewWidget>
                   child: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
                     child: StreamBuilder<List<FoodRecord>>(
-                      stream: FFAppState().foodlist(
+                      stream: FFAppState().foodset(
                         requestFn: () => queryFoodRecord(
                           queryBuilder: (foodRecord) =>
                               foodRecord.orderBy('Code'),

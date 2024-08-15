@@ -120,6 +120,12 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
       todayMIssedIndividualReminders[index] =
           updateFn(todayMIssedIndividualReminders[index]);
 
+  bool expandedCalendar = false;
+
+  bool calendarChanged = false;
+
+  DateTime? calendarDateTime;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Firestore Query - Query a collection] action in MedicationHome widget.
@@ -131,13 +137,22 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
   // Stores action output result for [Firestore Query - Query a collection] action in MedicationHome widget.
   List<MedicineRecord>? lowCapacityMeds;
   // State field(s) for Calendar widget.
-  DateTimeRange? calendarSelectedDay;
+  DateTimeRange? calendarSelectedDay1;
+  // Stores action output result for [Firestore Query - Query a collection] action in Calendar widget.
+  List<RemindersRecord>? exCalendarReminders;
+  // Stores action output result for [Firestore Query - Query a collection] action in Calendar widget.
+  List<IndividualRemindersRecord>? exTodaySubReminders;
+  // Stores action output result for [Firestore Query - Query a collection] action in Calendar widget.
+  List<IndividualRemindersRecord>? exCalendarSubReminders;
+  // State field(s) for Calendar widget.
+  DateTimeRange? calendarSelectedDay2;
   // Stores action output result for [Firestore Query - Query a collection] action in Calendar widget.
   List<RemindersRecord>? calendarReminders;
   // Stores action output result for [Firestore Query - Query a collection] action in Calendar widget.
   List<IndividualRemindersRecord>? todaySubReminders;
   // Stores action output result for [Firestore Query - Query a collection] action in Calendar widget.
   List<IndividualRemindersRecord>? calendarSubReminders;
+  DateTime? datePicked;
   // Models for homeReminder dynamic component.
   late FlutterFlowDynamicModels<HomeReminderModel> homeReminderModels;
   // Model for noElements component.
@@ -149,7 +164,11 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
 
   @override
   void initState(BuildContext context) {
-    calendarSelectedDay = DateTimeRange(
+    calendarSelectedDay1 = DateTimeRange(
+      start: DateTime.now().startOfDay,
+      end: DateTime.now().endOfDay,
+    );
+    calendarSelectedDay2 = DateTimeRange(
       start: DateTime.now().startOfDay,
       end: DateTime.now().endOfDay,
     );

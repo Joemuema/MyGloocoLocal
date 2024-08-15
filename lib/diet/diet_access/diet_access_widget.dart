@@ -1,33 +1,32 @@
 import '/backend/backend.dart';
 import '/components/meal_food_item_widget.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-import 'access_from_main_tab_model.dart';
-export 'access_from_main_tab_model.dart';
+import 'diet_access_model.dart';
+export 'diet_access_model.dart';
 
-class AccessFromMainTabWidget extends StatefulWidget {
-  const AccessFromMainTabWidget({
+class DietAccessWidget extends StatefulWidget {
+  const DietAccessWidget({
     super.key,
     this.updatedFoodList,
+    this.foodPeriod,
   });
 
   final List<FilteredFoodRecord>? updatedFoodList;
+  final String? foodPeriod;
 
   @override
-  State<AccessFromMainTabWidget> createState() =>
-      _AccessFromMainTabWidgetState();
+  State<DietAccessWidget> createState() => _DietAccessWidgetState();
 }
 
-class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
-  late AccessFromMainTabModel _model;
+class _DietAccessWidgetState extends State<DietAccessWidget> {
+  late DietAccessModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -38,7 +37,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AccessFromMainTabModel());
+    _model = createModel(context, () => DietAccessModel());
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -106,96 +105,65 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 60.0,
-                              height: 3.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: BorderRadius.circular(4.0),
-                              ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 60.0,
+                            height: 3.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).primary,
+                              borderRadius: BorderRadius.circular(4.0),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(-1.0, -1.0),
+                            child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 10.0, 0.0),
-                              child: Form(
-                                key: _model.formKey1,
-                                autovalidateMode: AutovalidateMode.always,
-                                child: FlutterFlowChoiceChips(
-                                  options: const [
-                                    ChipData(
-                                        'Breakfast', Icons.emoji_food_beverage),
-                                    ChipData('Lunch', Icons.lunch_dining),
-                                    ChipData(
-                                        'Supper', Icons.food_bank_outlined),
-                                    ChipData('Snack')
-                                  ],
-                                  onChanged: (val) => setState(() => _model
-                                      .choiceChipsValue = val?.firstOrNull),
-                                  selectedChipStyle: ChipStyle(
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          letterSpacing: 0.0,
-                                        ),
-                                    iconColor: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    iconSize: 18.0,
-                                    elevation: 4.0,
-                                    borderRadius: BorderRadius.circular(16.0),
-                                  ),
-                                  unselectedChipStyle: ChipStyle(
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          letterSpacing: 0.0,
-                                        ),
-                                    iconColor: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    iconSize: 18.0,
-                                    elevation: 0.0,
-                                    borderRadius: BorderRadius.circular(16.0),
-                                  ),
-                                  chipSpacing: 2.0,
-                                  rowSpacing: 7.0,
-                                  multiselect: false,
-                                  alignment: WrapAlignment.center,
-                                  controller:
-                                      _model.choiceChipsValueController ??=
-                                          FormFieldController<List<String>>(
-                                    [],
-                                  ),
-                                  wrapped: false,
+                                  10.0, 16.0, 0.0, 0.0),
+                              child: Text(
+                                valueOrDefault<String>(
+                                  widget.foodPeriod,
+                                  'FoodPeriod',
                                 ),
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .override(
+                                      fontFamily: 'Roboto',
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      letterSpacing: 0.0,
+                                    ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                          Expanded(
+                            child: Align(
+                              alignment: const AlignmentDirectional(0.9, 0.0),
+                              child: FlutterFlowIconButton(
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                fillColor: FlutterFlowTheme.of(context).primary,
+                                icon: const Icon(
+                                  Icons.close_outlined,
+                                  size: 24.0,
+                                ),
+                                onPressed: () async {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -220,7 +188,11 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                     isList: true,
                                   ),
                                   'location': serializeParam(
-                                    'Sheet',
+                                    'toPlate',
+                                    ParamType.String,
+                                  ),
+                                  'foodPeriod': serializeParam(
+                                    widget.foodPeriod,
                                     ParamType.String,
                                   ),
                                 }.withoutNulls,
@@ -250,7 +222,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                       ),
                       if (!(_model.updatedFoodList.isNotEmpty))
                         Form(
-                          key: _model.formKey2,
+                          key: _model.formKey,
                           autovalidateMode: AutovalidateMode.disabled,
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -359,7 +331,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                                 setState(() {}),
                                             child: MealFoodItemWidget(
                                               key: Key(
-                                                'Key84g_${foodListItem.reference.id}',
+                                                'Keyi5g_${foodListItem.reference.id}',
                                               ),
                                               foodItem: foodListItem,
                                               removeFoodItem: () async {
@@ -385,14 +357,9 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                         child: FFButtonWidget(
                           onPressed: () async {
                             if (_model.updatedFoodList.isNotEmpty) {
-                              if (_model.formKey1.currentState == null ||
-                                  !_model.formKey1.currentState!.validate()) {
-                                return;
-                              }
-
                               await MealsRecord.collection.doc().set({
                                 ...createMealsRecordData(
-                                  type: _model.choiceChipsValue,
+                                  type: widget.foodPeriod,
                                   date: functions.getDate(getCurrentTimestamp),
                                   userID: FFAppState().UserID,
                                 ),
@@ -406,18 +373,14 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                               });
                               Navigator.pop(context);
                             } else {
-                              if (_model.formKey1.currentState == null ||
-                                  !_model.formKey1.currentState!.validate()) {
-                                return;
-                              }
-                              if (_model.formKey2.currentState == null ||
-                                  !_model.formKey2.currentState!.validate()) {
+                              if (_model.formKey.currentState == null ||
+                                  !_model.formKey.currentState!.validate()) {
                                 return;
                               }
 
                               await MealsRecord.collection.doc().set({
                                 ...createMealsRecordData(
-                                  type: _model.choiceChipsValue,
+                                  type: widget.foodPeriod,
                                   date: functions.getDate(getCurrentTimestamp),
                                   userID: FFAppState().UserID,
                                 ),

@@ -77,58 +77,62 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                               PageController(initialPage: 0),
                           scrollDirection: Axis.horizontal,
                           children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 20.0, 20.0, 0.0),
-                                  child: Container(
-                                    height: 200.0,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: Image.network(
-                                          'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyfHxob3NwaXRhbHxlbnwwfHx8fDE3MjE5NzY5NDd8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                                        ).image,
+                            SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 10.0, 10.0, 0.0),
+                                    child: Container(
+                                      width: MediaQuery.sizeOf(context).width,
+                                      height:
+                                          MediaQuery.sizeOf(context).height *
+                                              0.25,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: Image.network(
+                                            'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyfHxob3NwaXRhbHxlbnwwfHx8fDE3MjE5NzY5NDd8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                          ).image,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(12.0),
-                                    ),
-                                    child: Align(
-                                      alignment:
-                                          const AlignmentDirectional(-1.0, 1.0),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 0.0, 20.0),
-                                        child: Text(
-                                          'Preventing and Managing Complications',
-                                          textAlign: TextAlign.start,
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleLarge
-                                              .override(
-                                                fontFamily: 'Inter',
-                                                color: const Color(0xFFFFF9F9),
-                                                fontSize: 25.0,
-                                                letterSpacing: 0.0,
-                                              ),
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, 1.0),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  20.0, 0.0, 0.0, 20.0),
+                                          child: Text(
+                                            'Preventing and Managing Complications',
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleLarge
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  color: const Color(0xFFFFF9F9),
+                                                  fontSize: 25.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Container(
-                                    width: 350.0,
-                                    height: 504.0,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(0.0),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 15.0, 0.0, 0.0),
+                                  Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Container(
+                                      width: 350.0,
+                                      height: 504.0,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
+                                      ),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -165,8 +169,8 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                             SingleChildScrollView(
                               child: Column(

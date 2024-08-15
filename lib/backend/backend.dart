@@ -22,6 +22,7 @@ import 'schema/addpagecollection_record.dart';
 import 'schema/strengthexercises_record.dart';
 import 'schema/aerobicrunningcollection_record.dart';
 import 'schema/flexibilitycollection_record.dart';
+import 'schema/filtered_food_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -47,6 +48,7 @@ export 'schema/addpagecollection_record.dart';
 export 'schema/strengthexercises_record.dart';
 export 'schema/aerobicrunningcollection_record.dart';
 export 'schema/flexibilitycollection_record.dart';
+export 'schema/filtered_food_record.dart';
 
 /// Functions to query MedicineRecords (as a Stream and as a Future).
 Future<int> queryMedicineRecordCount({
@@ -677,6 +679,43 @@ Future<List<FlexibilitycollectionRecord>> queryFlexibilitycollectionRecordOnce({
     queryCollectionOnce(
       FlexibilitycollectionRecord.collection,
       FlexibilitycollectionRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query FilteredFoodRecords (as a Stream and as a Future).
+Future<int> queryFilteredFoodRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      FilteredFoodRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<FilteredFoodRecord>> queryFilteredFoodRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      FilteredFoodRecord.collection,
+      FilteredFoodRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<FilteredFoodRecord>> queryFilteredFoodRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      FilteredFoodRecord.collection,
+      FilteredFoodRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

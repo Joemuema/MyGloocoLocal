@@ -80,20 +80,20 @@ class FFAppState extends ChangeNotifier {
     _medicineRemindersUpdated = value;
   }
 
-  final _foodlistManager = StreamRequestManager<List<FoodRecord>>();
-  Stream<List<FoodRecord>> foodlist({
+  final _foodsetManager = StreamRequestManager<List<FoodRecord>>();
+  Stream<List<FoodRecord>> foodset({
     String? uniqueQueryKey,
     bool? overrideCache,
     required Stream<List<FoodRecord>> Function() requestFn,
   }) =>
-      _foodlistManager.performRequest(
+      _foodsetManager.performRequest(
         uniqueQueryKey: uniqueQueryKey,
         overrideCache: overrideCache,
         requestFn: requestFn,
       );
-  void clearFoodlistCache() => _foodlistManager.clear();
-  void clearFoodlistCacheKey(String? uniqueKey) =>
-      _foodlistManager.clearRequest(uniqueKey);
+  void clearFoodsetCache() => _foodsetManager.clear();
+  void clearFoodsetCacheKey(String? uniqueKey) =>
+      _foodsetManager.clearRequest(uniqueKey);
 }
 
 void _safeInit(Function() initializeField) {

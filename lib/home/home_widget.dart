@@ -89,6 +89,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               .toList(),
         );
         FFAppState().medicineRemindersUpdated = true;
+        FFAppState().lastUpdatedReminders = getCurrentTimestamp;
       }
     });
 
@@ -732,7 +733,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
-                                            child: const AccessFromMainTabWidget(),
+                                            child: SizedBox(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  0.35,
+                                              child: const AccessFromMainTabWidget(),
+                                            ),
                                           ),
                                         );
                                       },

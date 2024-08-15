@@ -1,5 +1,4 @@
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -63,54 +62,36 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 20.0,
-                    borderWidth: 1.0,
-                    buttonSize: 40.0,
-                    icon: Icon(
-                      Icons.arrow_back_ios_sharp,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 20.0,
-                    ),
-                    onPressed: () async {
-                      context.safePop();
+                  FFButtonWidget(
+                    onPressed: () {
+                      print('Button pressed ...');
                     },
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(100.0, 0.0, 0.0, 0.0),
-                    child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '',
-                      options: FFButtonOptions(
-                        width: 100.0,
-                        height: 10.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                        elevation: 3.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
+                    text: '',
+                    options: FFButtonOptions(
+                      width: 100.0,
+                      height: 10.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).primary,
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Readex Pro',
+                                color: Colors.white,
+                                letterSpacing: 0.0,
+                              ),
+                      elevation: 3.0,
+                      borderSide: const BorderSide(
+                        color: Colors.transparent,
+                        width: 1.0,
                       ),
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                 ],
@@ -122,7 +103,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                 borderRadius: BorderRadius.circular(8.0),
                 child: Image.network(
                   widget.upperbodyexercisedocument!.image,
-                  width: 394.0,
+                  width: MediaQuery.sizeOf(context).width,
                   height: 200.0,
                   fit: BoxFit.fill,
                 ),
@@ -161,7 +142,8 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(10.0, 15.0, 10.0, 15.0),
                   child: Text(
                     valueOrDefault<String>(
                       widget.upperbodyexercisedocument?.description,
@@ -169,6 +151,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
+                          fontSize: 15.0,
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -233,7 +216,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                              .primaryText,
                                           fontSize: 15.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w600,
@@ -258,23 +241,40 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 10.0, 0.0, 15.0),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      widget.upperbodyexercisedocument?.weight,
-                                      'weight',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          letterSpacing: 0.0,
+                                Wrap(
+                                  spacing: 0.0,
+                                  runSpacing: 0.0,
+                                  alignment: WrapAlignment.center,
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  direction: Axis.horizontal,
+                                  runAlignment: WrapAlignment.center,
+                                  verticalDirection: VerticalDirection.down,
+                                  clipBehavior: Clip.none,
+                                  children: [
+                                    Align(
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 10.0, 0.0, 15.0),
+                                        child: Text(
+                                          valueOrDefault<String>(
+                                            widget.upperbodyexercisedocument
+                                                ?.weight,
+                                            'weight',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
-                                  ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -315,7 +315,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                              .primaryText,
                                           fontSize: 15.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w600,
@@ -340,23 +340,26 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 10.0, 0.0, 15.0),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      widget.upperbodyexercisedocument
-                                          ?.repetition,
-                                      'repetition',
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 10.0, 0.0, 15.0),
+                                    child: Text(
+                                      valueOrDefault<String>(
+                                        widget.upperbodyexercisedocument
+                                            ?.repetition,
+                                        'repetition',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            letterSpacing: 0.0,
+                                          ),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          letterSpacing: 0.0,
-                                        ),
                                   ),
                                 ),
                               ],
@@ -398,7 +401,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                              .primaryText,
                                           fontSize: 15.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w600,
@@ -423,22 +426,25 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 10.0, 0.0, 15.0),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      widget.upperbodyexercisedocument?.sets,
-                                      'sets',
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 10.0, 0.0, 15.0),
+                                    child: Text(
+                                      valueOrDefault<String>(
+                                        widget.upperbodyexercisedocument?.sets,
+                                        'sets',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            letterSpacing: 0.0,
+                                          ),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          letterSpacing: 0.0,
-                                        ),
                                   ),
                                 ),
                               ],
@@ -488,7 +494,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                                       .override(
                                         fontFamily: 'Readex Pro',
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                            .primaryText,
                                         fontSize: 15.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
@@ -513,22 +519,25 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 0.0, 15.0),
-                                child: Text(
-                                  valueOrDefault<String>(
-                                    widget.upperbodyexercisedocument?.rest,
-                                    'rest',
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 10.0, 0.0, 15.0),
+                                  child: Text(
+                                    valueOrDefault<String>(
+                                      widget.upperbodyexercisedocument?.rest,
+                                      'rest',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        letterSpacing: 0.0,
-                                      ),
                                 ),
                               ),
                             ],
@@ -568,7 +577,7 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                                       .override(
                                         fontFamily: 'Readex Pro',
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                            .primaryText,
                                         fontSize: 15.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
@@ -593,22 +602,26 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 0.0, 15.0),
-                                child: Text(
-                                  valueOrDefault<String>(
-                                    widget.upperbodyexercisedocument?.duration,
-                                    'duration',
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 10.0, 0.0, 15.0),
+                                  child: Text(
+                                    valueOrDefault<String>(
+                                      widget
+                                          .upperbodyexercisedocument?.duration,
+                                      'duration',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        letterSpacing: 0.0,
-                                      ),
                                 ),
                               ),
                             ],

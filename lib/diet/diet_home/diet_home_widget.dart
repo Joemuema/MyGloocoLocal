@@ -1,11 +1,14 @@
+import '/backend/backend.dart';
 import '/diet/access_from_main_tab/access_from_main_tab_widget.dart';
-import '/diet/manual_food/manual_food_widget.dart';
+import '/diet/diet_access/diet_access_widget.dart';
 import '/diet/water/water_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'diet_home_model.dart';
 export 'diet_home_model.dart';
 
@@ -38,6 +41,8 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -227,132 +232,248 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 10.0, 8.0, 0.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed('YourMeals');
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    3.0, 5.0, 3.0, 0.0),
-                                child: Text(
-                                  'Your Meals',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 20.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                    StreamBuilder<List<MealsRecord>>(
+                      stream: queryMealsRecord(
+                        queryBuilder: (mealsRecord) => mealsRecord.where(
+                          'UserID',
+                          isEqualTo: FFAppState().UserID,
+                        ),
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
                                 ),
                               ),
                             ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  icon: Icon(
-                                    Icons.fastfood_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
-                                  ),
-                                  onPressed: () async {
-                                    context.pushNamed('YourMeals');
+                          );
+                        }
+                        List<MealsRecord> containerMealsRecordList =
+                            snapshot.data!;
+
+                        return Container(
+                          decoration: const BoxDecoration(),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 10.0, 8.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'YourMeals',
+                                      queryParameters: {
+                                        'mealsList': serializeParam(
+                                          containerMealsRecordList
+                                              .where((e) =>
+                                                  e.date ==
+                                                  functions.getDate(
+                                                      getCurrentTimestamp))
+                                              .toList(),
+                                          ParamType.Document,
+                                          isList: true,
+                                        ),
+                                      }.withoutNulls,
+                                      extra: <String, dynamic>{
+                                        'mealsList': containerMealsRecordList
+                                            .where((e) =>
+                                                e.date ==
+                                                functions.getDate(
+                                                    getCurrentTimestamp))
+                                            .toList(),
+                                      },
+                                    );
                                   },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Flexible(
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  3.0, 5.0, 3.0, 0.0),
+                                          child: Text(
+                                            'Your Meals',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: 20.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          FlutterFlowIconButton(
+                                            borderColor: Colors.transparent,
+                                            borderRadius: 20.0,
+                                            borderWidth: 1.0,
+                                            buttonSize: 40.0,
+                                            icon: Icon(
+                                              Icons.fastfood_outlined,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 24.0,
+                                            ),
+                                            onPressed: () async {
+                                              context.pushNamed(
+                                                'YourMeals',
+                                                queryParameters: {
+                                                  'mealsList': serializeParam(
+                                                    containerMealsRecordList
+                                                        .where((e) =>
+                                                            e.date ==
+                                                            functions.getDate(
+                                                                getCurrentTimestamp))
+                                                        .toList(),
+                                                    ParamType.Document,
+                                                    isList: true,
+                                                  ),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  'mealsList':
+                                                      containerMealsRecordList
+                                                          .where((e) =>
+                                                              e.date ==
+                                                              functions.getDate(
+                                                                  getCurrentTimestamp))
+                                                          .toList(),
+                                                },
+                                              );
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(3.0, 1.0, 3.0, 3.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed('YourMeals');
-                        },
-                        child: ListView(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Flexible(
-                                      child: Column(
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    3.0, 1.0, 3.0, 3.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'YourMeals',
+                                      queryParameters: {
+                                        'mealsList': serializeParam(
+                                          containerMealsRecordList
+                                              .where((e) =>
+                                                  e.date ==
+                                                  functions.getDate(
+                                                      getCurrentTimestamp))
+                                              .toList(),
+                                          ParamType.Document,
+                                          isList: true,
+                                        ),
+                                      }.withoutNulls,
+                                      extra: <String, dynamic>{
+                                        'mealsList': containerMealsRecordList
+                                            .where((e) =>
+                                                e.date ==
+                                                functions.getDate(
+                                                    getCurrentTimestamp))
+                                            .toList(),
+                                      },
+                                    );
+                                  },
+                                  child: ListView(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    children: [
+                                      Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(3.0, 10.0,
-                                                                3.0, 15.0),
-                                                    child: Text(
-                                                      'You can review recent meals from here',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .headlineSmall
-                                                          .override(
-                                                            fontFamily: 'Inter',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
-                                                            fontSize: 19.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
+                                              Flexible(
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          3.0,
+                                                                          10.0,
+                                                                          3.0,
+                                                                          15.0),
+                                                              child: Text(
+                                                                'You can review recent meals from here',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                      fontSize:
+                                                                          19.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
                     Padding(
                       padding:
@@ -418,7 +539,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 15.0, 8.0, 15.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 15.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -451,11 +572,8 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: const SizedBox(
-                                            height: 370.0,
-                                            child: ManualFoodWidget(
-                                              foodPeriod: 'Breakfast',
-                                            ),
+                                          child: const DietAccessWidget(
+                                            foodPeriod: 'Breakfast',
                                           ),
                                         ),
                                       );
@@ -505,11 +623,8 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
-                                            child: const SizedBox(
-                                              height: 370.0,
-                                              child: ManualFoodWidget(
-                                                foodPeriod: 'Lunch',
-                                              ),
+                                            child: const DietAccessWidget(
+                                              foodPeriod: 'Lunch',
                                             ),
                                           ),
                                         );
@@ -558,11 +673,8 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: const SizedBox(
-                                            height: 370.0,
-                                            child: ManualFoodWidget(
-                                              foodPeriod: 'Supper',
-                                            ),
+                                          child: const DietAccessWidget(
+                                            foodPeriod: 'Supper',
                                           ),
                                         ),
                                       );
@@ -610,11 +722,8 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: const SizedBox(
-                                            height: 370.0,
-                                            child: ManualFoodWidget(
-                                              foodPeriod: 'Snack',
-                                            ),
+                                          child: const DietAccessWidget(
+                                            foodPeriod: 'Snack',
                                           ),
                                         ),
                                       );

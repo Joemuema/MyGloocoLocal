@@ -87,7 +87,7 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
                   width: 60.0,
                   height: 3.0,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).alternate,
+                    color: FlutterFlowTheme.of(context).primary,
                     borderRadius: BorderRadius.circular(4.0),
                   ),
                 ),
@@ -109,6 +109,7 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
                       style:
                           FlutterFlowTheme.of(context).headlineSmall.override(
                                 fontFamily: 'Roboto',
+                                color: FlutterFlowTheme.of(context).primary,
                                 letterSpacing: 0.0,
                               ),
                     ),
@@ -162,7 +163,15 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
                       size: 24.0,
                     ),
                     onPressed: () async {
-                      context.pushNamed('Foodsearch');
+                      context.pushNamed(
+                        'Foodsearch',
+                        queryParameters: {
+                          'location': serializeParam(
+                            'toPlate',
+                            ParamType.String,
+                          ),
+                        }.withoutNulls,
+                      );
                     },
                   ),
                   Padding(
