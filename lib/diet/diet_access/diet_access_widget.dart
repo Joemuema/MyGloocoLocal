@@ -16,10 +16,14 @@ class DietAccessWidget extends StatefulWidget {
     super.key,
     this.updatedFoodList,
     this.foodPeriod,
+    this.updatedKcalList,
+    this.updatedMassList,
   });
 
   final List<FilteredFoodRecord>? updatedFoodList;
   final String? foodPeriod;
+  final List<double>? updatedKcalList;
+  final List<double>? updatedMassList;
 
   @override
   State<DietAccessWidget> createState() => _DietAccessWidgetState();
@@ -43,6 +47,12 @@ class _DietAccessWidgetState extends State<DietAccessWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.updatedFoodList =
           widget.updatedFoodList!.toList().cast<FilteredFoodRecord>();
+      _model.kcalList = widget.updatedKcalList!.toList().cast<double>();
+      _model.massList = widget.updatedMassList!.toList().cast<double>();
+      _model.totalKcal = valueOrDefault<double>(
+        functions.calcTotalKcal(_model.kcalList.toList()),
+        0.0,
+      );
       setState(() {});
     });
 
@@ -119,106 +129,168 @@ class _DietAccessWidgetState extends State<DietAccessWidget> {
                           ),
                         ],
                       ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Align(
-                            alignment: const AlignmentDirectional(-1.0, -1.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 16.0, 0.0, 0.0),
-                              child: Text(
-                                valueOrDefault<String>(
-                                  widget.foodPeriod,
-                                  'FoodPeriod',
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Align(
+                              alignment: const AlignmentDirectional(-1.0, -1.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 16.0, 0.0, 0.0),
+                                child: Text(
+                                  valueOrDefault<String>(
+                                    widget.foodPeriod,
+                                    'FoodPeriod',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .override(
+                                        fontFamily: 'Roboto',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        letterSpacing: 0.0,
+                                      ),
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineSmall
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      letterSpacing: 0.0,
-                                    ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: Align(
-                              alignment: const AlignmentDirectional(0.9, 0.0),
-                              child: FlutterFlowIconButton(
+                            Expanded(
+                              child: Align(
+                                alignment: const AlignmentDirectional(0.9, 0.0),
+                                child: FlutterFlowIconButton(
+                                  borderColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  fillColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  icon: const Icon(
+                                    Icons.close_outlined,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            10.0, 0.0, 0.0, 10.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              'Foodsearch',
+                              queryParameters: {
+                                'currentFoodList': serializeParam(
+                                  _model.updatedFoodList,
+                                  ParamType.Document,
+                                  isList: true,
+                                ),
+                                'location': serializeParam(
+                                  'toPlate',
+                                  ParamType.String,
+                                ),
+                                'foodPeriod': serializeParam(
+                                  widget.foodPeriod,
+                                  ParamType.String,
+                                ),
+                                'currentKcalList': serializeParam(
+                                  _model.kcalList,
+                                  ParamType.double,
+                                  isList: true,
+                                ),
+                                'currentMassList': serializeParam(
+                                  _model.massList,
+                                  ParamType.double,
+                                  isList: true,
+                                ),
+                              }.withoutNulls,
+                              extra: <String, dynamic>{
+                                'currentFoodList': _model.updatedFoodList,
+                              },
+                            );
+
+                            Navigator.pop(context);
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              FlutterFlowIconButton(
                                 borderColor:
                                     FlutterFlowTheme.of(context).primary,
                                 borderRadius: 20.0,
                                 borderWidth: 1.0,
                                 buttonSize: 40.0,
-                                fillColor: FlutterFlowTheme.of(context).primary,
-                                icon: const Icon(
-                                  Icons.close_outlined,
+                                icon: Icon(
+                                  Icons.search_sharp,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   size: 24.0,
                                 ),
                                 onPressed: () async {
+                                  context.pushNamed(
+                                    'Foodsearch',
+                                    queryParameters: {
+                                      'currentFoodList': serializeParam(
+                                        _model.updatedFoodList,
+                                        ParamType.Document,
+                                        isList: true,
+                                      ),
+                                      'location': serializeParam(
+                                        'toPlate',
+                                        ParamType.String,
+                                      ),
+                                      'foodPeriod': serializeParam(
+                                        widget.foodPeriod,
+                                        ParamType.String,
+                                      ),
+                                      'currentKcalList': serializeParam(
+                                        _model.kcalList,
+                                        ParamType.double,
+                                        isList: true,
+                                      ),
+                                      'currentMassList': serializeParam(
+                                        _model.massList,
+                                        ParamType.double,
+                                        isList: true,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'currentFoodList': _model.updatedFoodList,
+                                    },
+                                  );
+
                                   Navigator.pop(context);
                                 },
                               ),
-                            ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 10.0, 10.0, 7.0),
+                                child: Text(
+                                  'Search for food items from our database',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 15.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            icon: Icon(
-                              Icons.search_sharp,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            onPressed: () async {
-                              context.pushNamed(
-                                'Foodsearch',
-                                queryParameters: {
-                                  'currentFoodList': serializeParam(
-                                    _model.updatedFoodList,
-                                    ParamType.Document,
-                                    isList: true,
-                                  ),
-                                  'location': serializeParam(
-                                    'toPlate',
-                                    ParamType.String,
-                                  ),
-                                  'foodPeriod': serializeParam(
-                                    widget.foodPeriod,
-                                    ParamType.String,
-                                  ),
-                                }.withoutNulls,
-                                extra: <String, dynamic>{
-                                  'currentFoodList': _model.updatedFoodList,
-                                },
-                              );
-
-                              Navigator.pop(context);
-                            },
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                10.0, 10.0, 10.0, 7.0),
-                            child: Text(
-                              'You could also search from our food database',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 14.95,
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                       if (!(_model.updatedFoodList.isNotEmpty))
                         Form(
@@ -226,7 +298,7 @@ class _DietAccessWidgetState extends State<DietAccessWidget> {
                           autovalidateMode: AutovalidateMode.disabled,
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 16.0),
+                                10.0, 0.0, 10.0, 0.0),
                             child: TextFormField(
                               controller: _model.foodentrysTextController,
                               focusNode: _model.foodentrysFocusNode,
@@ -240,7 +312,7 @@ class _DietAccessWidgetState extends State<DietAccessWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 hintText:
-                                    'Your food goes here(estimation cannot be done for manual inputs)',
+                                    'Or manually record your foods here\n(Note: Estimation cannot be done for manual inputs)',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
@@ -296,57 +368,121 @@ class _DietAccessWidgetState extends State<DietAccessWidget> {
                             ),
                           ),
                         ),
+                      if (_model.kcalList.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 5.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Total Kcal:',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 17.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 15.0, 0.0),
+                                child: Text(
+                                  '${formatNumber(
+                                    _model.totalKcal,
+                                    formatType: FormatType.custom,
+                                    format: '.00',
+                                    locale: 'en_US',
+                                  )} Kcal',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 17.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           if (_model.updatedFoodList.isNotEmpty)
                             Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 0.0, 0.0),
-                                child: Builder(
-                                  builder: (context) {
-                                    final foodList =
-                                        _model.updatedFoodList.toList();
+                              child: Builder(
+                                builder: (context) {
+                                  final foodList =
+                                      _model.updatedFoodList.toList();
 
-                                    return ListView.builder(
-                                      padding: EdgeInsets.zero,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: foodList.length,
-                                      itemBuilder: (context, foodListIndex) {
-                                        final foodListItem =
-                                            foodList[foodListIndex];
-                                        return Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 5.0, 10.0, 5.0),
-                                          child: wrapWithModel(
-                                            model: _model.mealFoodItemModels
-                                                .getModel(
-                                              foodListItem.reference.id,
-                                              foodListIndex,
-                                            ),
-                                            updateCallback: () =>
-                                                setState(() {}),
-                                            child: MealFoodItemWidget(
-                                              key: Key(
-                                                'Keyi5g_${foodListItem.reference.id}',
-                                              ),
-                                              foodItem: foodListItem,
-                                              removeFoodItem: () async {
-                                                _model
-                                                    .removeFromUpdatedFoodList(
-                                                        foodListItem);
-                                                setState(() {});
-                                              },
-                                            ),
+                                  return ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: foodList.length,
+                                    itemBuilder: (context, foodListIndex) {
+                                      final foodListItem =
+                                          foodList[foodListIndex];
+                                      return Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 5.0, 10.0, 5.0),
+                                        child: wrapWithModel(
+                                          model: _model.mealFoodItemModels
+                                              .getModel(
+                                            foodListIndex.toString(),
+                                            foodListIndex,
                                           ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                ),
+                                          updateCallback: () => setState(() {}),
+                                          child: MealFoodItemWidget(
+                                            key: Key(
+                                              'Keyi5g_${foodListIndex.toString()}',
+                                            ),
+                                            foodItem: foodListItem,
+                                            massValue: valueOrDefault<double>(
+                                              _model.massList[foodListIndex],
+                                              100.0,
+                                            ),
+                                            removeFoodItem: () async {
+                                              _model.removeFromUpdatedFoodList(
+                                                  foodListItem);
+                                              _model.removeAtIndexFromKcalList(
+                                                  foodListIndex);
+                                              _model.removeAtIndexFromMassList(
+                                                  foodListIndex);
+                                              setState(() {});
+                                            },
+                                            changeKcalValue:
+                                                (kcalValue, mass) async {
+                                              _model.updateKcalListAtIndex(
+                                                foodListIndex,
+                                                (_) => kcalValue,
+                                              );
+                                              _model.updateMassListAtIndex(
+                                                foodListIndex,
+                                                (_) => mass,
+                                              );
+                                              _model.totalKcal =
+                                                  valueOrDefault<double>(
+                                                functions.calcTotalKcal(
+                                                    _model.kcalList.toList()),
+                                                0.0,
+                                              );
+                                              setState(() {});
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
                               ),
                             ),
                         ],
@@ -362,6 +498,7 @@ class _DietAccessWidgetState extends State<DietAccessWidget> {
                                   type: widget.foodPeriod,
                                   date: functions.getDate(getCurrentTimestamp),
                                   userID: FFAppState().UserID,
+                                  totalMealKcals: _model.totalKcal,
                                 ),
                                 ...mapToFirestore(
                                   {
@@ -383,6 +520,7 @@ class _DietAccessWidgetState extends State<DietAccessWidget> {
                                   type: widget.foodPeriod,
                                   date: functions.getDate(getCurrentTimestamp),
                                   userID: FFAppState().UserID,
+                                  totalMealKcals: _model.totalKcal,
                                 ),
                                 ...mapToFirestore(
                                   {

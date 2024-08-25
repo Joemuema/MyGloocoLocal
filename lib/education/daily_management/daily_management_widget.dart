@@ -173,6 +173,7 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                               ),
                             ),
                             SingleChildScrollView(
+                              primary: false,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:

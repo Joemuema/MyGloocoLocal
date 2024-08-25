@@ -80,6 +80,7 @@ class _MonitoringAndMedicationWidgetState
                           scrollDirection: Axis.horizontal,
                           children: [
                             SingleChildScrollView(
+                              primary: false,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -188,6 +189,7 @@ class _MonitoringAndMedicationWidgetState
                               ),
                             ),
                             SingleChildScrollView(
+                              primary: false,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:

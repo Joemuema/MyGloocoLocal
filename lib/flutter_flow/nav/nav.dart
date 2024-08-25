@@ -191,6 +191,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'foodPeriod',
               ParamType.String,
             ),
+            currentKcalList: params.getParam<double>(
+              'currentKcalList',
+              ParamType.double,
+              isList: true,
+            ),
+            currentMassList: params.getParam<double>(
+              'currentMassList',
+              ParamType.double,
+              isList: true,
+            ),
+            chosenMealTime: params.getParam(
+              'chosenMealTime',
+              ParamType.int,
+            ),
           ),
         ),
         FFRoute(
@@ -209,6 +223,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             updatedFoodList: params.getParam<FilteredFoodRecord>(
               'updatedFoodList',
               ParamType.Document,
+              isList: true,
+            ),
+            updatedKcalList: params.getParam<double>(
+              'updatedKcalList',
+              ParamType.double,
+              isList: true,
+            ),
+            updatedMassList: params.getParam<double>(
+              'updatedMassList',
+              ParamType.double,
               isList: true,
             ),
           ),

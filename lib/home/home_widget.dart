@@ -733,12 +733,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
-                                            child: SizedBox(
-                                              height: MediaQuery.sizeOf(context)
-                                                      .height *
-                                                  0.35,
-                                              child: const AccessFromMainTabWidget(),
-                                            ),
+                                            child: const AccessFromMainTabWidget(),
                                           ),
                                         );
                                       },

@@ -78,6 +78,7 @@ class _ExerciseEdWidgetState extends State<ExerciseEdWidget> {
                           scrollDirection: Axis.horizontal,
                           children: [
                             SingleChildScrollView(
+                              primary: false,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,

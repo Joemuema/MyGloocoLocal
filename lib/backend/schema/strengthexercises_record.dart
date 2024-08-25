@@ -65,6 +65,11 @@ class StrengthexercisesRecord extends FirestoreRecord {
   String get type => _type ?? '';
   bool hasType() => _type != null;
 
+  // "imgHWratio" field.
+  double? _imgHWratio;
+  double get imgHWratio => _imgHWratio ?? 0.0;
+  bool hasImgHWratio() => _imgHWratio != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _description = snapshotData['Description'] as String?;
@@ -76,6 +81,7 @@ class StrengthexercisesRecord extends FirestoreRecord {
     _duration = snapshotData['duration'] as String?;
     _shortdescription = snapshotData['shortdescription'] as String?;
     _type = snapshotData['Type'] as String?;
+    _imgHWratio = castToType<double>(snapshotData['imgHWratio']);
   }
 
   static CollectionReference get collection =>
@@ -124,6 +130,7 @@ Map<String, dynamic> createStrengthexercisesRecordData({
   String? duration,
   String? shortdescription,
   String? type,
+  double? imgHWratio,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -137,6 +144,7 @@ Map<String, dynamic> createStrengthexercisesRecordData({
       'duration': duration,
       'shortdescription': shortdescription,
       'Type': type,
+      'imgHWratio': imgHWratio,
     }.withoutNulls,
   );
 
@@ -158,7 +166,8 @@ class StrengthexercisesRecordDocumentEquality
         e1?.rest == e2?.rest &&
         e1?.duration == e2?.duration &&
         e1?.shortdescription == e2?.shortdescription &&
-        e1?.type == e2?.type;
+        e1?.type == e2?.type &&
+        e1?.imgHWratio == e2?.imgHWratio;
   }
 
   @override
@@ -172,7 +181,8 @@ class StrengthexercisesRecordDocumentEquality
         e?.rest,
         e?.duration,
         e?.shortdescription,
-        e?.type
+        e?.type,
+        e?.imgHWratio
       ]);
 
   @override

@@ -101,7 +101,8 @@ class _FlexibilitybottomsheetWidgetState
                   child: Image.network(
                     widget.flexibilityexercises!.image,
                     width: MediaQuery.sizeOf(context).width,
-                    height: 200.0,
+                    height: MediaQuery.sizeOf(context).width *
+                        widget.flexibilityexercises!.imgHWratio,
                     fit: BoxFit.fill,
                   ),
                 ),

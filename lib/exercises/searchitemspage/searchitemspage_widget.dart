@@ -87,6 +87,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
           elevation: 2.0,
         ),
         body: SingleChildScrollView(
+          primary: false,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

@@ -290,3 +290,13 @@ double avgSugarReadings(List<double> readings) {
   double avg = total / count;
   return double.parse(avg.toStringAsFixed(2));
 }
+
+double calcTotalKcal(List<double> kcalValues) {
+  double total = 0.0;
+
+  for (double value in kcalValues) {
+    total += value;
+  }
+
+  return double.parse(total.toStringAsFixed(2));
+}

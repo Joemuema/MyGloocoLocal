@@ -10,6 +10,7 @@ class NewReminderModel extends FlutterFlowModel<NewReminderWidget> {
 
   ///  State fields for stateful widgets in this component.
 
+  final formKey = GlobalKey<FormState>();
   // Stores action output result for [Bottom Sheet - EditReminderName] action in Icon widget.
   String? reminderName;
   // State field(s) for Switch widget.

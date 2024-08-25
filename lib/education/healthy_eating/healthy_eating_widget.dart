@@ -93,6 +93,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                           scrollDirection: Axis.horizontal,
                           children: [
                             SingleChildScrollView(
+                              primary: false,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -202,6 +203,7 @@ class _HealthyEatingWidgetState extends State<HealthyEatingWidget> {
                               ),
                             ),
                             SingleChildScrollView(
+                              primary: false,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:

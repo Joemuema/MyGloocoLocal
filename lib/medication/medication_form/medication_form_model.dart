@@ -28,12 +28,21 @@ class MedicationFormModel extends FlutterFlowModel<MedicationFormWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final formKey = GlobalKey<FormState>();
   // State field(s) for mainColumn widget.
   ScrollController? mainColumn;
   // State field(s) for MedName widget.
   FocusNode? medNameFocusNode;
   TextEditingController? medNameTextController;
   String? Function(BuildContext, String?)? medNameTextControllerValidator;
+  String? _medNameTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Name of medicine is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for MedType widget.
   String? medTypeValue;
   FormFieldController<String>? medTypeValueController;
@@ -41,10 +50,27 @@ class MedicationFormModel extends FlutterFlowModel<MedicationFormWidget> {
   FocusNode? singleDoseFocusNode;
   TextEditingController? singleDoseTextController;
   String? Function(BuildContext, String?)? singleDoseTextControllerValidator;
+  String? _singleDoseTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Single dose amount is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for TotalDose widget.
   FocusNode? totalDoseFocusNode;
   TextEditingController? totalDoseTextController;
   String? Function(BuildContext, String?)? totalDoseTextControllerValidator;
+  String? _totalDoseTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Total dose amount is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for DescriptionText widget.
   FocusNode? descriptionTextFocusNode;
   TextEditingController? descriptionTextTextController;
@@ -64,6 +90,9 @@ class MedicationFormModel extends FlutterFlowModel<MedicationFormWidget> {
   @override
   void initState(BuildContext context) {
     mainColumn = ScrollController();
+    medNameTextControllerValidator = _medNameTextControllerValidator;
+    singleDoseTextControllerValidator = _singleDoseTextControllerValidator;
+    totalDoseTextControllerValidator = _totalDoseTextControllerValidator;
     listViewController = ScrollController();
     newReminderModels = FlutterFlowDynamicModels(() => NewReminderModel());
   }

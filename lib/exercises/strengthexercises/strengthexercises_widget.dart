@@ -104,7 +104,8 @@ class _StrengthexercisesWidgetState extends State<StrengthexercisesWidget> {
                 child: Image.network(
                   widget.upperbodyexercisedocument!.image,
                   width: MediaQuery.sizeOf(context).width,
-                  height: 200.0,
+                  height: MediaQuery.sizeOf(context).width *
+                      widget.upperbodyexercisedocument!.imgHWratio,
                   fit: BoxFit.fill,
                 ),
               ),

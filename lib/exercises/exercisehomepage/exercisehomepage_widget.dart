@@ -67,6 +67,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
           elevation: 2.0,
         ),
         body: SingleChildScrollView(
+          primary: false,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -499,6 +500,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: SingleChildScrollView(
+                  primary: false,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [

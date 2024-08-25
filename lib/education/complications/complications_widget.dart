@@ -173,6 +173,7 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                               ),
                             ),
                             SingleChildScrollView(
+                              primary: false,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:

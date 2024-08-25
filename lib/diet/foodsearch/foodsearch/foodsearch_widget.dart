@@ -20,12 +20,18 @@ class FoodsearchWidget extends StatefulWidget {
     this.location,
     this.filter,
     this.foodPeriod,
-  });
+    this.currentKcalList,
+    this.currentMassList,
+    int? chosenMealTime,
+  }) : chosenMealTime = chosenMealTime ?? 0;
 
   final List<FilteredFoodRecord>? currentFoodList;
   final String? location;
   final String? filter;
   final String? foodPeriod;
+  final List<double>? currentKcalList;
+  final List<double>? currentMassList;
+  final int chosenMealTime;
 
   @override
   State<FoodsearchWidget> createState() => _FoodsearchWidgetState();
@@ -49,6 +55,8 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
       _model.searchFoodList =
           widget.currentFoodList!.toList().cast<FilteredFoodRecord>();
       _model.filter = widget.filter;
+      _model.searchKcalList = widget.currentKcalList!.toList().cast<double>();
+      _model.searchMassList = widget.currentMassList!.toList().cast<double>();
       setState(() {});
     });
 
@@ -345,6 +353,13 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                         _model
                                                             .addToSearchFoodList(
                                                                 resultsItem);
+                                                        _model
+                                                            .addToSearchKcalList(
+                                                                resultsItem
+                                                                    .energyKcal);
+                                                        _model
+                                                            .addToSearchMassList(
+                                                                100.0);
                                                         setState(() {});
 
                                                         context.pushNamed(
@@ -356,6 +371,20 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                   .searchFoodList,
                                                               ParamType
                                                                   .Document,
+                                                              isList: true,
+                                                            ),
+                                                            'updatedKcalList':
+                                                                serializeParam(
+                                                              _model
+                                                                  .searchKcalList,
+                                                              ParamType.double,
+                                                              isList: true,
+                                                            ),
+                                                            'updatedMassList':
+                                                                serializeParam(
+                                                              _model
+                                                                  .searchMassList,
+                                                              ParamType.double,
                                                               isList: true,
                                                             ),
                                                           }.withoutNulls,
@@ -372,6 +401,12 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                           _model
                                                               .addToSearchFoodList(
                                                                   resultsItem);
+                                                          _model.addToSearchKcalList(
+                                                              resultsItem
+                                                                  .energyKcal);
+                                                          _model
+                                                              .addToSearchMassList(
+                                                                  100.0);
                                                           setState(() {});
                                                           context.safePop();
                                                           await showModalBottomSheet(
@@ -380,7 +415,6 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            enableDrag: false,
                                                             context: context,
                                                             builder: (context) {
                                                               return GestureDetector(
@@ -400,6 +434,12 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                     foodPeriod:
                                                                         widget
                                                                             .foodPeriod,
+                                                                    updatedKcalList:
+                                                                        _model
+                                                                            .searchKcalList,
+                                                                    updatedMassList:
+                                                                        _model
+                                                                            .searchMassList,
                                                                   ),
                                                                 ),
                                                               );
@@ -411,6 +451,12 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                           _model
                                                               .addToSearchFoodList(
                                                                   resultsItem);
+                                                          _model.addToSearchKcalList(
+                                                              resultsItem
+                                                                  .energyKcal);
+                                                          _model
+                                                              .addToSearchMassList(
+                                                                  100.0);
                                                           setState(() {});
                                                           context.safePop();
                                                           await showModalBottomSheet(
@@ -419,7 +465,6 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            enableDrag: false,
                                                             context: context,
                                                             builder: (context) {
                                                               return GestureDetector(
@@ -436,6 +481,15 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                     updatedFoodList:
                                                                         _model
                                                                             .searchFoodList,
+                                                                    updatedKcalList:
+                                                                        _model
+                                                                            .searchKcalList,
+                                                                    updatedMassList:
+                                                                        _model
+                                                                            .searchMassList,
+                                                                    prevMealTime:
+                                                                        widget
+                                                                            .chosenMealTime,
                                                                   ),
                                                                 ),
                                                               );
@@ -628,6 +682,10 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                           if (widget.location == 'Plate') {
                                             _model.addToSearchFoodList(
                                                 listViewFilteredFoodRecord);
+                                            _model.addToSearchKcalList(
+                                                listViewFilteredFoodRecord
+                                                    .energyKcal);
+                                            _model.addToSearchMassList(100.0);
                                             setState(() {});
 
                                             context.pushNamed(
@@ -637,6 +695,18 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                     serializeParam(
                                                   _model.searchFoodList,
                                                   ParamType.Document,
+                                                  isList: true,
+                                                ),
+                                                'updatedKcalList':
+                                                    serializeParam(
+                                                  _model.searchKcalList,
+                                                  ParamType.double,
+                                                  isList: true,
+                                                ),
+                                                'updatedMassList':
+                                                    serializeParam(
+                                                  _model.searchMassList,
+                                                  ParamType.double,
                                                   isList: true,
                                                 ),
                                               }.withoutNulls,
@@ -649,13 +719,16 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                             if (widget.location == 'toPlate') {
                                               _model.addToSearchFoodList(
                                                   listViewFilteredFoodRecord);
+                                              _model.addToSearchKcalList(
+                                                  listViewFilteredFoodRecord
+                                                      .energyKcal);
+                                              _model.addToSearchMassList(100.0);
                                               setState(() {});
                                               context.safePop();
                                               await showModalBottomSheet(
                                                 isScrollControlled: true,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                enableDrag: false,
                                                 context: context,
                                                 builder: (context) {
                                                   return GestureDetector(
@@ -671,6 +744,10 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                             .searchFoodList,
                                                         foodPeriod:
                                                             widget.foodPeriod,
+                                                        updatedKcalList: _model
+                                                            .searchKcalList,
+                                                        updatedMassList: _model
+                                                            .searchMassList,
                                                       ),
                                                     ),
                                                   );
@@ -680,13 +757,16 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                             } else {
                                               _model.addToSearchFoodList(
                                                   listViewFilteredFoodRecord);
+                                              _model.addToSearchKcalList(
+                                                  listViewFilteredFoodRecord
+                                                      .energyKcal);
+                                              _model.addToSearchMassList(100.0);
                                               setState(() {});
                                               context.safePop();
                                               await showModalBottomSheet(
                                                 isScrollControlled: true,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                enableDrag: false,
                                                 context: context,
                                                 builder: (context) {
                                                   return GestureDetector(
@@ -701,6 +781,12 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                           AccessFromMainTabWidget(
                                                         updatedFoodList: _model
                                                             .searchFoodList,
+                                                        updatedKcalList: _model
+                                                            .searchKcalList,
+                                                        updatedMassList: _model
+                                                            .searchMassList,
+                                                        prevMealTime: widget
+                                                            .chosenMealTime,
                                                       ),
                                                     ),
                                                   );
@@ -792,6 +878,13 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                         _model
                                                             .addToSearchFoodList(
                                                                 resultsItem);
+                                                        _model
+                                                            .addToSearchKcalList(
+                                                                resultsItem
+                                                                    .energyKcal);
+                                                        _model
+                                                            .addToSearchMassList(
+                                                                100.0);
                                                         setState(() {});
 
                                                         context.pushNamed(
@@ -803,6 +896,20 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                   .searchFoodList,
                                                               ParamType
                                                                   .Document,
+                                                              isList: true,
+                                                            ),
+                                                            'updatedKcalList':
+                                                                serializeParam(
+                                                              _model
+                                                                  .searchKcalList,
+                                                              ParamType.double,
+                                                              isList: true,
+                                                            ),
+                                                            'updatedMassList':
+                                                                serializeParam(
+                                                              _model
+                                                                  .searchMassList,
+                                                              ParamType.double,
                                                               isList: true,
                                                             ),
                                                           }.withoutNulls,
@@ -819,6 +926,12 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                           _model
                                                               .addToSearchFoodList(
                                                                   resultsItem);
+                                                          _model.addToSearchKcalList(
+                                                              resultsItem
+                                                                  .energyKcal);
+                                                          _model
+                                                              .addToSearchMassList(
+                                                                  100.0);
                                                           setState(() {});
                                                           context.safePop();
                                                           await showModalBottomSheet(
@@ -827,7 +940,6 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            enableDrag: false,
                                                             context: context,
                                                             builder: (context) {
                                                               return GestureDetector(
@@ -847,6 +959,12 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                     foodPeriod:
                                                                         widget
                                                                             .foodPeriod,
+                                                                    updatedKcalList:
+                                                                        _model
+                                                                            .searchKcalList,
+                                                                    updatedMassList:
+                                                                        _model
+                                                                            .searchMassList,
                                                                   ),
                                                                 ),
                                                               );
@@ -858,6 +976,12 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                           _model
                                                               .addToSearchFoodList(
                                                                   resultsItem);
+                                                          _model.addToSearchKcalList(
+                                                              resultsItem
+                                                                  .energyKcal);
+                                                          _model
+                                                              .addToSearchMassList(
+                                                                  100.0);
                                                           setState(() {});
                                                           context.safePop();
                                                           await showModalBottomSheet(
@@ -866,7 +990,6 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            enableDrag: false,
                                                             context: context,
                                                             builder: (context) {
                                                               return GestureDetector(
@@ -883,6 +1006,12 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                     updatedFoodList:
                                                                         _model
                                                                             .searchFoodList,
+                                                                    updatedKcalList:
+                                                                        _model
+                                                                            .searchKcalList,
+                                                                    updatedMassList:
+                                                                        _model
+                                                                            .searchMassList,
                                                                   ),
                                                                 ),
                                                               );
@@ -1080,6 +1209,10 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                           if (widget.location == 'Plate') {
                                             _model.addToSearchFoodList(
                                                 listViewFilteredFoodRecord);
+                                            _model.addToSearchKcalList(
+                                                listViewFilteredFoodRecord
+                                                    .energyKcal);
+                                            _model.addToSearchMassList(100.0);
                                             setState(() {});
 
                                             context.pushNamed(
@@ -1089,6 +1222,18 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                     serializeParam(
                                                   _model.searchFoodList,
                                                   ParamType.Document,
+                                                  isList: true,
+                                                ),
+                                                'updatedKcalList':
+                                                    serializeParam(
+                                                  _model.searchKcalList,
+                                                  ParamType.double,
+                                                  isList: true,
+                                                ),
+                                                'updatedMassList':
+                                                    serializeParam(
+                                                  _model.searchMassList,
+                                                  ParamType.double,
                                                   isList: true,
                                                 ),
                                               }.withoutNulls,
@@ -1101,13 +1246,16 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                             if (widget.location == 'toPlate') {
                                               _model.addToSearchFoodList(
                                                   listViewFilteredFoodRecord);
+                                              _model.addToSearchKcalList(
+                                                  listViewFilteredFoodRecord
+                                                      .energyKcal);
+                                              _model.addToSearchMassList(100.0);
                                               setState(() {});
                                               context.safePop();
                                               await showModalBottomSheet(
                                                 isScrollControlled: true,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                enableDrag: false,
                                                 context: context,
                                                 builder: (context) {
                                                   return GestureDetector(
@@ -1123,6 +1271,10 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                             .searchFoodList,
                                                         foodPeriod:
                                                             widget.foodPeriod,
+                                                        updatedKcalList: _model
+                                                            .searchKcalList,
+                                                        updatedMassList: _model
+                                                            .searchMassList,
                                                       ),
                                                     ),
                                                   );
@@ -1132,13 +1284,16 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                             } else {
                                               _model.addToSearchFoodList(
                                                   listViewFilteredFoodRecord);
+                                              _model.addToSearchKcalList(
+                                                  listViewFilteredFoodRecord
+                                                      .energyKcal);
+                                              _model.addToSearchMassList(100.0);
                                               setState(() {});
                                               context.safePop();
                                               await showModalBottomSheet(
                                                 isScrollControlled: true,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                enableDrag: false,
                                                 context: context,
                                                 builder: (context) {
                                                   return GestureDetector(
@@ -1153,6 +1308,10 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                           AccessFromMainTabWidget(
                                                         updatedFoodList: _model
                                                             .searchFoodList,
+                                                        updatedKcalList: _model
+                                                            .searchKcalList,
+                                                        updatedMassList: _model
+                                                            .searchMassList,
                                                       ),
                                                     ),
                                                   );

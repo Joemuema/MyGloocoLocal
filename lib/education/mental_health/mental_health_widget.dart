@@ -184,6 +184,7 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                               ),
                             ),
                             SingleChildScrollView(
+                              primary: false,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:

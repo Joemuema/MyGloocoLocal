@@ -21,6 +21,28 @@ class AccessFromMainTabModel extends FlutterFlowModel<AccessFromMainTabWidget> {
           int index, Function(FilteredFoodRecord) updateFn) =>
       updatedFoodList[index] = updateFn(updatedFoodList[index]);
 
+  List<double> kcalList = [];
+  void addToKcalList(double item) => kcalList.add(item);
+  void removeFromKcalList(double item) => kcalList.remove(item);
+  void removeAtIndexFromKcalList(int index) => kcalList.removeAt(index);
+  void insertAtIndexInKcalList(int index, double item) =>
+      kcalList.insert(index, item);
+  void updateKcalListAtIndex(int index, Function(double) updateFn) =>
+      kcalList[index] = updateFn(kcalList[index]);
+
+  double totalKcal = 0.0;
+
+  List<double> massList = [];
+  void addToMassList(double item) => massList.add(item);
+  void removeFromMassList(double item) => massList.remove(item);
+  void removeAtIndexFromMassList(int index) => massList.removeAt(index);
+  void insertAtIndexInMassList(int index, double item) =>
+      massList.insert(index, item);
+  void updateMassListAtIndex(int index, Function(double) updateFn) =>
+      massList[index] = updateFn(massList[index]);
+
+  int mealTime = 0;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey1 = GlobalKey<FormState>();

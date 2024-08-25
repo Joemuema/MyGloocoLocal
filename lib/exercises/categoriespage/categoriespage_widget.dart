@@ -1194,6 +1194,7 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                           ),
                           KeepAliveWidgetWrapper(
                             builder: (context) => SingleChildScrollView(
+                              primary: false,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [

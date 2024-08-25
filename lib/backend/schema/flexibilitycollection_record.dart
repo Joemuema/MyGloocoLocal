@@ -45,6 +45,11 @@ class FlexibilitycollectionRecord extends FirestoreRecord {
   String get howto => _howto ?? '';
   bool hasHowto() => _howto != null;
 
+  // "imgHWratio" field.
+  double? _imgHWratio;
+  double get imgHWratio => _imgHWratio ?? 0.0;
+  bool hasImgHWratio() => _imgHWratio != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _description = snapshotData['description'] as String?;
@@ -52,6 +57,7 @@ class FlexibilitycollectionRecord extends FirestoreRecord {
     _sets = snapshotData['sets'] as String?;
     _image = snapshotData['image'] as String?;
     _howto = snapshotData['howto'] as String?;
+    _imgHWratio = castToType<double>(snapshotData['imgHWratio']);
   }
 
   static CollectionReference get collection =>
@@ -97,6 +103,7 @@ Map<String, dynamic> createFlexibilitycollectionRecordData({
   String? sets,
   String? image,
   String? howto,
+  double? imgHWratio,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -106,6 +113,7 @@ Map<String, dynamic> createFlexibilitycollectionRecordData({
       'sets': sets,
       'image': image,
       'howto': howto,
+      'imgHWratio': imgHWratio,
     }.withoutNulls,
   );
 
@@ -124,12 +132,20 @@ class FlexibilitycollectionRecordDocumentEquality
         e1?.duration == e2?.duration &&
         e1?.sets == e2?.sets &&
         e1?.image == e2?.image &&
-        e1?.howto == e2?.howto;
+        e1?.howto == e2?.howto &&
+        e1?.imgHWratio == e2?.imgHWratio;
   }
 
   @override
-  int hash(FlexibilitycollectionRecord? e) => const ListEquality().hash(
-      [e?.name, e?.description, e?.duration, e?.sets, e?.image, e?.howto]);
+  int hash(FlexibilitycollectionRecord? e) => const ListEquality().hash([
+        e?.name,
+        e?.description,
+        e?.duration,
+        e?.sets,
+        e?.image,
+        e?.howto,
+        e?.imgHWratio
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is FlexibilitycollectionRecord;

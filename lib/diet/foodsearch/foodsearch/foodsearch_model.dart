@@ -20,6 +20,26 @@ class FoodsearchModel extends FlutterFlowModel<FoodsearchWidget> {
 
   String? filter;
 
+  List<double> searchKcalList = [];
+  void addToSearchKcalList(double item) => searchKcalList.add(item);
+  void removeFromSearchKcalList(double item) => searchKcalList.remove(item);
+  void removeAtIndexFromSearchKcalList(int index) =>
+      searchKcalList.removeAt(index);
+  void insertAtIndexInSearchKcalList(int index, double item) =>
+      searchKcalList.insert(index, item);
+  void updateSearchKcalListAtIndex(int index, Function(double) updateFn) =>
+      searchKcalList[index] = updateFn(searchKcalList[index]);
+
+  List<double> searchMassList = [];
+  void addToSearchMassList(double item) => searchMassList.add(item);
+  void removeFromSearchMassList(double item) => searchMassList.remove(item);
+  void removeAtIndexFromSearchMassList(int index) =>
+      searchMassList.removeAt(index);
+  void insertAtIndexInSearchMassList(int index, double item) =>
+      searchMassList.insert(index, item);
+  void updateSearchMassListAtIndex(int index, Function(double) updateFn) =>
+      searchMassList[index] = updateFn(searchMassList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for Searchbar widget.
