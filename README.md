@@ -25,37 +25,37 @@ In the project root directory, run the following command to install all necessar
 **_flutter pub get_**
 
 ### 3. Set Up Android Studio
-  **1.	Open Android Studio:**
-    - Launch Android Studio and select Open an existing Android Studio project.
-    -	Navigate to the cloned repository and select the project folder.
+  **a.	Open Android Studio:**
+  - Launch Android Studio and select Open an existing Android Studio project.
+  -	Navigate to the cloned repository and select the project folder.
     
-  **2.	Set Up an Emulator:**
-    -	Go to _Tools > AVD Manager_.
-    -	Create a new virtual device by following the on-screen instructions.
-    - Start the emulator.
+  **b.	Set Up an Emulator:**
+  -	Go to _Tools > AVD Manager_.
+  -	Create a new virtual device by following the on-screen instructions.
+  - Start the emulator.
     
-  **3.	Configure Flutter SDK in Android Studio:**
-    -	Go to _File > Settings > Languages & Frameworks > Flutter_.
-    -	Set the Flutter SDK path to the location where Flutter is installed on your machine.
+  **c.	Configure Flutter SDK in Android Studio:**
+  -	Go to _File > Settings > Languages & Frameworks > Flutter_.
+  -	Set the Flutter SDK path to the location where Flutter is installed on your machine.
     
 ### 4. Running the Application
 ***Option 1: Using Android Studio***
 
-  **1.	Select the Target Device:**
-    -	At the top of Android Studio, select the device or emulator you wish to run the application on.
+  **a.	Select the Target Device:**
+  -	At the top of Android Studio, select the device or emulator you wish to run the application on.
     
-  **2.	Run the App:**
-    -	Click on the _Run_ button (green play icon) or press _Shift + F10_.
+  **b.	Run the App:**
+  -	Click on the _Run_ button (green play icon) or press _Shift + F10_.
 
 ***Option 2: Using the Terminal***
 
-  **1.	Connect a Physical Device or Start an Emulator:**
-    -	Make sure your device is connected or an emulator is running.
+  **a.	Connect a Physical Device or Start an Emulator:**
+  -	Make sure your device is connected or an emulator is running.
     
-  **2.	Run the Application:**
-    -	Run the following command in the terminal:
+  **b.	Run the Application:**
+  -	Run the following command in the terminal:
     
-    _flutter run_
+    **_flutter run_**
 
 ### 5. Additional Configuration
 ***Configuring Firebase***
