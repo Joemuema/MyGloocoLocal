@@ -1,4 +1,4 @@
-# Personalized Diabetes Management App
+# MyGlooco: Personalized Diabetes Management App
 ## Overview
 This repository contains the source code for the Personalized Diabetes Management mobile application built using Flutter. The app provides users with tools for blood sugar logging, diet and meal planning, medication tracking, physical activity monitoring, and more.
 
