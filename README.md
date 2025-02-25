@@ -3,14 +3,15 @@
 This repository contains the source code for the Personalized Diabetes Management mobile application built using Flutter. The app provides users with tools for blood sugar logging, diet and meal planning, medication tracking, physical activity monitoring, and more.
 ## Prerequisites
 Before you begin, ensure you have met the following requirements:
-•	Flutter SDK: Install Flutter SDK. Installation Guide.
-•	Android Studio: Install Android Studio. Installation Guide.
-•	Git: Install Git for version control. Installation Guide.
-•	Java Development Kit (JDK): Install JDK version 8 or higher. Installation Guide.
+  -	Flutter SDK: Install Flutter SDK. Installation Guide.
+  -	Android Studio: Install Android Studio. Installation Guide.
+  -	Git: Install Git for version control. Installation Guide.
+  -	Java Development Kit (JDK): Install JDK version 8 or higher. Installation Guide.
 ## Getting Started
 ### 1. Clone the Repository
 Open your terminal or command prompt and run the following command to clone the repository:
 git clone https://github.com/yourusername/your-repository-name.git
+
 Navigate into the project directory:
 cd your-repository-name
 ### 2. Install Flutter Dependencies
