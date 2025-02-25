@@ -13,44 +13,48 @@ Before you begin, ensure you have met the following requirements:
 ### 1. Clone the Repository
 Open your terminal or command prompt and run the following command to clone the repository:
 
-_git clone https://github.com/yourusername/your-repository-name.git_
+**_git clone https://github.com/yourusername/your-repository-name.git_**
 
 Navigate into the project directory:
 
-_cd your-repository-name_
+**_cd your-repository-name_**
 
 ### 2. Install Flutter Dependencies
 In the project root directory, run the following command to install all necessary Flutter dependencies:
-_flutter pub get_
+
+**_flutter pub get_**
 
 ### 3. Set Up Android Studio
-**1.	Open Android Studio:**
-  - Launch Android Studio and select Open an existing Android Studio project.
-  -	Navigate to the cloned repository and select the project folder.
+  **1.	Open Android Studio:**
+    - Launch Android Studio and select Open an existing Android Studio project.
+    -	Navigate to the cloned repository and select the project folder.
     
-**2.	Set Up an Emulator:**
-  -	Go to _Tools > AVD Manager_.
-  -	Create a new virtual device by following the on-screen instructions.
-  - Start the emulator.
+  **2.	Set Up an Emulator:**
+    -	Go to _Tools > AVD Manager_.
+    -	Create a new virtual device by following the on-screen instructions.
+    - Start the emulator.
     
-**3.	Configure Flutter SDK in Android Studio:**
-  -	Go to _File > Settings > Languages & Frameworks > Flutter_.
-  -	Set the Flutter SDK path to the location where Flutter is installed on your machine.
+  **3.	Configure Flutter SDK in Android Studio:**
+    -	Go to _File > Settings > Languages & Frameworks > Flutter_.
+    -	Set the Flutter SDK path to the location where Flutter is installed on your machine.
     
 ### 4. Running the Application
 ***Option 1: Using Android Studio***
-**1.	Select the Target Device:**
-  -	At the top of Android Studio, select the device or emulator you wish to run the application on.
+
+  **1.	Select the Target Device:**
+    -	At the top of Android Studio, select the device or emulator you wish to run the application on.
     
-**2.	Run the App:**
-  -	Click on the _Run_ button (green play icon) or press _Shift + F10_.
+  **2.	Run the App:**
+    -	Click on the _Run_ button (green play icon) or press _Shift + F10_.
 
 ***Option 2: Using the Terminal***
-**1.	Connect a Physical Device or Start an Emulator:**
-  -	Make sure your device is connected or an emulator is running.
+
+  **1.	Connect a Physical Device or Start an Emulator:**
+    -	Make sure your device is connected or an emulator is running.
     
-**2.	Run the Application:**
-  -	Run the following command in the terminal:
+  **2.	Run the Application:**
+    -	Run the following command in the terminal:
+    
     _flutter run_
 
 ### 5. Additional Configuration
@@ -62,20 +66,18 @@ If your app uses Firebase services, you need to configure Firebase for your Andr
 3.	Ensure the following lines are added in your _android/build.gradle_ and _android/app/build.gradle files_: 
   -	In _android/build.gradle_:
     
-    	dependencies {_
-   	
+    	dependencies {
     	  classpath 'com.google.gms:google-services:4.3.10' // or latest version
-   	
     	}
    	
   -	In _android/app/build.gradle_:
     
-  	_apply plugin: 'com.google.gms.google-services'_
+  	**_apply plugin: 'com.google.gms.google-services'_**
 
 ### 6. Testing the App
 To run tests, execute:
 
-_flutter test_
+**_flutter test_**
 
 ## Troubleshooting
 If you encounter any issues while setting up or running the app, consider the following:
