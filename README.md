@@ -13,11 +13,11 @@ Before you begin, ensure you have met the following requirements:
 ### 1. Clone the Repository
 Open your terminal or command prompt and run the following command to clone the repository:
 
-**_git clone https://github.com/yourusername/your-repository-name.git_**
+**_git clone https://github.com/Joemuema/MyGloocoGit_**
 
 Navigate into the project directory:
 
-**_cd your-repository-name_**
+**_cd MyGloocoGit_**
 
 ### 2. Install Flutter Dependencies
 In the project root directory, run the following command to install all necessary Flutter dependencies:
