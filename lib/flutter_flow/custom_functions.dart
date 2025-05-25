@@ -48,7 +48,7 @@ List<RemindersRecord>? combineReminderLists(
     ..addAll(monthlyList);
 }
 
-String? getDayofWeek(DateTime date) {
+String getDayofWeek(DateTime date) {
   return DateFormat('EEEE').format(date);
 }
 
@@ -299,4 +299,191 @@ double calcTotalKcal(List<double> kcalValues) {
   }
 
   return double.parse(total.toStringAsFixed(2));
+}
+
+List<double> lowestAndHighestChartTimeValues(
+  List<double> beforeMealTimeValues,
+  List<double> afterMealTimeValues,
+) {
+// Combine both lists into one
+  final combined = <double>[
+    ...beforeMealTimeValues,
+    ...afterMealTimeValues,
+  ];
+
+  if (combined.isEmpty) {
+    return [0.0, 24.0];
+  }
+
+  // Find the lowest and highest values
+  double minValue = combined.reduce((a, b) => a < b ? a : b);
+  double maxValue = combined.reduce((a, b) => a > b ? a : b);
+
+  return [minValue, maxValue];
+}
+
+DateTime incrementWeek(DateTime currentDate) {
+  return currentDate.add(Duration(days: 7));
+}
+
+DateTime decrementWeek(DateTime currentDate) {
+  return currentDate.subtract(Duration(days: 7));
+}
+
+DateTime incrementMonth(DateTime currentDate) {
+  return DateTime(
+    currentDate.year,
+    currentDate.month + 1,
+    currentDate.day,
+    currentDate.hour,
+    currentDate.minute,
+    currentDate.second,
+    currentDate.millisecond,
+    currentDate.microsecond,
+  );
+}
+
+DateTime decrementMonth(DateTime currentDate) {
+  return DateTime(
+    currentDate.year,
+    currentDate.month - 1,
+    currentDate.day,
+    currentDate.hour,
+    currentDate.minute,
+    currentDate.second,
+    currentDate.millisecond,
+    currentDate.microsecond,
+  );
+}
+
+DateTime firstDayOfWeek(DateTime date) {
+  final daysToSubtract = date.weekday % 7;
+  return date.subtract(Duration(days: daysToSubtract));
+}
+
+DateTime lastDayOfWeek(DateTime date) {
+  final daysToAdd = 6 - (date.weekday % 7);
+  return date.add(Duration(days: daysToAdd));
+}
+
+DateTime firstDayOfMonth(DateTime date) {
+  return DateTime(date.year, date.month, 1);
+}
+
+DateTime lastDayOfMonth(DateTime date) {
+  final firstOfNextMonth = (date.month < 12)
+      ? DateTime(date.year, date.month + 1, 1)
+      : DateTime(date.year + 1, 1, 1);
+  return firstOfNextMonth.subtract(Duration(days: 1));
+}
+
+List<double> mgdlToMmol(List<double> mgdlValues) {
+  return mgdlValues.map((v) => v / 18.018).toList();
+}
+
+List<double> convertToWeekTimes(List<BGreadingsRecord> docs) {
+  final List<double> resultList = [];
+
+  for (final doc in docs) {
+    try {
+      final DateTime? date = doc.dateTime;
+      final double? decimalTime = doc.decimalTime;
+
+      if (date != null && decimalTime != null) {
+        // Week of the month (1 to 5)
+        // Compute weekday index: Sunday = 0, Monday = 1, ..., Saturday = 6
+        final int dayIndex = (date.weekday % 7);
+
+        // Normalize decimal time between 0 and 1
+        final double timePortion = decimalTime / 24.0;
+
+        // Compute final value and add to list
+        resultList.add(dayIndex + timePortion);
+      }
+    } catch (e) {
+      continue;
+    }
+  }
+
+  return resultList;
+}
+
+List<double> convertToMonthTimes(List<BGreadingsRecord> docs) {
+  final List<double> results = [];
+
+  for (final doc in docs) {
+    try {
+      final DateTime? date = doc.dateTime;
+      final double? decimalTime = doc.decimalTime;
+
+      if (date != null && decimalTime != null) {
+        // Week of the month (1-based index)
+        final int dayOfMonth = date.day;
+        final int weekOfMonth = ((dayOfMonth - 1) ~/ 7) + 1;
+
+        // Day of week: Sunday = 0, Monday = 1, ..., Saturday = 6
+        final int dayOfWeekIndex = date.weekday % 7;
+
+        // Combined decimal time: [(day index * 24) + decimalTime]/168
+        final double timeValue = ((dayOfWeekIndex * 24) + decimalTime) / 168.0;
+
+        // Final value = weekOfMonth + timeValue
+        results.add(weekOfMonth + timeValue);
+      }
+    } catch (e) {
+      // Skip any document with missing or invalid data
+      continue;
+    }
+  }
+
+  return results;
+}
+
+List<double> xChartBounds(
+  List<double> beforeMealTimeValues,
+  List<double> afterMealTimeValues,
+  String interval,
+) {
+  // Combine both lists into one
+  final combined = <double>[
+    ...beforeMealTimeValues,
+    ...afterMealTimeValues,
+  ];
+
+  if (combined.isEmpty) {
+    if (interval == 'daily') {
+      return [0.0, 24.0];
+    } else if (interval == 'weekly') {
+      return [0.0, 7.0];
+    } else if (interval == 'monthly') {
+      return [0.0, 4.0];
+    } else {
+      return [0.0, 1.0]; // Default fallback for unknown intervals
+    }
+  }
+
+  // Find the lowest and highest values
+  double minValue = combined.reduce((a, b) => a < b ? a : b);
+  double maxValue = combined.reduce((a, b) => a > b ? a : b);
+
+  return [minValue, maxValue];
+}
+
+String monthName(DateTime date) {
+  const List<String> monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
+
+  return monthNames[date.month - 1];
 }

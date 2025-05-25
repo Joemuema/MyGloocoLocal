@@ -1,14 +1,16 @@
 import '/backend/backend.dart';
-import '/components/meal_food_item_widget.dart';
 import '/diet/foodsearch/food_checkout/food_checkout_widget.dart';
+import '/diet/meal_food_item/meal_food_item_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'plate_model.dart';
 export 'plate_model.dart';
 
@@ -23,6 +25,9 @@ class PlateWidget extends StatefulWidget {
   final List<FilteredFoodRecord>? updatedFoodList;
   final List<double>? updatedKcalList;
   final List<double>? updatedMassList;
+
+  static String routeName = 'Plate';
+  static String routePath = '/plate';
 
   @override
   State<PlateWidget> createState() => _PlateWidgetState();
@@ -48,10 +53,10 @@ class _PlateWidgetState extends State<PlateWidget> {
         functions.calcTotalKcal(_model.kcalList.toList()),
         0.0,
       );
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -64,7 +69,10 @@ class _PlateWidgetState extends State<PlateWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -76,7 +84,7 @@ class _PlateWidgetState extends State<PlateWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -88,14 +96,20 @@ class _PlateWidgetState extends State<PlateWidget> {
           title: Text(
             'Plate',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Inter',
+                  font: GoogleFonts.inter(
+                    fontWeight: FontWeight.w500,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                  ),
                   color: Colors.white,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -109,14 +123,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    SizedBox(
+                    Container(
                       height: 406.0,
                       child: Stack(
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 8.0, 8.0, 8.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12.0),
@@ -129,35 +143,51 @@ class _PlateWidgetState extends State<PlateWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-0.51, 0.18),
+                            alignment: AlignmentDirectional(-0.51, 0.18),
                             child: Text(
                               'Fruits &',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-0.53, 0.27),
+                            alignment: AlignmentDirectional(-0.53, 0.27),
                             child: Text(
                               'Vegetables',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-0.83, 0.04),
+                            alignment: AlignmentDirectional(-0.83, 0.05),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -165,7 +195,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 context.pushNamed(
-                                  'Foodsearch',
+                                  FoodsearchWidget.routeName,
                                   queryParameters: {
                                     'currentFoodList': serializeParam(
                                       _model.updatedFoodList,
@@ -207,34 +237,42 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       MediaQuery.sizeOf(context).width * 0.42,
                                       0.0,
                                     )),
-                                    bottomRight: const Radius.circular(0.0),
+                                    bottomRight: Radius.circular(0.0),
                                     topLeft:
                                         Radius.circular(valueOrDefault<double>(
                                       MediaQuery.sizeOf(context).width * 0.42,
                                       0.0,
                                     )),
-                                    topRight: const Radius.circular(0.0),
+                                    topRight: Radius.circular(0.0),
                                   ),
                                 ),
                               ),
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.43, -0.22),
+                            alignment: AlignmentDirectional(0.43, -0.22),
                             child: Text(
                               'Carbs',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.77, -0.75),
+                            alignment: AlignmentDirectional(0.77, -0.75),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -242,7 +280,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 context.pushNamed(
-                                  'Foodsearch',
+                                  FoodsearchWidget.routeName,
                                   queryParameters: {
                                     'currentFoodList': serializeParam(
                                       _model.updatedFoodList,
@@ -279,9 +317,9 @@ class _PlateWidgetState extends State<PlateWidget> {
                                 decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   borderRadius: BorderRadius.only(
-                                    bottomLeft: const Radius.circular(0.0),
-                                    bottomRight: const Radius.circular(0.0),
-                                    topLeft: const Radius.circular(0.0),
+                                    bottomLeft: Radius.circular(0.0),
+                                    bottomRight: Radius.circular(0.0),
+                                    topLeft: Radius.circular(0.0),
                                     topRight:
                                         Radius.circular(valueOrDefault<double>(
                                       MediaQuery.sizeOf(context).width * 0.42,
@@ -293,21 +331,29 @@ class _PlateWidgetState extends State<PlateWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.45, 0.5),
+                            alignment: AlignmentDirectional(0.45, 0.5),
                             child: Text(
                               'Proteins',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.76, 0.75),
+                            alignment: AlignmentDirectional(0.76, 0.75),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -315,7 +361,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 context.pushNamed(
-                                  'Foodsearch',
+                                  FoodsearchWidget.routeName,
                                   queryParameters: {
                                     'currentFoodList': serializeParam(
                                       _model.updatedFoodList,
@@ -352,23 +398,23 @@ class _PlateWidgetState extends State<PlateWidget> {
                                 decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   borderRadius: BorderRadius.only(
-                                    bottomLeft: const Radius.circular(0.0),
+                                    bottomLeft: Radius.circular(0.0),
                                     bottomRight:
                                         Radius.circular(valueOrDefault<double>(
                                       MediaQuery.sizeOf(context).width * 0.42,
                                       0.0,
                                     )),
-                                    topLeft: const Radius.circular(0.0),
-                                    topRight: const Radius.circular(0.0),
+                                    topLeft: Radius.circular(0.0),
+                                    topRight: Radius.circular(0.0),
                                   ),
                                 ),
                               ),
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.44, 0.36),
+                            alignment: AlignmentDirectional(0.44, 0.36),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: FlutterFlowIconButton(
                                 borderColor:
                                     FlutterFlowTheme.of(context).primary,
@@ -376,14 +422,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                                 borderWidth: 1.0,
                                 buttonSize: 49.0,
                                 fillColor: Colors.white,
-                                icon: const Icon(
+                                icon: Icon(
                                   FFIcons.kicons8Meat50,
                                   color: Color(0xFF0D0D0D),
                                   size: 30.0,
                                 ),
                                 onPressed: () async {
                                   context.pushNamed(
-                                    'Foodsearch',
+                                    FoodsearchWidget.routeName,
                                     queryParameters: {
                                       'currentFoodList': serializeParam(
                                         _model.updatedFoodList,
@@ -418,9 +464,9 @@ class _PlateWidgetState extends State<PlateWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-0.49, -0.01),
+                            alignment: AlignmentDirectional(-0.5, -0.01),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: FlutterFlowIconButton(
                                 borderColor:
                                     FlutterFlowTheme.of(context).primary,
@@ -428,14 +474,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                                 borderWidth: 1.0,
                                 buttonSize: 49.0,
                                 fillColor: Colors.white,
-                                icon: const FaIcon(
+                                icon: FaIcon(
                                   FontAwesomeIcons.carrot,
                                   color: Color(0xFF0D0D0D),
                                   size: 29.0,
                                 ),
                                 onPressed: () async {
                                   context.pushNamed(
-                                    'Foodsearch',
+                                    FoodsearchWidget.routeName,
                                     queryParameters: {
                                       'currentFoodList': serializeParam(
                                         _model.updatedFoodList,
@@ -470,9 +516,9 @@ class _PlateWidgetState extends State<PlateWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.45, -0.45),
+                            alignment: AlignmentDirectional(0.45, -0.45),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(8.0),
                               child: FlutterFlowIconButton(
                                 borderColor:
                                     FlutterFlowTheme.of(context).primary,
@@ -480,14 +526,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                                 borderWidth: 1.0,
                                 buttonSize: 49.0,
                                 fillColor: Colors.white,
-                                icon: const Icon(
+                                icon: Icon(
                                   FFIcons.kicons8Wheat50,
                                   color: Color(0xFF0D0D0D),
                                   size: 30.0,
                                 ),
                                 onPressed: () async {
                                   context.pushNamed(
-                                    'Foodsearch',
+                                    FoodsearchWidget.routeName,
                                     queryParameters: {
                                       'currentFoodList': serializeParam(
                                         _model.updatedFoodList,
@@ -522,21 +568,21 @@ class _PlateWidgetState extends State<PlateWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.93, 0.99),
+                            alignment: AlignmentDirectional(0.93, 0.99),
                             child: FlutterFlowIconButton(
                               borderColor: FlutterFlowTheme.of(context).primary,
                               borderRadius: 20.0,
                               borderWidth: 2.0,
                               buttonSize: 49.0,
                               fillColor: Colors.white,
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.add,
                                 color: Colors.black,
                                 size: 30.0,
                               ),
                               onPressed: () async {
                                 context.pushNamed(
-                                  'Foodsearch',
+                                  FoodsearchWidget.routeName,
                                   queryParameters: {
                                     'currentFoodList': serializeParam(
                                       _model.updatedFoodList,
@@ -576,18 +622,33 @@ class _PlateWidgetState extends State<PlateWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 10.0, 10.0, 0.0),
                                 child: Text(
                                   'Default estimations are per 100g of edible portion on fresh weight basis. (You can change the estimate mass in each food item\'s mass textfield)\n\nTo search for uncategorized food items, click (+) button in the bottom-right corner of the plate.',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
                                         fontSize: 15.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                               ),
@@ -602,21 +663,29 @@ class _PlateWidgetState extends State<PlateWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 4.0, 0.0, 0.0),
                               child: Text(
                                 'Summary',
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FontWeight.w600,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .fontStyle,
+                                      ),
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       fontSize: 24.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontStyle,
                                     ),
                               ),
                             ),
@@ -624,7 +693,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                           if (widget.updatedKcalList != null &&
                               (widget.updatedKcalList)!.isNotEmpty)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 5.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -632,22 +701,32 @@ class _PlateWidgetState extends State<PlateWidget> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         15.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Total Kcal:',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            font: GoogleFonts.readexPro(
+                                              fontWeight: FontWeight.w600,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
                                             fontSize: 17.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
                                           ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 15.0, 0.0),
                                     child: Text(
                                       '${valueOrDefault<String>(
@@ -662,9 +741,26 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            font: GoogleFonts.readexPro(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
                                             fontSize: 17.0,
                                             letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
                                           ),
                                     ),
                                   ),
@@ -683,21 +779,22 @@ class _PlateWidgetState extends State<PlateWidget> {
                                 itemBuilder: (context, foodListIndex) {
                                   final foodListItem = foodList[foodListIndex];
                                   return Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         10.0, 5.0, 10.0, 5.0),
                                     child: wrapWithModel(
                                       model: _model.mealFoodItemModels.getModel(
                                         foodListIndex.toString(),
                                         foodListIndex,
                                       ),
-                                      updateCallback: () => setState(() {}),
+                                      updateCallback: () => safeSetState(() {}),
                                       child: MealFoodItemWidget(
                                         key: Key(
                                           'Key3ub_${foodListIndex.toString()}',
                                         ),
                                         foodItem: foodListItem,
                                         massValue: valueOrDefault<double>(
-                                          _model.massList[foodListIndex],
+                                          _model.massList
+                                              .elementAtOrNull(foodListIndex),
                                           100.0,
                                         ),
                                         removeFoodItem: () async {
@@ -707,7 +804,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                                               foodListIndex);
                                           _model.removeAtIndexFromMassList(
                                               foodListIndex);
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                         changeKcalValue:
                                             (kcalValue, mass) async {
@@ -725,7 +822,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                                                 _model.kcalList.toList()),
                                             0.0,
                                           );
-                                          setState(() {});
+                                          safeSetState(() {});
                                         },
                                       ),
                                     ),
@@ -735,7 +832,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                             },
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 10.0, 0.0, 10.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -745,7 +842,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 10.0, 24.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
@@ -757,9 +854,13 @@ class _PlateWidgetState extends State<PlateWidget> {
                                               context: context,
                                               builder: (context) {
                                                 return GestureDetector(
-                                                  onTap: () =>
-                                                      FocusScope.of(context)
-                                                          .unfocus(),
+                                                  onTap: () {
+                                                    FocusScope.of(context)
+                                                        .unfocus();
+                                                    FocusManager
+                                                        .instance.primaryFocus
+                                                        ?.unfocus();
+                                                  },
                                                   child: Padding(
                                                     padding:
                                                         MediaQuery.viewInsetsOf(
@@ -781,10 +882,10 @@ class _PlateWidgetState extends State<PlateWidget> {
                                             width: double.infinity,
                                             height: 50.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -792,9 +893,31 @@ class _PlateWidgetState extends State<PlateWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmall
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      font:
+                                                          GoogleFonts.readexPro(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontStyle,
+                                                      ),
                                                       color: Colors.white,
                                                       letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontStyle,
                                                     ),
                                             elevation: 3.0,
                                             borderRadius:

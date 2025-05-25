@@ -6,8 +6,10 @@ import '/medication/add_refill/add_refill_widget.dart';
 import '/medication/med_list_item/med_list_item_widget.dart';
 import '/medication/medicine_description/medicine_description_widget.dart';
 import '/medication/no_elements/no_elements_widget.dart';
+import '/index.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'medication_list_model.dart';
 export 'medication_list_model.dart';
@@ -16,9 +18,12 @@ class MedicationListWidget extends StatefulWidget {
   const MedicationListWidget({
     super.key,
     String? listOption,
-  }) : listOption = listOption ?? 'view';
+  }) : this.listOption = listOption ?? 'view';
 
   final String listOption;
+
+  static String routeName = 'MedicationList';
+  static String routePath = '/medicationList';
 
   @override
   State<MedicationListWidget> createState() => _MedicationListWidgetState();
@@ -34,7 +39,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
     super.initState();
     _model = createModel(context, () => MedicationListModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -49,7 +54,10 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -61,7 +69,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -73,14 +81,20 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
           title: Text(
             'Medication List',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Inter',
+                  font: GoogleFonts.inter(
+                    fontWeight: FontWeight.w500,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                  ),
                   color: Colors.white,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -102,17 +116,25 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
                           child: Text(
                             'Choose medicine to ${widget.listOption == 'add' ? 'add reminder for' : 'refill'}',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
                                   fontSize: 15.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
                           ),
                         ),
@@ -124,25 +146,38 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   header: Container(
                     width: double.infinity,
                     height: 50.0,
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 430.0,
                     ),
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: BorderRadius.circular(0.0),
                     ),
-                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    alignment: AlignmentDirectional(-1.0, 0.0),
                     child: Align(
-                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                      alignment: AlignmentDirectional(-1.0, 0.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Pills',
                           style:
                               FlutterFlowTheme.of(context).titleLarge.override(
-                                    fontFamily: 'Inter',
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .fontStyle,
+                                    ),
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontStyle,
                                   ),
                         ),
                       ),
@@ -150,7 +185,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   ),
                   content: Container(
                     width: double.infinity,
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 430.0,
                     ),
                     decoration: BoxDecoration(
@@ -159,7 +194,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                     ),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                       child: StreamBuilder<List<MedicineRecord>>(
                         stream: queryMedicineRecord(
                           queryBuilder: (medicineRecord) => medicineRecord
@@ -194,7 +229,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                           List<MedicineRecord> pillsListViewMedicineRecordList =
                               snapshot.data!;
                           if (pillsListViewMedicineRecordList.isEmpty) {
-                            return const NoElementsWidget(
+                            return NoElementsWidget(
                               additionalText: 'Add new pills to display here',
                             );
                           }
@@ -210,10 +245,10 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                   pillsListViewMedicineRecordList[
                                       pillsListViewIndex];
                               return Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      15.0, 0.0, 15.0, 0.0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 0.0, 15.0, 7.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -225,7 +260,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           context.pop();
                                         }
                                         context.pushNamed(
-                                          'MedicationForm',
+                                          MedicationFormWidget.routeName,
                                           queryParameters: {
                                             'newMedicineID': serializeParam(
                                               pillsListViewMedicineRecord
@@ -268,9 +303,13 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                             context: context,
                                             builder: (context) {
                                               return GestureDetector(
-                                                onTap: () =>
-                                                    FocusScope.of(context)
-                                                        .unfocus(),
+                                                onTap: () {
+                                                  FocusScope.of(context)
+                                                      .unfocus();
+                                                  FocusManager
+                                                      .instance.primaryFocus
+                                                      ?.unfocus();
+                                                },
                                                 child: Padding(
                                                   padding:
                                                       MediaQuery.viewInsetsOf(
@@ -295,9 +334,13 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                             context: context,
                                             builder: (context) {
                                               return GestureDetector(
-                                                onTap: () =>
-                                                    FocusScope.of(context)
-                                                        .unfocus(),
+                                                onTap: () {
+                                                  FocusScope.of(context)
+                                                      .unfocus();
+                                                  FocusManager
+                                                      .instance.primaryFocus
+                                                      ?.unfocus();
+                                                },
                                                 child: Padding(
                                                   padding:
                                                       MediaQuery.viewInsetsOf(
@@ -314,7 +357,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                         }
                                       }
 
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     child: wrapWithModel(
                                       model: _model.medListItemModels1.getModel(
@@ -322,7 +365,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                             .reference.id,
                                         pillsListViewIndex,
                                       ),
-                                      updateCallback: () => setState(() {}),
+                                      updateCallback: () => safeSetState(() {}),
                                       child: MedListItemWidget(
                                         key: Key(
                                           'Keyz90_${pillsListViewMedicineRecord.reference.id}',
@@ -345,25 +388,38 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   header: Container(
                     width: double.infinity,
                     height: 50.0,
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 430.0,
                     ),
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: BorderRadius.circular(0.0),
                     ),
-                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    alignment: AlignmentDirectional(-1.0, 0.0),
                     child: Align(
-                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                      alignment: AlignmentDirectional(-1.0, 0.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Tablets',
                           style:
                               FlutterFlowTheme.of(context).titleLarge.override(
-                                    fontFamily: 'Inter',
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .fontStyle,
+                                    ),
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontStyle,
                                   ),
                         ),
                       ),
@@ -371,7 +427,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   ),
                   content: Container(
                     width: double.infinity,
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 430.0,
                     ),
                     decoration: BoxDecoration(
@@ -380,7 +436,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                     ),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                       child: StreamBuilder<List<MedicineRecord>>(
                         stream: queryMedicineRecord(
                           queryBuilder: (medicineRecord) => medicineRecord
@@ -416,7 +472,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                               tabletsListViewMedicineRecordList =
                               snapshot.data!;
                           if (tabletsListViewMedicineRecordList.isEmpty) {
-                            return const NoElementsWidget(
+                            return NoElementsWidget(
                               additionalText: 'Add new tablets to display here',
                             );
                           }
@@ -432,8 +488,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                   tabletsListViewMedicineRecordList[
                                       tabletsListViewIndex];
                               return Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 0.0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 0.0, 15.0, 7.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -445,7 +501,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                         context.pop();
                                       }
                                       context.pushNamed(
-                                        'MedicationForm',
+                                        MedicationFormWidget.routeName,
                                         queryParameters: {
                                           'newMedicineID': serializeParam(
                                             tabletsListViewMedicineRecord
@@ -488,9 +544,13 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           context: context,
                                           builder: (context) {
                                             return GestureDetector(
-                                              onTap: () =>
-                                                  FocusScope.of(context)
-                                                      .unfocus(),
+                                              onTap: () {
+                                                FocusScope.of(context)
+                                                    .unfocus();
+                                                FocusManager
+                                                    .instance.primaryFocus
+                                                    ?.unfocus();
+                                              },
                                               child: Padding(
                                                 padding:
                                                     MediaQuery.viewInsetsOf(
@@ -514,9 +574,13 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           context: context,
                                           builder: (context) {
                                             return GestureDetector(
-                                              onTap: () =>
-                                                  FocusScope.of(context)
-                                                      .unfocus(),
+                                              onTap: () {
+                                                FocusScope.of(context)
+                                                    .unfocus();
+                                                FocusManager
+                                                    .instance.primaryFocus
+                                                    ?.unfocus();
+                                              },
                                               child: Padding(
                                                 padding:
                                                     MediaQuery.viewInsetsOf(
@@ -532,7 +596,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                       }
                                     }
 
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   child: MedListItemWidget(
                                     key: Key(
@@ -553,25 +617,38 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   header: Container(
                     width: double.infinity,
                     height: 50.0,
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 430.0,
                     ),
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: BorderRadius.circular(0.0),
                     ),
-                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    alignment: AlignmentDirectional(-1.0, 0.0),
                     child: Align(
-                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                      alignment: AlignmentDirectional(-1.0, 0.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Emulsions',
                           style:
                               FlutterFlowTheme.of(context).titleLarge.override(
-                                    fontFamily: 'Inter',
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .fontStyle,
+                                    ),
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontStyle,
                                   ),
                         ),
                       ),
@@ -579,7 +656,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   ),
                   content: Container(
                     width: double.infinity,
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 430.0,
                     ),
                     decoration: BoxDecoration(
@@ -588,7 +665,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                     ),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                       child: StreamBuilder<List<MedicineRecord>>(
                         stream: queryMedicineRecord(
                           queryBuilder: (medicineRecord) => medicineRecord
@@ -624,7 +701,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                               emulsionListViewMedicineRecordList =
                               snapshot.data!;
                           if (emulsionListViewMedicineRecordList.isEmpty) {
-                            return const NoElementsWidget(
+                            return NoElementsWidget(
                               additionalText:
                                   'Add new emulsions to display here',
                             );
@@ -642,8 +719,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                   emulsionListViewMedicineRecordList[
                                       emulsionListViewIndex];
                               return Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 0.0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 0.0, 15.0, 7.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -655,7 +732,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                         context.pop();
                                       }
                                       context.pushNamed(
-                                        'MedicationForm',
+                                        MedicationFormWidget.routeName,
                                         queryParameters: {
                                           'newMedicineID': serializeParam(
                                             emulsionListViewMedicineRecord
@@ -698,9 +775,13 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           context: context,
                                           builder: (context) {
                                             return GestureDetector(
-                                              onTap: () =>
-                                                  FocusScope.of(context)
-                                                      .unfocus(),
+                                              onTap: () {
+                                                FocusScope.of(context)
+                                                    .unfocus();
+                                                FocusManager
+                                                    .instance.primaryFocus
+                                                    ?.unfocus();
+                                              },
                                               child: Padding(
                                                 padding:
                                                     MediaQuery.viewInsetsOf(
@@ -724,9 +805,13 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           context: context,
                                           builder: (context) {
                                             return GestureDetector(
-                                              onTap: () =>
-                                                  FocusScope.of(context)
-                                                      .unfocus(),
+                                              onTap: () {
+                                                FocusScope.of(context)
+                                                    .unfocus();
+                                                FocusManager
+                                                    .instance.primaryFocus
+                                                    ?.unfocus();
+                                              },
                                               child: Padding(
                                                 padding:
                                                     MediaQuery.viewInsetsOf(
@@ -742,7 +827,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                       }
                                     }
 
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   child: MedListItemWidget(
                                     key: Key(
@@ -759,32 +844,45 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 400.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 400.0),
                   child: StickyHeader(
                     overlapHeaders: false,
                     header: Container(
                       width: double.infinity,
                       height: 50.0,
-                      constraints: const BoxConstraints(
+                      constraints: BoxConstraints(
                         maxWidth: 430.0,
                       ),
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         borderRadius: BorderRadius.circular(0.0),
                       ),
-                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                      alignment: AlignmentDirectional(-1.0, 0.0),
                       child: Align(
-                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        alignment: AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 0.0, 0.0),
                           child: Text(
                             'Injections',
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge
                                 .override(
-                                  fontFamily: 'Inter',
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .fontStyle,
                                 ),
                           ),
                         ),
@@ -792,7 +890,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                     ),
                     content: Container(
                       width: double.infinity,
-                      constraints: const BoxConstraints(
+                      constraints: BoxConstraints(
                         maxWidth: 430.0,
                       ),
                       decoration: BoxDecoration(
@@ -800,7 +898,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                         borderRadius: BorderRadius.circular(0.0),
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 10.0, 0.0, 10.0),
                         child: StreamBuilder<List<MedicineRecord>>(
                           stream: queryMedicineRecord(
@@ -837,7 +935,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                 injectionListViewMedicineRecordList =
                                 snapshot.data!;
                             if (injectionListViewMedicineRecordList.isEmpty) {
-                              return const NoElementsWidget(
+                              return NoElementsWidget(
                                 additionalText:
                                     'Add new injections to display here',
                               );
@@ -855,8 +953,8 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                     injectionListViewMedicineRecordList[
                                         injectionListViewIndex];
                                 return Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      15.0, 0.0, 15.0, 0.0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 0.0, 15.0, 7.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -868,7 +966,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                           context.pop();
                                         }
                                         context.pushNamed(
-                                          'MedicationForm',
+                                          MedicationFormWidget.routeName,
                                           queryParameters: {
                                             'newMedicineID': serializeParam(
                                               injectionListViewMedicineRecord
@@ -911,9 +1009,13 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                             context: context,
                                             builder: (context) {
                                               return GestureDetector(
-                                                onTap: () =>
-                                                    FocusScope.of(context)
-                                                        .unfocus(),
+                                                onTap: () {
+                                                  FocusScope.of(context)
+                                                      .unfocus();
+                                                  FocusManager
+                                                      .instance.primaryFocus
+                                                      ?.unfocus();
+                                                },
                                                 child: Padding(
                                                   padding:
                                                       MediaQuery.viewInsetsOf(
@@ -938,9 +1040,13 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                             context: context,
                                             builder: (context) {
                                               return GestureDetector(
-                                                onTap: () =>
-                                                    FocusScope.of(context)
-                                                        .unfocus(),
+                                                onTap: () {
+                                                  FocusScope.of(context)
+                                                      .unfocus();
+                                                  FocusManager
+                                                      .instance.primaryFocus
+                                                      ?.unfocus();
+                                                },
                                                 child: Padding(
                                                   padding:
                                                       MediaQuery.viewInsetsOf(
@@ -957,7 +1063,7 @@ class _MedicationListWidgetState extends State<MedicationListWidget> {
                                         }
                                       }
 
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     child: MedListItemWidget(
                                       key: Key(

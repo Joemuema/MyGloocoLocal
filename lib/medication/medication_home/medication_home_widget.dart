@@ -10,14 +10,19 @@ import '/medication/past_reminder/past_reminder_widget.dart';
 import '/medication/refill/refill_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'medication_home_model.dart';
 export 'medication_home_model.dart';
 
 class MedicationHomeWidget extends StatefulWidget {
   const MedicationHomeWidget({super.key});
+
+  static String routeName = 'MedicationHome';
+  static String routePath = '/medicationHome';
 
   @override
   State<MedicationHomeWidget> createState() => _MedicationHomeWidgetState();
@@ -37,7 +42,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.today = functions.getDate(getCurrentTimestamp);
       _model.expandedCalendar = false;
-      setState(() {});
+      safeSetState(() {});
       _model.allReminders = await queryRemindersRecordOnce(
         queryBuilder: (remindersRecord) => remindersRecord.where(
           'UserID',
@@ -187,12 +192,12 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
           .toList()
           .toList()
           .cast<IndividualRemindersRecord>();
-      setState(() {});
+      safeSetState(() {});
       if (FFAppState().notificationPermissionsGranted == false) {
         _model.permissionsGranted = await actions.requestPermissions();
         FFAppState().notificationPermissionsGranted =
             _model.permissionsGranted!;
-        setState(() {});
+        safeSetState(() {});
       }
       _model.lowCapacityMeds = await queryMedicineRecordOnce(
         queryBuilder: (medicineRecord) => medicineRecord
@@ -215,7 +220,10 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
           context: context,
           builder: (context) {
             return GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus(),
+              onTap: () {
+                FocusScope.of(context).unfocus();
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
               child: Padding(
                 padding: MediaQuery.viewInsetsOf(context),
                 child: RefillWidget(
@@ -228,7 +236,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -243,7 +251,10 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -255,10 +266,13 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
               context: context,
               builder: (context) {
                 return GestureDetector(
-                  onTap: () => FocusScope.of(context).unfocus(),
+                  onTap: () {
+                    FocusScope.of(context).unfocus();
+                    FocusManager.instance.primaryFocus?.unfocus();
+                  },
                   child: Padding(
                     padding: MediaQuery.viewInsetsOf(context),
-                    child: const MedMenuWidget(),
+                    child: MedMenuWidget(),
                   ),
                 );
               },
@@ -278,13 +292,19 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
           title: Text(
             'Medicine Schedule',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Inter',
+                  font: GoogleFonts.inter(
+                    fontWeight: FontWeight.w500,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                  ),
                   color: Colors.white,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -320,10 +340,10 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                     _model.calendarSelectedDay1!.start),
                                 'date',
                               );
-                              setState(() {});
+                              safeSetState(() {});
                               if (_model.calendarChanged == true) {
                                 _model.calendarChanged = false;
-                                setState(() {});
+                                safeSetState(() {});
                               }
                               _model.exCalendarReminders =
                                   await queryRemindersRecordOnce(
@@ -459,7 +479,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                             getCurrentTimestamp))
                                     .toList()
                                     .cast<IndividualRemindersRecord>();
-                                setState(() {});
+                                safeSetState(() {});
                               } else {
                                 _model.exCalendarSubReminders =
                                     await queryIndividualRemindersRecordOnce(
@@ -577,42 +597,107 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                                 getCurrentTimestamp)))
                                     .toList()
                                     .cast<IndividualRemindersRecord>();
-                                setState(() {});
+                                safeSetState(() {});
                               }
 
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             titleStyle: FlutterFlowTheme.of(context)
                                 .headlineSmall
                                 .override(
-                                  fontFamily: 'Inter',
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .fontStyle,
+                                  ),
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .fontStyle,
                                 ),
                             dayOfWeekStyle: FlutterFlowTheme.of(context)
                                 .labelLarge
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontStyle,
                                 ),
                             dateStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
                             selectedDateStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
                                 ),
                             inactiveDateStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
                                 ),
                           );
                         } else {
@@ -622,7 +707,9 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                 FlutterFlowTheme.of(context).secondaryText,
                             weekFormat: true,
                             weekStartsMonday: false,
-                            initialDate: _model.datePicked ?? getCurrentTimestamp,
+                            initialDate: _model.datePicked != null
+                                ? _model.datePicked
+                                : getCurrentTimestamp,
                             rowHeight: 64.0,
                             onChange: (DateTimeRange? newSelectedDate) async {
                               if (_model.calendarSelectedDay2 ==
@@ -635,10 +722,10 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                     _model.calendarSelectedDay2!.start),
                                 'date',
                               );
-                              setState(() {});
+                              safeSetState(() {});
                               if (_model.calendarChanged == true) {
                                 _model.calendarChanged = false;
-                                setState(() {});
+                                safeSetState(() {});
                               }
                               _model.calendarReminders =
                                   await queryRemindersRecordOnce(
@@ -774,7 +861,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                             getCurrentTimestamp))
                                     .toList()
                                     .cast<IndividualRemindersRecord>();
-                                setState(() {});
+                                safeSetState(() {});
                               } else {
                                 _model.calendarSubReminders =
                                     await queryIndividualRemindersRecordOnce(
@@ -892,51 +979,116 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                                 getCurrentTimestamp)))
                                     .toList()
                                     .cast<IndividualRemindersRecord>();
-                                setState(() {});
+                                safeSetState(() {});
                               }
 
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             titleStyle: FlutterFlowTheme.of(context)
                                 .headlineSmall
                                 .override(
-                                  fontFamily: 'Inter',
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .fontStyle,
+                                  ),
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .fontStyle,
                                 ),
                             dayOfWeekStyle: FlutterFlowTheme.of(context)
                                 .labelLarge
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontStyle,
                                 ),
                             dateStyle: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
                             selectedDateStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
                                 ),
                             inactiveDateStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
                                 ),
                           );
                         }
                       },
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             45.0, 17.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
@@ -945,7 +1097,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             _model.expandedCalendar = !_model.expandedCalendar;
-                            setState(() {});
+                            safeSetState(() {});
                             if (_model.expandedCalendar == true) {
                               if (functions.getDate(
                                       _model.calendarSelectedDay2!.start) ==
@@ -1057,7 +1209,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                             getCurrentTimestamp))
                                     .toList()
                                     .cast<IndividualRemindersRecord>();
-                                setState(() {});
+                                safeSetState(() {});
                               } else {
                                 _model.listOfUpcomingTimes = functions
                                     .combineTimeLists(
@@ -1159,7 +1311,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                                 getCurrentTimestamp)))
                                     .toList()
                                     .cast<IndividualRemindersRecord>();
-                                setState(() {});
+                                safeSetState(() {});
                               }
                             } else {
                               if (functions.getDate(
@@ -1272,7 +1424,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                             getCurrentTimestamp))
                                     .toList()
                                     .cast<IndividualRemindersRecord>();
-                                setState(() {});
+                                safeSetState(() {});
                               } else {
                                 _model.listOfUpcomingTimes = functions
                                     .combineTimeLists(
@@ -1374,12 +1526,12 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                                 getCurrentTimestamp)))
                                     .toList()
                                     .cast<IndividualRemindersRecord>();
-                                setState(() {});
+                                safeSetState(() {});
                               }
                             }
 
                             _model.calendarChanged = true;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           child: Icon(
                             Icons.expand,
@@ -1390,14 +1542,14 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(-0.9, -0.98),
+                      alignment: AlignmentDirectional(-0.9, -0.98),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          final datePickedDate = await showDatePicker(
+                          final _datePickedDate = await showDatePicker(
                             context: context,
                             initialDate: getCurrentTimestamp,
                             firstDate: DateTime(1900),
@@ -1413,10 +1565,18 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                 headerTextStyle: FlutterFlowTheme.of(context)
                                     .headlineLarge
                                     .override(
-                                      fontFamily: 'Inter',
+                                      font: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w600,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .headlineLarge
+                                            .fontStyle,
+                                      ),
                                       fontSize: 32.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .headlineLarge
+                                          .fontStyle,
                                     ),
                                 pickerBackgroundColor:
                                     FlutterFlowTheme.of(context)
@@ -1434,22 +1594,26 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                             },
                           );
 
-                          if (datePickedDate != null) {
+                          if (_datePickedDate != null) {
                             safeSetState(() {
                               _model.datePicked = DateTime(
-                                datePickedDate.year,
-                                datePickedDate.month,
-                                datePickedDate.day,
+                                _datePickedDate.year,
+                                _datePickedDate.month,
+                                _datePickedDate.day,
                               );
+                            });
+                          } else if (_model.datePicked != null) {
+                            safeSetState(() {
+                              _model.datePicked = getCurrentTimestamp;
                             });
                           }
                           _model.calendarDateTime = _model.datePicked;
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         child: Container(
                           width: 162.0,
                           height: 56.0,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: Colors.transparent,
                           ),
                         ),
@@ -1458,7 +1622,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                   child: Container(
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
@@ -1485,7 +1649,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                             }() >=
                             functions.currentDate(getCurrentTimestamp))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -1495,10 +1659,19 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                                 Builder(
@@ -1508,13 +1681,13 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
 
                                     return ListView.separated(
                                       padding:
-                                          const EdgeInsets.symmetric(vertical: 5.0),
+                                          EdgeInsets.symmetric(vertical: 5.0),
                                       primary: false,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
                                       itemCount: generatingTimeList.length,
                                       separatorBuilder: (_, __) =>
-                                          const SizedBox(height: 5.0),
+                                          SizedBox(height: 5.0),
                                       itemBuilder:
                                           (context, generatingTimeListIndex) {
                                         final generatingTimeListItem =
@@ -1522,7 +1695,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                                 generatingTimeListIndex];
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 10.0, 5.0),
                                           child: ClipRRect(
                                             borderRadius:
@@ -1542,19 +1715,33 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.all(8.0),
+                                                        EdgeInsets.all(8.0),
                                                     child: Text(
                                                       generatingTimeListItem,
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
                                                           .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
+                                                            font: GoogleFonts
+                                                                .readexPro(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
                                                             fontSize: 20.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w600,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
                                                           ),
                                                     ),
                                                   ),
@@ -1591,8 +1778,8 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                                                   .reference.id,
                                                               specificTimeReminderListIndex,
                                                             ),
-                                                            updateCallback:
-                                                                () => setState(
+                                                            updateCallback: () =>
+                                                                safeSetState(
                                                                     () {}),
                                                             child:
                                                                 HomeReminderWidget(
@@ -1624,8 +1811,8 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                     false)
                                   wrapWithModel(
                                     model: _model.noElementsModel1,
-                                    updateCallback: () => setState(() {}),
-                                    child: const NoElementsWidget(
+                                    updateCallback: () => safeSetState(() {}),
+                                    child: NoElementsWidget(
                                       additionalText:
                                           '(Add reminders to trigger later)',
                                       showFirstLine: false,
@@ -1653,7 +1840,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                             }() <=
                             functions.currentDate(getCurrentTimestamp))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -1663,10 +1850,19 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                                 Builder(
@@ -1676,20 +1872,20 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
 
                                     return ListView.separated(
                                       padding:
-                                          const EdgeInsets.symmetric(vertical: 5.0),
+                                          EdgeInsets.symmetric(vertical: 5.0),
                                       primary: false,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
                                       itemCount: takenTimeList.length,
                                       separatorBuilder: (_, __) =>
-                                          const SizedBox(height: 5.0),
+                                          SizedBox(height: 5.0),
                                       itemBuilder:
                                           (context, takenTimeListIndex) {
                                         final takenTimeListItem =
                                             takenTimeList[takenTimeListIndex];
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 10.0, 5.0),
                                           child: ClipRRect(
                                             borderRadius:
@@ -1709,19 +1905,33 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.all(8.0),
+                                                        EdgeInsets.all(8.0),
                                                     child: Text(
                                                       takenTimeListItem,
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
                                                           .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
+                                                            font: GoogleFonts
+                                                                .readexPro(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
                                                             fontSize: 20.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w600,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
                                                           ),
                                                     ),
                                                   ),
@@ -1772,8 +1982,8 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                 if ((_model.takenReminders.isNotEmpty) == false)
                                   wrapWithModel(
                                     model: _model.noElementsModel2,
-                                    updateCallback: () => setState(() {}),
-                                    child: const NoElementsWidget(
+                                    updateCallback: () => safeSetState(() {}),
+                                    child: NoElementsWidget(
                                       additionalText: '(No medicines taken)',
                                       showFirstLine: false,
                                     ),
@@ -1800,7 +2010,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                             }() <=
                             functions.currentDate(getCurrentTimestamp))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -1810,10 +2020,19 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                                 Builder(
@@ -1823,20 +2042,20 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
 
                                     return ListView.separated(
                                       padding:
-                                          const EdgeInsets.symmetric(vertical: 5.0),
+                                          EdgeInsets.symmetric(vertical: 5.0),
                                       primary: false,
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
                                       itemCount: missedTimeList.length,
                                       separatorBuilder: (_, __) =>
-                                          const SizedBox(height: 5.0),
+                                          SizedBox(height: 5.0),
                                       itemBuilder:
                                           (context, missedTimeListIndex) {
                                         final missedTimeListItem =
                                             missedTimeList[missedTimeListIndex];
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 10.0, 5.0),
                                           child: ClipRRect(
                                             borderRadius:
@@ -1856,19 +2075,33 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.all(8.0),
+                                                        EdgeInsets.all(8.0),
                                                     child: Text(
                                                       missedTimeListItem,
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
                                                           .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
+                                                            font: GoogleFonts
+                                                                .readexPro(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
                                                             fontSize: 20.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
                                                                 FontWeight.w600,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
                                                           ),
                                                     ),
                                                   ),
@@ -1920,8 +2153,8 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                     false)
                                   wrapWithModel(
                                     model: _model.noElementsModel3,
-                                    updateCallback: () => setState(() {}),
-                                    child: const NoElementsWidget(
+                                    updateCallback: () => safeSetState(() {}),
+                                    child: NoElementsWidget(
                                       additionalText: '(No reminders missed)',
                                       showFirstLine: false,
                                     ),
@@ -1953,7 +2186,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                     functions.currentDate(getCurrentTimestamp))
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -1961,7 +2194,7 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                         FFButtonWidget(
                           onPressed: () async {
                             context.pushNamed(
-                              'MedicationList',
+                              MedicationListWidget.routeName,
                               queryParameters: {
                                 'listOption': serializeParam(
                                   'add',
@@ -1971,27 +2204,40 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                             );
                           },
                           text: 'Add reminder',
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.add_alarm_rounded,
                             size: 24.0,
                           ),
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
                                   color: Colors.white,
                                   fontSize: 17.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

@@ -7,14 +7,19 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/logs/addactivity/addactivity_widget.dart';
 import '/medication/no_elements/no_elements_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'exercisehomepage_model.dart';
 export 'exercisehomepage_model.dart';
 
 class ExercisehomepageWidget extends StatefulWidget {
   const ExercisehomepageWidget({super.key});
+
+  static String routeName = 'exercisehomepage';
+  static String routePath = '/exercisehomepage';
 
   @override
   State<ExercisehomepageWidget> createState() => _ExercisehomepageWidgetState();
@@ -30,7 +35,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
     super.initState();
     _model = createModel(context, () => ExercisehomepageModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -45,7 +50,10 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -55,14 +63,20 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
           title: Text(
             'Exercise',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Inter',
+                  font: GoogleFonts.inter(
+                    fontWeight: FontWeight.w500,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                  ),
                   color: Colors.white,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -72,24 +86,32 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Categories',
                         style: FlutterFlowTheme.of(context)
                             .headlineSmall
                             .override(
-                              fontFamily: 'Inter',
+                              font: GoogleFonts.inter(
+                                fontWeight: FontWeight.w600,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .fontStyle,
+                              ),
                               color: FlutterFlowTheme.of(context).primaryText,
                               fontSize: 19.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .fontStyle,
                             ),
                       ),
                     ),
@@ -99,15 +121,28 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        context.pushNamed('categoriespage');
+                        context.pushNamed(CategoriespageWidget.routeName);
                       },
                       child: Text(
                         'See More',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
+                              font: GoogleFonts.readexPro(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
                               color: FlutterFlowTheme.of(context).secondary,
                               fontSize: 15.0,
                               letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
                             ),
                       ),
                     ),
@@ -115,8 +150,8 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                child: SizedBox(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                child: Container(
                   width: double.infinity,
                   height: 180.0,
                   child: CarouselSlider(
@@ -128,7 +163,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           context.pushNamed(
-                            'categoriespage',
+                            CategoriespageWidget.routeName,
                             queryParameters: {
                               'tabIndex': serializeParam(
                                 0,
@@ -157,18 +192,27 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Text(
                                   'Aerobic Exercises',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         color:
                                             FlutterFlowTheme.of(context).info,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.bold,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                               ),
@@ -183,7 +227,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           context.pushNamed(
-                            'categoriespage',
+                            CategoriespageWidget.routeName,
                             queryParameters: {
                               'tabIndex': serializeParam(
                                 1,
@@ -212,18 +256,27 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Text(
                                   'Strength Training',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         color:
                                             FlutterFlowTheme.of(context).info,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.bold,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                               ),
@@ -238,7 +291,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           context.pushNamed(
-                            'categoriespage',
+                            CategoriespageWidget.routeName,
                             queryParameters: {
                               'tabIndex': serializeParam(
                                 2,
@@ -267,18 +320,27 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Text(
                                   'Flexibility and Balance',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         color:
                                             FlutterFlowTheme.of(context).info,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.bold,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                               ),
@@ -288,7 +350,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                       ),
                     ],
                     carouselController: _model.carouselController ??=
-                        CarouselController(),
+                        CarouselSliderController(),
                     options: CarouselOptions(
                       initialPage: 1,
                       viewportFraction: 0.5,
@@ -298,8 +360,8 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                       enableInfiniteScroll: false,
                       scrollDirection: Axis.horizontal,
                       autoPlay: true,
-                      autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                      autoPlayInterval: const Duration(milliseconds: (800 + 4000)),
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      autoPlayInterval: Duration(milliseconds: (800 + 4000)),
                       autoPlayCurve: Curves.linear,
                       pauseAutoPlayInFiniteScroll: false,
                       onPageChanged: (index, _) =>
@@ -309,35 +371,48 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 10.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             30.0, 0.0, 30.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            context.pushNamed('Listpage');
+                            context.pushNamed(ListpageWidget.routeName);
                           },
                           text: 'View Activity History',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
                                   color: Colors.white,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -350,13 +425,13 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -366,10 +441,18 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
                                   fontSize: 20.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
                           ),
                           FFButtonWidget(
@@ -380,11 +463,14 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                 context: context,
                                 builder: (context) {
                                   return GestureDetector(
-                                    onTap: () =>
-                                        FocusScope.of(context).unfocus(),
+                                    onTap: () {
+                                      FocusScope.of(context).unfocus();
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
+                                    },
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
-                                      child: const AddactivityWidget(
+                                      child: AddactivityWidget(
                                         completed: false,
                                       ),
                                     ),
@@ -393,26 +479,39 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                               ).then((value) => safeSetState(() {}));
                             },
                             text: 'Add',
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.add,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
                               height: 25.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
                                     color: Colors.white,
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -424,7 +523,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: StreamBuilder<List<AddpagecollectionRecord>>(
                         stream: queryAddpagecollectionRecord(
                           queryBuilder: (addpagecollectionRecord) =>
@@ -458,7 +557,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                               listViewAddpagecollectionRecordList =
                               snapshot.data!;
                           if (listViewAddpagecollectionRecordList.isEmpty) {
-                            return const NoElementsWidget(
+                            return NoElementsWidget(
                               additionalText: 'Enter a plan',
                             );
                           }
@@ -469,7 +568,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                             scrollDirection: Axis.vertical,
                             itemCount:
                                 listViewAddpagecollectionRecordList.length,
-                            separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                            separatorBuilder: (_, __) => SizedBox(height: 10.0),
                             itemBuilder: (context, listViewIndex) {
                               final listViewAddpagecollectionRecord =
                                   listViewAddpagecollectionRecordList[
@@ -480,7 +579,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                   listViewAddpagecollectionRecord.reference.id,
                                   listViewIndex,
                                 ),
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: IncompleteactivitylistWidget(
                                   key: Key(
                                     'Keyru6_${listViewAddpagecollectionRecord.reference.id}',
@@ -498,7 +597,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
@@ -506,7 +605,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -516,12 +615,20 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .headlineSmall
                                   .override(
-                                    fontFamily: 'Inter',
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .fontStyle,
+                                    ),
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .fontStyle,
                                   ),
                             ),
                             FFButtonWidget(
@@ -532,12 +639,15 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                   context: context,
                                   builder: (context) {
                                     return GestureDetector(
-                                      onTap: () =>
-                                          FocusScope.of(context).unfocus(),
+                                      onTap: () {
+                                        FocusScope.of(context).unfocus();
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+                                      },
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: const AddactivityWidget(
+                                        child: AddactivityWidget(
                                           completed: true,
                                         ),
                                       ),
@@ -546,26 +656,39 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                 ).then((value) => safeSetState(() {}));
                               },
                               text: 'Add',
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.add,
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(
                                 height: 25.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontStyle,
+                                      ),
                                       color: Colors.white,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -577,7 +700,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: StreamBuilder<List<AddpagecollectionRecord>>(
                           stream: queryAddpagecollectionRecord(
                             queryBuilder: (addpagecollectionRecord) =>
@@ -615,7 +738,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                 listViewAddpagecollectionRecordList =
                                 snapshot.data!;
                             if (listViewAddpagecollectionRecordList.isEmpty) {
-                              return const NoElementsWidget(
+                              return NoElementsWidget(
                                 additionalText: 'Enter today\'s activities',
                               );
                             }
@@ -627,7 +750,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                               itemCount:
                                   listViewAddpagecollectionRecordList.length,
                               separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 10.0),
+                                  SizedBox(height: 10.0),
                               itemBuilder: (context, listViewIndex) {
                                 final listViewAddpagecollectionRecord =
                                     listViewAddpagecollectionRecordList[
@@ -640,7 +763,7 @@ class _ExercisehomepageWidgetState extends State<ExercisehomepageWidget> {
                                         .reference.id,
                                     listViewIndex,
                                   ),
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: ExercisetaskstodaycomponentWidget(
                                     key: Key(
                                       'Keywpc_${listViewAddpagecollectionRecord.reference.id}',

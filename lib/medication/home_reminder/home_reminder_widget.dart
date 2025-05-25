@@ -5,6 +5,7 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'home_reminder_model.dart';
 export 'home_reminder_model.dart';
 
@@ -36,7 +37,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
     super.initState();
     _model = createModel(context, () => HomeReminderModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -49,7 +50,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+      padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
       child: StreamBuilder<MedicineRecord>(
         stream: MedicineRecord.getDocument(widget.medicineReminder!),
         builder: (context, snapshot) {
@@ -75,7 +76,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
             height: 77.0,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
                   blurRadius: 4.0,
                   color: Color(0x33000000),
@@ -121,7 +122,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 ? true
                                 : false)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Icon(
                                   FFIcons.kdrug,
@@ -134,7 +135,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 ? true
                                 : false)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Icon(
                                   FFIcons.kmedicine,
@@ -147,7 +148,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 ? true
                                 : false)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Icon(
                                   FFIcons.ksyrup,
@@ -160,7 +161,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 ? true
                                 : false)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 15.0, 15.0),
                                 child: Icon(
                                   FFIcons.kinjection,
@@ -186,10 +187,18 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
                                       fontSize: 15.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
                               ),
                             ],
@@ -202,8 +211,21 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
                               ),
                               Text(
@@ -211,8 +233,21 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
                               ),
                             ],
@@ -225,8 +260,21 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
                               ),
                               Text(
@@ -234,8 +282,21 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
                               ),
                               Text(
@@ -272,8 +333,21 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
                               ),
                             ],
@@ -286,12 +360,13 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(8.0),
                             child: Switch.adaptive(
                               value: _model.switchValue ??=
                                   containerMedicineRecord.setReminders,
                               onChanged: (newValue) async {
-                                setState(() => _model.switchValue = newValue);
+                                safeSetState(
+                                    () => _model.switchValue = newValue);
                                 if (newValue) {
                                   _model.specificReminderOn =
                                       await queryIndividualRemindersRecordOnce(
@@ -328,15 +403,15 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                     _model.specificReminderOn!.content,
                                   );
 
-                                  setState(() {});
+                                  safeSetState(() {});
                                 } else {
                                   var confirmDialogResponse =
                                       await showDialog<bool>(
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: const Text('Turn Off?'),
-                                                content: const Text(
+                                                title: Text('Turn Off?'),
+                                                content: Text(
                                                     'Are you sure you want to turn off this reminder? It will not be triggered at the scheduled time but and will be marked as missed by default.'),
                                                 actions: [
                                                   TextButton(
@@ -344,14 +419,14 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             false),
-                                                    child: const Text('Cancel'),
+                                                    child: Text('Cancel'),
                                                   ),
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             true),
-                                                    child: const Text('Yes'),
+                                                    child: Text('Yes'),
                                                   ),
                                                 ],
                                               );
@@ -388,7 +463,7 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                     _model.specificReminderOff!.notificationID,
                                   );
 
-                                  setState(() {});
+                                  safeSetState(() {});
                                 }
                               },
                               activeColor: FlutterFlowTheme.of(context).primary,

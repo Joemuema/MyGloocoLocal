@@ -2,8 +2,10 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'med_menu_model.dart';
 export 'med_menu_model.dart';
 
@@ -28,7 +30,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
     super.initState();
     _model = createModel(context, () => MedMenuModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -58,7 +60,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
           child: Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: Colors.transparent,
             ),
             child: Column(
@@ -74,13 +76,13 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                       BoxShadow(
                         blurRadius: 4.0,
                         color: FlutterFlowTheme.of(context).boxShadowColor,
-                        offset: const Offset(
+                        offset: Offset(
                           0.0,
                           2.0,
                         ),
                       )
                     ],
-                    borderRadius: const BorderRadius.only(
+                    borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(0.0),
                       bottomRight: Radius.circular(0.0),
                       topLeft: Radius.circular(14.0),
@@ -89,7 +91,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                   ),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 24.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 24.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,7 +112,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                     medicineRecordReference);
 
                             context.pushNamed(
-                              'MedicationForm',
+                              MedicationFormWidget.routeName,
                               queryParameters: {
                                 'newMedicineID': serializeParam(
                                   _model.currentMedicineID?.reference,
@@ -123,14 +125,14 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                               }.withoutNulls,
                             );
 
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           child: Container(
                             width: double.infinity,
                             height: 60.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   12.0, 8.0, 12.0, 8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -144,7 +146,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Icon(
                                         Icons.add_circle_outline_rounded,
                                         color: FlutterFlowTheme.of(context)
@@ -155,7 +157,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -167,8 +169,29 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  font: GoogleFonts.readexPro(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelLarge
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelLarge
+                                                            .fontStyle,
+                                                  ),
                                                   letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontStyle,
                                                 ),
                                           ),
                                         ],
@@ -187,7 +210,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             context.pushNamed(
-                              'MedicationList',
+                              MedicationListWidget.routeName,
                               queryParameters: {
                                 'listOption': serializeParam(
                                   'view',
@@ -199,9 +222,9 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                           child: Container(
                             width: double.infinity,
                             height: 60.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   12.0, 8.0, 12.0, 8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -215,7 +238,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Icon(
                                         Icons.edit_document,
                                         color: FlutterFlowTheme.of(context)
@@ -226,7 +249,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -234,12 +257,33 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            'View/Edit Medication',
+                                            'Manage Medication',
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  font: GoogleFonts.readexPro(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelLarge
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelLarge
+                                                            .fontStyle,
+                                                  ),
                                                   letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontStyle,
                                                 ),
                                           ),
                                         ],
@@ -258,7 +302,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             context.pushNamed(
-                              'MedicationList',
+                              MedicationListWidget.routeName,
                               queryParameters: {
                                 'listOption': serializeParam(
                                   'refill',
@@ -270,9 +314,9 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                           child: Container(
                             width: double.infinity,
                             height: 60.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   12.0, 8.0, 12.0, 8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -286,7 +330,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: FaIcon(
                                         FontAwesomeIcons.briefcaseMedical,
                                         color: FlutterFlowTheme.of(context)
@@ -297,7 +341,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -309,8 +353,29 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  font: GoogleFonts.readexPro(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelLarge
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelLarge
+                                                            .fontStyle,
+                                                  ),
                                                   letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontStyle,
                                                 ),
                                           ),
                                         ],
@@ -333,9 +398,9 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                           child: Container(
                             width: double.infinity,
                             height: 60.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   12.0, 8.0, 12.0, 8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -349,7 +414,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                       borderRadius: BorderRadius.circular(40.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Icon(
                                         Icons.arrow_back_rounded,
                                         color: FlutterFlowTheme.of(context)
@@ -360,7 +425,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -372,8 +437,29 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  font: GoogleFonts.readexPro(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelLarge
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelLarge
+                                                            .fontStyle,
+                                                  ),
                                                   letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontStyle,
                                                 ),
                                           ),
                                         ],

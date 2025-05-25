@@ -5,13 +5,20 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'bglogs_model.dart';
 export 'bglogs_model.dart';
 
 class BglogsWidget extends StatefulWidget {
-  const BglogsWidget({super.key});
+  const BglogsWidget({
+    super.key,
+    required this.prevChartDate,
+  });
+
+  final DateTime? prevChartDate;
 
   @override
   State<BglogsWidget> createState() => _BglogsWidgetState();
@@ -34,7 +41,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -49,10 +56,10 @@ class _BglogsWidgetState extends State<BglogsWidget> {
     context.watch<FFAppState>();
 
     return Container(
-      height: 265.0,
+      height: 275.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(20.0),
@@ -64,7 +71,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -81,7 +88,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
             ),
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -90,68 +97,80 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                 Text(
                   'Log blood sugar',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
+                        font: GoogleFonts.readexPro(
+                          fontWeight: FontWeight.bold,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
                         fontSize: 18.0,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.bold,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                       ),
                 ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 50.0, 0.0),
-                  child: FlutterFlowDropDown<String>(
-                    controller: _model.dropDownValueController1 ??=
-                        FormFieldController<String>(null),
-                    options: const [
-                      'Before breakfast',
-                      'After breakfast',
-                      'Before lunch',
-                      'After lunch',
-                      'Before supper',
-                      'After supper'
-                    ],
-                    onChanged: (val) =>
-                        setState(() => _model.dropDownValue1 = val),
-                    width: 160.0,
-                    height: 50.0,
-                    textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
+                FlutterFlowDropDown<String>(
+                  controller: _model.dropDownValueController1 ??=
+                      FormFieldController<String>(null),
+                  options: [
+                    'Before breakfast',
+                    'After breakfast',
+                    'Before lunch',
+                    'After lunch',
+                    'Before supper',
+                    'After supper'
+                  ],
+                  onChanged: (val) =>
+                      safeSetState(() => _model.dropDownValue1 = val),
+                  width: 180.0,
+                  height: 50.0,
+                  textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                        font: GoogleFonts.readexPro(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
-                    hintText: 'Period',
-                    icon: Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 23.0,
-                    ),
-                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                    elevation: 2.0,
-                    borderColor: FlutterFlowTheme.of(context).primary,
-                    borderWidth: 2.0,
-                    borderRadius: 22.0,
-                    margin:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
-                    hidesUnderline: true,
-                    isOverButton: true,
-                    isSearchable: false,
-                    isMultiSelect: false,
+                        letterSpacing: 0.0,
+                        fontWeight:
+                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                      ),
+                  hintText: 'Period',
+                  icon: Icon(
+                    Icons.keyboard_arrow_down_rounded,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 23.0,
                   ),
+                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                  elevation: 2.0,
+                  borderColor: FlutterFlowTheme.of(context).primary,
+                  borderWidth: 2.0,
+                  borderRadius: 22.0,
+                  margin: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                  hidesUnderline: true,
+                  isOverButton: true,
+                  isSearchable: false,
+                  isMultiSelect: false,
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    final datePickedDate = await showDatePicker(
+                    final _datePickedDate = await showDatePicker(
                       context: context,
-                      initialDate: getCurrentTimestamp,
+                      initialDate: (widget.prevChartDate ?? DateTime.now()),
                       firstDate: DateTime(1900),
-                      lastDate: getCurrentTimestamp,
+                      lastDate: (widget.prevChartDate ?? DateTime.now()),
                       builder: (context, child) {
                         return wrapInMaterialDatePickerTheme(
                           context,
@@ -163,10 +182,18 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                           headerTextStyle: FlutterFlowTheme.of(context)
                               .headlineLarge
                               .override(
-                                fontFamily: 'Inter',
+                                font: GoogleFonts.inter(
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .headlineLarge
+                                      .fontStyle,
+                                ),
                                 fontSize: 32.0,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w600,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .headlineLarge
+                                    .fontStyle,
                               ),
                           pickerBackgroundColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -183,12 +210,12 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                       },
                     );
 
-                    TimeOfDay? datePickedTime;
-                    if (datePickedDate != null) {
-                      datePickedTime = await showTimePicker(
+                    TimeOfDay? _datePickedTime;
+                    if (_datePickedDate != null) {
+                      _datePickedTime = await showTimePicker(
                         context: context,
-                        initialTime:
-                            TimeOfDay.fromDateTime(getCurrentTimestamp),
+                        initialTime: TimeOfDay.fromDateTime(
+                            (widget.prevChartDate ?? DateTime.now())),
                         builder: (context, child) {
                           return wrapInMaterialTimePickerTheme(
                             context,
@@ -200,10 +227,18 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                             headerTextStyle: FlutterFlowTheme.of(context)
                                 .headlineLarge
                                 .override(
-                                  fontFamily: 'Inter',
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineLarge
+                                        .fontStyle,
+                                  ),
                                   fontSize: 32.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .headlineLarge
+                                      .fontStyle,
                                 ),
                             pickerBackgroundColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -221,36 +256,54 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                       );
                     }
 
-                    if (datePickedDate != null && datePickedTime != null) {
+                    if (_datePickedDate != null && _datePickedTime != null) {
                       safeSetState(() {
                         _model.datePicked = DateTime(
-                          datePickedDate.year,
-                          datePickedDate.month,
-                          datePickedDate.day,
-                          datePickedTime!.hour,
-                          datePickedTime.minute,
+                          _datePickedDate.year,
+                          _datePickedDate.month,
+                          _datePickedDate.day,
+                          _datePickedTime!.hour,
+                          _datePickedTime.minute,
                         );
+                      });
+                    } else if (_model.datePicked != null) {
+                      safeSetState(() {
+                        _model.datePicked = widget.prevChartDate;
                       });
                     }
                   },
                   text: valueOrDefault<String>(
-                    dateTimeFormat("d/M h:mm a", _model.datePicked),
+                    _model.datePicked != null
+                        ? dateTimeFormat("d/M h:mm a", _model.datePicked)
+                        : dateTimeFormat("d/M h:mm a", widget.prevChartDate),
                     'Date + Time',
                   ),
                   options: FFButtonOptions(
                     height: 50.0,
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
+                          font: GoogleFonts.readexPro(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontStyle,
+                          ),
                           color: FlutterFlowTheme.of(context).primaryText,
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
                         ),
                     elevation: 3.0,
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),
@@ -261,70 +314,105 @@ class _BglogsWidgetState extends State<BglogsWidget> {
             ),
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 50.0, 0.0),
-                  child: SizedBox(
-                    width: 120.0,
-                    child: TextFormField(
-                      controller: _model.textController,
-                      focusNode: _model.textFieldFocusNode,
-                      autofocus: false,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: 'Input BG reading',
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
+                Container(
+                  width: 180.0,
+                  child: TextFormField(
+                    controller: _model.textController,
+                    focusNode: _model.textFieldFocusNode,
+                    autofocus: false,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: 'BG reading',
+                      labelStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                font: GoogleFonts.readexPro(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
                                 ),
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontStyle,
+                              ),
+                      hintStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                font: GoogleFonts.readexPro(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
                                 ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(22.0),
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontStyle,
+                              ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 2.0,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).secondary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(22.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(22.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(22.0),
-                        ),
+                        borderRadius: BorderRadius.circular(22.0),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            letterSpacing: 0.0,
-                          ),
-                      keyboardType:
-                          const TextInputType.numberWithOptions(decimal: true),
-                      validator:
-                          _model.textControllerValidator.asValidator(context),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).secondary,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(22.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(22.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(22.0),
+                      ),
                     ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          font: GoogleFonts.readexPro(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
+                          letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
+                    validator:
+                        _model.textControllerValidator.asValidator(context),
                   ),
                 ),
                 StreamBuilder<List<ProfileRecord>>(
@@ -365,18 +453,31 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                           'mg/dl',
                         ),
                       ),
-                      options: const ['mg/dl', 'mmol/ml'],
+                      options: ['mg/dl', 'mmol/l'],
                       onChanged: (val) =>
-                          setState(() => _model.dropDownValue2 = val),
-                      width: 126.0,
+                          safeSetState(() => _model.dropDownValue2 = val),
+                      width: 136.0,
                       height: 56.0,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
+                                font: GoogleFonts.readexPro(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
+                                ),
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontStyle,
                               ),
-                      hintText: 'unit',
+                      hintText: 'Units',
                       icon: Icon(
                         Icons.keyboard_arrow_down_rounded,
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -388,7 +489,7 @@ class _BglogsWidgetState extends State<BglogsWidget> {
                       borderWidth: 2.0,
                       borderRadius: 22.0,
                       margin:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                       hidesUnderline: true,
                       isOverButton: true,
                       isSearchable: false,
@@ -404,38 +505,92 @@ class _BglogsWidgetState extends State<BglogsWidget> {
               await BGreadingsRecord.collection
                   .doc()
                   .set(createBGreadingsRecordData(
-                    date: functions.getDate(_model.datePicked!),
+                    date: functions.getDate(_model.datePicked != null
+                        ? _model.datePicked!
+                        : widget.prevChartDate!),
                     period: (_model.dropDownValue1 == 'Before breakfast') ||
                             (_model.dropDownValue1 == 'Before lunch') ||
                             (_model.dropDownValue1 == 'Before supper')
                         ? 'before meal'
                         : 'after meal',
-                    hour: functions.getHour(_model.datePicked!),
-                    minute: functions.getMinute(_model.datePicked!),
-                    cGMreading:
-                        functions.stringToDouble(_model.textController.text),
+                    hour: functions.getHour(_model.datePicked != null
+                        ? _model.datePicked!
+                        : widget.prevChartDate!),
+                    minute: functions.getMinute(_model.datePicked != null
+                        ? _model.datePicked!
+                        : widget.prevChartDate!),
+                    cGMreading: valueOrDefault<double>(
+                      _model.dropDownValue2 == 'mg/dl'
+                          ? valueOrDefault<double>(
+                              functions
+                                  .stringToDouble(_model.textController.text),
+                              0.0,
+                            )
+                          : valueOrDefault<double>(
+                              valueOrDefault<double>(
+                                    functions.stringToDouble(
+                                        _model.textController.text),
+                                    0.0,
+                                  ) *
+                                  18.018,
+                              0.0,
+                            ),
+                      0.0,
+                    ),
                     unit: _model.dropDownValue2,
-                    decimalTime: functions.getHour(_model.datePicked!) +
-                        (functions.getMinute(_model.datePicked!) / 60),
+                    decimalTime: functions.getHour(_model.datePicked != null
+                            ? _model.datePicked!
+                            : widget.prevChartDate!) +
+                        (functions.getMinute(_model.datePicked != null
+                                ? _model.datePicked!
+                                : widget.prevChartDate!) /
+                            60),
                     userID: FFAppState().UserID,
-                    dateTime: _model.datePicked,
-                    time: functions.getTime(_model.datePicked!),
+                    dateTime: _model.datePicked != null
+                        ? _model.datePicked
+                        : widget.prevChartDate,
+                    time: functions.getTime(_model.datePicked != null
+                        ? _model.datePicked!
+                        : widget.prevChartDate!),
                   ));
-              context.safePop();
+
+              context.goNamed(
+                HomeWidget.routeName,
+                queryParameters: {
+                  'chartDate': serializeParam(
+                    _model.datePicked != null
+                        ? _model.datePicked
+                        : widget.prevChartDate,
+                    ParamType.DateTime,
+                  ),
+                }.withoutNulls,
+              );
+
+              Navigator.pop(context);
             },
-            text: 'Done',
+            text: 'Record',
             options: FFButtonOptions(
-              height: 40.0,
-              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: FlutterFlowTheme.of(context).primary,
+              width: MediaQuery.sizeOf(context).width * 0.5,
+              height: 50.0,
+              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              color: FlutterFlowTheme.of(context).secondary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                    fontFamily: 'Readex Pro',
+                    font: GoogleFonts.readexPro(
+                      fontWeight:
+                          FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                    ),
                     color: FlutterFlowTheme.of(context).primaryText,
                     letterSpacing: 0.0,
+                    fontWeight:
+                        FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).titleSmall.fontStyle,
                   ),
               elevation: 3.0,
-              borderSide: const BorderSide(
+              borderSide: BorderSide(
                 color: Colors.transparent,
                 width: 1.0,
               ),

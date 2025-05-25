@@ -4,7 +4,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'manual_food_model.dart';
 export 'manual_food_model.dart';
@@ -38,7 +41,7 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
     _model.manualfoodTextController ??= TextEditingController();
     _model.manualfoodFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -56,7 +59,7 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
       width: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             blurRadius: 7.0,
             color: Color(0x33000000),
@@ -66,7 +69,7 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
             ),
           )
         ],
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(16.0),
@@ -74,7 +77,7 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,10 +100,10 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, -1.0),
+                  alignment: AlignmentDirectional(-1.0, -1.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(10.0, 16.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(10.0, 16.0, 0.0, 0.0),
                     child: Text(
                       valueOrDefault<String>(
                         widget.foodPeriod,
@@ -108,23 +111,36 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
                       ),
                       style:
                           FlutterFlowTheme.of(context).headlineSmall.override(
-                                fontFamily: 'Roboto',
+                                font: GoogleFonts.roboto(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .fontStyle,
+                                ),
                                 color: FlutterFlowTheme.of(context).primary,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .fontStyle,
                               ),
                     ),
                   ),
                 ),
                 Expanded(
                   child: Align(
-                    alignment: const AlignmentDirectional(0.9, 0.0),
+                    alignment: AlignmentDirectional(0.9, 0.0),
                     child: FlutterFlowIconButton(
                       borderColor: FlutterFlowTheme.of(context).primary,
                       borderRadius: 20.0,
                       borderWidth: 1.0,
                       buttonSize: 40.0,
                       fillColor: FlutterFlowTheme.of(context).primary,
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.close_outlined,
                         size: 24.0,
                       ),
@@ -137,18 +153,24 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
               ],
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 0.0, 0.0),
               child: Text(
                 'Input can be manual or searched from a database',
                 style: FlutterFlowTheme.of(context).labelMedium.override(
-                      fontFamily: 'Roboto',
+                      font: GoogleFonts.roboto(
+                        fontWeight: FontWeight.w500,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                      ),
                       letterSpacing: 0.0,
                       fontWeight: FontWeight.w500,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).labelMedium.fontStyle,
                     ),
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(2.0, 10.0, 2.0, 10.0),
+              padding: EdgeInsetsDirectional.fromSTEB(2.0, 10.0, 2.0, 10.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -164,7 +186,7 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
                     ),
                     onPressed: () async {
                       context.pushNamed(
-                        'Foodsearch',
+                        FoodsearchWidget.routeName,
                         queryParameters: {
                           'location': serializeParam(
                             'toPlate',
@@ -176,13 +198,26 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'You can search for food from our database',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
+                            font: GoogleFonts.readexPro(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
                             fontSize: 15.0,
                             letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
                           ),
                     ),
                   ),
@@ -195,7 +230,7 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
                 autovalidateMode: AutovalidateMode.disabled,
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 0.0),
                   child: TextFormField(
                     controller: _model.manualfoodTextController,
                     focusNode: _model.manualfoodFocusNode,
@@ -204,17 +239,43 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
                     decoration: InputDecoration(
                       labelStyle:
                           FlutterFlowTheme.of(context).bodyLarge.override(
-                                fontFamily: 'Readex Pro',
+                                font: GoogleFonts.readexPro(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .fontStyle,
+                                ),
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .fontStyle,
                               ),
                       hintText: 'Your food goes here.....',
                       hintStyle:
                           FlutterFlowTheme.of(context).labelLarge.override(
-                                fontFamily: 'Readex Pro',
+                                font: GoogleFonts.readexPro(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .fontStyle,
+                                ),
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelLarge
+                                    .fontStyle,
                               ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.black,
                           width: 2.0,
                         ),
@@ -244,24 +305,46 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
                       filled: true,
                       fillColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
-                      contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                      contentPadding: EdgeInsetsDirectional.fromSTEB(
                           24.0, 24.0, 20.0, 24.0),
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Roboto',
+                          font: GoogleFonts.roboto(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                           fontSize: 17.0,
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                     maxLines: 4,
                     cursorColor: FlutterFlowTheme.of(context).primary,
                     validator: _model.manualfoodTextControllerValidator
                         .asValidator(context),
+                    inputFormatters: [
+                      if (!isAndroid && !isiOS)
+                        TextInputFormatter.withFunction((oldValue, newValue) {
+                          return TextEditingValue(
+                            selection: newValue.selection,
+                            text: newValue.text
+                                .toCapitalization(TextCapitalization.sentences),
+                          );
+                        }),
+                    ],
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 44.0),
+              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 44.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   if (_model.formKey.currentState == null ||
@@ -289,7 +372,7 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
                           color: FlutterFlowTheme.of(context).primaryText,
                         ),
                       ),
-                      duration: const Duration(milliseconds: 2950),
+                      duration: Duration(milliseconds: 2950),
                       backgroundColor: FlutterFlowTheme.of(context).secondary,
                     ),
                   );
@@ -299,17 +382,27 @@ class _ManualFoodWidgetState extends State<ManualFoodWidget> {
                 options: FFButtonOptions(
                   width: double.infinity,
                   height: 50.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Roboto',
+                        font: GoogleFonts.roboto(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                        ),
                         color: Colors.white,
                         letterSpacing: 0.0,
+                        fontWeight:
+                            FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).titleSmall.fontStyle,
                       ),
                   elevation: 2.0,
-                  borderSide: const BorderSide(
+                  borderSide: BorderSide(
                     color: Colors.transparent,
                     width: 1.0,
                   ),

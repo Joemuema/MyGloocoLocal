@@ -47,3 +47,5 @@ export '/exercises/searchitemspage/searchitemspage_widget.dart'
     show SearchitemspageWidget;
 export '/exercises/corebodyexercises/corebodyexercises_widget.dart'
     show CorebodyexercisesWidget;
+export '/chart_settings_page/chart_settings_page_widget.dart'
+    show ChartSettingsPageWidget;

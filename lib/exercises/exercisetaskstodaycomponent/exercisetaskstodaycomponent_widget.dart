@@ -2,6 +2,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'exercisetaskstodaycomponent_model.dart';
 export 'exercisetaskstodaycomponent_model.dart';
 
@@ -33,7 +34,7 @@ class _ExercisetaskstodaycomponentWidgetState
     super.initState();
     _model = createModel(context, () => ExercisetaskstodaycomponentModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -46,19 +47,26 @@ class _ExercisetaskstodaycomponentWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
       child: Container(
         width: double.infinity,
         height: 50.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 4.0,
+              color: FlutterFlowTheme.of(context).boxShadowColor,
+              offset: Offset(
+                0.0,
+                2.0,
+              ),
+            )
+          ],
           borderRadius: BorderRadius.circular(10.0),
-          border: Border.all(
-            color: FlutterFlowTheme.of(context).primaryText,
-          ),
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,8 +86,20 @@ class _ExercisetaskstodaycomponentWidgetState
                       'name',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          font: GoogleFonts.readexPro(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                   ),
                   Text(
@@ -88,8 +108,20 @@ class _ExercisetaskstodaycomponentWidgetState
                       '0',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
+                          font: GoogleFonts.readexPro(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                   ),
                 ],
@@ -109,7 +141,7 @@ class _ExercisetaskstodaycomponentWidgetState
                 child: Checkbox(
                   value: _model.checkboxValue ??= true,
                   onChanged: (newValue) async {
-                    setState(() => _model.checkboxValue = newValue!);
+                    safeSetState(() => _model.checkboxValue = newValue!);
                   },
                   side: BorderSide(
                     width: 2,

@@ -1,6 +1,7 @@
 import '/backend/backend.dart';
-import '/components/meal_food_item_widget.dart';
+import '/diet/meal_food_item/meal_food_item_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'plate_widget.dart' show PlateWidget;
 import 'package:flutter/material.dart';
 

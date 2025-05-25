@@ -1,5 +1,5 @@
 import '/backend/backend.dart';
-import '/components/meal_food_item_widget.dart';
+import '/diet/meal_food_item/meal_food_item_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -7,8 +7,11 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'access_from_main_tab_model.dart';
 export 'access_from_main_tab_model.dart';
@@ -20,7 +23,7 @@ class AccessFromMainTabWidget extends StatefulWidget {
     this.updatedKcalList,
     this.updatedMassList,
     int? prevMealTime,
-  }) : prevMealTime = prevMealTime ?? 0;
+  }) : this.prevMealTime = prevMealTime ?? 0;
 
   final List<FilteredFoodRecord>? updatedFoodList;
   final List<double>? updatedKcalList;
@@ -57,13 +60,13 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
       );
       _model.massList = widget.updatedMassList!.toList().cast<double>();
       _model.mealTime = widget.prevMealTime;
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.foodentrysTextController ??= TextEditingController();
     _model.foodentrysFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -96,7 +99,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).primaryBackground,
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
                       blurRadius: 7.0,
                       color: Color(0x33000000),
@@ -106,7 +109,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                       ),
                     )
                   ],
-                  borderRadius: const BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(0.0),
                     bottomRight: Radius.circular(0.0),
                     topLeft: Radius.circular(16.0),
@@ -114,14 +117,14 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -138,19 +141,19 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 10.0, 0.0, 10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 10.0, 0.0),
                               child: Form(
                                 key: _model.formKey1,
                                 autovalidateMode: AutovalidateMode.always,
                                 child: FlutterFlowChoiceChips(
-                                  options: const [
+                                  options: [
                                     ChipData(
                                         'Breakfast', Icons.emoji_food_beverage),
                                     ChipData(
@@ -159,7 +162,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                     ChipData('Snack', FFIcons.kicons8Drink50)
                                   ],
                                   onChanged: (val) async {
-                                    setState(() => _model.choiceChipsValue =
+                                    safeSetState(() => _model.choiceChipsValue =
                                         val?.firstOrNull);
                                     _model.mealTime = valueOrDefault<int>(
                                       () {
@@ -178,7 +181,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                       }(),
                                       0,
                                     );
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   selectedChipStyle: ChipStyle(
                                     backgroundColor:
@@ -186,10 +189,27 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                     textStyle: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
                                         ),
                                     iconColor: FlutterFlowTheme.of(context)
                                         .primaryText,
@@ -203,10 +223,27 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                     textStyle: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
                                           letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
                                         ),
                                     iconColor: FlutterFlowTheme.of(context)
                                         .primaryText,
@@ -237,7 +274,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             10.0, 0.0, 0.0, 10.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
@@ -246,7 +283,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                           highlightColor: Colors.transparent,
                           onTap: () async {
                             context.pushNamed(
-                              'Foodsearch',
+                              FoodsearchWidget.routeName,
                               queryParameters: {
                                 'currentFoodList': serializeParam(
                                   _model.updatedFoodList,
@@ -292,7 +329,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                 ),
                                 onPressed: () async {
                                   context.pushNamed(
-                                    'Foodsearch',
+                                    FoodsearchWidget.routeName,
                                     queryParameters: {
                                       'currentFoodList': serializeParam(
                                         _model.updatedFoodList,
@@ -327,16 +364,31 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 10.0, 10.0, 7.0),
                                 child: Text(
                                   'Search for food items from our database',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         fontSize: 14.95,
                                         letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                               ),
@@ -349,7 +401,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                           key: _model.formKey2,
                           autovalidateMode: AutovalidateMode.disabled,
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 10.0, 0.0, 10.0, 0.0),
                             child: TextFormField(
                               controller: _model.foodentrysTextController,
@@ -360,16 +412,42 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .fontStyle,
+                                      ),
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .fontStyle,
                                     ),
                                 hintText:
                                     'Or manually record your foods here\n(Note: Estimation cannot be done for manual inputs)',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .labelLarge
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelLarge
+                                            .fontStyle,
+                                      ),
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .fontStyle,
                                     ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
@@ -402,50 +480,83 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 24.0, 20.0, 24.0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Roboto',
+                                    font: GoogleFonts.roboto(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     fontSize: 17.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                               maxLines: 5,
                               cursorColor: FlutterFlowTheme.of(context).primary,
                               validator: _model
                                   .foodentrysTextControllerValidator
                                   .asValidator(context),
+                              inputFormatters: [
+                                if (!isAndroid && !isiOS)
+                                  TextInputFormatter.withFunction(
+                                      (oldValue, newValue) {
+                                    return TextEditingValue(
+                                      selection: newValue.selection,
+                                      text: newValue.text.toCapitalization(
+                                          TextCapitalization.sentences),
+                                    );
+                                  }),
+                              ],
                             ),
                           ),
                         ),
                       if (widget.updatedKcalList != null &&
                           (widget.updatedKcalList)!.isNotEmpty)
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 5.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Total Kcal:',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         fontSize: 16.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 15.0, 0.0),
                                 child: Text(
                                   '${formatNumber(
@@ -457,9 +568,24 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         fontSize: 16.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                               ),
@@ -485,7 +611,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                       final foodListItem =
                                           foodList[foodListIndex];
                                       return Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: wrapWithModel(
                                           model: _model.mealFoodItemModels
@@ -493,14 +619,16 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                             foodListIndex.toString(),
                                             foodListIndex,
                                           ),
-                                          updateCallback: () => setState(() {}),
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
                                           child: MealFoodItemWidget(
                                             key: Key(
                                               'Key84g_${foodListIndex.toString()}',
                                             ),
                                             foodItem: foodListItem,
                                             massValue: valueOrDefault<double>(
-                                              _model.massList[foodListIndex],
+                                              _model.massList.elementAtOrNull(
+                                                  foodListIndex),
                                               100.0,
                                             ),
                                             removeFoodItem: () async {
@@ -510,7 +638,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                                   foodListIndex);
                                               _model.removeAtIndexFromMassList(
                                                   foodListIndex);
-                                              setState(() {});
+                                              safeSetState(() {});
                                             },
                                             changeKcalValue:
                                                 (kcalValue, mass) async {
@@ -528,7 +656,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                                 foodListIndex,
                                                 (_) => mass,
                                               );
-                                              setState(() {});
+                                              safeSetState(() {});
                                             },
                                           ),
                                         ),
@@ -541,7 +669,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 16.0),
                         child: FFButtonWidget(
                           onPressed: () async {
@@ -604,7 +732,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                                         .primaryText,
                                   ),
                                 ),
-                                duration: const Duration(milliseconds: 2650),
+                                duration: Duration(milliseconds: 2650),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).secondary,
                               ),
@@ -614,20 +742,33 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'Roboto',
+                                  font: GoogleFonts.roboto(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
                                   color: Colors.white,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
                                 ),
                             elevation: 2.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

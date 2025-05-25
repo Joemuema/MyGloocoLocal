@@ -2,6 +2,7 @@ import '/exercises/highintensitylistcomponents/highintensitylistcomponents_widge
 import '/exercises/lowintensitylistcomponent/lowintensitylistcomponent_widget.dart';
 import '/exercises/mediumsintensitylistcomponent/mediumsintensitylistcomponent_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'listpage_widget.dart' show ListpageWidget;
 import 'package:flutter/material.dart';
 

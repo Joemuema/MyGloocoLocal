@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'searchitemspage_model.dart';
@@ -13,6 +14,9 @@ export 'searchitemspage_model.dart';
 
 class SearchitemspageWidget extends StatefulWidget {
   const SearchitemspageWidget({super.key});
+
+  static String routeName = 'Searchitemspage';
+  static String routePath = '/searchitemspage';
 
   @override
   State<SearchitemspageWidget> createState() => _SearchitemspageWidgetState();
@@ -31,13 +35,13 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().searchActive = false;
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -52,7 +56,10 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -64,7 +71,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -76,13 +83,22 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
           title: Text(
             'Search Page',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Inter',
+                  font: GoogleFonts.inter(
+                    fontWeight:
+                        FlutterFlowTheme.of(context).headlineMedium.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                  ),
                   color: Colors.white,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
+                  fontWeight:
+                      FlutterFlowTheme.of(context).headlineMedium.fontWeight,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -92,7 +108,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -101,20 +117,20 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             child: TextFormField(
                               controller: _model.textController,
                               focusNode: _model.textFieldFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.textController',
-                                const Duration(milliseconds: 2000),
+                                Duration(milliseconds: 2000),
                                 () async {
                                   await queryAddpagecollectionRecordOnce()
                                       .then(
@@ -135,58 +151,59 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                       )
                                       .onError((_, __) =>
                                           _model.simpleSearchResults = [])
-                                      .whenComplete(() => setState(() {}));
+                                      .whenComplete(() => safeSetState(() {}));
 
                                   FFAppState().searchActive = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                               ),
                               autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
-                                labelText: 'What are you looking for?',
                                 labelStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .fontStyle,
+                                      ),
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontStyle,
                                     ),
+                                hintText: 'What are you looking for?',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .fontStyle,
+                                      ),
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontStyle,
                                     ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                errorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedErrorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                prefixIcon: const Icon(
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                focusedErrorBorder: InputBorder.none,
+                                prefixIcon: Icon(
                                   Icons.search_rounded,
                                   size: 23.0,
                                 ),
@@ -220,11 +237,11 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                               .onError((_, __) => _model
                                                   .simpleSearchResults = [])
                                               .whenComplete(
-                                                  () => setState(() {}));
+                                                  () => safeSetState(() {}));
 
                                           FFAppState().searchActive = true;
-                                          setState(() {});
-                                          setState(() {});
+                                          safeSetState(() {});
+                                          safeSetState(() {});
                                         },
                                         child: Icon(
                                           Icons.clear,
@@ -238,8 +255,21 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                               validator: _model.textControllerValidator
                                   .asValidator(context),
@@ -256,7 +286,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                   if (!FFAppState().searchActive) {
                     return Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: StreamBuilder<List<AddpagecollectionRecord>>(
                         stream: queryAddpagecollectionRecord(
                           queryBuilder: (addpagecollectionRecord) =>
@@ -287,7 +317,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                             scrollDirection: Axis.vertical,
                             itemCount:
                                 listViewAddpagecollectionRecordList.length,
-                            separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                            separatorBuilder: (_, __) => SizedBox(height: 10.0),
                             itemBuilder: (context, listViewIndex) {
                               final listViewAddpagecollectionRecord =
                                   listViewAddpagecollectionRecordList[
@@ -298,7 +328,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                   listViewAddpagecollectionRecord.reference.id,
                                   listViewIndex,
                                 ),
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: SearchpageitemscomponentWidget(
                                   key: Key(
                                     'Keyom0_${listViewAddpagecollectionRecord.reference.id}',
@@ -315,7 +345,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                   } else {
                     return Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Builder(
                         builder: (context) {
                           final searchResults =
@@ -326,7 +356,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount: searchResults.length,
-                            separatorBuilder: (_, __) => const SizedBox(height: 10.0),
+                            separatorBuilder: (_, __) => SizedBox(height: 10.0),
                             itemBuilder: (context, searchResultsIndex) {
                               final searchResultsItem =
                                   searchResults[searchResultsIndex];
@@ -336,7 +366,7 @@ class _SearchitemspageWidgetState extends State<SearchitemspageWidget> {
                                   searchResultsItem.reference.id,
                                   searchResultsIndex,
                                 ),
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: SearchpageitemscomponentWidget(
                                   key: Key(
                                     'Key113_${searchResultsItem.reference.id}',

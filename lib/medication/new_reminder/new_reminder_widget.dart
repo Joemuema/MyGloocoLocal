@@ -11,6 +11,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'new_reminder_model.dart';
 export 'new_reminder_model.dart';
 
@@ -24,7 +25,7 @@ class NewReminderWidget extends StatefulWidget {
     this.reminderName,
     this.addToList,
     this.remIDList,
-  }) : editState = editState ?? false;
+  }) : this.editState = editState ?? false;
 
   final DocumentReference? currentReminderID;
   final Future Function()? deleteFromList;
@@ -58,7 +59,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
           widget.reminderName != null && widget.reminderName != ''
               ? widget.reminderName!
               : 'Reminder ${((widget.index!) + 1).toString()}';
-      setState(() {});
+      safeSetState(() {});
 
       await widget.currentReminderID!.update(createRemindersRecordData(
         name: _model.currentReminderName,
@@ -67,7 +68,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
 
     _model.dateFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -83,7 +84,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
       key: _model.formKey,
       autovalidateMode: AutovalidateMode.disabled,
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
         child: StreamBuilder<RemindersRecord>(
           stream: RemindersRecord.getDocument(widget.currentReminderID!),
           builder: (context, snapshot) {
@@ -111,7 +112,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                   BoxShadow(
                     blurRadius: 4.0,
                     color: FlutterFlowTheme.of(context).boxShadowColor,
-                    offset: const Offset(
+                    offset: Offset(
                       0.0,
                       2.0,
                     ),
@@ -120,7 +121,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                 borderRadius: BorderRadius.circular(12.0),
               ),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -132,28 +133,43 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               15.0, 0.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 15.0, 0.0, 0.0),
                                 child: Text(
                                   containerRemindersRecord.name,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         fontSize: 15.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     7.0, 13.0, 0.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -178,7 +194,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                     ).then((value) => safeSetState(
                                         () => _model.reminderName = value));
 
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   child: FaIcon(
                                     FontAwesomeIcons.edit,
@@ -192,7 +208,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               5.0, 0.0, 30.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -216,7 +232,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -226,35 +242,67 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     30.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Auto-Remind',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         fontSize: 15.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                               ),
                               Container(
                                 width: MediaQuery.sizeOf(context).width * 0.61,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       30.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     'Automatically reminds you regularly',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
                                           fontSize: 13.0,
                                           letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
                                         ),
                                   ),
                                 ),
@@ -262,14 +310,15 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 30.0, 0.0),
                             child: Switch.adaptive(
                               value: _model.switchValue1 ??= widget.editState
                                   ? containerRemindersRecord.autoSet
                                   : false,
                               onChanged: (newValue) async {
-                                setState(() => _model.switchValue1 = newValue);
+                                safeSetState(
+                                    () => _model.switchValue1 = newValue);
                                 if (newValue) {
                                   await widget.currentReminderID!
                                       .update(createRemindersRecordData(
@@ -306,29 +355,39 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         30.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Frequency',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            fontFamily: 'Readex Pro',
+                                            font: GoogleFonts.readexPro(
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
                                             fontSize: 15.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
                                           ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         30.0, 10.0, 30.0, 10.0),
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -339,7 +398,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                             blurRadius: 4.0,
                                             color: FlutterFlowTheme.of(context)
                                                 .boxShadowColor,
-                                            offset: const Offset(
+                                            offset: Offset(
                                               0.0,
                                               2.0,
                                             ),
@@ -356,9 +415,9 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                               containerRemindersRecord
                                                   .frequency,
                                         ),
-                                        options: const ['Daily', 'Weekly', 'Monthly'],
+                                        options: ['Daily', 'Weekly', 'Monthly'],
                                         onChanged: (val) async {
-                                          setState(() =>
+                                          safeSetState(() =>
                                               _model.frequencyValue = val);
                                           if (widget.editState == true) {
                                             if (widget.remIDList?.contains(
@@ -378,8 +437,25 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                         textStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
+                                              font: GoogleFonts.readexPro(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
                                               letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
                                             ),
                                         hintText: 'How regular',
                                         icon: Icon(
@@ -394,26 +470,43 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                         borderColor: Colors.transparent,
                                         borderWidth: 2.0,
                                         borderRadius: 12.0,
-                                        margin: const EdgeInsetsDirectional.fromSTEB(
+                                        margin: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 4.0, 16.0, 4.0),
                                         hidesUnderline: true,
                                         isOverButton: true,
                                         isSearchable: false,
                                         isMultiSelect: false,
                                         labelText: '',
-                                        labelTextStyle:
-                                            FlutterFlowTheme.of(context)
-                                                .labelMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  letterSpacing: 0.0,
-                                                ),
+                                        labelTextStyle: FlutterFlowTheme.of(
+                                                context)
+                                            .labelMedium
+                                            .override(
+                                              font: GoogleFonts.readexPro(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontStyle,
+                                              ),
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontStyle,
+                                            ),
                                       ),
                                     ),
                                   ),
                                   if (_model.frequencyValue == 'Weekly')
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 10.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -422,26 +515,38 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Day of week:',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        fontSize: 15.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    font: GoogleFonts.readexPro(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    fontSize: 15.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
                                             ),
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       30.0, 0.0, 30.0, 0.0),
                                               child: Container(
@@ -458,7 +563,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .boxShadowColor,
-                                                      offset: const Offset(
+                                                      offset: Offset(
                                                         0.0,
                                                         2.0,
                                                       ),
@@ -478,7 +583,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                         containerRemindersRecord
                                                             .day,
                                                   ),
-                                                  options: const [
+                                                  options: [
                                                     'Monday',
                                                     'Tuesday',
                                                     'Wednesday',
@@ -488,7 +593,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                     'Sunday'
                                                   ],
                                                   onChanged: (val) async {
-                                                    setState(() => _model
+                                                    safeSetState(() => _model
                                                             .weekDayListValue =
                                                         val);
                                                     if (widget.editState ==
@@ -515,9 +620,30 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                               context)
                                                           .bodyMedium
                                                           .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
+                                                            font: GoogleFonts
+                                                                .readexPro(
+                                                              fontWeight:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
                                                             letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
                                                           ),
                                                   hintText: 'Choose Day',
                                                   icon: Icon(
@@ -537,7 +663,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                       Colors.transparent,
                                                   borderWidth: 2.0,
                                                   borderRadius: 12.0,
-                                                  margin: const EdgeInsetsDirectional
+                                                  margin: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 4.0, 16.0, 4.0),
                                                   hidesUnderline: true,
@@ -550,9 +676,30 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                               context)
                                                           .labelMedium
                                                           .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
+                                                            font: GoogleFonts
+                                                                .readexPro(
+                                                              fontWeight:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .fontWeight,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .fontStyle,
+                                                            ),
                                                             letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .fontStyle,
                                                           ),
                                                 ),
                                               ),
@@ -563,7 +710,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                     ),
                                   if (_model.frequencyValue == 'Monthly')
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 10.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -572,26 +719,38 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     30.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Date:',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        fontSize: 15.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    font: GoogleFonts.readexPro(
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    fontSize: 15.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
                                             ),
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       30.0, 0.0, 30.0, 0.0),
                                               child: Container(
@@ -608,7 +767,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .boxShadowColor,
-                                                      offset: const Offset(
+                                                      offset: Offset(
                                                         0.0,
                                                         2.0,
                                                       ),
@@ -619,7 +778,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                           12.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           15.0, 0.0, 15.0, 0.0),
                                                   child: TextFormField(
@@ -636,7 +795,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                     onChanged: (_) =>
                                                         EasyDebounce.debounce(
                                                       '_model.dateFieldTextController',
-                                                      const Duration(
+                                                      Duration(
                                                           milliseconds: 2000),
                                                       () async {
                                                         await widget
@@ -678,10 +837,27 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
+                                                                font: GoogleFonts
+                                                                    .readexPro(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .fontStyle,
+                                                                ),
                                                                 letterSpacing:
                                                                     0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .fontStyle,
                                                               ),
                                                       hintText: 'Calendar date',
                                                       hintStyle:
@@ -689,10 +865,27 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
+                                                                font: GoogleFonts
+                                                                    .readexPro(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .fontStyle,
+                                                                ),
                                                                 letterSpacing:
                                                                     0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .fontStyle,
                                                               ),
                                                       enabledBorder:
                                                           InputBorder.none,
@@ -707,9 +900,30 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
+                                                          font: GoogleFonts
+                                                              .readexPro(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
                                                           letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
                                                         ),
                                                     keyboardType:
                                                         TextInputType.number,
@@ -725,7 +939,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                       ),
                                     ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -734,28 +948,41 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   30.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Time:',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  font: GoogleFonts.readexPro(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
                                                   fontSize: 15.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
                                                 ),
                                           ),
                                         ),
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     30.0, 0.0, 30.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
-                                                final datePicked1Time =
+                                                final _datePicked1Time =
                                                     await showTimePicker(
                                                   context: context,
                                                   initialTime:
@@ -778,14 +1005,27 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                                   context)
                                                               .headlineLarge
                                                               .override(
-                                                                fontFamily:
-                                                                    'Inter',
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineLarge
+                                                                      .fontStyle,
+                                                                ),
                                                                 fontSize: 32.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineLarge
+                                                                    .fontStyle,
                                                               ),
                                                       pickerBackgroundColor:
                                                           FlutterFlowTheme.of(
@@ -811,16 +1051,22 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                     );
                                                   },
                                                 );
-                                                if (datePicked1Time != null) {
+                                                if (_datePicked1Time != null) {
                                                   safeSetState(() {
                                                     _model.datePicked1 =
                                                         DateTime(
                                                       getCurrentTimestamp.year,
                                                       getCurrentTimestamp.month,
                                                       getCurrentTimestamp.day,
-                                                      datePicked1Time.hour,
-                                                      datePicked1Time.minute,
+                                                      _datePicked1Time.hour,
+                                                      _datePicked1Time.minute,
                                                     );
+                                                  });
+                                                } else if (_model.datePicked1 !=
+                                                    null) {
+                                                  safeSetState(() {
+                                                    _model.datePicked1 =
+                                                        getCurrentTimestamp;
                                                   });
                                                 }
                                                 if (widget.editState == true) {
@@ -866,11 +1112,11 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                               options: FFButtonOptions(
                                                 width: 168.0,
                                                 height: 40.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -880,15 +1126,37 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                         context)
                                                     .titleSmall
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      font:
+                                                          GoogleFonts.readexPro(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontStyle,
+                                                      ),
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .primaryText,
                                                       letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontStyle,
                                                     ),
                                                 elevation: 3.0,
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -902,7 +1170,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -915,29 +1183,50 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       30.0, 0.0, 0.0, 0.0),
                                               child: Text(
                                                 'Custom date range',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          fontSize: 15.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font:
+                                                          GoogleFonts.readexPro(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      fontSize: 15.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
                                               ),
                                             ),
                                             Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   0.61,
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         30.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -946,14 +1235,35 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .secondaryText,
                                                         fontSize: 13.0,
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
                                                       ),
                                                 ),
                                               ),
@@ -962,7 +1272,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 30.0, 0.0),
                                           child: Switch.adaptive(
                                             value: _model.switchValue2 ??=
@@ -971,7 +1281,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                         .setCustomDates
                                                     : false,
                                             onChanged: (newValue) async {
-                                              setState(() => _model
+                                              safeSetState(() => _model
                                                   .switchValue2 = newValue);
                                               if (newValue) {
                                                 await widget.currentReminderID!
@@ -1006,7 +1316,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                   ),
                                   if (_model.switchValue2 ?? true)
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 10.0, 16.0, 10.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1019,7 +1329,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         3.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -1028,17 +1338,30 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
                                                         fontSize: 15.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
                                                       ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 10.0, 5.0, 10.0),
                                                 child: Row(
@@ -1047,7 +1370,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                   children: [
                                                     FFButtonWidget(
                                                       onPressed: () async {
-                                                        final datePicked2Date =
+                                                        final _datePicked2Date =
                                                             await showDatePicker(
                                                           context: context,
                                                           initialDate:
@@ -1074,14 +1397,23 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                                           context)
                                                                       .headlineLarge
                                                                       .override(
-                                                                        fontFamily:
-                                                                            'Inter',
+                                                                        font: GoogleFonts
+                                                                            .inter(
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .headlineLarge
+                                                                              .fontStyle,
+                                                                        ),
                                                                         fontSize:
                                                                             32.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
                                                                             FontWeight.w600,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .headlineLarge
+                                                                            .fontStyle,
                                                                       ),
                                                               pickerBackgroundColor:
                                                                   FlutterFlowTheme.of(
@@ -1108,18 +1440,25 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                           },
                                                         );
 
-                                                        if (datePicked2Date !=
+                                                        if (_datePicked2Date !=
                                                             null) {
                                                           safeSetState(() {
                                                             _model.datePicked2 =
                                                                 DateTime(
-                                                              datePicked2Date
+                                                              _datePicked2Date
                                                                   .year,
-                                                              datePicked2Date
+                                                              _datePicked2Date
                                                                   .month,
-                                                              datePicked2Date
+                                                              _datePicked2Date
                                                                   .day,
                                                             );
+                                                          });
+                                                        } else if (_model
+                                                                .datePicked2 !=
+                                                            null) {
+                                                          safeSetState(() {
+                                                            _model.datePicked2 =
+                                                                getCurrentTimestamp;
                                                           });
                                                         }
                                                         if (widget.editState ==
@@ -1168,14 +1507,14 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                       options: FFButtonOptions(
                                                         height: 40.0,
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     24.0,
                                                                     0.0,
                                                                     24.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1190,16 +1529,33 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                                     context)
                                                                 .titleSmall
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
+                                                                  font: GoogleFonts
+                                                                      .readexPro(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .fontStyle,
+                                                                  ),
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .fontStyle,
                                                                 ),
                                                         elevation: 3.0,
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color: Colors
                                                               .transparent,
                                                           width: 1.0,
@@ -1220,7 +1576,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         3.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -1229,17 +1585,30 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
                                                         fontSize: 15.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w500,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
                                                       ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 5.0, 10.0),
                                                 child: Row(
@@ -1248,7 +1617,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   0.0,
@@ -1256,7 +1625,7 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                                   0.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
-                                                          final datePicked3Date =
+                                                          final _datePicked3Date =
                                                               await showDatePicker(
                                                             context: context,
                                                             initialDate:
@@ -1283,14 +1652,22 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                                             context)
                                                                         .headlineLarge
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Inter',
+                                                                          font:
+                                                                              GoogleFonts.inter(
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).headlineLarge.fontStyle,
+                                                                          ),
                                                                           fontSize:
                                                                               32.0,
                                                                           letterSpacing:
                                                                               0.0,
                                                                           fontWeight:
                                                                               FontWeight.w600,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .headlineLarge
+                                                                              .fontStyle,
                                                                         ),
                                                                 pickerBackgroundColor:
                                                                     FlutterFlowTheme.of(
@@ -1317,18 +1694,25 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                             },
                                                           );
 
-                                                          if (datePicked3Date !=
+                                                          if (_datePicked3Date !=
                                                               null) {
                                                             safeSetState(() {
                                                               _model.datePicked3 =
                                                                   DateTime(
-                                                                datePicked3Date
+                                                                _datePicked3Date
                                                                     .year,
-                                                                datePicked3Date
+                                                                _datePicked3Date
                                                                     .month,
-                                                                datePicked3Date
+                                                                _datePicked3Date
                                                                     .day,
                                                               );
+                                                            });
+                                                          } else if (_model
+                                                                  .datePicked3 !=
+                                                              null) {
+                                                            safeSetState(() {
+                                                              _model.datePicked3 =
+                                                                  getCurrentTimestamp;
                                                             });
                                                           }
                                                           if (widget
@@ -1429,14 +1813,14 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                             FFButtonOptions(
                                                           height: 40.0,
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       24.0,
                                                                       0.0,
                                                                       24.0,
                                                                       0.0),
                                                           iconPadding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1450,17 +1834,34 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                                                       context)
                                                                   .titleSmall
                                                                   .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
+                                                                    font: GoogleFonts
+                                                                        .readexPro(
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleSmall
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleSmall
+                                                                          .fontStyle,
+                                                                    ),
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryText,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .fontStyle,
                                                                   ),
                                                           elevation: 3.0,
                                                           borderSide:
-                                                              const BorderSide(
+                                                              BorderSide(
                                                             color: Colors
                                                                 .transparent,
                                                             width: 1.0,
@@ -1492,11 +1893,11 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 15.0, 10.0, 10.0, 15.0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                final datePicked4Date = await showDatePicker(
+                                final _datePicked4Date = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
                                   firstDate: getCurrentTimestamp,
@@ -1509,15 +1910,25 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                           FlutterFlowTheme.of(context).primary,
                                       headerForegroundColor:
                                           FlutterFlowTheme.of(context).info,
-                                      headerTextStyle:
-                                          FlutterFlowTheme.of(context)
-                                              .headlineLarge
-                                              .override(
-                                                fontFamily: 'Inter',
-                                                fontSize: 32.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                              ),
+                                      headerTextStyle: FlutterFlowTheme.of(
+                                              context)
+                                          .headlineLarge
+                                          .override(
+                                            font: GoogleFonts.inter(
+                                              fontWeight: FontWeight.w600,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineLarge
+                                                      .fontStyle,
+                                            ),
+                                            fontSize: 32.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineLarge
+                                                    .fontStyle,
+                                          ),
                                       pickerBackgroundColor:
                                           FlutterFlowTheme.of(context)
                                               .secondaryBackground,
@@ -1536,13 +1947,17 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                   },
                                 );
 
-                                if (datePicked4Date != null) {
+                                if (_datePicked4Date != null) {
                                   safeSetState(() {
                                     _model.datePicked4 = DateTime(
-                                      datePicked4Date.year,
-                                      datePicked4Date.month,
-                                      datePicked4Date.day,
+                                      _datePicked4Date.year,
+                                      _datePicked4Date.month,
+                                      _datePicked4Date.day,
                                     );
+                                  });
+                                } else if (_model.datePicked4 != null) {
+                                  safeSetState(() {
+                                    _model.datePicked4 = getCurrentTimestamp;
                                   });
                                 }
                                 if (widget.editState == true) {
@@ -1573,21 +1988,34 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                               ),
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).alternate,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontStyle,
+                                      ),
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -1596,11 +2024,11 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 30.0, 15.0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                final datePicked5Time = await showTimePicker(
+                                final _datePicked5Time = await showTimePicker(
                                   context: context,
                                   initialTime: TimeOfDay.fromDateTime(
                                       getCurrentTimestamp),
@@ -1612,15 +2040,25 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                           FlutterFlowTheme.of(context).primary,
                                       headerForegroundColor:
                                           FlutterFlowTheme.of(context).info,
-                                      headerTextStyle:
-                                          FlutterFlowTheme.of(context)
-                                              .headlineLarge
-                                              .override(
-                                                fontFamily: 'Inter',
-                                                fontSize: 32.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                              ),
+                                      headerTextStyle: FlutterFlowTheme.of(
+                                              context)
+                                          .headlineLarge
+                                          .override(
+                                            font: GoogleFonts.inter(
+                                              fontWeight: FontWeight.w600,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineLarge
+                                                      .fontStyle,
+                                            ),
+                                            fontSize: 32.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineLarge
+                                                    .fontStyle,
+                                          ),
                                       pickerBackgroundColor:
                                           FlutterFlowTheme.of(context)
                                               .secondaryBackground,
@@ -1638,15 +2076,19 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                                     );
                                   },
                                 );
-                                if (datePicked5Time != null) {
+                                if (_datePicked5Time != null) {
                                   safeSetState(() {
                                     _model.datePicked5 = DateTime(
                                       getCurrentTimestamp.year,
                                       getCurrentTimestamp.month,
                                       getCurrentTimestamp.day,
-                                      datePicked5Time.hour,
-                                      datePicked5Time.minute,
+                                      _datePicked5Time.hour,
+                                      _datePicked5Time.minute,
                                     );
+                                  });
+                                } else if (_model.datePicked5 != null) {
+                                  safeSetState(() {
+                                    _model.datePicked5 = getCurrentTimestamp;
                                   });
                                 }
                                 if (widget.editState == true) {
@@ -1677,21 +2119,34 @@ class _NewReminderWidgetState extends State<NewReminderWidget> {
                               ),
                               options: FFButtonOptions(
                                 height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).alternate,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontStyle,
+                                      ),
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

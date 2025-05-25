@@ -5,9 +5,11 @@ import '/diet/foodsearch/foodsearchcomponent/foodsearchcomponent_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'foodsearch_model.dart';
@@ -23,7 +25,7 @@ class FoodsearchWidget extends StatefulWidget {
     this.currentKcalList,
     this.currentMassList,
     int? chosenMealTime,
-  }) : chosenMealTime = chosenMealTime ?? 0;
+  }) : this.chosenMealTime = chosenMealTime ?? 0;
 
   final List<FilteredFoodRecord>? currentFoodList;
   final String? location;
@@ -32,6 +34,9 @@ class FoodsearchWidget extends StatefulWidget {
   final List<double>? currentKcalList;
   final List<double>? currentMassList;
   final int chosenMealTime;
+
+  static String routeName = 'Foodsearch';
+  static String routePath = '/foodsearch';
 
   @override
   State<FoodsearchWidget> createState() => _FoodsearchWidgetState();
@@ -51,19 +56,19 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().searchActive = false;
-      setState(() {});
+      safeSetState(() {});
       _model.searchFoodList =
           widget.currentFoodList!.toList().cast<FilteredFoodRecord>();
       _model.filter = widget.filter;
       _model.searchKcalList = widget.currentKcalList!.toList().cast<double>();
       _model.searchMassList = widget.currentMassList!.toList().cast<double>();
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.searchbarTextController ??= TextEditingController();
     _model.searchbarFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -78,7 +83,10 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -90,7 +98,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -102,14 +110,20 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
           title: Text(
             'Food Search',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Inter',
+                  font: GoogleFonts.inter(
+                    fontWeight: FontWeight.w500,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                  ),
                   color: Colors.white,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -121,21 +135,21 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(1.0, 0.0),
+                  alignment: AlignmentDirectional(1.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 0.0),
                           child: TextFormField(
                             controller: _model.searchbarTextController,
                             focusNode: _model.searchbarFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.searchbarTextController',
-                              const Duration(milliseconds: 2000),
+                              Duration(milliseconds: 2000),
                               () async {
                                 await queryFilteredFoodRecordOnce()
                                     .then(
@@ -157,10 +171,10 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                     )
                                     .onError((_, __) =>
                                         _model.simpleSearchResults = [])
-                                    .whenComplete(() => setState(() {}));
+                                    .whenComplete(() => safeSetState(() {}));
 
                                 FFAppState().searchActive = true;
-                                setState(() {});
+                                safeSetState(() {});
                               },
                             ),
                             autofocus: true,
@@ -171,8 +185,21 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontStyle,
+                                    ),
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontStyle,
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -215,8 +242,21 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
                                 ),
                             maxLines: null,
                             validator: _model.searchbarTextControllerValidator
@@ -235,11 +275,11 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                           size: 24.0,
                         ),
                         onPressed: () async {
-                          setState(() {
+                          safeSetState(() {
                             _model.searchbarTextController?.clear();
                           });
                           FFAppState().searchActive = false;
-                          setState(() {});
+                          safeSetState(() {});
                         },
                       ),
                     ],
@@ -250,21 +290,29 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
                       child: Text(
                         'Food items matching search:',
                         style:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
                                 ),
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(1.0, 0.0),
+                      alignment: AlignmentDirectional(1.0, 0.0),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             14.0, 12.0, 16.0, 0.0),
                         child: Text(
                           widget.location == 'Sheet'
@@ -280,8 +328,21 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                   : '0'),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                         ),
                       ),
@@ -296,7 +357,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                         builder: (context) {
                           if (FFAppState().searchActive) {
                             return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 8.0, 8.0, 0.0),
                               child: Builder(
                                 builder: (context) {
@@ -312,7 +373,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                     itemBuilder: (context, resultsIndex) {
                                       final resultsItem = results[resultsIndex];
                                       return Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 1.0),
                                         child: Container(
                                           width: 100.0,
@@ -325,7 +386,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .alternate,
-                                                offset: const Offset(
+                                                offset: Offset(
                                                   0.0,
                                                   1.0,
                                                 ),
@@ -333,7 +394,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                             ],
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                            padding: EdgeInsets.all(8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -360,10 +421,10 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                         _model
                                                             .addToSearchMassList(
                                                                 100.0);
-                                                        setState(() {});
+                                                        safeSetState(() {});
 
                                                         context.pushNamed(
-                                                          'Plate',
+                                                          PlateWidget.routeName,
                                                           queryParameters: {
                                                             'updatedFoodList':
                                                                 serializeParam(
@@ -407,7 +468,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                           _model
                                                               .addToSearchMassList(
                                                                   100.0);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           context.safePop();
                                                           await showModalBottomSheet(
                                                             isScrollControlled:
@@ -418,10 +479,15 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                             context: context,
                                                             builder: (context) {
                                                               return GestureDetector(
-                                                                onTap: () =>
-                                                                    FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
+                                                                onTap: () {
+                                                                  FocusScope.of(
+                                                                          context)
+                                                                      .unfocus();
+                                                                  FocusManager
+                                                                      .instance
+                                                                      .primaryFocus
+                                                                      ?.unfocus();
+                                                                },
                                                                 child: Padding(
                                                                   padding: MediaQuery
                                                                       .viewInsetsOf(
@@ -457,7 +523,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                           _model
                                                               .addToSearchMassList(
                                                                   100.0);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           context.safePop();
                                                           await showModalBottomSheet(
                                                             isScrollControlled:
@@ -468,10 +534,15 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                             context: context,
                                                             builder: (context) {
                                                               return GestureDetector(
-                                                                onTap: () =>
-                                                                    FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
+                                                                onTap: () {
+                                                                  FocusScope.of(
+                                                                          context)
+                                                                      .unfocus();
+                                                                  FocusManager
+                                                                      .instance
+                                                                      .primaryFocus
+                                                                      ?.unfocus();
+                                                                },
                                                                 child: Padding(
                                                                   padding: MediaQuery
                                                                       .viewInsetsOf(
@@ -509,7 +580,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       12.0,
                                                                       0.0,
@@ -521,16 +592,33 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                     .of(context)
                                                                 .bodyLarge
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
+                                                                  font: GoogleFonts
+                                                                      .readexPro(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyLarge
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyLarge
+                                                                        .fontStyle,
+                                                                  ),
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLarge
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLarge
+                                                                      .fontStyle,
                                                                 ),
                                                           ),
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       4.0,
@@ -543,7 +631,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             12.0,
                                                                             0.0,
@@ -557,10 +645,23 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                           context)
                                                                       .labelMedium
                                                                       .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
+                                                                        font: GoogleFonts
+                                                                            .readexPro(
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .labelMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .labelMedium
+                                                                              .fontStyle,
+                                                                        ),
                                                                         letterSpacing:
                                                                             0.0,
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .labelMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .labelMedium
+                                                                            .fontStyle,
                                                                       ),
                                                                 ),
                                                               ),
@@ -570,15 +671,30 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
+                                                                      font: GoogleFonts
+                                                                          .readexPro(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             14.0,
                                                                             0.0,
@@ -592,12 +708,25 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                           context)
                                                                       .bodyMedium
                                                                       .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
+                                                                        font: GoogleFonts
+                                                                            .readexPro(
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primary,
                                                                         letterSpacing:
                                                                             0.0,
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
                                                                       ),
                                                                 ),
                                                               ),
@@ -607,13 +736,28 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
+                                                                      font: GoogleFonts
+                                                                          .readexPro(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .primary,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                             ],
@@ -635,7 +779,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                             );
                           } else {
                             return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 8.0, 8.0, 0.0),
                               child: StreamBuilder<List<FilteredFoodRecord>>(
                                 stream: queryFilteredFoodRecord(
@@ -686,10 +830,10 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                 listViewFilteredFoodRecord
                                                     .energyKcal);
                                             _model.addToSearchMassList(100.0);
-                                            setState(() {});
+                                            safeSetState(() {});
 
                                             context.pushNamed(
-                                              'Plate',
+                                              PlateWidget.routeName,
                                               queryParameters: {
                                                 'updatedFoodList':
                                                     serializeParam(
@@ -723,7 +867,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                   listViewFilteredFoodRecord
                                                       .energyKcal);
                                               _model.addToSearchMassList(100.0);
-                                              setState(() {});
+                                              safeSetState(() {});
                                               context.safePop();
                                               await showModalBottomSheet(
                                                 isScrollControlled: true,
@@ -732,9 +876,13 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                 context: context,
                                                 builder: (context) {
                                                   return GestureDetector(
-                                                    onTap: () =>
-                                                        FocusScope.of(context)
-                                                            .unfocus(),
+                                                    onTap: () {
+                                                      FocusScope.of(context)
+                                                          .unfocus();
+                                                      FocusManager
+                                                          .instance.primaryFocus
+                                                          ?.unfocus();
+                                                    },
                                                     child: Padding(
                                                       padding: MediaQuery
                                                           .viewInsetsOf(
@@ -761,7 +909,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                   listViewFilteredFoodRecord
                                                       .energyKcal);
                                               _model.addToSearchMassList(100.0);
-                                              setState(() {});
+                                              safeSetState(() {});
                                               context.safePop();
                                               await showModalBottomSheet(
                                                 isScrollControlled: true,
@@ -770,9 +918,13 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                 context: context,
                                                 builder: (context) {
                                                   return GestureDetector(
-                                                    onTap: () =>
-                                                        FocusScope.of(context)
-                                                            .unfocus(),
+                                                    onTap: () {
+                                                      FocusScope.of(context)
+                                                          .unfocus();
+                                                      FocusManager
+                                                          .instance.primaryFocus
+                                                          ?.unfocus();
+                                                    },
                                                     child: Padding(
                                                       padding: MediaQuery
                                                           .viewInsetsOf(
@@ -820,7 +972,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                         builder: (context) {
                           if (FFAppState().searchActive) {
                             return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 8.0, 8.0, 0.0),
                               child: Builder(
                                 builder: (context) {
@@ -837,7 +989,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                     itemBuilder: (context, resultsIndex) {
                                       final resultsItem = results[resultsIndex];
                                       return Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 1.0),
                                         child: Container(
                                           width: 100.0,
@@ -850,7 +1002,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .alternate,
-                                                offset: const Offset(
+                                                offset: Offset(
                                                   0.0,
                                                   1.0,
                                                 ),
@@ -858,7 +1010,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                             ],
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                            padding: EdgeInsets.all(8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -885,10 +1037,10 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                         _model
                                                             .addToSearchMassList(
                                                                 100.0);
-                                                        setState(() {});
+                                                        safeSetState(() {});
 
                                                         context.pushNamed(
-                                                          'Plate',
+                                                          PlateWidget.routeName,
                                                           queryParameters: {
                                                             'updatedFoodList':
                                                                 serializeParam(
@@ -932,7 +1084,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                           _model
                                                               .addToSearchMassList(
                                                                   100.0);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           context.safePop();
                                                           await showModalBottomSheet(
                                                             isScrollControlled:
@@ -943,10 +1095,15 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                             context: context,
                                                             builder: (context) {
                                                               return GestureDetector(
-                                                                onTap: () =>
-                                                                    FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
+                                                                onTap: () {
+                                                                  FocusScope.of(
+                                                                          context)
+                                                                      .unfocus();
+                                                                  FocusManager
+                                                                      .instance
+                                                                      .primaryFocus
+                                                                      ?.unfocus();
+                                                                },
                                                                 child: Padding(
                                                                   padding: MediaQuery
                                                                       .viewInsetsOf(
@@ -982,7 +1139,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                           _model
                                                               .addToSearchMassList(
                                                                   100.0);
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           context.safePop();
                                                           await showModalBottomSheet(
                                                             isScrollControlled:
@@ -993,10 +1150,15 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                             context: context,
                                                             builder: (context) {
                                                               return GestureDetector(
-                                                                onTap: () =>
-                                                                    FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
+                                                                onTap: () {
+                                                                  FocusScope.of(
+                                                                          context)
+                                                                      .unfocus();
+                                                                  FocusManager
+                                                                      .instance
+                                                                      .primaryFocus
+                                                                      ?.unfocus();
+                                                                },
                                                                 child: Padding(
                                                                   padding: MediaQuery
                                                                       .viewInsetsOf(
@@ -1031,7 +1193,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       12.0,
                                                                       0.0,
@@ -1043,16 +1205,33 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                     .of(context)
                                                                 .bodyLarge
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
+                                                                  font: GoogleFonts
+                                                                      .readexPro(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyLarge
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyLarge
+                                                                        .fontStyle,
+                                                                  ),
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLarge
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLarge
+                                                                      .fontStyle,
                                                                 ),
                                                           ),
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       4.0,
@@ -1065,7 +1244,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             12.0,
                                                                             0.0,
@@ -1079,10 +1258,23 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                           context)
                                                                       .labelMedium
                                                                       .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
+                                                                        font: GoogleFonts
+                                                                            .readexPro(
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .labelMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .labelMedium
+                                                                              .fontStyle,
+                                                                        ),
                                                                         letterSpacing:
                                                                             0.0,
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .labelMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .labelMedium
+                                                                            .fontStyle,
                                                                       ),
                                                                 ),
                                                               ),
@@ -1092,15 +1284,30 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
+                                                                      font: GoogleFonts
+                                                                          .readexPro(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             14.0,
                                                                             0.0,
@@ -1114,12 +1321,25 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                           context)
                                                                       .bodyMedium
                                                                       .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
+                                                                        font: GoogleFonts
+                                                                            .readexPro(
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primary,
                                                                         letterSpacing:
                                                                             0.0,
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
                                                                       ),
                                                                 ),
                                                               ),
@@ -1129,13 +1349,28 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
+                                                                      font: GoogleFonts
+                                                                          .readexPro(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .primary,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                             ],
@@ -1157,7 +1392,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                             );
                           } else {
                             return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 8.0, 8.0, 0.0),
                               child: StreamBuilder<List<FilteredFoodRecord>>(
                                 stream: queryFilteredFoodRecord(
@@ -1213,10 +1448,10 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                 listViewFilteredFoodRecord
                                                     .energyKcal);
                                             _model.addToSearchMassList(100.0);
-                                            setState(() {});
+                                            safeSetState(() {});
 
                                             context.pushNamed(
-                                              'Plate',
+                                              PlateWidget.routeName,
                                               queryParameters: {
                                                 'updatedFoodList':
                                                     serializeParam(
@@ -1250,7 +1485,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                   listViewFilteredFoodRecord
                                                       .energyKcal);
                                               _model.addToSearchMassList(100.0);
-                                              setState(() {});
+                                              safeSetState(() {});
                                               context.safePop();
                                               await showModalBottomSheet(
                                                 isScrollControlled: true,
@@ -1259,9 +1494,13 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                 context: context,
                                                 builder: (context) {
                                                   return GestureDetector(
-                                                    onTap: () =>
-                                                        FocusScope.of(context)
-                                                            .unfocus(),
+                                                    onTap: () {
+                                                      FocusScope.of(context)
+                                                          .unfocus();
+                                                      FocusManager
+                                                          .instance.primaryFocus
+                                                          ?.unfocus();
+                                                    },
                                                     child: Padding(
                                                       padding: MediaQuery
                                                           .viewInsetsOf(
@@ -1288,7 +1527,7 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                   listViewFilteredFoodRecord
                                                       .energyKcal);
                                               _model.addToSearchMassList(100.0);
-                                              setState(() {});
+                                              safeSetState(() {});
                                               context.safePop();
                                               await showModalBottomSheet(
                                                 isScrollControlled: true,
@@ -1297,9 +1536,13 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                 context: context,
                                                 builder: (context) {
                                                   return GestureDetector(
-                                                    onTap: () =>
-                                                        FocusScope.of(context)
-                                                            .unfocus(),
+                                                    onTap: () {
+                                                      FocusScope.of(context)
+                                                          .unfocus();
+                                                      FocusManager
+                                                          .instance.primaryFocus
+                                                          ?.unfocus();
+                                                    },
                                                     child: Padding(
                                                       padding: MediaQuery
                                                           .viewInsetsOf(

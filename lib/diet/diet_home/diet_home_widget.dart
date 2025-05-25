@@ -7,13 +7,18 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'diet_home_model.dart';
 export 'diet_home_model.dart';
 
 class DietHomeWidget extends StatefulWidget {
   const DietHomeWidget({super.key});
+
+  static String routeName = 'DietHome';
+  static String routePath = '/dietHome';
 
   @override
   State<DietHomeWidget> createState() => _DietHomeWidgetState();
@@ -29,7 +34,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
     super.initState();
     _model = createModel(context, () => DietHomeModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -44,7 +49,10 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -54,13 +62,19 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
           title: Text(
             'Diet',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Inter',
+                  font: GoogleFonts.inter(
+                    fontWeight: FontWeight.w500,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                  ),
                   color: Colors.white,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
@@ -71,20 +85,20 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 5.0, 10.0),
+                          EdgeInsetsDirectional.fromSTEB(3.0, 5.0, 5.0, 10.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Flexible(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 10.0, 0.0, 10.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -93,9 +107,9 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                   FFButtonWidget(
                                     onPressed: () async {
                                       context.pushNamed(
-                                        'DietHome',
+                                        DietHomeWidget.routeName,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
+                                          kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.rightToLeft,
@@ -107,23 +121,40 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                     options: FFButtonOptions(
                                       width: 120.0,
                                       height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .headlineMedium
                                           .override(
-                                            fontFamily: 'Inter',
+                                            font: GoogleFonts.inter(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMedium
+                                                      .fontStyle,
+                                            ),
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBackground,
                                             letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMedium
+                                                    .fontStyle,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
@@ -135,12 +166,12 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                           ),
                           Flexible(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 10.0, 10.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  const SizedBox(
+                                  SizedBox(
                                     height: 1.0,
                                     child: VerticalDivider(
                                       thickness: 1.0,
@@ -149,9 +180,9 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                   FFButtonWidget(
                                     onPressed: () async {
                                       context.pushNamed(
-                                        'Recipe_list',
+                                        RecipeListWidget.routeName,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
+                                          kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.leftToRight,
@@ -163,23 +194,40 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                     options: FFButtonOptions(
                                       width: 120.0,
                                       height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color: FlutterFlowTheme.of(context)
                                           .alternate,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .headlineMedium
                                           .override(
-                                            fontFamily: 'Inter',
+                                            font: GoogleFonts.inter(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMedium
+                                                      .fontStyle,
+                                            ),
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryText,
                                             letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMedium
+                                                    .fontStyle,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -195,7 +243,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 3.0, 10.0),
+                          EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 3.0, 10.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -212,20 +260,33 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                               size: 24.0,
                             ),
                             onPressed: () async {
-                              context.pushNamed('Foodview');
+                              context.pushNamed(FoodviewWidget.routeName);
                             },
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 10.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'Review food information from here',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                             ),
                           ),
@@ -234,10 +295,18 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                     StreamBuilder<List<MealsRecord>>(
                       stream: queryMealsRecord(
-                        queryBuilder: (mealsRecord) => mealsRecord.where(
-                          'UserID',
-                          isEqualTo: FFAppState().UserID,
-                        ),
+                        queryBuilder: (mealsRecord) => mealsRecord
+                            .where(
+                              'UserID',
+                              isEqualTo: FFAppState().UserID,
+                            )
+                            .where(
+                              'date',
+                              isEqualTo: valueOrDefault<String>(
+                                functions.getDate(getCurrentTimestamp),
+                                '2024-01-01',
+                              ),
+                            ),
                       ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
@@ -258,12 +327,12 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                             snapshot.data!;
 
                         return Container(
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 10.0, 8.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -272,26 +341,16 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     context.pushNamed(
-                                      'YourMeals',
+                                      YourMealsWidget.routeName,
                                       queryParameters: {
                                         'mealsList': serializeParam(
-                                          containerMealsRecordList
-                                              .where((e) =>
-                                                  e.date ==
-                                                  functions.getDate(
-                                                      getCurrentTimestamp))
-                                              .toList(),
+                                          containerMealsRecordList,
                                           ParamType.Document,
                                           isList: true,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'mealsList': containerMealsRecordList
-                                            .where((e) =>
-                                                e.date ==
-                                                functions.getDate(
-                                                    getCurrentTimestamp))
-                                            .toList(),
+                                        'mealsList': containerMealsRecordList,
                                       },
                                     );
                                   },
@@ -303,17 +362,29 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                       Flexible(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   3.0, 5.0, 3.0, 0.0),
                                           child: Text(
                                             'Your Meals',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
+                                                  font: GoogleFonts.readexPro(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
                                                   fontSize: 20.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
                                                 ),
                                           ),
                                         ),
@@ -335,27 +406,17 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                             ),
                                             onPressed: () async {
                                               context.pushNamed(
-                                                'YourMeals',
+                                                YourMealsWidget.routeName,
                                                 queryParameters: {
                                                   'mealsList': serializeParam(
-                                                    containerMealsRecordList
-                                                        .where((e) =>
-                                                            e.date ==
-                                                            functions.getDate(
-                                                                getCurrentTimestamp))
-                                                        .toList(),
+                                                    containerMealsRecordList,
                                                     ParamType.Document,
                                                     isList: true,
                                                   ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   'mealsList':
-                                                      containerMealsRecordList
-                                                          .where((e) =>
-                                                              e.date ==
-                                                              functions.getDate(
-                                                                  getCurrentTimestamp))
-                                                          .toList(),
+                                                      containerMealsRecordList,
                                                 },
                                               );
                                             },
@@ -367,7 +428,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     3.0, 1.0, 3.0, 3.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -376,26 +437,16 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     context.pushNamed(
-                                      'YourMeals',
+                                      YourMealsWidget.routeName,
                                       queryParameters: {
                                         'mealsList': serializeParam(
-                                          containerMealsRecordList
-                                              .where((e) =>
-                                                  e.date ==
-                                                  functions.getDate(
-                                                      getCurrentTimestamp))
-                                              .toList(),
+                                          containerMealsRecordList,
                                           ParamType.Document,
                                           isList: true,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'mealsList': containerMealsRecordList
-                                            .where((e) =>
-                                                e.date ==
-                                                functions.getDate(
-                                                    getCurrentTimestamp))
-                                            .toList(),
+                                        'mealsList': containerMealsRecordList,
                                       },
                                     );
                                   },
@@ -428,7 +479,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           3.0,
                                                                           10.0,
@@ -440,8 +491,14 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                                                         context)
                                                                     .headlineSmall
                                                                     .override(
-                                                                      fontFamily:
-                                                                          'Inter',
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .fontStyle,
+                                                                      ),
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .secondaryText,
@@ -452,6 +509,10 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w600,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .headlineSmall
+                                                                          .fontStyle,
                                                                     ),
                                                               ),
                                                             ),
@@ -477,33 +538,41 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 3.0, 10.0),
+                          EdgeInsetsDirectional.fromSTEB(3.0, 10.0, 3.0, 10.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, -1.0),
+                            alignment: AlignmentDirectional(-1.0, -1.0),
                             child: Text(
                               'Add Meal & Drink',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(1.0, -1.0),
+                            alignment: AlignmentDirectional(1.0, -1.0),
                             child: FlutterFlowIconButton(
                               borderColor: Colors.transparent,
                               borderRadius: 20.0,
                               borderWidth: 1.0,
                               buttonSize: 40.0,
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.add,
                                 color: Colors.black,
                                 size: 24.0,
@@ -516,16 +585,19 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                   context: context,
                                   builder: (context) {
                                     return GestureDetector(
-                                      onTap: () =>
-                                          FocusScope.of(context).unfocus(),
+                                      onTap: () {
+                                        FocusScope.of(context).unfocus();
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+                                      },
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
-                                        child: SizedBox(
+                                        child: Container(
                                           height: MediaQuery.sizeOf(context)
                                                   .height *
                                               0.4,
-                                          child: const AccessFromMainTabWidget(),
+                                          child: AccessFromMainTabWidget(),
                                         ),
                                       ),
                                     );
@@ -539,7 +611,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 15.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 15.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -567,12 +639,15 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                     context: context,
                                     builder: (context) {
                                       return GestureDetector(
-                                        onTap: () =>
-                                            FocusScope.of(context).unfocus(),
+                                        onTap: () {
+                                          FocusScope.of(context).unfocus();
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
+                                        },
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: const DietAccessWidget(
+                                          child: DietAccessWidget(
                                             foodPeriod: 'Breakfast',
                                           ),
                                         ),
@@ -586,9 +661,22 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
                                       fontSize: 16.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
                               ),
                             ],
@@ -597,7 +685,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderColor:
                                       FlutterFlowTheme.of(context).primary,
@@ -618,12 +706,15 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
-                                          onTap: () =>
-                                              FocusScope.of(context).unfocus(),
+                                          onTap: () {
+                                            FocusScope.of(context).unfocus();
+                                            FocusManager.instance.primaryFocus
+                                                ?.unfocus();
+                                          },
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
-                                            child: const DietAccessWidget(
+                                            child: DietAccessWidget(
                                               foodPeriod: 'Lunch',
                                             ),
                                           ),
@@ -638,9 +729,22 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
                                       fontSize: 16.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
                               ),
                             ],
@@ -668,12 +772,15 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                     context: context,
                                     builder: (context) {
                                       return GestureDetector(
-                                        onTap: () =>
-                                            FocusScope.of(context).unfocus(),
+                                        onTap: () {
+                                          FocusScope.of(context).unfocus();
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
+                                        },
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: const DietAccessWidget(
+                                          child: DietAccessWidget(
                                             foodPeriod: 'Supper',
                                           ),
                                         ),
@@ -687,9 +794,22 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
                                       fontSize: 16.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
                               ),
                             ],
@@ -717,12 +837,15 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                     context: context,
                                     builder: (context) {
                                       return GestureDetector(
-                                        onTap: () =>
-                                            FocusScope.of(context).unfocus(),
+                                        onTap: () {
+                                          FocusScope.of(context).unfocus();
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
+                                        },
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: const DietAccessWidget(
+                                          child: DietAccessWidget(
                                             foodPeriod: 'Snack',
                                           ),
                                         ),
@@ -736,9 +859,22 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      fontFamily: 'Readex Pro',
+                                      font: GoogleFonts.readexPro(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
                                       fontSize: 16.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                     ),
                               ),
                             ],
@@ -758,14 +894,14 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               30.0, 20.0, 30.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               context.pushNamed(
-                                'Plate',
+                                PlateWidget.routeName,
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
+                                  kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
                                     transitionType:
                                         PageTransitionType.rightToLeft,
@@ -776,21 +912,34 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                             text: 'Go to plate',
                             options: FFButtonOptions(
                               height: 60.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
                                     color: Colors.white,
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -807,7 +956,7 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               30.0, 30.0, 30.0, 30.0),
                           child: FFButtonWidget(
                             onPressed: () async {
@@ -818,11 +967,14 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                                 context: context,
                                 builder: (context) {
                                   return GestureDetector(
-                                    onTap: () =>
-                                        FocusScope.of(context).unfocus(),
+                                    onTap: () {
+                                      FocusScope.of(context).unfocus();
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
+                                    },
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
-                                      child: const SizedBox(
+                                      child: Container(
                                         height: 320.0,
                                         child: WaterWidget(),
                                       ),
@@ -834,21 +986,34 @@ class _DietHomeWidgetState extends State<DietHomeWidget> {
                             text: 'Record drinks',
                             options: FFButtonOptions(
                               height: 60.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
                                     color: Colors.white,
                                     fontSize: 18.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

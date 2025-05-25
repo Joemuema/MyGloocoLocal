@@ -1,5 +1,5 @@
 import '/backend/backend.dart';
-import '/components/meal_food_item_widget.dart';
+import '/diet/meal_food_item/meal_food_item_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'access_from_main_tab_widget.dart' show AccessFromMainTabWidget;

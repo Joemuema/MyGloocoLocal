@@ -9,9 +9,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class SampleBGreadingsRecord extends FirestoreRecord {
   SampleBGreadingsRecord._(
-    super.reference,
-    super.data,
-  ) {
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
     _initializeFields();
   }
 
