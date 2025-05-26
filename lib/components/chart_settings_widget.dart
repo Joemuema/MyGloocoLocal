@@ -13,11 +13,11 @@ export 'chart_settings_model.dart';
 class ChartSettingsWidget extends StatefulWidget {
   const ChartSettingsWidget({
     super.key,
-    required this.chartType,
-    required this.unitsUsed,
-    required this.chartInterval,
-    required this.rebuild,
-    required this.chartDate,
+    this.chartType,
+    this.unitsUsed,
+    this.chartInterval,
+    this.rebuild,
+    this.chartDate,
   });
 
   final String? chartType;

@@ -101,22 +101,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: HomeWidget.routePath,
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'Home')
-              : HomeWidget(
-                  chartDate: params.getParam(
-                    'chartDate',
-                    ParamType.DateTime,
-                  ),
-                  setChartType: params.getParam(
-                    'setChartType',
-                    ParamType.String,
-                  ),
-                  setChartUnits: params.getParam(
-                    'setChartUnits',
-                    ParamType.String,
-                  ),
-                  setInterval: params.getParam(
-                    'setInterval',
-                    ParamType.String,
+              : NavBarPage(
+                  initialPage: 'Home',
+                  page: HomeWidget(
+                    chartDate: params.getParam(
+                      'chartDate',
+                      ParamType.DateTime,
+                    ),
+                    setChartType: params.getParam(
+                      'setChartType',
+                      ParamType.String,
+                    ),
+                    setChartUnits: params.getParam(
+                      'setChartUnits',
+                      ParamType.String,
+                    ),
+                    setInterval: params.getParam(
+                      'setInterval',
+                      ParamType.String,
+                    ),
                   ),
                 ),
         ),
@@ -408,22 +411,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: ChartSettingsPageWidget.routeName,
           path: ChartSettingsPageWidget.routePath,
-          builder: (context, params) => ChartSettingsPageWidget(
-            chartType: params.getParam(
-              'chartType',
-              ParamType.String,
-            ),
-            unitsUsed: params.getParam(
-              'unitsUsed',
-              ParamType.String,
-            ),
-            chartInterval: params.getParam(
-              'chartInterval',
-              ParamType.String,
-            ),
-            chartDate: params.getParam(
-              'chartDate',
-              ParamType.DateTime,
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: ChartSettingsPageWidget(
+              chartType: params.getParam(
+                'chartType',
+                ParamType.String,
+              ),
+              unitsUsed: params.getParam(
+                'unitsUsed',
+                ParamType.String,
+              ),
+              chartInterval: params.getParam(
+                'chartInterval',
+                ParamType.String,
+              ),
+              chartDate: params.getParam(
+                'chartDate',
+                ParamType.DateTime,
+              ),
             ),
           ),
         )
