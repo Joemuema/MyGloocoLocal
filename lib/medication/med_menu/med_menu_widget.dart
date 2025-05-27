@@ -69,7 +69,7 @@ class _MedMenuWidgetState extends State<MedMenuWidget> {
               children: [
                 Container(
                   width: double.infinity,
-                  height: 270.0,
+                  height: 300.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     boxShadow: [

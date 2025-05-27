@@ -35,10 +35,9 @@ class MealLog {
   factory MealLog.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return MealLog(
-      date: stringToDate(data['date']),
-      meal: data['meals'] ?? [],
-      type: data['type'] ?? '',
-    );
+        date: stringToDate(data['date']),
+        meal: data['meals'] ?? [],
+        type: data['type'] ?? '');
   }
 }
 
@@ -53,10 +52,9 @@ class PhysicalActivity {
   factory PhysicalActivity.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return PhysicalActivity(
-      date: (data['date']).toDate(),
-      activity: data['activity'] ?? [],
-      intensity: data['intensity'] ?? '',
-    );
+        date: (data['date']).toDate(),
+        activity: data['activity'] ?? '',
+        intensity: data['intensity'] ?? '');
   }
 }
 
@@ -74,10 +72,9 @@ class BloodSugarReading {
   factory BloodSugarReading.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return BloodSugarReading(
-      date: stringToDate(data['Date']),
-      period: data['Period'] ?? '',
-      cgmReading: (data['CGMreading']).toDouble(),
-    );
+        date: stringToDate(data['Date']),
+        period: data['Period'] ?? '',
+        cgmReading: (data['CGMreading']).toDouble());
   }
 }
 
@@ -157,9 +154,7 @@ Future<String> generateReport(
               pw.Table.fromTextArray(context: context, data: [
                 ['Date', 'Meal', 'Type'],
                 ...mealLogs.map((log) => [
-                      log.date != null
-                          ? DateFormat('yyyy-MM-dd').format(log.date)
-                          : 'N/A',
+                      getDate(log.date),
                       log.meal.map((meal) => meal).join('\n'),
                       log.type
                     ])
@@ -255,9 +250,7 @@ Future<String> generateReport(
               pw.Table.fromTextArray(context: context, data: [
                 ['Date', 'Period', 'CGM Reading (mg/dL)'],
                 ...bloodSugarReadings.map((reading) => [
-                      reading.date != null
-                          ? DateFormat('yyyy-MM-dd').format(reading.date)
-                          : 'N/A',
+                      getDate(reading.date),
                       reading.period,
                       reading.cgmReading.toString()
                     ])
@@ -338,9 +331,7 @@ Future<String> generateReport(
               pw.Table.fromTextArray(context: context, data: [
                 ['Date', 'Time taken', 'Medicine Name', 'Dose', 'Status'],
                 ...medLogs.map((log) => [
-                      log.date != null
-                          ? DateFormat('yyyy-MM-dd').format(log.date)
-                          : 'N/A',
+                      getDate(log.date),
                       log.time,
                       log.name,
                       '${log.dose} ${log.unit}',
