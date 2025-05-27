@@ -144,23 +144,25 @@ Future<String> generateReport(
         print("Error fetching meal logs: $e");
         throw Exception("Failed to fetch meal logs: $e");
       }
-      print("Fetched ${mealLogs.length} meal logs: $mealLogs");
 
       pdf.addPage(
-        pw.Page(
-          build: (pw.Context context) => pw.Column(
-            children: [
-              pw.Text('Diet Information', style: pw.TextStyle(fontSize: 18)),
-              pw.Table.fromTextArray(context: context, data: [
-                ['Date', 'Meal', 'Type'],
-                ...mealLogs.map((log) => [
-                      getDate(log.date),
-                      log.meal.map((meal) => meal).join('\n'),
-                      log.type
-                    ])
-              ]),
-            ],
-          ),
+        pw.MultiPage(
+          build: (pw.Context context) => [
+            pw.Text('Diet Information', style: pw.TextStyle(fontSize: 18)),
+            pw.SizedBox(height: 10),
+            pw.Table.fromTextArray(
+              context: context,
+              headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+              headers: ['Date', 'Meal', 'Type'],
+              data: mealLogs
+                  .map((log) => [
+                        getDate(log.date),
+                        log.meal.map((meal) => meal).join('\n'),
+                        log.type,
+                      ])
+                  .toList(),
+            ),
+          ],
         ),
       );
     }
@@ -191,22 +193,26 @@ Future<String> generateReport(
         print("Error fetching physical activity logs: $e");
         throw Exception("Failed to fetch physical activity: $e");
       }
-      print(
-          "Fetched ${physicalactivities.length} physical activities: $physicalactivities");
 
       pdf.addPage(
-        pw.Page(
-          build: (pw.Context context) => pw.Column(
-            children: [
-              pw.Text('Physical Activity Information',
-                  style: pw.TextStyle(fontSize: 18)),
-              pw.Table.fromTextArray(context: context, data: [
-                ['Date', 'Activity', 'Intensity'],
-                ...physicalactivities.map(
-                    (log) => [getDate(log.date), log.activity, log.intensity])
-              ]),
-            ],
-          ),
+        pw.MultiPage(
+          build: (pw.Context context) => [
+            pw.Text('Physical Activity Information',
+                style: pw.TextStyle(fontSize: 18)),
+            pw.SizedBox(height: 10),
+            pw.Table.fromTextArray(
+              context: context,
+              headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+              headers: ['Date', 'Activity', 'Intensity'],
+              data: physicalactivities
+                  .map((log) => [
+                        getDate(log.date),
+                        log.activity,
+                        log.intensity,
+                      ])
+                  .toList(),
+            ),
+          ],
         ),
       );
     }
@@ -220,44 +226,41 @@ Future<String> generateReport(
         if (querySnapshot.docs.isEmpty) {
           print("No blood sugar readings found for the given date range.");
         } else {
-          bloodSugarReadings =
-              querySnapshot.docs // Assign bloodSugarReadings here
-                  .where((doc) {
-                    final date = DateTime.parse(doc.data()['Date']);
-                    DocumentReference user_id = doc.data()['UserID'];
+          bloodSugarReadings = querySnapshot.docs
+              .where((doc) {
+                final date = DateTime.parse(doc.data()['Date']);
+                DocumentReference user_id = doc.data()['UserID'];
 
-                    return user_id == userID &&
-                        date.isAfter(selectedStartDate) &&
-                        date.isBefore(selectedEndDate);
-                  })
-                  .map((doc) => BloodSugarReading.fromFirestore(doc))
-                  .toList();
+                return user_id == userID &&
+                    date.isAfter(selectedStartDate) &&
+                    date.isBefore(selectedEndDate);
+              })
+              .map((doc) => BloodSugarReading.fromFirestore(doc))
+              .toList();
         }
       } catch (e) {
         print("Error fetching blood sugar readings: $e");
         throw Exception("Failed to fetch blood sugar readings: $e");
       }
 
-      print(
-          "Fetched ${bloodSugarReadings.length} blood sugar readings: $bloodSugarReadings");
-
       pdf.addPage(
-        pw.Page(
-          build: (pw.Context context) => pw.Column(
-            children: [
-              pw.Text('Blood Sugar Readings',
-                  style: pw.TextStyle(fontSize: 18)),
-              pw.Table.fromTextArray(context: context, data: [
-                ['Date', 'Period', 'CGM Reading (mg/dL)'],
-                ...bloodSugarReadings.map((reading) => [
-                      getDate(reading.date),
-                      reading.period,
-                      reading.cgmReading.toString()
-                    ])
-              ]),
-              pw.SizedBox(height: 10),
-            ],
-          ),
+        pw.MultiPage(
+          build: (pw.Context context) => [
+            pw.Text('Blood Sugar Readings', style: pw.TextStyle(fontSize: 18)),
+            pw.SizedBox(height: 10),
+            pw.Table.fromTextArray(
+              context: context,
+              headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+              headers: ['Date', 'Period', 'CGM Reading (mg/dL)'],
+              data: bloodSugarReadings
+                  .map((reading) => [
+                        getDate(reading.date),
+                        reading.period,
+                        reading.cgmReading.toString(),
+                      ])
+                  .toList(),
+            ),
+          ],
         ),
       );
     }
@@ -289,7 +292,9 @@ Future<String> generateReport(
 
               String medicineName = medicineSnapshot['Name'];
               double dose = (medicineSnapshot['SingleDose']).toDouble();
-              String dosage = dose.toString();
+              String dosage = dose % 1 == 0
+                  ? dose.toInt().toString()
+                  : dose.toStringAsFixed(2);
               String form = medicineSnapshot['Form'];
               String unit = 'units';
 
@@ -306,13 +311,6 @@ Future<String> generateReport(
                 unit = dose == 1 ? 'unit' : 'units';
               }
 
-              // should be for tablespoon too
-              if (dose % 1 == 0) {
-                dosage = dose.toInt().toString();
-              } else {
-                dosage = dose.toStringAsFixed(2);
-              }
-
               MedicineRecord medRecord =
                   MedicineRecord.fromFirestore(doc, medicineName, dosage, unit);
               medLogs.add(medRecord);
@@ -324,22 +322,31 @@ Future<String> generateReport(
       }
 
       pdf.addPage(
-        pw.Page(
-          build: (pw.Context context) => pw.Column(
-            children: [
-              pw.Text('Medicine Records', style: pw.TextStyle(fontSize: 18)),
-              pw.Table.fromTextArray(context: context, data: [
-                ['Date', 'Time taken', 'Medicine Name', 'Dose', 'Status'],
-                ...medLogs.map((log) => [
-                      getDate(log.date),
-                      log.time,
-                      log.name,
-                      '${log.dose} ${log.unit}',
-                      log.status
-                    ])
-              ]),
-            ],
-          ),
+        pw.MultiPage(
+          build: (pw.Context context) => [
+            pw.Text('Medicine Records', style: pw.TextStyle(fontSize: 18)),
+            pw.SizedBox(height: 10),
+            pw.Table.fromTextArray(
+              context: context,
+              headerStyle: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+              headers: [
+                'Date',
+                'Time taken',
+                'Medicine Name',
+                'Dose',
+                'Status'
+              ],
+              data: medLogs
+                  .map((log) => [
+                        getDate(log.date),
+                        log.time,
+                        log.name,
+                        '${log.dose} ${log.unit}',
+                        log.status,
+                      ])
+                  .toList(),
+            ),
+          ],
         ),
       );
     }
