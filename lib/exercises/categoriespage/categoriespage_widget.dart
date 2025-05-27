@@ -298,7 +298,11 @@ class _CategoriespageWidgetState extends State<CategoriespageWidget>
                                                               .viewInsetsOf(
                                                                   context),
                                                           child: Container(
-                                                            height: 70.0,
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .height *
+                                                                0.7,
                                                             child:
                                                                 AerobicexerciseexplanantionWidget(),
                                                           ),

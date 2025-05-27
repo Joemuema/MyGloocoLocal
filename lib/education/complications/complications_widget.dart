@@ -160,24 +160,60 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                   ),
                                   Align(
                                     alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Container(
-                                      width: 350.0,
-                                      height: 504.0,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(0.0),
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Text(
-                                              'Managing complications is a vital aspect of diabetes care, as chronic high blood sugar levels can lead to serious health issues over time.\n\nCommon complications include neuropathy (nerve damage), retinopathy (eye damage), nephropathy (kidney damage), and cardiovascular diseases.',
-                                              textAlign: TextAlign.start,
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 15.0, 0.0),
+                                      child: Container(
+                                        height: 504.0,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                'Managing complications is a vital aspect of diabetes care, as chronic high blood sugar levels can lead to serious health issues over time.\n\nCommon complications include neuropathy (nerve damage), retinopathy (eye damage), nephropathy (kidney damage), and cardiovascular diseases.',
+                                                textAlign: TextAlign.start,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyLarge
+                                                    .override(
+                                                      font:
+                                                          GoogleFonts.readexPro(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge
+                                                                .fontStyle,
+                                                      ),
+                                                      fontSize: 18.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                            ),
+                                            Text(
+                                              'Each of these complications can significantly impact quality of life and may lead to disability or premature death if not managed effectively. \n\nEarly detection and proactive management are essential to prevent or mitigate the severity of these complications.',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyLarge
@@ -208,39 +244,8 @@ class _ComplicationsWidgetState extends State<ComplicationsWidget> {
                                                             .fontStyle,
                                                   ),
                                             ),
-                                          ),
-                                          Text(
-                                            'Each of these complications can significantly impact quality of life and may lead to disability or premature death if not managed effectively. \n\nEarly detection and proactive management are essential to prevent or mitigate the severity of these complications.',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge
-                                                .override(
-                                                  font: GoogleFonts.readexPro(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLarge
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLarge
-                                                            .fontStyle,
-                                                  ),
-                                                  fontSize: 18.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyLarge
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyLarge
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

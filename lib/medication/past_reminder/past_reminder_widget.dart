@@ -272,12 +272,17 @@ class _PastReminderWidgetState extends State<PastReminderWidget> {
                                     ),
                               ),
                               Text(
-                                '${formatNumber(
-                                  rowMedicineRecord.singleDose,
-                                  formatType: FormatType.custom,
-                                  format: '0',
-                                  locale: 'en_US',
-                                )} ',
+                                '${(rowMedicineRecord.form == 'Pill') && (rowMedicineRecord.form == 'Tablet') ? formatNumber(
+                                    rowMedicineRecord.singleDose,
+                                    formatType: FormatType.custom,
+                                    format: '0',
+                                    locale: 'en_US',
+                                  ) : formatNumber(
+                                    rowMedicineRecord.singleDose,
+                                    formatType: FormatType.custom,
+                                    format: '.0',
+                                    locale: 'en_US',
+                                  )} ',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(

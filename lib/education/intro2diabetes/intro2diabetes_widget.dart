@@ -174,24 +174,60 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                   ),
                                   Align(
                                     alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Container(
-                                      width: 360.0,
-                                      height: 491.0,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(14.0),
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Text(
-                                              'Diabetes is a chronic condition that significantly impacts how the body manages blood sugar levels.\n\nIn people with diabetes, the body\'s ability to produce or respond to insulin—a hormone that regulates blood sugar—is impaired.\n\nThis leads to elevated blood sugar levels, which can cause a range of health issues if not properly managed.',
-                                              textAlign: TextAlign.start,
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 15.0, 0.0),
+                                      child: Container(
+                                        height: 491.0,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(14.0),
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                'Diabetes is a chronic condition that significantly impacts how the body manages blood sugar levels.\n\nIn people with diabetes, the body\'s ability to produce or respond to insulin—a hormone that regulates blood sugar—is impaired.\n\nThis leads to elevated blood sugar levels, which can cause a range of health issues if not properly managed.',
+                                                textAlign: TextAlign.start,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyLarge
+                                                    .override(
+                                                      font:
+                                                          GoogleFonts.readexPro(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge
+                                                                .fontStyle,
+                                                      ),
+                                                      fontSize: 18.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                            ),
+                                            Text(
+                                              'Understanding diabetes is the first step in managing the condition effectively, as it provides insight into the mechanisms behind blood sugar regulation and the importance of maintaining balanced levels. ',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyLarge
@@ -222,39 +258,8 @@ class _Intro2diabetesWidgetState extends State<Intro2diabetesWidget> {
                                                             .fontStyle,
                                                   ),
                                             ),
-                                          ),
-                                          Text(
-                                            'Understanding diabetes is the first step in managing the condition effectively, as it provides insight into the mechanisms behind blood sugar regulation and the importance of maintaining balanced levels. ',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge
-                                                .override(
-                                                  font: GoogleFonts.readexPro(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLarge
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLarge
-                                                            .fontStyle,
-                                                  ),
-                                                  fontSize: 18.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyLarge
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyLarge
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

@@ -162,9 +162,8 @@ class _MentalHealthWidgetState extends State<MentalHealthWidget> {
                                     alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 0.0),
+                                          15.0, 10.0, 15.0, 0.0),
                                       child: Container(
-                                        width: 359.0,
                                         height: 501.0,
                                         decoration: BoxDecoration(
                                           borderRadius:

@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -143,134 +144,140 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 10.0, 0.0, 10.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 10.0, 0.0),
-                              child: Form(
-                                key: _model.formKey1,
-                                autovalidateMode: AutovalidateMode.always,
-                                child: FlutterFlowChoiceChips(
-                                  options: [
-                                    ChipData(
-                                        'Breakfast', Icons.emoji_food_beverage),
-                                    ChipData(
-                                        'Lunch', FFIcons.kicons8Lunchbox64),
-                                    ChipData('Supper', FFIcons.kicons8Supper50),
-                                    ChipData('Snack', FFIcons.kicons8Drink50)
-                                  ],
-                                  onChanged: (val) async {
-                                    safeSetState(() => _model.choiceChipsValue =
-                                        val?.firstOrNull);
-                                    _model.mealTime = valueOrDefault<int>(
-                                      () {
-                                        if (_model.choiceChipsValue ==
-                                            'Breakfast') {
-                                          return 0;
-                                        } else if (_model.choiceChipsValue ==
-                                            'Lunch') {
-                                          return 1;
-                                        } else if (_model.choiceChipsValue ==
-                                            'Supper') {
-                                          return 2;
-                                        } else {
-                                          return 3;
-                                        }
-                                      }(),
-                                      0,
-                                    );
-                                    safeSetState(() {});
-                                  },
-                                  selectedChipStyle: ChipStyle(
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.readexPro(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                    iconColor: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    iconSize: 18.0,
-                                    elevation: 4.0,
-                                    borderRadius: BorderRadius.circular(16.0),
-                                  ),
-                                  unselectedChipStyle: ChipStyle(
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.readexPro(
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                    iconColor: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    iconSize: 18.0,
-                                    elevation: 0.0,
-                                    borderRadius: BorderRadius.circular(16.0),
-                                  ),
-                                  chipSpacing: 2.0,
-                                  rowSpacing: 7.0,
-                                  multiselect: false,
-                                  initialized: _model.choiceChipsValue != null,
-                                  alignment: WrapAlignment.center,
-                                  controller:
-                                      _model.choiceChipsValueController ??=
-                                          FormFieldController<List<String>>(
-                                    [
-                                      valueOrDefault<String>(
-                                        _model.mealTime.toString(),
-                                        '0',
-                                      )
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 0.0, 10.0, 0.0),
+                                child: Form(
+                                  key: _model.formKey1,
+                                  autovalidateMode: AutovalidateMode.always,
+                                  child: FlutterFlowChoiceChips(
+                                    options: [
+                                      ChipData('Breakfast',
+                                          Icons.emoji_food_beverage),
+                                      ChipData(
+                                          'Lunch', FFIcons.kicons8Lunchbox64),
+                                      ChipData(
+                                          'Supper', FFIcons.kicons8Supper50),
+                                      ChipData('Snack', FFIcons.kicons8Drink50)
                                     ],
+                                    onChanged: (val) async {
+                                      safeSetState(() => _model
+                                          .choiceChipsValue = val?.firstOrNull);
+                                      _model.mealTime = valueOrDefault<int>(
+                                        () {
+                                          if (_model.choiceChipsValue ==
+                                              'Breakfast') {
+                                            return 0;
+                                          } else if (_model.choiceChipsValue ==
+                                              'Lunch') {
+                                            return 1;
+                                          } else if (_model.choiceChipsValue ==
+                                              'Supper') {
+                                            return 2;
+                                          } else {
+                                            return 3;
+                                          }
+                                        }(),
+                                        0,
+                                      );
+                                      safeSetState(() {});
+                                    },
+                                    selectedChipStyle: ChipStyle(
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.readexPro(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                      iconColor: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      iconSize: 18.0,
+                                      elevation: 4.0,
+                                      borderRadius: BorderRadius.circular(16.0),
+                                    ),
+                                    unselectedChipStyle: ChipStyle(
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .alternate,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.readexPro(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                      iconColor: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      iconSize: 18.0,
+                                      elevation: 0.0,
+                                      borderRadius: BorderRadius.circular(16.0),
+                                    ),
+                                    chipSpacing: 2.0,
+                                    rowSpacing: 7.0,
+                                    multiselect: false,
+                                    initialized:
+                                        _model.choiceChipsValue != null,
+                                    alignment: WrapAlignment.center,
+                                    controller:
+                                        _model.choiceChipsValueController ??=
+                                            FormFieldController<List<String>>(
+                                      [
+                                        valueOrDefault<String>(
+                                          _model.mealTime.toString(),
+                                          '0',
+                                        )
+                                      ],
+                                    ),
+                                    wrapped: false,
                                   ),
-                                  wrapped: false,
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
@@ -366,7 +373,7 @@ class _AccessFromMainTabWidgetState extends State<AccessFromMainTabWidget> {
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 10.0, 10.0, 7.0),
-                                child: Text(
+                                child: AutoSizeText(
                                   'Search for food items from our database',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium

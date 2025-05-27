@@ -278,7 +278,17 @@ class _HomeReminderWidgetState extends State<HomeReminderWidget> {
                                     ),
                               ),
                               Text(
-                                '${containerMedicineRecord.singleDose.toString()} ',
+                                '${(containerMedicineRecord.form == 'Pill') && (containerMedicineRecord.form == 'Tablet') ? formatNumber(
+                                    containerMedicineRecord.singleDose,
+                                    formatType: FormatType.custom,
+                                    format: '0',
+                                    locale: 'en_US',
+                                  ) : formatNumber(
+                                    containerMedicineRecord.singleDose,
+                                    formatType: FormatType.custom,
+                                    format: '.0',
+                                    locale: 'en_US',
+                                  )} ',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(

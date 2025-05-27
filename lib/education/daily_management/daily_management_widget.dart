@@ -160,24 +160,60 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                                   ),
                                   Align(
                                     alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Container(
-                                      width: 350.0,
-                                      height: 450.0,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(14.0),
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Text(
-                                              'Daily management of diabetes involves a consistent routine that incorporates healthy habits and regular monitoring. \n\nEstablishing a structured daily routine helps maintain stable blood sugar levels and reduces the risk of complications.',
-                                              textAlign: TextAlign.start,
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 15.0, 0.0),
+                                      child: Container(
+                                        height: 450.0,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(14.0),
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                'Daily management of diabetes involves a consistent routine that incorporates healthy habits and regular monitoring. \n\nEstablishing a structured daily routine helps maintain stable blood sugar levels and reduces the risk of complications.',
+                                                textAlign: TextAlign.start,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyLarge
+                                                    .override(
+                                                      font:
+                                                          GoogleFonts.readexPro(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge
+                                                                .fontStyle,
+                                                      ),
+                                                      fontSize: 18.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                            ),
+                                            Text(
+                                              'This includes eating balanced meals at regular intervals, monitoring blood sugar levels as advised by a healthcare provider, taking medications as prescribed, and incorporating physical activity into daily life. \n\nConsistency is key to managing diabetes effectively and minimizing fluctuations in blood sugar levels.',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyLarge
@@ -208,39 +244,8 @@ class _DailyManagementWidgetState extends State<DailyManagementWidget> {
                                                             .fontStyle,
                                                   ),
                                             ),
-                                          ),
-                                          Text(
-                                            'This includes eating balanced meals at regular intervals, monitoring blood sugar levels as advised by a healthcare provider, taking medications as prescribed, and incorporating physical activity into daily life. \n\nConsistency is key to managing diabetes effectively and minimizing fluctuations in blood sugar levels.',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge
-                                                .override(
-                                                  font: GoogleFonts.readexPro(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLarge
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLarge
-                                                            .fontStyle,
-                                                  ),
-                                                  fontSize: 18.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyLarge
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyLarge
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

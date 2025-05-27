@@ -165,9 +165,8 @@ class _MonitoringAndMedicationWidgetState
                                     alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 15.0, 0.0, 0.0),
+                                          15.0, 15.0, 15.0, 0.0),
                                       child: Container(
-                                        width: 350.0,
                                         height: 609.0,
                                         decoration: BoxDecoration(
                                           borderRadius:
