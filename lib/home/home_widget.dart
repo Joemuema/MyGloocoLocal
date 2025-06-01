@@ -57,6 +57,13 @@ class _HomeWidgetState extends State<HomeWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (FFAppState().homeTutorial == false) {
+        safeSetState(() => _model.homePageWalkthroughController =
+            createPageWalkthrough(context));
+        _model.homePageWalkthroughController?.show(context: context);
+        FFAppState().homeTutorial = true;
+        safeSetState(() {});
+      }
       _model.currentChartDate =
           widget.chartDate != null ? widget.chartDate : getCurrentTimestamp;
       safeSetState(() {});
@@ -271,13 +278,6 @@ class _HomeWidgetState extends State<HomeWidget> {
         );
         FFAppState().medicineRemindersUpdated = true;
         FFAppState().lastUpdatedReminders = getCurrentTimestamp;
-      }
-      if (FFAppState().homeTutorial == false) {
-        safeSetState(() => _model.homePageWalkthroughController =
-            createPageWalkthrough(context));
-        _model.homePageWalkthroughController?.show(context: context);
-        FFAppState().homeTutorial = true;
-        safeSetState(() {});
       }
     });
 
@@ -3651,10 +3651,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     ),
                                                   ],
                                                 ),
-                                              ).addWalkthrough(
-                                                chartP7nswxzf,
-                                                _model
-                                                    .homePageWalkthroughController,
                                               ),
                                             );
                                           } else {
@@ -5171,6 +5167,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                             },
                           ),
                         ],
+                      ).addWalkthrough(
+                        columnVn3qc0p9,
+                        _model.homePageWalkthroughController,
                       ),
                     ),
                   ],

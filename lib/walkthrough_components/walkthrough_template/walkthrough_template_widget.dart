@@ -48,69 +48,67 @@ class _WalkthroughTemplateWidgetState extends State<WalkthroughTemplateWidget> {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
-        Expanded(
-          child: Container(
-            constraints: BoxConstraints(
-              maxWidth: 250.0,
+        Container(
+          constraints: BoxConstraints(
+            maxWidth: 250.0,
+            maxHeight: 200.0,
+          ),
+          decoration: BoxDecoration(
+            color: FlutterFlowTheme.of(context).secondaryBackground,
+            borderRadius: BorderRadius.circular(12.0),
+            border: Border.all(
+              color: FlutterFlowTheme.of(context).primary,
+              width: 2.0,
             ),
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(
-                color: FlutterFlowTheme.of(context).primary,
-                width: 2.0,
-              ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
-                    child: Wrap(
-                      spacing: 0.0,
-                      runSpacing: 0.0,
-                      alignment: WrapAlignment.start,
-                      crossAxisAlignment: WrapCrossAlignment.start,
-                      direction: Axis.horizontal,
-                      runAlignment: WrapAlignment.start,
-                      verticalDirection: VerticalDirection.down,
-                      clipBehavior: Clip.none,
-                      children: [
-                        AutoSizeText(
-                          valueOrDefault<String>(
-                            widget.description,
-                            'default description',
-                          ),
-                          textAlign: TextAlign.start,
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    font: GoogleFonts.readexPro(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
+                  child: Wrap(
+                    spacing: 0.0,
+                    runSpacing: 0.0,
+                    alignment: WrapAlignment.start,
+                    crossAxisAlignment: WrapCrossAlignment.start,
+                    direction: Axis.horizontal,
+                    runAlignment: WrapAlignment.start,
+                    verticalDirection: VerticalDirection.down,
+                    clipBehavior: Clip.none,
+                    children: [
+                      AutoSizeText(
+                        valueOrDefault<String>(
+                          widget.description,
+                          'default description',
                         ),
-                      ],
-                    ),
+                        textAlign: TextAlign.start,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              font: GoogleFonts.readexPro(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                              fontSize: 15.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ],

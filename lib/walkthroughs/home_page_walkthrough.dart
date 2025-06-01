@@ -6,7 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 
 // Focus widget keys for this walkthrough
 final iconButtonGzliz8gr = GlobalKey();
-final chartP7nswxzf = GlobalKey();
+final columnVn3qc0p9 = GlobalKey();
 final buttonWq2dzgnj = GlobalKey();
 final icon6gs0ni15 = GlobalKey();
 final iconT8nhjquh = GlobalKey();
@@ -40,7 +40,7 @@ List<TargetFocus> createWalkthroughTargets(BuildContext context) => [
 
       /// wholeChart
       TargetFocus(
-        keyTarget: chartP7nswxzf,
+        keyTarget: columnVn3qc0p9,
         enableOverlayTab: true,
         alignSkip: Alignment.bottomRight,
         shape: ShapeLightFocus.RRect,

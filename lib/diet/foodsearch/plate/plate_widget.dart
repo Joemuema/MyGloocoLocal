@@ -55,6 +55,13 @@ class _PlateWidgetState extends State<PlateWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (FFAppState().plateTutorial == false) {
+        safeSetState(() =>
+            _model.plateWalkthroughController = createPageWalkthrough(context));
+        _model.plateWalkthroughController?.show(context: context);
+        FFAppState().plateTutorial = true;
+        safeSetState(() {});
+      }
       _model.recommendations = await queryDietRecsRecordOnce();
       _model.recsList = _model.recommendations!.toList().cast<DietRecsRecord>();
       safeSetState(() {});
@@ -67,13 +74,6 @@ class _PlateWidgetState extends State<PlateWidget> {
         0.0,
       );
       safeSetState(() {});
-      if (FFAppState().plateTutorial == false) {
-        safeSetState(() =>
-            _model.plateWalkthroughController = createPageWalkthrough(context));
-        _model.plateWalkthroughController?.show(context: context);
-        FFAppState().plateTutorial = true;
-        safeSetState(() {});
-      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
