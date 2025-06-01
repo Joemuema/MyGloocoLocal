@@ -21,10 +21,10 @@ class UserdetailsModel extends FlutterFlowModel<UserdetailsWidget> {
               userDetailsPageViewController!.page != null
           ? userDetailsPageViewController!.page!.round()
           : 0;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  bool isDataUploading_uploadDataWna = false;
+  FFUploadedFile uploadedLocalFile_uploadDataWna =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl = '';
+  String uploadedFileUrl_uploadDataWna = '';
 
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;

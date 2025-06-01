@@ -175,9 +175,9 @@ class _NavBarPageState extends State<NavBarPage> {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         selectedItemColor: FlutterFlowTheme.of(context).primary,
-        unselectedItemColor: Color(0x8A000000),
+        unselectedItemColor: FlutterFlowTheme.of(context).secondaryText,
         selectedBackgroundColor: Color(0x00000000),
         borderRadius: 8.0,
         itemBorderRadius: 8.0,
@@ -194,7 +194,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   Icons.medical_services,
                   color: currentIndex == 0
                       ? FlutterFlowTheme.of(context).primary
-                      : Color(0x8A000000),
+                      : FlutterFlowTheme.of(context).secondaryText,
                   size: 24.0,
                 ),
                 Text(
@@ -203,7 +203,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   style: TextStyle(
                     color: currentIndex == 0
                         ? FlutterFlowTheme.of(context).primary
-                        : Color(0x8A000000),
+                        : FlutterFlowTheme.of(context).secondaryText,
                     fontSize: 11.0,
                   ),
                 ),
@@ -218,7 +218,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   FFIcons.khealthyFood,
                   color: currentIndex == 1
                       ? FlutterFlowTheme.of(context).primary
-                      : Color(0x8A000000),
+                      : FlutterFlowTheme.of(context).secondaryText,
                   size: 24.0,
                 ),
                 Text(
@@ -227,7 +227,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   style: TextStyle(
                     color: currentIndex == 1
                         ? FlutterFlowTheme.of(context).primary
-                        : Color(0x8A000000),
+                        : FlutterFlowTheme.of(context).secondaryText,
                     fontSize: 11.0,
                   ),
                 ),
@@ -242,7 +242,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   Icons.home_rounded,
                   color: currentIndex == 2
                       ? FlutterFlowTheme.of(context).primary
-                      : Color(0x8A000000),
+                      : FlutterFlowTheme.of(context).secondaryText,
                   size: 34.0,
                 ),
                 Text(
@@ -251,7 +251,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   style: TextStyle(
                     color: currentIndex == 2
                         ? FlutterFlowTheme.of(context).primary
-                        : Color(0x8A000000),
+                        : FlutterFlowTheme.of(context).secondaryText,
                     fontSize: 11.0,
                   ),
                 ),
@@ -266,7 +266,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   FontAwesomeIcons.dumbbell,
                   color: currentIndex == 3
                       ? FlutterFlowTheme.of(context).primary
-                      : Color(0x8A000000),
+                      : FlutterFlowTheme.of(context).secondaryText,
                   size: 24.0,
                 ),
                 Text(
@@ -275,7 +275,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   style: TextStyle(
                     color: currentIndex == 3
                         ? FlutterFlowTheme.of(context).primary
-                        : Color(0x8A000000),
+                        : FlutterFlowTheme.of(context).secondaryText,
                     fontSize: 11.0,
                   ),
                 ),
@@ -290,7 +290,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   FontAwesomeIcons.book,
                   color: currentIndex == 4
                       ? FlutterFlowTheme.of(context).primary
-                      : Color(0x8A000000),
+                      : FlutterFlowTheme.of(context).secondaryText,
                   size: 24.0,
                 ),
                 Text(
@@ -299,7 +299,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   style: TextStyle(
                     color: currentIndex == 4
                         ? FlutterFlowTheme.of(context).primary
-                        : Color(0x8A000000),
+                        : FlutterFlowTheme.of(context).secondaryText,
                     fontSize: 11.0,
                   ),
                 ),

@@ -5,6 +5,8 @@ import '/medication/home_reminder/home_reminder_widget.dart';
 import '/medication/no_elements/no_elements_widget.dart';
 import '/index.dart';
 import 'medication_home_widget.dart' show MedicationHomeWidget;
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart'
+    show TutorialCoachMark;
 import 'package:flutter/material.dart';
 
 class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
@@ -129,6 +131,7 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  TutorialCoachMark? medWalkthroughController;
   // Stores action output result for [Firestore Query - Query a collection] action in MedicationHome widget.
   List<RemindersRecord>? allReminders;
   // Stores action output result for [Firestore Query - Query a collection] action in MedicationHome widget.
@@ -181,6 +184,7 @@ class MedicationHomeModel extends FlutterFlowModel<MedicationHomeWidget> {
 
   @override
   void dispose() {
+    medWalkthroughController?.finish();
     homeReminderModels.dispose();
     noElementsModel1.dispose();
     noElementsModel2.dispose();

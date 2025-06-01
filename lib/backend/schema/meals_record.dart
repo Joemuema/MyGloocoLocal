@@ -41,12 +41,18 @@ class MealsRecord extends FirestoreRecord {
   double get totalMealKcals => _totalMealKcals ?? 0.0;
   bool hasTotalMealKcals() => _totalMealKcals != null;
 
+  // "dateTime" field.
+  DateTime? _dateTime;
+  DateTime? get dateTime => _dateTime;
+  bool hasDateTime() => _dateTime != null;
+
   void _initializeFields() {
     _type = snapshotData['type'] as String?;
     _meals = getDataList(snapshotData['meals']);
     _date = snapshotData['date'] as String?;
     _userID = snapshotData['UserID'] as DocumentReference?;
     _totalMealKcals = castToType<double>(snapshotData['totalMealKcals']);
+    _dateTime = snapshotData['dateTime'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -87,6 +93,7 @@ Map<String, dynamic> createMealsRecordData({
   String? date,
   DocumentReference? userID,
   double? totalMealKcals,
+  DateTime? dateTime,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -94,6 +101,7 @@ Map<String, dynamic> createMealsRecordData({
       'date': date,
       'UserID': userID,
       'totalMealKcals': totalMealKcals,
+      'dateTime': dateTime,
     }.withoutNulls,
   );
 
@@ -110,12 +118,13 @@ class MealsRecordDocumentEquality implements Equality<MealsRecord> {
         listEquality.equals(e1?.meals, e2?.meals) &&
         e1?.date == e2?.date &&
         e1?.userID == e2?.userID &&
-        e1?.totalMealKcals == e2?.totalMealKcals;
+        e1?.totalMealKcals == e2?.totalMealKcals &&
+        e1?.dateTime == e2?.dateTime;
   }
 
   @override
-  int hash(MealsRecord? e) => const ListEquality()
-      .hash([e?.type, e?.meals, e?.date, e?.userID, e?.totalMealKcals]);
+  int hash(MealsRecord? e) => const ListEquality().hash(
+      [e?.type, e?.meals, e?.date, e?.userID, e?.totalMealKcals, e?.dateTime]);
 
   @override
   bool isValidKey(Object? o) => o is MealsRecord;

@@ -33,6 +33,23 @@ class FFAppState extends ChangeNotifier {
               prefs.getInt('ff_lastUpdatedReminders')!)
           : _lastUpdatedReminders;
     });
+    _safeInit(() {
+      _homeTutorial = prefs.getBool('ff_homeTutorial') ?? _homeTutorial;
+    });
+    _safeInit(() {
+      _medTutorial = prefs.getBool('ff_medTutorial') ?? _medTutorial;
+    });
+    _safeInit(() {
+      _dietHomeTutorial =
+          prefs.getBool('ff_dietHomeTutorial') ?? _dietHomeTutorial;
+    });
+    _safeInit(() {
+      _plateTutorial = prefs.getBool('ff_plateTutorial') ?? _plateTutorial;
+    });
+    _safeInit(() {
+      _exerciseTutorial =
+          prefs.getBool('ff_exerciseTutorial') ?? _exerciseTutorial;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -78,6 +95,41 @@ class FFAppState extends ChangeNotifier {
   bool get medicineRemindersUpdated => _medicineRemindersUpdated;
   set medicineRemindersUpdated(bool value) {
     _medicineRemindersUpdated = value;
+  }
+
+  bool _homeTutorial = false;
+  bool get homeTutorial => _homeTutorial;
+  set homeTutorial(bool value) {
+    _homeTutorial = value;
+    prefs.setBool('ff_homeTutorial', value);
+  }
+
+  bool _medTutorial = false;
+  bool get medTutorial => _medTutorial;
+  set medTutorial(bool value) {
+    _medTutorial = value;
+    prefs.setBool('ff_medTutorial', value);
+  }
+
+  bool _dietHomeTutorial = false;
+  bool get dietHomeTutorial => _dietHomeTutorial;
+  set dietHomeTutorial(bool value) {
+    _dietHomeTutorial = value;
+    prefs.setBool('ff_dietHomeTutorial', value);
+  }
+
+  bool _plateTutorial = false;
+  bool get plateTutorial => _plateTutorial;
+  set plateTutorial(bool value) {
+    _plateTutorial = value;
+    prefs.setBool('ff_plateTutorial', value);
+  }
+
+  bool _exerciseTutorial = false;
+  bool get exerciseTutorial => _exerciseTutorial;
+  set exerciseTutorial(bool value) {
+    _exerciseTutorial = value;
+    prefs.setBool('ff_exerciseTutorial', value);
   }
 
   final _foodsetManager = StreamRequestManager<List<FoodRecord>>();

@@ -189,6 +189,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.Document,
               isList: true,
             ),
+            fromPlate: params.getParam(
+              'fromPlate',
+              ParamType.bool,
+            ),
+            planDate: params.getParam(
+              'planDate',
+              ParamType.DateTime,
+            ),
           ),
         ),
         FFRoute(
@@ -230,6 +238,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'chosenMealTime',
               ParamType.int,
             ),
+            mealPlanning: params.getParam(
+              'mealPlanning',
+              ParamType.bool,
+            ),
+            planDate: params.getParam(
+              'planDate',
+              ParamType.DateTime,
+            ),
           ),
         ),
         FFRoute(
@@ -259,6 +275,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'updatedMassList',
               ParamType.double,
               isList: true,
+            ),
+            mealPlanning: params.getParam(
+              'mealPlanning',
+              ParamType.bool,
+            ),
+            planDate: params.getParam(
+              'planDate',
+              ParamType.DateTime,
             ),
           ),
         ),

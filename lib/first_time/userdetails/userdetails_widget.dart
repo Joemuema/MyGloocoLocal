@@ -172,9 +172,9 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                           validateFileFormat(
                                                               m.storagePath,
                                                               context))) {
-                                                    safeSetState(() =>
-                                                        _model.isDataUploading =
-                                                            true);
+                                                    safeSetState(() => _model
+                                                            .isDataUploading_uploadDataWna =
+                                                        true);
                                                     var selectedUploadedFiles =
                                                         <FFUploadedFile>[];
 
@@ -217,7 +217,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                               .map((u) => u!)
                                                               .toList();
                                                     } finally {
-                                                      _model.isDataUploading =
+                                                      _model.isDataUploading_uploadDataWna =
                                                           false;
                                                     }
                                                     if (selectedUploadedFiles
@@ -228,10 +228,10 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                             selectedMedia
                                                                 .length) {
                                                       safeSetState(() {
-                                                        _model.uploadedLocalFile =
+                                                        _model.uploadedLocalFile_uploadDataWna =
                                                             selectedUploadedFiles
                                                                 .first;
-                                                        _model.uploadedFileUrl =
+                                                        _model.uploadedFileUrl_uploadDataWna =
                                                             downloadUrls.first;
                                                       });
                                                     } else {
@@ -266,7 +266,7 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                               image:
                                                                   Image.network(
                                                                 _model
-                                                                    .uploadedFileUrl,
+                                                                    .uploadedFileUrl_uploadDataWna,
                                                               ).image,
                                                             ),
                                                             shape:
@@ -1014,7 +1014,8 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                                 .validate()) {
                                           return;
                                         }
-                                        if (_model.uploadedFileUrl.isEmpty) {
+                                        if (_model.uploadedFileUrl_uploadDataWna
+                                                .isEmpty) {
                                           return;
                                         }
 
@@ -1022,7 +1023,8 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                             .update(createUsersRecordData(
                                           displayName:
                                               _model.textController1.text,
-                                          photoUrl: _model.uploadedFileUrl,
+                                          photoUrl: _model
+                                              .uploadedFileUrl_uploadDataWna,
                                         ));
                                         await _model
                                             .userDetailsPageViewController
@@ -1930,8 +1932,8 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                         await ProfileRecord.collection
                                             .doc()
                                             .set(createProfileRecordData(
-                                              profilepic:
-                                                  _model.uploadedFileUrl,
+                                              profilepic: _model
+                                                  .uploadedFileUrl_uploadDataWna,
                                               firstname:
                                                   _model.textController1.text,
                                               lastname:

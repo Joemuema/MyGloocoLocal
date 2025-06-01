@@ -8,9 +8,12 @@ import '/medication/med_menu/med_menu_widget.dart';
 import '/medication/no_elements/no_elements_widget.dart';
 import '/medication/past_reminder/past_reminder_widget.dart';
 import '/medication/refill/refill_widget.dart';
+import '/walkthroughs/med_walkthrough.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart'
+    show TutorialCoachMark;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -234,6 +237,13 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
           },
         ).then((value) => safeSetState(() {}));
       }
+      if (FFAppState().medTutorial == false) {
+        safeSetState(() =>
+            _model.medWalkthroughController = createPageWalkthrough(context));
+        _model.medWalkthroughController?.show(context: context);
+        FFAppState().medTutorial = true;
+        safeSetState(() {});
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -287,6 +297,9 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
               color: FlutterFlowTheme.of(context).info,
               size: 24.0,
             ),
+          ).addWalkthrough(
+            floatingActionButtonE55yxbi1,
+            _model.medWalkthroughController,
           ),
         ),
         appBar: AppBar(
@@ -1541,6 +1554,9 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                             color: FlutterFlowTheme.of(context).secondaryText,
                             size: 26.0,
                           ),
+                        ).addWalkthrough(
+                          icon1sa5wstp,
+                          _model.medWalkthroughController,
                         ),
                       ),
                     ),
@@ -1620,6 +1636,9 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                             color: Colors.transparent,
                           ),
                         ),
+                      ).addWalkthrough(
+                        container0n1khyj2,
+                        _model.medWalkthroughController,
                       ),
                     ),
                   ],
@@ -1822,6 +1841,9 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
                                     ),
                                   ),
                               ],
+                            ).addWalkthrough(
+                              columnE05d3c6g,
+                              _model.medWalkthroughController,
                             ),
                           ),
                         if (() {
@@ -2257,4 +2279,15 @@ class _MedicationHomeWidgetState extends State<MedicationHomeWidget> {
       ),
     );
   }
+
+  TutorialCoachMark createPageWalkthrough(BuildContext context) =>
+      TutorialCoachMark(
+        targets: createWalkthroughTargets(context),
+        onFinish: () async {
+          safeSetState(() => _model.medWalkthroughController = null);
+        },
+        onSkip: () {
+          return true;
+        },
+      );
 }

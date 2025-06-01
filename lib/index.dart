@@ -12,8 +12,7 @@ export '/first_time/userdetails/userdetails_widget.dart' show UserdetailsWidget;
 export '/options/settings/settings_widget.dart' show SettingsWidget;
 export '/diet/diet_home/diet_home_widget.dart' show DietHomeWidget;
 export '/diet/your_meals/your_meals_widget.dart' show YourMealsWidget;
-export '/diet/foodsearch/foodsearch/foodsearch_widget.dart'
-    show FoodsearchWidget;
+export '/diet/foodsearch/foodsearch_widget.dart' show FoodsearchWidget;
 export '/diet/foodsearch/foodview/foodview_widget.dart' show FoodviewWidget;
 export '/diet/foodsearch/plate/plate_widget.dart' show PlateWidget;
 export '/diet/recipes/recipe_list/recipe_list_widget.dart'

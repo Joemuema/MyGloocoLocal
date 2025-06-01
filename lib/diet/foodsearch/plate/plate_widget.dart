@@ -1,16 +1,22 @@
 import '/backend/backend.dart';
 import '/diet/foodsearch/food_checkout/food_checkout_widget.dart';
 import '/diet/meal_food_item/meal_food_item_widget.dart';
+import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/walkthroughs/plate_walkthrough.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart'
+    show TutorialCoachMark;
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'plate_model.dart';
 export 'plate_model.dart';
 
@@ -20,11 +26,15 @@ class PlateWidget extends StatefulWidget {
     this.updatedFoodList,
     this.updatedKcalList,
     this.updatedMassList,
-  });
+    bool? mealPlanning,
+    this.planDate,
+  }) : this.mealPlanning = mealPlanning ?? false;
 
   final List<FilteredFoodRecord>? updatedFoodList;
   final List<double>? updatedKcalList;
   final List<double>? updatedMassList;
+  final bool mealPlanning;
+  final DateTime? planDate;
 
   static String routeName = 'Plate';
   static String routePath = '/plate';
@@ -45,6 +55,9 @@ class _PlateWidgetState extends State<PlateWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.recommendations = await queryDietRecsRecordOnce();
+      _model.recsList = _model.recommendations!.toList().cast<DietRecsRecord>();
+      safeSetState(() {});
       _model.updatedFoodList =
           widget.updatedFoodList!.toList().cast<FilteredFoodRecord>();
       _model.kcalList = widget.updatedKcalList!.toList().cast<double>();
@@ -54,6 +67,13 @@ class _PlateWidgetState extends State<PlateWidget> {
         0.0,
       );
       safeSetState(() {});
+      if (FFAppState().plateTutorial == false) {
+        safeSetState(() =>
+            _model.plateWalkthroughController = createPageWalkthrough(context));
+        _model.plateWalkthroughController?.show(context: context);
+        FFAppState().plateTutorial = true;
+        safeSetState(() {});
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -68,6 +88,8 @@ class _PlateWidgetState extends State<PlateWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -139,6 +161,9 @@ class _PlateWidgetState extends State<PlateWidget> {
                                   width: MediaQuery.sizeOf(context).width,
                                   fit: BoxFit.contain,
                                 ),
+                              ).addWalkthrough(
+                                imageF9xm7s8u,
+                                _model.plateWalkthroughController,
                               ),
                             ),
                           ),
@@ -220,6 +245,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       ParamType.double,
                                       isList: true,
                                     ),
+                                    'mealPlanning': serializeParam(
+                                      widget.mealPlanning,
+                                      ParamType.bool,
+                                    ),
+                                    'planDate': serializeParam(
+                                      widget.planDate,
+                                      ParamType.DateTime,
+                                    ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
                                     'currentFoodList': _model.updatedFoodList,
@@ -247,6 +280,9 @@ class _PlateWidgetState extends State<PlateWidget> {
                                   ),
                                 ),
                               ),
+                            ).addWalkthrough(
+                              containerTqtipktg,
+                              _model.plateWalkthroughController,
                             ),
                           ),
                           Align(
@@ -305,6 +341,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       ParamType.double,
                                       isList: true,
                                     ),
+                                    'mealPlanning': serializeParam(
+                                      widget.mealPlanning,
+                                      ParamType.bool,
+                                    ),
+                                    'planDate': serializeParam(
+                                      widget.planDate,
+                                      ParamType.DateTime,
+                                    ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
                                     'currentFoodList': _model.updatedFoodList,
@@ -328,6 +372,9 @@ class _PlateWidgetState extends State<PlateWidget> {
                                   ),
                                 ),
                               ),
+                            ).addWalkthrough(
+                              containerGf742m1d,
+                              _model.plateWalkthroughController,
                             ),
                           ),
                           Align(
@@ -386,6 +433,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       ParamType.double,
                                       isList: true,
                                     ),
+                                    'mealPlanning': serializeParam(
+                                      widget.mealPlanning,
+                                      ParamType.bool,
+                                    ),
+                                    'planDate': serializeParam(
+                                      widget.planDate,
+                                      ParamType.DateTime,
+                                    ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
                                     'currentFoodList': _model.updatedFoodList,
@@ -409,6 +464,9 @@ class _PlateWidgetState extends State<PlateWidget> {
                                   ),
                                 ),
                               ),
+                            ).addWalkthrough(
+                              containerZdkq6qzk,
+                              _model.plateWalkthroughController,
                             ),
                           ),
                           Align(
@@ -453,6 +511,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                                         _model.massList,
                                         ParamType.double,
                                         isList: true,
+                                      ),
+                                      'mealPlanning': serializeParam(
+                                        widget.mealPlanning,
+                                        ParamType.bool,
+                                      ),
+                                      'planDate': serializeParam(
+                                        widget.planDate,
+                                        ParamType.DateTime,
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
@@ -506,6 +572,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                                         ParamType.double,
                                         isList: true,
                                       ),
+                                      'mealPlanning': serializeParam(
+                                        widget.mealPlanning,
+                                        ParamType.bool,
+                                      ),
+                                      'planDate': serializeParam(
+                                        widget.planDate,
+                                        ParamType.DateTime,
+                                      ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
                                       'currentFoodList': _model.updatedFoodList,
@@ -558,6 +632,14 @@ class _PlateWidgetState extends State<PlateWidget> {
                                         ParamType.double,
                                         isList: true,
                                       ),
+                                      'mealPlanning': serializeParam(
+                                        widget.mealPlanning,
+                                        ParamType.bool,
+                                      ),
+                                      'planDate': serializeParam(
+                                        widget.planDate,
+                                        ParamType.DateTime,
+                                      ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
                                       'currentFoodList': _model.updatedFoodList,
@@ -590,7 +672,7 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       isList: true,
                                     ),
                                     'location': serializeParam(
-                                      'toPlate',
+                                      'Plate',
                                       ParamType.String,
                                     ),
                                     'currentKcalList': serializeParam(
@@ -603,156 +685,47 @@ class _PlateWidgetState extends State<PlateWidget> {
                                       ParamType.double,
                                       isList: true,
                                     ),
+                                    'mealPlanning': serializeParam(
+                                      widget.mealPlanning,
+                                      ParamType.bool,
+                                    ),
+                                    'planDate': serializeParam(
+                                      widget.planDate,
+                                      ParamType.DateTime,
+                                    ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
                                     'currentFoodList': _model.updatedFoodList,
                                   },
                                 );
                               },
+                            ).addWalkthrough(
+                              iconButtonZnrvvwsr,
+                              _model.plateWalkthroughController,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Flexible(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    10.0, 10.0, 10.0, 0.0),
-                                child: Text(
-                                  'Default estimations are per 100g of edible portion on fresh weight basis. (You can change the estimate mass in each food item\'s mass textfield)\n\nTo search for uncategorized food items, click (+) button in the bottom-right corner of the plate.',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.readexPro(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontSize: 15.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    if (widget.updatedFoodList != null &&
-                        (widget.updatedFoodList)!.isNotEmpty)
-                      Column(
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                      child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 4.0, 0.0, 0.0),
-                              child: Text(
-                                'Summary',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      font: GoogleFonts.readexPro(
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .fontStyle,
-                                      ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      fontSize: 24.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ),
-                          ),
-                          if (widget.updatedKcalList != null &&
-                              (widget.updatedKcalList)!.isNotEmpty)
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 5.0, 0.0, 5.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Total Kcal:',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.readexPro(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                            fontSize: 17.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 15.0, 0.0),
-                                    child: Text(
-                                      '${valueOrDefault<String>(
-                                        formatNumber(
-                                          _model.totalKcal,
-                                          formatType: FormatType.custom,
-                                          format: '.00',
-                                          locale: 'en_US',
-                                        ),
-                                        '0',
-                                      )} Kcal',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.readexPro(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                            fontSize: 17.0,
-                                            letterSpacing: 0.0,
+                          Flexible(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 0.0, 10.0, 0.0),
+                                  child: Text(
+                                    'Default estimations are per 100g of edible portion on fresh weight basis. (You can change the estimate mass in each food item\'s mass textfield)\n\nTo search for uncategorized food items, click (+) button in the bottom-right corner of the plate.',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.readexPro(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -762,152 +735,277 @@ class _PlateWidgetState extends State<PlateWidget> {
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
-                                    ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          fontSize: 15.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                   ),
-                                ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (widget.updatedFoodList != null &&
+                        (widget.updatedFoodList)!.isNotEmpty)
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Align(
+                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10.0, 4.0, 0.0, 0.0),
+                                child: Text(
+                                  'Meal Summary',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: 24.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .fontStyle,
+                                      ),
+                                ),
                               ),
                             ),
-                          Builder(
-                            builder: (context) {
-                              final foodList = _model.updatedFoodList.toList();
-
-                              return ListView.builder(
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: foodList.length,
-                                itemBuilder: (context, foodListIndex) {
-                                  final foodListItem = foodList[foodListIndex];
-                                  return Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 5.0, 10.0, 5.0),
-                                    child: wrapWithModel(
-                                      model: _model.mealFoodItemModels.getModel(
-                                        foodListIndex.toString(),
-                                        foodListIndex,
-                                      ),
-                                      updateCallback: () => safeSetState(() {}),
-                                      child: MealFoodItemWidget(
-                                        key: Key(
-                                          'Key3ub_${foodListIndex.toString()}',
-                                        ),
-                                        foodItem: foodListItem,
-                                        massValue: valueOrDefault<double>(
-                                          _model.massList
-                                              .elementAtOrNull(foodListIndex),
-                                          100.0,
-                                        ),
-                                        removeFoodItem: () async {
-                                          _model.removeFromUpdatedFoodList(
-                                              foodListItem);
-                                          _model.removeAtIndexFromKcalList(
-                                              foodListIndex);
-                                          _model.removeAtIndexFromMassList(
-                                              foodListIndex);
-                                          safeSetState(() {});
-                                        },
-                                        changeKcalValue:
-                                            (kcalValue, mass) async {
-                                          _model.updateKcalListAtIndex(
-                                            foodListIndex,
-                                            (_) => kcalValue,
-                                          );
-                                          _model.updateMassListAtIndex(
-                                            foodListIndex,
-                                            (_) => mass,
-                                          );
-                                          _model.totalKcal =
-                                              valueOrDefault<double>(
-                                            functions.calcTotalKcal(
-                                                _model.kcalList.toList()),
-                                            0.0,
-                                          );
-                                          safeSetState(() {});
-                                        },
+                            if (widget.updatedKcalList != null &&
+                                (widget.updatedKcalList)!.isNotEmpty)
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 5.0, 0.0, 5.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Total Kcal:',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.readexPro(
+                                                fontWeight: FontWeight.w600,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              fontSize: 17.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
                                       ),
                                     ),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                10.0, 0.0, 10.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 10.0, 24.0, 0.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            await showModalBottomSheet(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              enableDrag: false,
-                                              context: context,
-                                              builder: (context) {
-                                                return GestureDetector(
-                                                  onTap: () {
-                                                    FocusScope.of(context)
-                                                        .unfocus();
-                                                    FocusManager
-                                                        .instance.primaryFocus
-                                                        ?.unfocus();
-                                                  },
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child: FoodCheckoutWidget(
-                                                      finalfoodlist: _model
-                                                          .updatedFoodList,
-                                                      finalKcal:
-                                                          _model.totalKcal,
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ).then(
-                                                (value) => safeSetState(() {}));
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 15.0, 0.0),
+                                      child: Text(
+                                        '${valueOrDefault<String>(
+                                          formatNumber(
+                                            _model.totalKcal,
+                                            formatType: FormatType.custom,
+                                            format: '.00',
+                                            locale: 'en_US',
+                                          ),
+                                          '0',
+                                        )} Kcal',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.readexPro(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              fontSize: 17.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            Builder(
+                              builder: (context) {
+                                final foodList =
+                                    _model.updatedFoodList.toList();
+
+                                return ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  reverse: true,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: foodList.length,
+                                  itemBuilder: (context, foodListIndex) {
+                                    final foodListItem =
+                                        foodList[foodListIndex];
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 5.0, 10.0, 5.0),
+                                      child: wrapWithModel(
+                                        model:
+                                            _model.mealFoodItemModels.getModel(
+                                          foodListIndex.toString(),
+                                          foodListIndex,
+                                        ),
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
+                                        child: MealFoodItemWidget(
+                                          key: Key(
+                                            'Key3ub_${foodListIndex.toString()}',
+                                          ),
+                                          foodItem: foodListItem,
+                                          massValue: valueOrDefault<double>(
+                                            _model.massList
+                                                .elementAtOrNull(foodListIndex),
+                                            100.0,
+                                          ),
+                                          removeFoodItem: () async {
+                                            _model.removeFromUpdatedFoodList(
+                                                foodListItem);
+                                            _model.removeAtIndexFromKcalList(
+                                                foodListIndex);
+                                            _model.removeAtIndexFromMassList(
+                                                foodListIndex);
+                                            safeSetState(() {});
                                           },
-                                          text: 'Record Meal',
-                                          options: FFButtonOptions(
-                                            width: double.infinity,
-                                            height: 50.0,
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      font:
-                                                          GoogleFonts.readexPro(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontStyle,
+                                          changeKcalValue:
+                                              (kcalValue, mass) async {
+                                            _model.updateKcalListAtIndex(
+                                              foodListIndex,
+                                              (_) => kcalValue,
+                                            );
+                                            _model.updateMassListAtIndex(
+                                              foodListIndex,
+                                              (_) => mass,
+                                            );
+                                            _model.totalKcal =
+                                                valueOrDefault<double>(
+                                              functions.calcTotalKcal(
+                                                  _model.kcalList.toList()),
+                                              0.0,
+                                            );
+                                            safeSetState(() {});
+                                          },
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 10.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 10.0, 24.0, 0.0),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return GestureDetector(
+                                                    onTap: () {
+                                                      FocusScope.of(context)
+                                                          .unfocus();
+                                                      FocusManager
+                                                          .instance.primaryFocus
+                                                          ?.unfocus();
+                                                    },
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child: FoodCheckoutWidget(
+                                                        finalfoodlist: _model
+                                                            .updatedFoodList,
+                                                        finalKcal:
+                                                            _model.totalKcal,
+                                                        backToCalendar: widget
+                                                            .mealPlanning,
+                                                        planDate:
+                                                            widget.planDate,
                                                       ),
-                                                      color: Colors.white,
-                                                      letterSpacing: 0.0,
+                                                    ),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
+                                            },
+                                            text: 'Record Meal',
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 50.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .titleSmall
+                                                  .override(
+                                                    font: GoogleFonts.readexPro(
                                                       fontWeight:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -919,20 +1017,392 @@ class _PlateWidgetState extends State<PlateWidget> {
                                                               .titleSmall
                                                               .fontStyle,
                                                     ),
-                                            elevation: 3.0,
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
+                                                    color: Colors.white,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .fontStyle,
+                                                  ),
+                                              elevation: 3.0,
+                                              borderRadius:
+                                                  BorderRadius.circular(12.0),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 20.0, 10.0, 0.0),
+                          child: Text(
+                            'Guide: Balanced Meal Proportions for Diabetes Management',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.readexPro(
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                  decoration: TextDecoration.underline,
                                 ),
-                              ],
+                          ),
+                        ),
+                        Container(
+                          height: 200.0,
+                          decoration: BoxDecoration(),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                10.0, 10.0, 10.0, 10.0),
+                            child: Builder(
+                              builder: (context) {
+                                final recs =
+                                    _model.recsList.toList().take(5).toList();
+
+                                return FlutterFlowDataTable<DietRecsRecord>(
+                                  controller:
+                                      _model.paginatedDataTableController,
+                                  data: recs,
+                                  numRows: _model.recsList.length,
+                                  columnsBuilder: (onSortChanged) => [
+                                    DataColumn2(
+                                      label: DefaultTextStyle.merge(
+                                        softWrap: true,
+                                        child: Text(
+                                          'Group',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelLarge
+                                              .override(
+                                                font: GoogleFonts.readexPro(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 17.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelLarge
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                      ),
+                                      fixedWidth:
+                                          MediaQuery.sizeOf(context).width *
+                                              0.3,
+                                    ),
+                                    DataColumn2(
+                                      label: DefaultTextStyle.merge(
+                                        softWrap: true,
+                                        child: Text(
+                                          'Calories (Per Meal)',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelLarge
+                                              .override(
+                                                font: GoogleFonts.readexPro(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 17.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelLarge
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                      ),
+                                      fixedWidth:
+                                          MediaQuery.sizeOf(context).width *
+                                              0.3,
+                                    ),
+                                    DataColumn2(
+                                      label: DefaultTextStyle.merge(
+                                        softWrap: true,
+                                        child: Text(
+                                          'Grams (Per Meal)',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelLarge
+                                              .override(
+                                                font: GoogleFonts.readexPro(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 17.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelLarge
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                      ),
+                                      fixedWidth:
+                                          MediaQuery.sizeOf(context).width *
+                                              0.25,
+                                    ),
+                                    DataColumn2(
+                                      label: DefaultTextStyle.merge(
+                                        softWrap: true,
+                                        child: Text(
+                                          'Recommendations',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelLarge
+                                              .override(
+                                                font: GoogleFonts.readexPro(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLarge
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 17.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelLarge
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                      ),
+                                      fixedWidth:
+                                          MediaQuery.sizeOf(context).width *
+                                              0.5,
+                                    ),
+                                  ],
+                                  dataRowBuilder: (recsItem, recsIndex,
+                                          selected, onSelectChanged) =>
+                                      DataRow(
+                                    color: WidgetStateProperty.all(
+                                      recsIndex % 2 == 0
+                                          ? FlutterFlowTheme.of(context)
+                                              .secondaryBackground
+                                          : FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                    ),
+                                    cells: [
+                                      Text(
+                                        recsItem.group,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.readexPro(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              fontSize: 15.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                      ),
+                                      Text(
+                                        recsItem.approxCals,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.readexPro(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              fontSize: 15.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                      ),
+                                      Text(
+                                        recsItem.gramsAvg,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.readexPro(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              fontSize: 15.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 0.0, 5.0, 0.0),
+                                        child: Text(
+                                          recsItem.recs,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                font: GoogleFonts.readexPro(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                                fontSize: 15.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                      ),
+                                    ].map((c) => DataCell(c)).toList(),
+                                  ),
+                                  paginated: false,
+                                  selectable: false,
+                                  columnSpacing: 20.0,
+                                  headingRowColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  addHorizontalDivider: true,
+                                  addTopAndBottomDivider: false,
+                                  hideDefaultHorizontalDivider: true,
+                                  horizontalDividerColor:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  horizontalDividerThickness: 1.0,
+                                  addVerticalDivider: true,
+                                  verticalDividerColor:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  verticalDividerThickness: 1.0,
+                                );
+                              },
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
+                    ).addWalkthrough(
+                      columnLnthx9qy,
+                      _model.plateWalkthroughController,
+                    ),
                   ],
                 ),
               ],
@@ -942,4 +1412,15 @@ class _PlateWidgetState extends State<PlateWidget> {
       ),
     );
   }
+
+  TutorialCoachMark createPageWalkthrough(BuildContext context) =>
+      TutorialCoachMark(
+        targets: createWalkthroughTargets(context),
+        onFinish: () async {
+          safeSetState(() => _model.plateWalkthroughController = null);
+        },
+        onSkip: () {
+          return true;
+        },
+      );
 }

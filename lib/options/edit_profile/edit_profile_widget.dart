@@ -147,8 +147,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                       selectedMedia.every((m) =>
                                           validateFileFormat(
                                               m.storagePath, context))) {
-                                    safeSetState(
-                                        () => _model.isDataUploading1 = true);
+                                    safeSetState(() => _model
+                                        .isDataUploading_uploadDataWnm = true);
                                     var selectedUploadedFiles =
                                         <FFUploadedFile>[];
 
@@ -176,16 +176,17 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                           .map((u) => u!)
                                           .toList();
                                     } finally {
-                                      _model.isDataUploading1 = false;
+                                      _model.isDataUploading_uploadDataWnm =
+                                          false;
                                     }
                                     if (selectedUploadedFiles.length ==
                                             selectedMedia.length &&
                                         downloadUrls.length ==
                                             selectedMedia.length) {
                                       safeSetState(() {
-                                        _model.uploadedLocalFile1 =
+                                        _model.uploadedLocalFile_uploadDataWnm =
                                             selectedUploadedFiles.first;
-                                        _model.uploadedFileUrl1 =
+                                        _model.uploadedFileUrl_uploadDataWnm =
                                             downloadUrls.first;
                                       });
                                     } else {
@@ -212,7 +213,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             image: DecorationImage(
                                               fit: BoxFit.cover,
                                               image: Image.network(
-                                                _model.uploadedFileUrl1,
+                                                _model
+                                                    .uploadedFileUrl_uploadDataWnm,
                                               ).image,
                                             ),
                                             shape: BoxShape.circle,
@@ -272,7 +274,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                         m.storagePath,
                                                         context))) {
                                               safeSetState(() => _model
-                                                  .isDataUploading2 = true);
+                                                      .isDataUploading_uploadDataWnu =
+                                                  true);
                                               var selectedUploadedFiles =
                                                   <FFUploadedFile>[];
 
@@ -311,7 +314,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                         .map((u) => u!)
                                                         .toList();
                                               } finally {
-                                                _model.isDataUploading2 = false;
+                                                _model.isDataUploading_uploadDataWnu =
+                                                    false;
                                               }
                                               if (selectedUploadedFiles
                                                           .length ==
@@ -319,10 +323,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                   downloadUrls.length ==
                                                       selectedMedia.length) {
                                                 safeSetState(() {
-                                                  _model.uploadedLocalFile2 =
+                                                  _model.uploadedLocalFile_uploadDataWnu =
                                                       selectedUploadedFiles
                                                           .first;
-                                                  _model.uploadedFileUrl2 =
+                                                  _model.uploadedFileUrl_uploadDataWnu =
                                                       downloadUrls.first;
                                                 });
                                               } else {
@@ -856,17 +860,23 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                         phoneNumber: int.tryParse(
                                             _model.textController3.text),
                                         gender: _model.choiceChipsValue,
-                                        profilepic: _model.uploadedFileUrl1 != ''
-                                            ? _model.uploadedFileUrl1
-                                            : columnProfileRecord.profilepic,
+                                        profilepic:
+                                            _model.uploadedFileUrl_uploadDataWnm !=
+                                                        ''
+                                                ? _model
+                                                    .uploadedFileUrl_uploadDataWnm
+                                                : columnProfileRecord
+                                                    .profilepic,
                                       ));
 
                                       await currentUserReference!
                                           .update(createUsersRecordData(
                                         displayName:
                                             _model.textController1.text,
-                                        photoUrl: _model.uploadedFileUrl1 != ''
-                                            ? _model.uploadedFileUrl1
+                                        photoUrl: _model.uploadedFileUrl_uploadDataWnm !=
+                                                    ''
+                                            ? _model
+                                                .uploadedFileUrl_uploadDataWnm
                                             : columnProfileRecord.profilepic,
                                       ));
                                       Navigator.pop(context);

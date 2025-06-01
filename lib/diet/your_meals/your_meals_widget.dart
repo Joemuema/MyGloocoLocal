@@ -15,10 +15,14 @@ export 'your_meals_model.dart';
 class YourMealsWidget extends StatefulWidget {
   const YourMealsWidget({
     super.key,
-    required this.mealsList,
-  });
+    this.mealsList,
+    bool? fromPlate,
+    this.planDate,
+  }) : this.fromPlate = fromPlate ?? false;
 
   final List<MealsRecord>? mealsList;
+  final bool fromPlate;
+  final DateTime? planDate;
 
   static String routeName = 'YourMeals';
   static String routePath = '/yourMeals';
@@ -57,9 +61,15 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                 child: MyMealsWidget(
                   foodItems: widget.mealsList!
                       .where((e) =>
-                          e.date == functions.getDate(getCurrentTimestamp))
+                          e.date ==
+                          functions.getDate(widget.fromPlate == true
+                              ? widget.planDate!
+                              : getCurrentTimestamp))
                       .toList(),
                   drinkdate: functions.currentDate(getCurrentTimestamp),
+                  calendarDate: widget.planDate != null
+                      ? widget.planDate
+                      : getCurrentTimestamp,
                 ),
               ),
             ),
@@ -246,6 +256,8 @@ class _YourMealsWidgetState extends State<YourMealsWidget> {
                                               .toList(),
                                           drinkdate:
                                               _model.calendarSelectedDay!.start,
+                                          calendarDate:
+                                              _model.calendarSelectedDay?.start,
                                         ),
                                       ),
                                     ),

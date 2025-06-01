@@ -20,10 +20,15 @@ class FoodCheckoutWidget extends StatefulWidget {
     super.key,
     required this.finalfoodlist,
     double? finalKcal,
-  }) : this.finalKcal = finalKcal ?? 0.0;
+    bool? backToCalendar,
+    this.planDate,
+  })  : this.finalKcal = finalKcal ?? 0.0,
+        this.backToCalendar = backToCalendar ?? false;
 
   final List<FilteredFoodRecord>? finalfoodlist;
   final double finalKcal;
+  final bool backToCalendar;
+  final DateTime? planDate;
 
   @override
   State<FoodCheckoutWidget> createState() => _FoodCheckoutWidgetState();
@@ -167,7 +172,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                         children: [
                           Expanded(
                             child: Form(
-                              key: _model.formKey,
+                              key: _model.formKey2,
                               autovalidateMode: AutovalidateMode.disabled,
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
@@ -232,9 +237,174 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                           ),
                         ].divide(SizedBox(width: 0.0)),
                       ),
+                      if (widget.backToCalendar == true)
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Meal Time: ',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        fontSize: 17.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ),
+                              Form(
+                                key: _model.formKey1,
+                                autovalidateMode: AutovalidateMode.disabled,
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 15.0, 0.0),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      final _datePickedTime =
+                                          await showTimePicker(
+                                        context: context,
+                                        initialTime: TimeOfDay.fromDateTime(
+                                            getCurrentTimestamp),
+                                        builder: (context, child) {
+                                          return wrapInMaterialTimePickerTheme(
+                                            context,
+                                            child!,
+                                            headerBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            headerForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                            headerTextStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineLarge
+                                                    .override(
+                                                      font: GoogleFonts.inter(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineLarge
+                                                                .fontStyle,
+                                                      ),
+                                                      fontSize: 32.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .headlineLarge
+                                                              .fontStyle,
+                                                    ),
+                                            pickerBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            pickerForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            selectedDateTimeBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            selectedDateTimeForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                            actionButtonForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            iconSize: 24.0,
+                                          );
+                                        },
+                                      );
+                                      if (_datePickedTime != null) {
+                                        safeSetState(() {
+                                          _model.datePicked = DateTime(
+                                            getCurrentTimestamp.year,
+                                            getCurrentTimestamp.month,
+                                            getCurrentTimestamp.day,
+                                            _datePickedTime.hour,
+                                            _datePickedTime.minute,
+                                          );
+                                        });
+                                      } else if (_model.datePicked != null) {
+                                        safeSetState(() {
+                                          _model.datePicked =
+                                              getCurrentTimestamp;
+                                        });
+                                      }
+                                    },
+                                    text: valueOrDefault<String>(
+                                      dateTimeFormat("jm", _model.datePicked),
+                                      'Select Time',
+                                    ),
+                                    options: FFButtonOptions(
+                                      height: 40.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            font: GoogleFonts.readexPro(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .fontStyle,
+                                            ),
+                                            color: Colors.white,
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontStyle,
+                                          ),
+                                      elevation: 0.0,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 5.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 5.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -354,8 +524,8 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                if (_model.formKey.currentState == null ||
-                                    !_model.formKey.currentState!.validate()) {
+                                if (_model.formKey2.currentState == null ||
+                                    !_model.formKey2.currentState!.validate()) {
                                   return;
                                 }
                                 if (_model.dropDownValue == null) {
@@ -374,13 +544,43 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                                   );
                                   return;
                                 }
+                                if (widget.backToCalendar == true) {
+                                  if (_model.formKey1.currentState == null ||
+                                      !_model.formKey1.currentState!
+                                          .validate()) {
+                                    return;
+                                  }
+                                  if (_model.datePicked == null) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Set meal time first',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                        ),
+                                        duration: Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context).error,
+                                      ),
+                                    );
+                                    return;
+                                  }
+                                }
 
                                 await MealsRecord.collection.doc().set({
                                   ...createMealsRecordData(
-                                    date:
-                                        functions.getDate(getCurrentTimestamp),
+                                    date: functions.getDate(
+                                        widget.backToCalendar == true
+                                            ? widget.planDate!
+                                            : getCurrentTimestamp),
                                     type: _model.dropDownValue,
                                     userID: FFAppState().UserID,
+                                    totalMealKcals: widget.finalKcal,
+                                    dateTime: widget.backToCalendar == true
+                                        ? _model.datePicked
+                                        : getCurrentTimestamp,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -393,7 +593,7 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                      'Successfully added to log',
+                                      'Successfully added to meal ${widget.backToCalendar == true ? 'plan' : 'log'}',
                                       style: TextStyle(
                                         color:
                                             FlutterFlowTheme.of(context).info,
@@ -404,8 +604,46 @@ class _FoodCheckoutWidgetState extends State<FoodCheckoutWidget> {
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
                                 );
+                                if (widget.backToCalendar == true) {
+                                  _model.mealDocs = await queryMealsRecordOnce(
+                                    queryBuilder: (mealsRecord) => mealsRecord
+                                        .where(
+                                          'UserID',
+                                          isEqualTo: FFAppState().UserID,
+                                        )
+                                        .where(
+                                          'date',
+                                          isEqualTo: functions
+                                              .getDate(getCurrentTimestamp),
+                                        ),
+                                  );
 
-                                context.pushNamed(DietHomeWidget.routeName);
+                                  context.pushNamed(
+                                    YourMealsWidget.routeName,
+                                    queryParameters: {
+                                      'fromPlate': serializeParam(
+                                        true,
+                                        ParamType.bool,
+                                      ),
+                                      'planDate': serializeParam(
+                                        widget.planDate,
+                                        ParamType.DateTime,
+                                      ),
+                                      'mealsList': serializeParam(
+                                        _model.mealDocs,
+                                        ParamType.Document,
+                                        isList: true,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'mealsList': _model.mealDocs,
+                                    },
+                                  );
+                                } else {
+                                  context.pushNamed(DietHomeWidget.routeName);
+                                }
+
+                                safeSetState(() {});
                               },
                               text: 'Record as meal',
                               icon: Icon(

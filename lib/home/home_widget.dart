@@ -9,9 +9,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/logs/addactivity/addactivity_widget.dart';
 import '/logs/bglogs/bglogs_widget.dart';
+import '/walkthroughs/home_page_walkthrough.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart'
+    show TutorialCoachMark;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -269,6 +272,13 @@ class _HomeWidgetState extends State<HomeWidget> {
         FFAppState().medicineRemindersUpdated = true;
         FFAppState().lastUpdatedReminders = getCurrentTimestamp;
       }
+      if (FFAppState().homeTutorial == false) {
+        safeSetState(() => _model.homePageWalkthroughController =
+            createPageWalkthrough(context));
+        _model.homePageWalkthroughController?.show(context: context);
+        FFAppState().homeTutorial = true;
+        safeSetState(() {});
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -388,6 +398,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                               onPressed: () async {
                                 context.pushNamed(SettingsWidget.routeName);
                               },
+                            ).addWalkthrough(
+                              iconButtonGzliz8gr,
+                              _model.homePageWalkthroughController,
                             ),
                           ),
                         ].divide(SizedBox(width: 10.0)),
@@ -769,6 +782,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
+                                  ).addWalkthrough(
+                                    button87y4ko9k,
+                                    _model.homePageWalkthroughController,
                                   ),
                                 ),
                                 Padding(
@@ -869,6 +885,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             ),
                                       ),
                                     ],
+                                  ).addWalkthrough(
+                                    rowEm77b6f6,
+                                    _model.homePageWalkthroughController,
                                   ),
                                 ),
                               ],
@@ -1143,6 +1162,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         .secondaryText,
                                     size: 30.0,
                                   ),
+                                ).addWalkthrough(
+                                  iconT8nhjquh,
+                                  _model.homePageWalkthroughController,
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
@@ -1508,6 +1530,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
+                                ).addWalkthrough(
+                                  buttonWq2dzgnj,
+                                  _model.homePageWalkthroughController,
                                 ),
                                 InkWell(
                                   splashColor: Colors.transparent,
@@ -1752,6 +1777,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         .secondaryText,
                                     size: 30.0,
                                   ),
+                                ).addWalkthrough(
+                                  icon6gs0ni15,
+                                  _model.homePageWalkthroughController,
                                 ),
                               ],
                             ),
@@ -3623,6 +3651,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     ),
                                                   ],
                                                 ),
+                                              ).addWalkthrough(
+                                                chartP7nswxzf,
+                                                _model
+                                                    .homePageWalkthroughController,
                                               ),
                                             );
                                           } else {
@@ -5281,6 +5313,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                       ],
                                     ),
+                                  ).addWalkthrough(
+                                    columnVg2795vw,
+                                    _model.homePageWalkthroughController,
                                   ),
                                   InkWell(
                                     splashColor: Colors.transparent,
@@ -5352,6 +5387,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                       ],
                                     ),
+                                  ).addWalkthrough(
+                                    column6i2abtnq,
+                                    _model.homePageWalkthroughController,
                                   ),
                                   InkWell(
                                     splashColor: Colors.transparent,
@@ -5425,11 +5463,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                       ],
                                     ),
+                                  ).addWalkthrough(
+                                    columnVj5rx2ra,
+                                    _model.homePageWalkthroughController,
                                   ),
                                 ],
                               ),
                             ),
                           ],
+                        ).addWalkthrough(
+                          columnT8kwqqqg,
+                          _model.homePageWalkthroughController,
                         ),
                       ),
                     ),
@@ -5442,4 +5486,15 @@ class _HomeWidgetState extends State<HomeWidget> {
       ),
     );
   }
+
+  TutorialCoachMark createPageWalkthrough(BuildContext context) =>
+      TutorialCoachMark(
+        targets: createWalkthroughTargets(context),
+        onFinish: () async {
+          safeSetState(() => _model.homePageWalkthroughController = null);
+        },
+        onSkip: () {
+          return true;
+        },
+      );
 }

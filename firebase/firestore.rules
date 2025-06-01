@@ -29,13 +29,6 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /bloodglucose/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if true;
-      allow delete: if false;
-    }
-
     match /sampleBGreadings/{document} {
       allow create: if true;
       allow read: if true;
@@ -61,13 +54,6 @@ service cloud.firestore {
       allow read: if true;
     }
 
-
-    match /Reports/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if true;
-      allow delete: if false;
-    }
 
     match /food/{document} {
       allow create: if true;
@@ -126,6 +112,13 @@ service cloud.firestore {
     }
 
     match /filtered_food/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /DietRecs/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;

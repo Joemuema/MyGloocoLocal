@@ -25,7 +25,10 @@ class FoodsearchWidget extends StatefulWidget {
     this.currentKcalList,
     this.currentMassList,
     int? chosenMealTime,
-  }) : this.chosenMealTime = chosenMealTime ?? 0;
+    bool? mealPlanning,
+    this.planDate,
+  })  : this.chosenMealTime = chosenMealTime ?? 0,
+        this.mealPlanning = mealPlanning ?? false;
 
   final List<FilteredFoodRecord>? currentFoodList;
   final String? location;
@@ -34,6 +37,8 @@ class FoodsearchWidget extends StatefulWidget {
   final List<double>? currentKcalList;
   final List<double>? currentMassList;
   final int chosenMealTime;
+  final bool mealPlanning;
+  final DateTime? planDate;
 
   static String routeName = 'Foodsearch';
   static String routePath = '/foodsearch';
@@ -448,6 +453,18 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                               ParamType.double,
                                                               isList: true,
                                                             ),
+                                                            'mealPlanning':
+                                                                serializeParam(
+                                                              widget
+                                                                  .mealPlanning,
+                                                              ParamType.bool,
+                                                            ),
+                                                            'planDate':
+                                                                serializeParam(
+                                                              widget.planDate,
+                                                              ParamType
+                                                                  .DateTime,
+                                                            ),
                                                           }.withoutNulls,
                                                           extra: <String,
                                                               dynamic>{
@@ -853,6 +870,14 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                   ParamType.double,
                                                   isList: true,
                                                 ),
+                                                'mealPlanning': serializeParam(
+                                                  widget.mealPlanning,
+                                                  ParamType.bool,
+                                                ),
+                                                'planDate': serializeParam(
+                                                  widget.planDate,
+                                                  ParamType.DateTime,
+                                                ),
                                               }.withoutNulls,
                                               extra: <String, dynamic>{
                                                 'updatedFoodList':
@@ -1063,6 +1088,18 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                                   .searchMassList,
                                                               ParamType.double,
                                                               isList: true,
+                                                            ),
+                                                            'mealPlanning':
+                                                                serializeParam(
+                                                              widget
+                                                                  .mealPlanning,
+                                                              ParamType.bool,
+                                                            ),
+                                                            'planDate':
+                                                                serializeParam(
+                                                              widget.planDate,
+                                                              ParamType
+                                                                  .DateTime,
                                                             ),
                                                           }.withoutNulls,
                                                           extra: <String,
@@ -1470,6 +1507,14 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
                                                   _model.searchMassList,
                                                   ParamType.double,
                                                   isList: true,
+                                                ),
+                                                'mealPlanning': serializeParam(
+                                                  widget.mealPlanning,
+                                                  ParamType.bool,
+                                                ),
+                                                'planDate': serializeParam(
+                                                  widget.planDate,
+                                                  ParamType.DateTime,
                                                 ),
                                               }.withoutNulls,
                                               extra: <String, dynamic>{

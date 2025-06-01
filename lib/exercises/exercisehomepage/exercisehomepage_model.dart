@@ -4,11 +4,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'exercisehomepage_widget.dart' show ExercisehomepageWidget;
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart'
+    show TutorialCoachMark;
 import 'package:flutter/material.dart';
 
 class ExercisehomepageModel extends FlutterFlowModel<ExercisehomepageWidget> {
   ///  State fields for stateful widgets in this page.
 
+  TutorialCoachMark? exerciseWalkthroughController;
   // State field(s) for Carousel widget.
   CarouselSliderController? carouselController;
   int carouselCurrentIndex = 1;
@@ -30,6 +33,7 @@ class ExercisehomepageModel extends FlutterFlowModel<ExercisehomepageWidget> {
 
   @override
   void dispose() {
+    exerciseWalkthroughController?.finish();
     incompleteactivitylistModels.dispose();
     exercisetaskstodaycomponentModels.dispose();
   }
