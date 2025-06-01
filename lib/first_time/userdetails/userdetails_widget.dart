@@ -1959,6 +1959,13 @@ class _UserdetailsWidgetState extends State<UserdetailsWidget> {
                                           displayName:
                                               _model.textController1.text,
                                         ));
+                                        FFAppState().signedIn = true;
+                                        FFAppState().homeTutorial = false;
+                                        FFAppState().medTutorial = false;
+                                        FFAppState().dietHomeTutorial = false;
+                                        FFAppState().plateTutorial = false;
+                                        FFAppState().exerciseTutorial = false;
+                                        safeSetState(() {});
 
                                         context.pushNamed(HomeWidget.routeName);
                                       },

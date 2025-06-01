@@ -57,7 +57,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().homeTutorial == false) {
+      if (FFAppState().signedIn && !FFAppState().homeTutorial) {
         safeSetState(() => _model.homePageWalkthroughController =
             createPageWalkthrough(context));
         _model.homePageWalkthroughController?.show(context: context);

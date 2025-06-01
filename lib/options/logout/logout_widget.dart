@@ -82,14 +82,9 @@ class _LogoutWidgetState extends State<LogoutWidget> {
               children: [
                 FFButtonWidget(
                   onPressed: () async {
-                    GoRouter.of(context).prepareAuthEvent();
-                    await authManager.signOut();
-                    GoRouter.of(context).clearRedirectLocation();
-
-                    context.goNamedAuth(
-                        SignupWidget.routeName, context.mounted);
+                    Navigator.pop(context);
                   },
-                  text: 'Yes',
+                  text: 'No',
                   options: FFButtonOptions(
                     width: 100.0,
                     height: 40.0,
@@ -97,7 +92,7 @@ class _LogoutWidgetState extends State<LogoutWidget> {
                         EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).error,
+                    color: FlutterFlowTheme.of(context).success,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           font: GoogleFonts.readexPro(
                             fontWeight: FlutterFlowTheme.of(context)
@@ -125,9 +120,16 @@ class _LogoutWidgetState extends State<LogoutWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    Navigator.pop(context);
+                    FFAppState().signedIn = false;
+                    safeSetState(() {});
+                    GoRouter.of(context).prepareAuthEvent();
+                    await authManager.signOut();
+                    GoRouter.of(context).clearRedirectLocation();
+
+                    context.goNamedAuth(
+                        SignupWidget.routeName, context.mounted);
                   },
-                  text: 'No',
+                  text: 'Yes',
                   options: FFButtonOptions(
                     width: 100.0,
                     height: 40.0,
@@ -135,7 +137,7 @@ class _LogoutWidgetState extends State<LogoutWidget> {
                         EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).success,
+                    color: FlutterFlowTheme.of(context).error,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           font: GoogleFonts.readexPro(
                             fontWeight: FlutterFlowTheme.of(context)

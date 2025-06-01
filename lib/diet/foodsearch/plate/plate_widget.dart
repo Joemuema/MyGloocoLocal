@@ -1342,28 +1342,12 @@ class _PlateWidgetState extends State<PlateWidget> {
                                                       .fontStyle,
                                             ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 5.0, 0.0),
-                                        child: Text(
-                                          recsItem.recs,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.readexPro(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                                fontSize: 15.0,
-                                                letterSpacing: 0.0,
+                                      Text(
+                                        recsItem.recs,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.readexPro(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -1373,12 +1357,24 @@ class _PlateWidgetState extends State<PlateWidget> {
                                                         .bodyMedium
                                                         .fontStyle,
                                               ),
-                                        ),
+                                              fontSize: 15.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
                                       ),
                                     ].map((c) => DataCell(c)).toList(),
                                   ),
                                   paginated: false,
                                   selectable: false,
+                                  headingRowHeight: 60.0,
+                                  dataRowHeight: 55.0,
                                   columnSpacing: 20.0,
                                   headingRowColor:
                                       FlutterFlowTheme.of(context).primary,

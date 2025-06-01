@@ -538,8 +538,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                       if (user == null) {
                         return;
                       }
+                      FFAppState().UserID = currentUserReference;
+                      safeSetState(() {});
 
-                      context.goNamedAuth(
+                      context.pushNamedAuth(
                           HomeWidget.routeName, context.mounted);
                     },
                     text: 'Continue with Google',

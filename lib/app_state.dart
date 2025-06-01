@@ -50,6 +50,9 @@ class FFAppState extends ChangeNotifier {
       _exerciseTutorial =
           prefs.getBool('ff_exerciseTutorial') ?? _exerciseTutorial;
     });
+    _safeInit(() {
+      _signedIn = prefs.getBool('ff_signedIn') ?? _signedIn;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -130,6 +133,13 @@ class FFAppState extends ChangeNotifier {
   set exerciseTutorial(bool value) {
     _exerciseTutorial = value;
     prefs.setBool('ff_exerciseTutorial', value);
+  }
+
+  bool _signedIn = false;
+  bool get signedIn => _signedIn;
+  set signedIn(bool value) {
+    _signedIn = value;
+    prefs.setBool('ff_signedIn', value);
   }
 
   final _foodsetManager = StreamRequestManager<List<FoodRecord>>();
