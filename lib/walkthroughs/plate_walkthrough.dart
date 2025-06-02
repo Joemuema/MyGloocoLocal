@@ -100,7 +100,7 @@ List<TargetFocus> createWalkthroughTargets(BuildContext context) => [
             align: ContentAlign.left,
             builder: (context, __) => WalkthroughTemplateWidget(
               description:
-                  'Press the + button to uncategorized foods to your plate, eg. Tea/Coffee',
+                  'Press the + button to add uncategorized foods to your plate, eg. Tea/Coffee',
             ),
           ),
         ],

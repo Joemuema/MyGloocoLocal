@@ -41,8 +41,27 @@ class FoodsearchModel extends FlutterFlowModel<FoodsearchWidget> {
   void updateSearchMassListAtIndex(int index, Function(double) updateFn) =>
       searchMassList[index] = updateFn(searchMassList[index]);
 
+  String foodKey = 'foodKey';
+
+  List<FilteredFoodRecord> foodSearchResults = [];
+  void addToFoodSearchResults(FilteredFoodRecord item) =>
+      foodSearchResults.add(item);
+  void removeFromFoodSearchResults(FilteredFoodRecord item) =>
+      foodSearchResults.remove(item);
+  void removeAtIndexFromFoodSearchResults(int index) =>
+      foodSearchResults.removeAt(index);
+  void insertAtIndexInFoodSearchResults(int index, FilteredFoodRecord item) =>
+      foodSearchResults.insert(index, item);
+  void updateFoodSearchResultsAtIndex(
+          int index, Function(FilteredFoodRecord) updateFn) =>
+      foodSearchResults[index] = updateFn(foodSearchResults[index]);
+
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Firestore Query - Query a collection] action in Foodsearch widget.
+  List<FilteredFoodRecord>? allFoodItems;
+  // Stores action output result for [Custom Action - loadFoodSearchDataLocally] action in Foodsearch widget.
+  List<FilteredFoodRecord>? foodSearchOutput;
   // State field(s) for Searchbar widget.
   FocusNode? searchbarFocusNode;
   TextEditingController? searchbarTextController;

@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/walkthroughs/plate_walkthrough.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart'
@@ -62,9 +63,25 @@ class _PlateWidgetState extends State<PlateWidget> {
         FFAppState().plateTutorial = true;
         safeSetState(() {});
       }
-      _model.recommendations = await queryDietRecsRecordOnce();
-      _model.recsList = _model.recommendations!.toList().cast<DietRecsRecord>();
-      safeSetState(() {});
+      if (!FFAppState().recsStored) {
+        _model.recommendations = await queryDietRecsRecordOnce();
+        await actions.storeRecTableDataLocally(
+          _model.recommendations!.toList(),
+          _model.recKey,
+        );
+        FFAppState().recsStored = true;
+        safeSetState(() {});
+        _model.recsList =
+            _model.recommendations!.toList().cast<DietRecsRecord>();
+        safeSetState(() {});
+      } else {
+        _model.loadedRecs = await actions.loadRecTableDataLocally(
+          _model.recKey,
+        );
+        _model.recsList = _model.loadedRecs!.toList().cast<DietRecsRecord>();
+        safeSetState(() {});
+      }
+
       _model.updatedFoodList =
           widget.updatedFoodList!.toList().cast<FilteredFoodRecord>();
       _model.kcalList = widget.updatedKcalList!.toList().cast<double>();

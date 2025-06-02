@@ -53,11 +53,15 @@ class PlateModel extends FlutterFlowModel<PlateWidget> {
   void updateRecsListAtIndex(int index, Function(DietRecsRecord) updateFn) =>
       recsList[index] = updateFn(recsList[index]);
 
+  String recKey = 'recsKey';
+
   ///  State fields for stateful widgets in this page.
 
   TutorialCoachMark? plateWalkthroughController;
   // Stores action output result for [Firestore Query - Query a collection] action in Plate widget.
   List<DietRecsRecord>? recommendations;
+  // Stores action output result for [Custom Action - loadRecTableDataLocally] action in Plate widget.
+  List<DietRecsRecord>? loadedRecs;
   // Models for mealFoodItem dynamic component.
   late FlutterFlowDynamicModels<MealFoodItemModel> mealFoodItemModels;
   // State field(s) for PaginatedDataTable widget.

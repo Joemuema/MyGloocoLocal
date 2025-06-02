@@ -5,6 +5,7 @@ import '/diet/foodsearch/foodsearchcomponent/foodsearchcomponent_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +61,26 @@ class _FoodsearchWidgetState extends State<FoodsearchWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (!FFAppState().foodItemsStored) {
+        _model.allFoodItems = await queryFilteredFoodRecordOnce();
+        await actions.storeFoodSearchDataLocally(
+          _model.allFoodItems!.toList(),
+          _model.foodKey,
+        );
+        _model.foodSearchResults =
+            _model.allFoodItems!.toList().cast<FilteredFoodRecord>();
+        safeSetState(() {});
+        FFAppState().foodItemsStored = false;
+        safeSetState(() {});
+      } else {
+        _model.foodSearchOutput = await actions.loadFoodSearchDataLocally(
+          _model.foodKey,
+        );
+        _model.foodSearchResults =
+            _model.foodSearchOutput!.toList().cast<FilteredFoodRecord>();
+        safeSetState(() {});
+      }
+
       FFAppState().searchActive = false;
       safeSetState(() {});
       _model.searchFoodList =

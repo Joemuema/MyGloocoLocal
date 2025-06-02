@@ -53,6 +53,26 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _signedIn = prefs.getBool('ff_signedIn') ?? _signedIn;
     });
+    _safeInit(() {
+      _recsStored = prefs.getBool('ff_recsStored') ?? _recsStored;
+    });
+    _safeInit(() {
+      _foodItemsStored =
+          prefs.getBool('ff_foodItemsStored') ?? _foodItemsStored;
+    });
+    _safeInit(() {
+      _recipesStored = prefs.getBool('ff_recipesStored') ?? _recipesStored;
+    });
+    _safeInit(() {
+      _strExStored = prefs.getBool('ff_strExStored') ?? _strExStored;
+    });
+    _safeInit(() {
+      _aerobicExStored =
+          prefs.getBool('ff_aerobicExStored') ?? _aerobicExStored;
+    });
+    _safeInit(() {
+      _flexExStored = prefs.getBool('ff_flexExStored') ?? _flexExStored;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -140,6 +160,48 @@ class FFAppState extends ChangeNotifier {
   set signedIn(bool value) {
     _signedIn = value;
     prefs.setBool('ff_signedIn', value);
+  }
+
+  bool _recsStored = false;
+  bool get recsStored => _recsStored;
+  set recsStored(bool value) {
+    _recsStored = value;
+    prefs.setBool('ff_recsStored', value);
+  }
+
+  bool _foodItemsStored = false;
+  bool get foodItemsStored => _foodItemsStored;
+  set foodItemsStored(bool value) {
+    _foodItemsStored = value;
+    prefs.setBool('ff_foodItemsStored', value);
+  }
+
+  bool _recipesStored = false;
+  bool get recipesStored => _recipesStored;
+  set recipesStored(bool value) {
+    _recipesStored = value;
+    prefs.setBool('ff_recipesStored', value);
+  }
+
+  bool _strExStored = false;
+  bool get strExStored => _strExStored;
+  set strExStored(bool value) {
+    _strExStored = value;
+    prefs.setBool('ff_strExStored', value);
+  }
+
+  bool _aerobicExStored = false;
+  bool get aerobicExStored => _aerobicExStored;
+  set aerobicExStored(bool value) {
+    _aerobicExStored = value;
+    prefs.setBool('ff_aerobicExStored', value);
+  }
+
+  bool _flexExStored = false;
+  bool get flexExStored => _flexExStored;
+  set flexExStored(bool value) {
+    _flexExStored = value;
+    prefs.setBool('ff_flexExStored', value);
   }
 
   final _foodsetManager = StreamRequestManager<List<FoodRecord>>();
