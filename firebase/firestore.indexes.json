@@ -1,0 +1,160 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "Reminders",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "MedicineID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "DateTimeCreated",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Medicine",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Form",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Name",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "addpagecollection",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "completed",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "addpagecollection",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "intensity",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "completed",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "BGreadings",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Date",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Time",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "IndividualReminders",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Date",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Medicine",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "TotalDose",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Reminders",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "UserID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "MedicineID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Time",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "IndividualReminders",
+      "fieldPath": "UserID",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    }
+  ]
+}
